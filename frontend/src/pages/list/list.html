@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Questions</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      #{{item.number}} : {{item.title}}
+      <div class="item-note" item-right>
+        This was asked by {{item.author}}
+      </div>
+
+    </button>
+
+  </ion-list>
+
+</ion-content>

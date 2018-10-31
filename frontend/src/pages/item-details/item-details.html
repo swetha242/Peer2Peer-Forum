@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle *ngIf="!selectedItem">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Item Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <h3 text-center *ngIf="selectedItem">
+    Question Number {{selectedItem.number}} <br><br>
+    {{selectedItem.title}}
+  </h3>
+  <h3 align="center"> Asked by <b> {{selectedItem.author}} </b> </h3>
+  <h4 text-center *ngIf="selectedItem">
+    Question is  <b>{{selectedItem.qtext}}</b>
+  </h4>
+
+  <ion-list>
+
+    <button ion-item *ngFor="let item of answers" block>
+      #{{item.number}}
+      <br><b>Answer : </b>{{item.atext}}
+      <div class="item-note" item-right>
+        This was answered by {{item.author}}
+      </div>
+      <br>
+      <br>
+      Number of Likes : {{item.numberOfLikes}}
+
+    </button>
+
+  </ion-list>
+</ion-content>
