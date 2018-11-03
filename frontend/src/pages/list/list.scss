@@ -1,3 +1,6 @@
 page-list {
 
 }
+ion-card.cards-list-demo ion-card-header {
+    color: map-get($colors, primary);
+  }

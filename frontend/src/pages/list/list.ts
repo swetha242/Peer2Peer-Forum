@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-
+import { Http, Headers } from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
-
+import * as Enums from '../../assets/apiconfig';
 import { ItemDetailsPage } from '../item-details/item-details';
 
 @Component({
@@ -11,8 +11,12 @@ import { ItemDetailsPage } from '../item-details/item-details';
 export class ListPage {
   items: Array<{title: string, author: string, number : number, qtext : string}>;
   answers: Array<{number : number,atext: string, author: string, numberOfLikes : number}>;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  //the question asked by user
+  question:string;
+  //userid from prev page
+  userid = this.navParams.get('userid');
+  subject=this.navParams.get('subject');
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
 
     this.items = [];
     this.answers=[];
@@ -33,8 +37,56 @@ export class ListPage {
 
       });
     }
+    /*
+     //send question,userid and subject
+     let postParams = {subject:this.subject}
+     let headers = new Headers();
+     headers.append('Content-Type', 'application/json');
+ 
+         let url = Enums.APIURL.URL1;
+         let path = url.concat( "/getques");
+         console.log(postParams);
+ 
+         this.http.post(path, postParams, {headers: headers})
+           .subscribe(res => {
+  
+             let data = res.json();
+             console.log(data)
+             let ques=data['questions'];
+             //traverse the questions array 
+             
+  
+           }, (err) => {
+             console.log(err);
+             
+           });*/
   }
+ 
+  askques(){
+    //send question,userid and subject
+    let postParams = {question : this.question,userid:this.userid,subject:this.subject}
+    let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
+        let url = Enums.APIURL.URL1;
+        let path = url.concat( "/askques");
+        console.log(postParams);
+
+
+        this.http.post(path, postParams, {headers: headers})
+          .subscribe(res => {
+ 
+            let data = res.json();
+            console.log(data)
+            //this.token = data.token;
+            //this.storage.set('token', data.token);
+            //resolve(data);
+ 
+          }, (err) => {
+            console.log(err);
+            //reject(err);
+          });
+  }
   itemTapped(event, item) {
     this.navCtrl.push(ItemDetailsPage, { item: item , answer: this.answers}
     );

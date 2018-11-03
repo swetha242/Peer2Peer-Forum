@@ -76,7 +76,7 @@ export class AuthProvider {
  
     return new Promise((resolve, reject) => {
 
-      console.log(credentials);
+      //console.log(credentials);
  
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -84,7 +84,7 @@ export class AuthProvider {
 
         let url = Enums.APIURL.URL1;
         let path = url.concat("/v1/auth");
-        console.log(path);
+        //console.log(path);
  
         this.http.post(path, JSON.stringify(credentials), {headers: headers})
           .subscribe(res => {

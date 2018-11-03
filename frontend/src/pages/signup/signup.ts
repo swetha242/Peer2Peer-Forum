@@ -42,7 +42,7 @@ export class SignupPage {
         buttons: ['OK']
       });
       alert.present();
-      this.navCtrl.push(SubjectsPage);
+      this.navCtrl.push(SubjectsPage,{userid:result['user_id']});
     }
     }, (err) => {
       console.log(err)

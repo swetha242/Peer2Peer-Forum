@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage} from 'ionic-angular';
+import { NavController,NavParams, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { ListPage } from '../list/list';
 /**
  * Generated class for the MainPage page.
  *
@@ -16,8 +17,9 @@ export class SubjectsPage {
 
     searchQuery: string ='';
     items: string[];
-    constructor() {
-      this.initializeItems();
+    userid = this.navParams.get('userid');
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+      //this.initializeItems();
     }
     initializeItems(){
       this.items = [
@@ -29,10 +31,14 @@ export class SubjectsPage {
         'Software Engineering'
       ];
     }
+    choosesub(it)
+    {
+      this.navCtrl.push(ListPage,{ userid: this.userid,subject:it});
+    }
     getItems(ev) {
       // Reset items back to all of the items
       this.initializeItems();
-
+      console.log(this.userid)
       // set val to the value of the ev target
       var val = ev.target.value;
 

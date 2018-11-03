@@ -20,7 +20,7 @@
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
       <ion-item *ngFor="let item of items">
-       <button  block>
+       <button  block (click)="choosesub(item)">
         {{ item }}
        </button>
 

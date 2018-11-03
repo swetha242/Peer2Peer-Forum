@@ -30,17 +30,17 @@ export class LoginPage {
     let postParams = {email : this.email, password: this.password};
   
 
-  console.log(postParams);
+  //console.log(postParams);
   this.authService.login(postParams).then((result) => {
     
     let data = result["result"];
     //console.log(result)
-    console.log(JSON.parse(JSON.stringify(result)));
+    //console.log(JSON.parse(JSON.stringify(result)));
     if(data=="Success"){
-      this.navCtrl.push(SubjectsPage);
+      this.navCtrl.push(SubjectsPage,{ userid: result['user_id']});
     }
     else if(data=="Invalid password"){
-      console.log("y");
+      //console.log("y");
       const alert = this.alertCtrl.create({
         title: 'Incorrect Password',
         subTitle: 'Password entered is incorrect!',
@@ -61,8 +61,6 @@ export class LoginPage {
   }, (err) => {
     console.log("yo");
     console.log(err);
-
-    //this.nav.push(ManagerHomePage, { username: this.email });
     });
 
     }
