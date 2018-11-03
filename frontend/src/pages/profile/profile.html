@@ -1,0 +1,66 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="row responsive-lg">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 style="border:solid 1px black;margin:2px;'">
+            <h3> {{profileDetails.name}} </h3>
+            <p> Email Id : {{profileDetails.emailId}} </p>
+            <p> Gender : {{profileDetails.gender}} </p>
+        </ion-col>
+
+        <ion-col col-3 style="border:solid 1px black;margin:2px;">
+          <h3> Contribution Details </h3>
+          <p> Number of Questions Asked : {{profileDetails.numberOfQuestionsAsked}} </p>
+          <p> Number of Questions Answered : {{profileDetails.numberOfQuestionsAnswered}} </p>
+          <p> Number of Answers Upvoted : {{profileDetails.numberOfUpvotes}} </p>
+          <p> Number of Project Ideas : {{profileDetails.numberofProjectIdeas}} </p>
+          <p> Number of Notes Uploaded : {{profileDetails.numberOfNotesUploaded}} </p>
+          <p> Number of Views for Notes : {{profileDetails.numberOfViewsForNotes}} </p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-4 style="border:solid 1px black;margin:2px;">
+          <div class="item item-divider">
+            <h3>Top Subjects</h3>
+          </div>
+          <div *ngFor="let topSubject of profileDetails.topSubjects">
+            <ul class="list">
+              <li class="item">
+                {{topSubject}}
+              </li>
+              </ul>
+          </div>
+        </ion-col>
+        <ion-col col-4 style="border:solid 1px black;margin:2px;">
+          <div class="item item-divider">
+            <h3>Top Tags</h3>
+          </div>
+          <div *ngFor="let topTag of profileDetails.topTags">
+            <ul class="list">
+              <li class="item">
+                {{topTag}}
+              </li>
+            </ul>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

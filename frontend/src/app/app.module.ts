@@ -13,6 +13,7 @@ import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login'
 import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +27,8 @@ import { AuthProvider } from '../providers/auth/auth';
     ListPage,
     LoginPage,
     SignupPage,
-    SubjectsPage
+    SubjectsPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { AuthProvider } from '../providers/auth/auth';
     ListPage,
     LoginPage,
     SignupPage,
-    SubjectsPage
+    SubjectsPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,
