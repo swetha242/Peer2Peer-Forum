@@ -104,5 +104,95 @@ def upload_file():
             print(filename)
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return 'file uploaded successfully'   
+
+'''------------------------------------IDEAS SECTION-------------------------------------------'''
+
+#insert ideas
+@app.route('/idea/insert')
+def insert_ideas():
+	data=request.get_json()
+	
+	userdata={
+		'title':data['title'],
+		'link':data['links'],
+		'tags':data['tags'],
+		'description':data['description'],
+		'owner_id':data['owner_id'],
+		'upvotes':data['upvotes'],
+		'downvotes':data['downvotes'],
+		'collaborator_id':data['collaborator_id'],
+		'mentor_id':data['mentor_id']
+	}
+	idea=mongo.db.idea.insert_one(userdata)
+	if idea:
+		return jsonify({'result':'success'})
+	else:
+		return jsonify({'result':'unsucess'})
+
+
+#add comments
+@app.route('/idea/<ID>/insert_comment')
+def insert_comments(ID):
+	data=request.get_json()
+
+	userdata={
+		'ideas_id':ID,
+		'comments':data['comments']
+	}
+	comment=mongo.db.ideas_comments.insert_one(userdata)
+	if comment:
+		return jsonify({'result':'success'})
+	else:
+		return jsonify({'result':'unsuccess'})
+		
+'''
+@app.route('/idea/<ID>/get_comments')
+def get_comments(ID):
+	comments = mongo.db.idea.find({'id':ID}).sort([('time',-1)])
+    return dumps(idea)
+'''
+
+#idea with a particular tag
+@app.route('/idea/<tag>')
+def get_idea(tag):
+    idea = mongo.db.idea.find({'tag':tag})
+    return dumps(idea)
+
+
+#latest idea with a particular tag
+@app.route('/idea/latest/<tag>')
+def get_latest_idea(tag):
+    idea = mongo.db.idea.find({'tag':tag}).sort([('time',-1)])
+    return dumps(idea)
+
+
+#most popular idea based on tag
+@app.route('/idea/<tag>/popular')
+def get_popular_idea(tag):
+    idea = mongo.db.idea.find({'tag':tag}).sort([('upvotes',-1)])
+    return dumps(idea)
+
+
+#upvote idea
+@app.route('/idea/<ID>/upvote/')
+def upvote_idea(ID):
+	v=mongo.db.idea.find_one({"_id":ObjectId(ID)})['upvotes']
+	mongo.db.idea.update({"_id":ObjectId(ID)},{"$set":{'upvotes':v+1}})
+	return jsonify({'upvote':v+1})
+
+	
+#downvote idea
+@app.route('/idea/<ID>/downvote/')
+def downvote_idea(ID):
+	v=mongo.db.idea.find_one({"_id":ObjectId(ID)})['downvotes']
+	mongo.db.idea.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
+	return jsonify({'downvote':v+1})
+
+
+
+'''---------------------------------------------------------------------------------------------'''
+
+
+
 if __name__ == '__main__':
    app.run(debug = True)
