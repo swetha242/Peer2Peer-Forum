@@ -134,9 +134,9 @@ def view_file():
 '''------------------------------------IDEAS SECTION-------------------------------------------'''
 
 #insert ideas
-@app.route('/idea/insert')
+@app.route('/ideas/insert')
 def insert_ideas():
-	data=request.get_json()
+	data=request.form
 	
 	userdata={
 		'title':data['title'],
@@ -149,7 +149,7 @@ def insert_ideas():
 		'collaborator_id':data['collaborator_id'],
 		'mentor_id':data['mentor_id']
 	}
-	idea=mongo.db.idea.insert_one(userdata)
+	idea=mongo.db.ideas.insert_one(userdata)
 	if idea:
 		return jsonify({'result':'success'})
 	else:
@@ -157,9 +157,9 @@ def insert_ideas():
 
 
 #add comments
-@app.route('/idea/<ID>/insert_comment')
+@app.route('/ideas/insert_comment/<ID>',methods=['post'])
 def insert_comments(ID):
-	data=request.get_json()
+	data=request.form
 
 	userdata={
 		'ideas_id':ID,
@@ -170,51 +170,49 @@ def insert_comments(ID):
 		return jsonify({'result':'success'})
 	else:
 		return jsonify({'result':'unsuccess'})
-		
-'''
-@app.route('/idea/<ID>/get_comments')
+
+#get comments
+@app.route('/ideas/get_comments/<ID>')
 def get_comments(ID):
-	comments = mongo.db.idea.find({'id':ID}).sort([('time',-1)])
-    return dumps(idea)
-'''
+    comments = mongo.db.ideas_comments.find({'ideas_id':ID})
+    return dumps(comments)
+
 
 #idea with a particular tag
-@app.route('/idea/<tag>')
+@app.route('/ideas/<tag>')
 def get_idea(tag):
-    idea = mongo.db.idea.find({'tag':tag})
+    idea = mongo.db.ideas.find({'tags':{'$in':[tag]}})
     return dumps(idea)
 
 
 #latest idea with a particular tag
-@app.route('/idea/latest/<tag>')
+@app.route('/ideas/latest/<tag>')
 def get_latest_idea(tag):
-    idea = mongo.db.idea.find({'tag':tag}).sort([('time',-1)])
+    idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('time',-1)])
     return dumps(idea)
 
 
 #most popular idea based on tag
-@app.route('/idea/<tag>/popular')
+@app.route('/ideas/popular/<tag>')
 def get_popular_idea(tag):
-    idea = mongo.db.idea.find({'tag':tag}).sort([('upvotes',-1)])
+    idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('upvotes',-1)])
     return dumps(idea)
 
 
 #upvote idea
-@app.route('/idea/<ID>/upvote/')
+@app.route('/ideas/upvote/<ID>')
 def upvote_idea(ID):
-	v=mongo.db.idea.find_one({"_id":ObjectId(ID)})['upvotes']
-	mongo.db.idea.update({"_id":ObjectId(ID)},{"$set":{'upvotes':v+1}})
+	v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['upvotes']
+	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'upvotes':v+1}})
 	return jsonify({'upvote':v+1})
 
 	
 #downvote idea
-@app.route('/idea/<ID>/downvote/')
+@app.route('/ideas/downvote/<ID>')
 def downvote_idea(ID):
-	v=mongo.db.idea.find_one({"_id":ObjectId(ID)})['downvotes']
-	mongo.db.idea.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
+	v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['downvotes']
+	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
 	return jsonify({'downvote':v+1})
-
-
 
 '''---------------------------------------------------------------------------------------------'''
 
