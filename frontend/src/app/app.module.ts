@@ -14,10 +14,13 @@ import { LoginPage } from '../pages/login/login'
 import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
+import { NotesPage } from '../pages/notes/notes';
+import {ViewnotesPage} from '../pages/viewnotes/viewnotes';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { AuthProvider } from '../providers/auth/auth';
     LoginPage,
     SignupPage,
     SubjectsPage,
-    ProfilePage
+    ProfilePage,
+    NotesPage,
+    ViewnotesPage,
+    PdfViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,9 @@ import { AuthProvider } from '../providers/auth/auth';
     LoginPage,
     SignupPage,
     SubjectsPage,
-    ProfilePage
+    ProfilePage,
+    NotesPage,
+    ViewnotesPage
   ],
   providers: [
     StatusBar,

@@ -8,6 +8,7 @@ import {LoginPage} from '../pages/login/login'
 import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
+import { NotesPage } from '../pages/notes/notes';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -39,7 +40,8 @@ export class MyApp {
    //   { title : 'Login', component : LoginPage},
      // { title : 'Sign Up',component : SignupPage},
       { title : 'Subjects Page', component : SubjectsPage},
-      { title : 'Profile Page', component : ProfilePage}
+      { title : 'Profile Page', component : ProfilePage},
+      {title:'Notes',component:NotesPage}
     ];
   }
 
