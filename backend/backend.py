@@ -17,8 +17,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
 
-
-"""  User add to mongodb database """
+#-----------------------------users-----------------------------------
+# user signup
 @app.route('/v1/signup',methods=['POST'])
 def adduser():
     data=request.get_json()
@@ -58,6 +58,29 @@ def check_user():
         return jsonify({'result':"Invalid password"})
     else:
         return jsonify({'result':"Invalid user"})
+
+#-----------------------User Profile Data --------------------------------------
+
+#owner notes
+@app.route("usernotes/<ID>")
+def get_usernotes(ID):
+    notes = mongo.db.notes.find({'owner_id':ID})
+    return dumps(notes)
+
+#owner ideas
+@app.route("userideas/<ID>")
+def get_userideas(ID):
+    ideas = mongo.db.ideas.find({'owner_id':ID})
+    return dumps(ideas)
+
+"""
+#owner Q/A
+@app.route("userqa/<ID>")
+def get_userideas(ID):
+    qa = mongo.db.qa.find({'owner_id':ID})
+    return dumps(qa)
+"""
+
 #-------------------------------NOTES------------------------------------------------------
 #notes with a particular tag
 @app.route('/notes/<tag>')
