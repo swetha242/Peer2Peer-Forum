@@ -62,20 +62,20 @@ def check_user():
 #-----------------------User Profile Data --------------------------------------
 
 #owner notes
-@app.route("usernotes/<ID>")
+@app.route("/users/usernotes/<ID>")
 def get_usernotes(ID):
     notes = mongo.db.notes.find({'owner_id':ID})
     return dumps(notes)
 
 #owner ideas
-@app.route("userideas/<ID>")
+@app.route("/users/userideas/<ID>")
 def get_userideas(ID):
     ideas = mongo.db.ideas.find({'owner_id':ID})
     return dumps(ideas)
 
 """
 #owner Q/A
-@app.route("userqa/<ID>")
+@app.route("/users/userqa/<ID>")
 def get_userideas(ID):
     qa = mongo.db.qa.find({'owner_id':ID})
     return dumps(qa)
