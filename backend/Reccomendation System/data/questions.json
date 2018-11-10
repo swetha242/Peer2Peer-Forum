@@ -1,0 +1,32 @@
+{"1": {
+    "_id" : "ObjectId('5bc0de4d7495c3f50f6c5bd6')",
+    "subject" : "Machine Learning",
+    "tag" : ["ML","Neural Netwoks","Backprop"],
+    "course" : 1,
+    "upvotes" : 10,
+    "downvotes" : 2,
+    "title" : "Neural networks",
+    "time" : "ISODate('2018-10-12T17:47:57.933Z')"
+},
+"2":
+{
+    "_id" : "ObjectId('5bc22037fdc52ba0ad988d64')",
+    "subject" : "Data Structures",
+    "tag" : ["Data Structures", "Linked List","Insertion", "Deletion","Algorithms"],
+    "course" : 1,
+    "upvotes" : 10,
+    "downvotes" : 2,
+    "title" : "Regression",
+    "time" : "ISODate('2018-10-13T16:41:27.899Z')"
+},
+"3":
+{
+    "_id" : "ObjectId('5bc220e2fdc52ba0ad988d65')",
+    "subject"  : "OOMD",
+    "tag" : ["OOMD","Use Case","Actors"],
+    "course" : 1,
+    "upvotes" : 11,
+    "downvotes" : 2,
+    "title" : "OOMD",
+    "time" : "ISODate('2018-10-13T16:44:18.340Z')"
+}}
