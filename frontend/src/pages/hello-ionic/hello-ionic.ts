@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading, IonicPage, NavParams } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { LoginPage } from '../login/login';
 
 import { Http, Headers } from '@angular/http';
-import { NavController, NavParams } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
 import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 import { ListPage } from '../list/list';
-import { NotesPage } from '..notes/notes';
+import { NotesPage } from '../notes/notes';
 //import
 
 @Component({
