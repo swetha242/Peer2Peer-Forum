@@ -1,0 +1,202 @@
+<!--
+  Generated template for the LaunchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Launch Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+          <ion-item>
+              <ion-label><ion-icon name="star" color="bright"></ion-icon>   Global Trend</ion-label>
+
+          </ion-item>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-md-3>
+        <ion-card class="cards-list-demo">
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Top Subjects
+              </ion-card-header>
+            <ion-card-content class="item-note" item-right>
+              <div *ngFor="let topSubject of globalTrend.topSubjects">
+                <ul class="list">
+                  <li class="item">
+                    {{topSubject}}
+                  </li>
+                  </ul>
+              </div>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+      <ion-col col-md-3>
+        <ion-card class="cards-list-demo">
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Top Tags
+              </ion-card-header>
+            <ion-card-content class="item-note" item-right>
+              <div *ngFor="let topTag of globalTrend.top3Tags">
+                <ul class="list">
+                  <li class="item">
+                    {{topTag}}
+                  </li>
+                  </ul>
+              </div>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+      <ion-col col-md-3>
+        <ion-card class="cards-list-demo">
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Top Contributors
+              </ion-card-header>
+            <ion-card-content class="item-note" item-right>
+              <div *ngFor="let topContributor of globalTrend.top3Contributors">
+                <ul class="list">
+                  <li class="item">
+                    {{topContributor}}
+                  </li>
+                  </ul>
+              </div>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+      <ion-col col-md-3>
+        <ion-card class="cards-list-demo">
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Data Stats
+              </ion-card-header>
+            <ion-card-content class="item-note" item-right>
+              <p> Number of Questions : {{globalTrend.totalNumberOfQuestions}} </p>
+              <br>
+              <p> Number of Notes :  {{globalTrend.totalNumberOfNotes}} </p>
+              <br>
+              <p> Number of Projects :  {{globalTrend.totalNumberOfProjects}} </p>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-12>
+          <ion-item>
+              <ion-label><ion-icon name="star" color="bright"></ion-icon> Personal Stats</ion-label>
+
+          </ion-item>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-md-4>
+        <ion-card class="cards-list-demo">
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Top Subjects
+              </ion-card-header>
+            <ion-card-content class="item-note" item-right>
+              <div *ngFor="let topSubject of personalTrend.topSubjects">
+                <ul class="list">
+                  <li class="item">
+                    {{topSubject}}
+                  </li>
+                  </ul>
+              </div>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+      <ion-col col-md-4>
+        <ion-card class="cards-list-demo">
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Top Tags
+              </ion-card-header>
+            <ion-card-content class="item-note" item-right>
+              <div *ngFor="let topTag of personalTrend.top3Tags">
+                <ul class="list">
+                  <li class="item">
+                    {{topTag}}
+                  </li>
+                  </ul>
+              </div>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+      <ion-col col-md-4>
+        <ion-card class="cards-list-demo">
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Data Stats
+              </ion-card-header>
+            <ion-card-content class="item-note" item-right>
+              <p> Number of Questions : {{personalTrend.totalNumberOfQuestions}} </p>
+              <br>
+              <p> Number of Notes :  {{personalTrend.totalNumberOfNotes}} </p>
+              <br>
+              <p> Number of Projects :  {{personalTrend.totalNumberOfProjects}} </p>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+      <ion-col col-12>
+          <ion-item>
+              <ion-label><ion-icon name="star" color="bright"></ion-icon> Reccomended For You</ion-label>
+
+          </ion-item>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-md-4>
+        <button ion-item (click)=openQuestions($event)>
+          <ion-card>
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Questions
+              </ion-card-header>
+          <ion-card-content class="item-note" item-right>
+            Questions based on what you have answered till now.
+          </ion-card-content>
+        </ion-card>
+        </button>
+      </ion-col>
+      <ion-col col-md-4>
+        <button ion-item  (click)=openNotes($event)>
+          <ion-card>
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Notes
+              </ion-card-header>
+          <ion-card-content class="item-note" item-right>
+            Notes based on what you have read till now.
+          </ion-card-content>
+        </ion-card>
+        </button>
+      </ion-col>
+      <ion-col col-md-4>
+        <button ion-item (click)=openProjects($event)>
+          <ion-card>
+            <ion-card-header>
+                <ion-icon name="star" color="bright"></ion-icon> Questions
+              </ion-card-header>
+          <ion-card-content class="item-note" item-right>
+            Projects based on what you have taken up till now.
+          </ion-card-content>
+        </ion-card>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
