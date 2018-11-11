@@ -47,7 +47,7 @@ export class IdeasProjectsPage {
     //default view is latest ideas
     let path = url.concat("/idea/latest/",this.subject);
 
-    console.log(this.userid);
+    console.log(this.user_id);
     console.log(this.subject);
 
     this.http.get(path).subscribe(res => {
