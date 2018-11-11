@@ -9,10 +9,10 @@ import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
 import { NotesPage } from '../pages/notes/notes';
-import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import {LaunchPage} from '../pages/launch/launch';
+import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +22,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = LoginPage;
+  rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -43,8 +43,7 @@ export class MyApp {
       { title : 'Subjects Page', component : SubjectsPage},
       { title : 'Profile Page', component : ProfilePage},
       {title:'Notes',component:NotesPage},
-      { title : 'Projects and Ideas', component : IdeasProjectsPage},
-
+      { title : 'Launch Page', component : LaunchPage}
     ];
   }
 
