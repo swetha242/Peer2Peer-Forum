@@ -1,4 +1,4 @@
-----------------------------------Sample JSONs for notes database--------------------------------------
+Sample JSONs for notes database
 '''
 {
     "_id" : ObjectId("5bc0de4d7495c3f50f6c5bd6"),
@@ -38,15 +38,15 @@
     "title" : "OOMD",
     "summary" : "Unit 2",
     "block" : 0,
-    "islink" : 0,
-    "link" : "1232454.pdf",
+    "islink" : 1,
+    "link" : "https://drive.google.com/file/d/1QNVuZ1vuKdnwIfRcv1FygFaiNlh6fYLM/view?usp=sharing",
     "time" : ISODate("2018-10-13T16:44:18.340Z")
 }
 '''
 
 
 
---------------------------------Sample JSON for users db--------------------------------------------
+Sample JSON for users db
 
 {
         "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
@@ -56,12 +56,12 @@
         "is_student" : 1,
         "gender " : "Female",
 
-        "ques_ask" : 20,
-        "ques_ans" : 30,
-        "ans_upvote" : 200,
-        "proj_ideas" : 3, 
-        "notes_upl" : 10,
-        "view_notes" : 30,
+        "numberOfQuestionsAsked" : 20,
+        "numberOfQuestionsAnswered" : 30,
+        "numberOfAnswersUpvoted" : 200,
+        "numberOfProjectIdeas" : 3, 
+        "numberOfNotesUploaded" : 10,
+        "numberOfViewsForNotes" : 30,
 
         "topSubjects" : {"Data Structures":10,  "Algorithms": 20, "Compiler Design" : 30, "Theory Of Computation" : 100},
         "topTags"  : {"Linked List" : 25, "Hash Maps": 30, "Binary Trees": 50} 
@@ -72,78 +72,14 @@
         "password" : "123",
         "email" : "x@gmail.com",
         "is_student" : 1,
-        "ques_ask" : 20,
-        "ques_ans" : 30,
-        "ans_upvote" : 200,
-        "proj_ideas" : 3, 
-        "notes_upl" : 10,
-        "view_notes" : 30,
+        "numberOfQuestionsAsked" : 20,
+        "numberOfQuestionsAnswered" : 30,
+        "numberOfAnswersUpvoted" : 200,
+        "numberOfProjectIdeas" : 3, 
+        "numberOfNotesUploaded" : 10,
+        "numberOfViewsForNotes" : 30,
 
         "topSubjects" : {"Data Structures":10,  "Algorithms": 20, "Compiler Design" : 30, "Theory Of Computation" : 100},
         "topTags"  : {"Linked List" : 25, "Hash Maps": 30, "Binary Trees": 50}
 
-}
---------------------------Q and A---------------------------------------------------------
-1) /qlist - get list of questions
-
-[
-    {
-        "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "asked_by" : "abcd@gmail.com",
-        "tags": ["tag1",  "tag2", "tag3"],
-        "time" : ISODate("2018-10-12T17:47:57.933Z"),
-        "description": "descp1",
-        "title": "t1"
-    },
-    {
-        "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "asked_by" : "xyz@gmail.com",
-        "tags": ["tag1",  "tag2", "tag3"],
-        "time" : ISODate("2018-10-12T17:47:57.933Z"),
-        "description": "descp2",
-        "title": "t2"
-    }
-]
-
-2) /q/QID/answers - get all answers to given question (QID is question ID)
-
-[
-    {
-        "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "answered_by" : "abcd@gmail.com",
-        "upvotes": 2
-        "downvotes": 0
-        "time" : ISODate("2018-10-12T17:47:57.933Z"),
-        "teacher": "false",
-        "content": "answer text"
-    },
-    {
-        "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "answered_by" : "xyz@gmail.com",
-        "upvotes": 4
-        "downvotes": 0
-        "time" : ISODate("2018-10-12T17:47:57.933Z"),
-        "teacher": "true",
-        "content": "answer text"
-    },
-]
-
-3) /q/AID/upvote - upvote an answer (AID is answer ID)
-
-4) /q/AID/downvote - downvote an answer (AID is answer ID)
-
-5) /q/QID/answer - add an answer to question QID by sending following JSON
-
-{
-    "answered_by" : "abcd@gmail.com",
-    "content": "answer text"
-}
-
-6) /q/ask - add a question by sending following JSON
-
-{
-    "asked_by" : "xyz@gmail.com",
-    "tags": ["tag1",  "tag2", "tag3"],
-    "description": "descp2",
-    "title": "t2"
 }
