@@ -8,6 +8,7 @@ import {LoginPage} from '../pages/login/login'
 import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
+import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -20,7 +21,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
+  rootPage = LoginPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -36,10 +37,12 @@ export class MyApp {
     this.pages = [
       { title: 'Home Page', component: HelloIonicPage },
       { title: 'Questions Page', component: ListPage },
+      { title : 'Projects and Ideas', component : IdeasProjectsPage},
       { title : 'Login', component : LoginPage},
       { title : 'Sign Up',component : SignupPage},
       { title : 'Subjects Page', component : SubjectsPage},
       { title : 'Profile Page', component : ProfilePage}
+
     ];
   }
 

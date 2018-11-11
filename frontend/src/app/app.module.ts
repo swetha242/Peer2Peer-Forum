@@ -14,12 +14,13 @@ import { LoginPage } from '../pages/login/login'
 import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
-
+import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
 
-@NgModule({
+@NgModule({ 
   declarations: [
     MyApp,
     HelloIonicPage,
@@ -28,7 +29,9 @@ import { AuthProvider } from '../providers/auth/auth';
     LoginPage,
     SignupPage,
     SubjectsPage,
-    ProfilePage
+    ProfilePage,
+    IdeasProjectsPage,
+    IdeasInputPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,9 @@ import { AuthProvider } from '../providers/auth/auth';
     LoginPage,
     SignupPage,
     SubjectsPage,
-    ProfilePage
+    ProfilePage,
+    IdeasProjectsPage,
+    IdeasInputPage
   ],
   providers: [
     StatusBar,
