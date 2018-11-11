@@ -8,6 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
 import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 import { ListPage } from '../list/list';
+import { NotesPage } from '..notes/notes';
 //import
 
 @Component({
