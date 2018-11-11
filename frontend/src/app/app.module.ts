@@ -16,13 +16,13 @@ import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
 import { NotesPage } from '../pages/notes/notes';
 import {ViewnotesPage} from '../pages/viewnotes/viewnotes';
-
-import { PdfViewerComponent } from 'ng2-pdf-viewer';
-import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
+import {LaunchPage} from '../pages/launch/launch';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
-import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+
+import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 
 @NgModule({
   declarations: [
@@ -37,8 +37,8 @@ import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
     NotesPage,
     ViewnotesPage,
     PdfViewerComponent,
-    IdeasProjectsPage,
-    IdeasInputPage
+    LaunchPage,
+    RecoQuestionsPage
   ],
   imports: [
     BrowserModule,
@@ -59,8 +59,8 @@ import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
     ProfilePage,
     NotesPage,
     ViewnotesPage,
-    IdeasProjectsPage,
-    IdeasInputPage
+    LaunchPage,
+    RecoQuestionsPage
   ],
   providers: [
     StatusBar,
