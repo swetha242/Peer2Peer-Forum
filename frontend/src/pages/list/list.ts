@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
 import { ItemDetailsPage } from '../item-details/item-details';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-list',
@@ -15,13 +16,13 @@ export class ListPage {
   question:string;
   //userid from prev page
   userid = this.navParams.get('userid');
-  subject=this.navParams.get('subject');
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
+  //subject=this.navParams.get('subject');
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public storage: Storage) {
 
     this.items = [];
     this.answers=[];
     console.log(this.userid);
-    console.log(this.subject);
+    //console.log(this.subject);
     for(let i = 1; i < 11; i++) {
       this.items.push({
         number : i,

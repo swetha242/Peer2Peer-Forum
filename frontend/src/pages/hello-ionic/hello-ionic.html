@@ -1,48 +1,37 @@
-
-
-<!--
 <ion-header>
+
   <ion-toolbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Peer To Peer</ion-title>
+    
+    <ion-title>Home</ion-title>
   </ion-toolbar>
+
 </ion-header>
-
--->
-
-
 
 
 <ion-content padding>
 
+  <h3>Welcome to your Peer to Peer Forum!</h3>
 
-      <h3>Welcome to your Peer to Peer Forum!</h3>
+  <p>
+    This gives you three different services as a client.
+  </p>
+  <p>
+    They are :
+    <br>
+    1. Questions and Answering
+    <br>
+    2. Notes Sharing
+    <br>
+    3. Ideas Forum
+  </p>
+  
 
+  <div padding>
+    <button ion-button color="primary" block (click)="Login()">LOGIN_BUTTON</button>
+  </div>
 
-      <ion-list>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-card (click)="navigate(path_QA)">
-                <img src="#"/>
-                <div class="card-title">Questions and Answers</div>
-              </ion-card>
-            </ion-col>
-            <ion-col>
-              <ion-card (click)="navigate(path_Notes)">
-                <img src="#"/>
-                <div class="card-title">Notes Sharing</div>
-              </ion-card>
-            </ion-col>
-            <ion-col>
-              <ion-card (click)="navigate(path_Ideas)">
-                <img src="#"/>
-                <div class="card-title">Ideas Forum</div>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-list>
+  <div padding>
+    <button ion-button color="primary" block (click)="Signup()">SIGNUP_BUTTON</button>
+  </div>
+
 </ion-content>

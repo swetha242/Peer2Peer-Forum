@@ -16,18 +16,18 @@ import { NotesPage } from '../notes/notes';
 })
 export class HelloIonicPage {
 
-  user_id: any;
+  /*user_id: any;
 
   path_QA = ListPage;
   path_Ideas = IdeasProjectsPage;
-  path_Notes = NotesPage;
+  path_Notes = NotesPage;*/
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
-    this.user_id = this.navParams.get('userid');
-    console.log(this.user_id);
+    //this.user_id = this.navParams.get('userid');
+    //console.log(this.user_id);
   }
 
   navigate(path){
-    this.navCtrl.push(path,{userid: this.user_id});
+    //this.navCtrl.push(path,{userid: this.user_id});
   }
 
 

@@ -20,11 +20,10 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 })
 @Injectable()
 export class MyApp {
-
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = LoginPage;
+  rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -33,17 +32,17 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen
   ) {
-
     this.initializeApp();
 
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [
-      { title: 'Home Page', component: LaunchPage },
-      { title : 'Profile Page', component : ProfilePage},
-      { title: 'Questions Page', component: ListPage },
+
+      { title : 'Home',component: LaunchPage},
+      { title : 'Profile', component : ProfilePage},
+      { title: 'Questions and Answers', component: ListPage },
       { title:'Notes',component:NotesPage},
-      { title : 'Projects and Ideas', component : IdeasProjectsPage},
+      { title : 'Projects and Ideas', component : IdeasProjectsPage}
     ];
   }
 
