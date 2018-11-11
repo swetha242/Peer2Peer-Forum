@@ -20,7 +20,7 @@ export class HelloIonicPage {
 
   path_QA = ListPage;
   path_Ideas = IdeasProjectsPage;
-  //path_Notes =
+  path_Notes = NotesPage;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
     this.user_id = this.navParams.get('userid');
     console.log(this.user_id);
