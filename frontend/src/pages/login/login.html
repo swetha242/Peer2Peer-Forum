@@ -19,6 +19,8 @@
 -->
 
 <ion-content padding>
+
+        <h3>Welcome to your Peer to Peer Forum!</h3>
     <form>
         <ion-list>
     <!--
@@ -40,9 +42,13 @@
         </ion-item>
 
           <div padding>
-            <button ion-button color="primary" block (click)="doLogin()">LOGIN_BUTTON</button>
+            <button ion-button color="primary" block (click)="doLogin()">LogIn</button>
           </div>
+          
 
+            <div padding>
+              <button ion-button color="primary" block (click)="doSignup()">SignUp</button>
+            </div>
         </ion-list>
       </form>
 

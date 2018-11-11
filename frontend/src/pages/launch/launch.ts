@@ -4,6 +4,7 @@ import { AlertController } from 'ionic-angular';
 import {RecoQuestionsPage} from '../reco-questions/reco-questions';
 import { ListPage } from '../list/list';
 import { ViewnotesPage} from '../viewnotes/viewnotes';
+import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 /**
  * Generated class for the LaunchPage page.
  *
@@ -130,34 +131,33 @@ alert.addButton({
 }
 
 
-// callProjects()
-// {
-//   this.navCtrl.push(ProjectsPage, { subject : this.selectedSubject}
-//   );
-// }
-// presentAlertProjects() {
-// let alert = this.alertCtrl.create();
-// alert.setTitle('Select Subject');
-// for(let i = 0; i < this.subjects.length; i++)
-// {
-//
-//   alert.addInput({type: 'radio', label: this.subjects[i], value: this.subjects[i]});
-//
-// }
-// alert.present();
-// alert.addButton('Cancel');
-// alert.addButton({
-//     text: 'OK',
-//     handler: data => {
-//       console.log('Site:', data);
-//       this.selectedSubject = data;
-//
-//       //this.storage.set("nsSite", data);
-//       //this.site = data;
-//       this.callProjects();
-//     }
-//   });
-// }
+ callProjects(){
+   this.navCtrl.push(IdeasProjectsPage, { subject : this.selectedSubject}
+ );
+ }
+ presentAlertProjects() {
+ let alert = this.alertCtrl.create();
+ alert.setTitle('Select Subject');
+ for(let i = 0; i < this.subjects.length; i++)
+ {
+
+   alert.addInput({type: 'radio', label: this.subjects[i], value: this.subjects[i]});
+
+ }
+ alert.present();
+ alert.addButton('Cancel');
+ alert.addButton({
+     text: 'OK',
+     handler: data => {
+       console.log('Site:', data);
+       this.selectedSubject = data;
+
+       //this.storage.set("nsSite", data);
+       //this.site = data;
+       this.callProjects();
+     }
+   });
+ }
 
 
 }

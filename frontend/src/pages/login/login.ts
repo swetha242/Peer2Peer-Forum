@@ -65,4 +65,8 @@ export class LoginPage {
     });
 
     }
+
+    doSignup(){
+      this.navCtrl.push(SignupPage);
+    }
   }

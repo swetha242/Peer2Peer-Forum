@@ -39,14 +39,10 @@ export class MyApp {
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [
-      { title: 'Home Page', component: HelloIonicPage },
-      { title: 'Questions Page', component: ListPage },
-   //   { title : 'Login', component : LoginPage},
-     // { title : 'Sign Up',component : SignupPage},
-      { title : 'Subjects Page', component : SubjectsPage},
+      { title: 'Home Page', component: LaunchPage },
       { title : 'Profile Page', component : ProfilePage},
-      {title:'Notes',component:NotesPage},
-      { title : 'Launch Page', component : LaunchPage},
+      { title: 'Questions Page', component: ListPage },
+      { title:'Notes',component:NotesPage},
       { title : 'Projects and Ideas', component : IdeasProjectsPage},
     ];
   }

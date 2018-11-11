@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import * as Enums from '../../assets/apiconfig';
+import { IdeasInputPage } from '../ideas-input/ideas-input';
 
 
 /**
@@ -24,7 +25,7 @@ export class IdeasProjectsPage {
   //data to be extracted or pushed onto the server
   ideas=[];
   subject: string;
-  userid: string;
+  user_id: string;
 
   //serchbar query
   query: string;
@@ -38,7 +39,7 @@ export class IdeasProjectsPage {
 
     this.viewMode = "Latest";
     //prev params
-    this.userid = this.navParams.get('userid');
+    this.user_id = this.navParams.get('userid');
     this.subject = this.navParams.get('subject');
 
     let url = Enums.APIURL.URL1;
@@ -56,11 +57,14 @@ export class IdeasProjectsPage {
         console.log(err);
     });
     this.ideas = this.dataReceived
-    
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IdeasProjectsPage');
   }
 
+  postNew(){
+    this.navCtrl.push(IdeasInputPage,{userid: this.user_id})
+  }
 }
