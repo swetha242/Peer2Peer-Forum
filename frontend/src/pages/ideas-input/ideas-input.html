@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ideas-input</ion-title>
+    <ion-title>Yay!! A new Idea!<ion-icon name="star" color="yellow"></ion-icon></ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -72,7 +72,7 @@
               <section [formGroupName]="i" *ngFor="let tech of form.controls.colaborators.controls; let i = index">
                  <ion-item-group>
                     <ion-item>
-                       <ion-label floating>link</ion-label>
+                       <ion-label floating>colaborators</ion-label>
                        <ion-input type="text" formControlName="email"></ion-input>
                     </ion-item>
                     <!-- Allow generated input field to be removed -->
@@ -92,6 +92,6 @@
    	 </ion-list>
    	 <!-- Only allow form to be submitted IF validation criteria for
               input fields has been successfully passed -->
-     <button ion-button block margin-top color="primary" text-center [disabled]="!form.valid">Submit</button>
+     <button ion-button block margin-top color="primary" text-center>Submit</button>
    </form>
 </ion-content>

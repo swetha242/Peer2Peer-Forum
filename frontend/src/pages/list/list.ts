@@ -16,7 +16,7 @@ export class ListPage {
   question:string;
   //userid from prev page
   userid = this.navParams.get('userid');
-  //subject=this.navParams.get('subject');
+  subject=this.navParams.get('subject');
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public storage: Storage) {
 
     this.items = [];

@@ -239,7 +239,68 @@ def downvote_idea(ID):
 
 '''---------------------------------------------------------------------------------------------'''
 
+'''------------------------------------Q&A SECTION-------------------------------------------'''
 
+@app.route("/qa/qlist")
+def get_questions():
+    questions = mongo.db.q.find().sort([('time', -1)])
+    return dumps(questions)
+
+@app.route("/qa/ask", methods=['POST'])
+def ask_question():
+    data = request.get_json()
+
+    qdata = {
+        'asked_by': data['asked_by'],
+        'tags': data['tags'],
+        'description': data['description'],
+        'title': data['title'],
+        'time': datetime.now()
+    }
+
+    if mongo.db.q.insert_one(qdata):
+        return jsonify({'result': 'Success'})
+    else:
+        return jsonify({'result': 'Failure'})
+
+@app.route("/qa/answer", methods=['POST'])
+def post_answer():
+    data = request.get_json()
+
+    adata = {
+        'answered_by': data['answered_by'],
+        'content': data['content'],
+        'teacher': data['teacher'],
+        'time': datetime.now(),
+        'upvotes': 0,
+        'downvotes': 0,
+        'QID': data['QID']
+    }
+
+    inserted_a = mongo.db.a.insert_one(qdata)
+    if inserted_a:
+        return jsonify({'result': 'Success'})
+    else:
+        return jsonify({'result': 'Failure'})
+
+@app.route("/qa/<QID>/answers")
+def get_answers(QID):
+    answers = mongo.db.a.find({'QID': QID}).sort([('time', -1)])
+    return dumps(answers)
+
+@app.route('/qa/<AID>/upvote')
+def upvote_answer(AID):
+	v = mongo.db.a.find_one({"_id": ObjectId(AID)})['upvotes']
+	mongo.db.a.update({"_id": ObjectId(AID)}, {"$set": {'upvotes': v + 1}})
+	return jsonify({'upvote': v + 1})
+	
+@app.route('/qa/<AID>/downvote')
+def downvote_answer(AID):
+	v = mongo.db.a.find_one({"_id": ObjectId(AID)})['downvotes']
+	mongo.db.a.update({"_id": ObjectId(AID)}, {"$set": {'downvotes': v + 1}})
+	return jsonify({'downvote': v + 1})
+
+'''---------------------------------------------------------------------------------------------'''
 
 if __name__ == '__main__':
    app.run(debug = True)

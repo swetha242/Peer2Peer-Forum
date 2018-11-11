@@ -38,7 +38,7 @@ export class IdeasInputPage {
   initLinks() : FormGroup
   {
    return this._FB.group({
-      name : ['', Validators.required]
+      link : ['']
    });
   }
 
@@ -58,7 +58,7 @@ export class IdeasInputPage {
   initColab() : FormGroup
   {
    return this._FB.group({
-      name : ['', Validators.required]
+     email: new FormControl('', Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]))
    });
   }
 
