@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { SignupPage } from '../signup/signup';
+import { LoginPage } from '../login/login';
+
 import { Http, Headers } from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
@@ -11,6 +15,7 @@ import { ListPage } from '../list/list';
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
+
   user_id: any;
 
   path_QA = ListPage;
@@ -24,4 +29,12 @@ export class HelloIonicPage {
   navigate(path){
     this.navCtrl.push(path,{userid: this.user_id});
   }
+
+
+    Login(){
+      this.navCtrl.push(LoginPage);
+    }
+    Signup(){
+      this.navCtrl.push(SignupPage);
+    }
 }
