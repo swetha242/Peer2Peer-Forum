@@ -41,11 +41,11 @@ export class MyApp {
       //{ title: 'Questions Page', component: ListPage },
    //   { title : 'Login', component : LoginPage},
      // { title : 'Sign Up',component : SignupPage},
-      { title : 'Subjects Page', component : SubjectsPage},
+      //{ title : 'Subjects Page', component : SubjectsPage},
       { title : 'Profile Page', component : ProfilePage},
-      {title:'Notes',component:NotesPage},
+      //{title:'Notes',component:NotesPage},
       { title : 'Launch Page', component : LaunchPage},
-      { title : 'Projects and Ideas', component : IdeasProjectsPage},
+      //{ title : 'Projects and Ideas', component : IdeasProjectsPage},
     ];
   }
 

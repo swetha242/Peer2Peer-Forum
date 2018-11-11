@@ -18,6 +18,7 @@ import { ViewnotesPage} from '../viewnotes/viewnotes';
 })
 export class LaunchPage {
 
+  userid=this.navParams.get('userid');
   selectedSubject : any;
   subjects : Array<string>;
   globalTrend: {qno: number, top3Contributors: Array<string>,
@@ -72,7 +73,7 @@ export class LaunchPage {
 
   callQuestions()
   {
-    this.navCtrl.push(ListPage, { subject : this.selectedSubject}
+    this.navCtrl.push(ListPage, { subject : this.selectedSubject,userid:this.userid}
     );
   }
   presentAlertQuestions() {
