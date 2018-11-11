@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { Platform, MenuController, Nav } from 'ionic-angular';
-
+import { Platform, MenuController, Nav, NavParams } from 'ionic-angular';
+import { Injectable } from "@angular/core";
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
 import {LoginPage} from '../pages/login/login'
@@ -18,8 +18,9 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 @Component({
   templateUrl: 'app.html'
 })
-
+@Injectable()
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
@@ -32,6 +33,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen
   ) {
+
     this.initializeApp();
 
     // set our app's pages
