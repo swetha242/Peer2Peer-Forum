@@ -3,6 +3,8 @@ import { NavController, AlertController, LoadingController, Loading, IonicPage }
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage} from '../login/login';
 import { SubjectsPage } from '../subjects/subjects';
+import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+
 /**
  * Generated class for the SignupPage page.
  *
@@ -29,10 +31,10 @@ export class SignupPage {
 
   doSignup(){
     let details = {email : this.email, password: this.password, username: this.name};
-    
-    
+
+
     this.authService.createAccount(details).then((result) => {
-     
+
       let data = result["result"];
     //console.log(result)
     console.log(JSON.parse(JSON.stringify(result)));
@@ -42,14 +44,12 @@ export class SignupPage {
         buttons: ['OK']
       });
       alert.present();
-      this.navCtrl.push(SubjectsPage,{userid:result['user_id']});
+      this.navCtrl.push(HelloIonicPage,{userid:result['user_id']});
     }
     }, (err) => {
       console.log(err)
     });
-    
-  }
-    
+
   }
 
-
+  }

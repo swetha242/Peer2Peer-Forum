@@ -14,10 +14,17 @@ import { LoginPage } from '../pages/login/login'
 import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
-
+import { NotesPage } from '../pages/notes/notes';
+import {ViewnotesPage} from '../pages/viewnotes/viewnotes';
+import {LaunchPage} from '../pages/launch/launch';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
+import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
+
+import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 
 @NgModule({
   declarations: [
@@ -28,7 +35,14 @@ import { AuthProvider } from '../providers/auth/auth';
     LoginPage,
     SignupPage,
     SubjectsPage,
-    ProfilePage
+    ProfilePage,
+    NotesPage,
+    ViewnotesPage,
+    PdfViewerComponent,
+    LaunchPage,
+    RecoQuestionsPage,
+    IdeasProjectsPage,
+    IdeasInputPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +60,13 @@ import { AuthProvider } from '../providers/auth/auth';
     LoginPage,
     SignupPage,
     SubjectsPage,
-    ProfilePage
+    ProfilePage,
+    NotesPage,
+    ViewnotesPage,
+    LaunchPage,
+    RecoQuestionsPage,
+    IdeasProjectsPage,
+   IdeasInputPage
   ],
   providers: [
     StatusBar,

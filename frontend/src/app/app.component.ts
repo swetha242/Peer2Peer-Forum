@@ -1,21 +1,24 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { Platform, MenuController, Nav } from 'ionic-angular';
-
+import { Platform, MenuController, Nav, NavParams } from 'ionic-angular';
+import { Injectable } from "@angular/core";
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
 import {LoginPage} from '../pages/login/login'
 import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
+import { NotesPage } from '../pages/notes/notes';
+import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import {LaunchPage} from '../pages/launch/launch';
+import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 
 @Component({
   templateUrl: 'app.html'
 })
-
+@Injectable()
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
@@ -34,12 +37,12 @@ export class MyApp {
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [
-      { title: 'Home Page', component: HelloIonicPage },
-      { title: 'Questions Page', component: ListPage },
-      { title : 'Login', component : LoginPage},
-      { title : 'Sign Up',component : SignupPage},
-      { title : 'Subjects Page', component : SubjectsPage},
-      { title : 'Profile Page', component : ProfilePage}
+
+      { title : 'Home',component: LaunchPage},
+      { title : 'Profile', component : ProfilePage},
+      { title: 'Questions and Answers', component: ListPage },
+      { title:'Notes',component:NotesPage},
+      { title : 'Projects and Ideas', component : IdeasProjectsPage}
     ];
   }
 

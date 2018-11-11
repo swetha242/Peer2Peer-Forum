@@ -4,7 +4,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { SubjectsPage } from '../subjects/subjects';
 import { SignupPage } from '../signup/signup';
 import { Http, Headers } from '@angular/http';
-
+import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+import {LaunchPage} from '../launch/launch';
 
 @IonicPage()
 @Component({
@@ -14,12 +15,12 @@ import { Http, Headers } from '@angular/http';
 
 export class LoginPage {
 
-    loading: Loading; 
+    loading: Loading;
     email: string;
     password: string;
- 
+
     constructor(public navCtrl: NavController, public authService: AuthProvider , public http: Http,private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
- 
+
     }
 
 
@@ -28,16 +29,16 @@ export class LoginPage {
     //this.navCtrl.push(HelloIonicPage);
 
     let postParams = {email : this.email, password: this.password};
-  
+
 
   //console.log(postParams);
   this.authService.login(postParams).then((result) => {
-    
+
     let data = result["result"];
     //console.log(result)
     //console.log(JSON.parse(JSON.stringify(result)));
     if(data=="Success"){
-      this.navCtrl.push(SubjectsPage,{ userid: result['user_id']});
+      this.navCtrl.push(LaunchPage,{ userid: result['user_id']});
     }
     else if(data=="Invalid password"){
       //console.log("y");
@@ -57,16 +58,15 @@ export class LoginPage {
       alert.present();
       this.navCtrl.push(SignupPage);
     }
-      
+
   }, (err) => {
     console.log("yo");
     console.log(err);
     });
 
     }
+
+    doSignup(){
+      this.navCtrl.push(SignupPage);
+    }
   }
-
-  
-
-
-

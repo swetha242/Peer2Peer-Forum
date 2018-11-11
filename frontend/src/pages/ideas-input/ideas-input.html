@@ -1,0 +1,97 @@
+<!--
+  Generated template for the IdeasInputPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Yay!! A new Idea!<ion-icon name="star" color="yellow"></ion-icon></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+   <!-- Assign the FormGroup of form to the HTML form
+        via a property binding (allowing the component
+        class to communicate/interact with the template -->
+   <form [formGroup]="form"(ngSubmit)="manage(form.value)">
+   	  <ion-list margin-bottom>
+         <ion-item margin-bottom no-lines>
+            <ion-label floating>Title</ion-label>
+            <ion-input type="text" maxlength="150" formControlName="title"></ion-input>
+         </ion-item>
+
+         <ion-item margin-bottom no-lines>
+            <ion-label floating>Details</ion-label>
+            <ion-input type="text" formControlName="description"></ion-input>
+            <span>Please enter more details about the idea/project</span>
+         </ion-item>
+         <!-- Assign the technologies FormArray to the form
+              where we want to track/generate new input track fields -->
+	     <div formArrayName="links" margin-bottom>
+            <!-- Assign a FormGroupName property binding to track
+                 and manage each separate generated input field.
+                 Also iterate through the technologies FormArray to
+                 correctly track/render new input fields against
+                 existing fields -->
+            <section [formGroupName]="i" *ngFor="let tech of form.controls.links.controls; let i = index">
+               <ion-item-group>
+                  <ion-item>
+                     <ion-label floating>link</ion-label>
+                     <ion-input type="text" formControlName="link"></ion-input>
+                  </ion-item>
+                  <!-- Allow generated input field to be removed -->
+                  <span float-right ion-button icon-left clear *ngIf="form.controls.links.length > 1" (click)="removeLink(i)">
+                     <ion-icon name="close"></ion-icon>Remove
+                  </span>
+               </ion-item-group>
+            </section>
+         </div>
+
+         <!-- Allow new input field to be generated/added -->
+         <span ion-button float-left icon-left clear (click)="addNewLink()">
+               <ion-icon name="add"></ion-icon>
+               Add new link
+         </span>
+
+         <ion-item margin-bottom no-lines>
+            <ion-label floating>Mentors Email ID</ion-label>
+            <ion-input type="text" formControlName="mentor_email"></ion-input>
+            <span>Please enter your mentor's email ID.</span>
+         </ion-item>
+
+         <div formArrayName="colaborators" margin-bottom>
+              <!-- Assign a FormGroupName property binding to track
+                   and manage each separate generated input field.
+                   Also iterate through the technologies FormArray to
+                   correctly track/render new input fields against
+                   existing fields -->
+              <section [formGroupName]="i" *ngFor="let tech of form.controls.colaborators.controls; let i = index">
+                 <ion-item-group>
+                    <ion-item>
+                       <ion-label floating>colaborators</ion-label>
+                       <ion-input type="text" formControlName="email"></ion-input>
+                    </ion-item>
+                    <!-- Allow generated input field to be removed -->
+                    <span float-right ion-button icon-left clear *ngIf="form.controls.colaborators.length > 1" (click)="removeLink(i)">
+                       <ion-icon name="close"></ion-icon>Remove
+                    </span>
+                 </ion-item-group>
+              </section>
+           </div>
+
+           <!-- Allow new input field to be generated/added -->
+           <span ion-button float-left icon-left clear (click)="addNewColaborator()">
+                 <ion-icon name="add"></ion-icon>
+                 Add new colaborators
+           </span>
+
+   	 </ion-list>
+   	 <!-- Only allow form to be submitted IF validation criteria for
+              input fields has been successfully passed -->
+     <button ion-button block margin-top color="primary" text-center>Submit</button>
+   </form>
+</ion-content>

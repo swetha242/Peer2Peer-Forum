@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
 import { ItemDetailsPage } from '../item-details/item-details';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-list',
@@ -16,10 +17,12 @@ export class ListPage {
   //userid from prev page
   userid = this.navParams.get('userid');
   subject=this.navParams.get('subject');
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public storage: Storage) {
 
     this.items = [];
     this.answers=[];
+    console.log(this.userid);
+    //console.log(this.subject);
     for(let i = 1; i < 11; i++) {
       this.items.push({
         number : i,
@@ -36,32 +39,33 @@ export class ListPage {
         numberOfLikes : 10
 
       });
+
     }
     /*
      //send question,userid and subject
      let postParams = {subject:this.subject}
      let headers = new Headers();
      headers.append('Content-Type', 'application/json');
- 
+
          let url = Enums.APIURL.URL1;
          let path = url.concat( "/getques");
          console.log(postParams);
- 
+
          this.http.post(path, postParams, {headers: headers})
            .subscribe(res => {
-  
+
              let data = res.json();
              console.log(data)
              let ques=data['questions'];
-             //traverse the questions array 
-             
-  
+             //traverse the questions array
+
+
            }, (err) => {
              console.log(err);
-             
+
            });*/
   }
- 
+
   askques(){
     //send question,userid and subject
     let postParams = {question : this.question,userid:this.userid,subject:this.subject}
@@ -75,13 +79,13 @@ export class ListPage {
 
         this.http.post(path, postParams, {headers: headers})
           .subscribe(res => {
- 
+
             let data = res.json();
             console.log(data)
             //this.token = data.token;
             //this.storage.set('token', data.token);
             //resolve(data);
- 
+
           }, (err) => {
             console.log(err);
             //reject(err);
