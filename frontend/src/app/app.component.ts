@@ -40,7 +40,7 @@ export class MyApp {
     // these are used in app.html to set the side menu
     this.pages = [
       
-      { title: 'Questions Page', component: ListPage },
+      //{ title: 'Questions Page', component: ListPage },
    //   { title : 'Login', component : LoginPage},
      // { title : 'Sign Up',component : SignupPage},
       { title : 'Subjects Page', component : SubjectsPage},
