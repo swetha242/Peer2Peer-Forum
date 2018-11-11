@@ -21,6 +21,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
+import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
 
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 
@@ -38,7 +40,9 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
     ViewnotesPage,
     PdfViewerComponent,
     LaunchPage,
-    RecoQuestionsPage
+    RecoQuestionsPage,
+    IdeasProjectsPage,
+    IdeasInputPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,9 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
     NotesPage,
     ViewnotesPage,
     LaunchPage,
-    RecoQuestionsPage
+    RecoQuestionsPage,
+    IdeasProjectsPage,
+   IdeasInputPage
   ],
   providers: [
     StatusBar,

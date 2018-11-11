@@ -9,6 +9,7 @@ import { SignupPage} from '../pages/signup/signup';
 import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
 import { NotesPage } from '../pages/notes/notes';
+import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LaunchPage} from '../pages/launch/launch';
@@ -43,7 +44,8 @@ export class MyApp {
       { title : 'Subjects Page', component : SubjectsPage},
       { title : 'Profile Page', component : ProfilePage},
       {title:'Notes',component:NotesPage},
-      { title : 'Launch Page', component : LaunchPage}
+      { title : 'Launch Page', component : LaunchPage},
+      { title : 'Projects and Ideas', component : IdeasProjectsPage},
     ];
   }
 
