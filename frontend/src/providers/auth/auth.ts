@@ -60,7 +60,7 @@ export class AuthProvider {
             let data = res.json();
             console.log(data)
             //this.token = data.token;
-            //this.storage.set('token', data.token);
+            this.storage.set('token', data['user_id']);
             resolve(data);
  
           }, (err) => {
@@ -92,7 +92,7 @@ export class AuthProvider {
             let data = res.json();
             console.log(data);
             //this.token = data.result;
-            //this.storage.set('token', data.result);
+            this.storage.set('token', data['user_id']);
             resolve(data);
  
           }, (err) => {
