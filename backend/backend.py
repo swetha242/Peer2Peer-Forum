@@ -19,7 +19,7 @@ mongo = PyMongo(app)
 @app.route('/v1/signup',methods=['POST'])
 def adduser():
     data=request.get_json()
-    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1}
+    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1, "num_notes":0,"num_project_ideas":0,"num_upvotes":0,"num_views":0,"num_asked":0,"num_answered":0,"tags":[],"subjects":[}
     user=mongo.db.users.insert_one(userdata)
     if user:
         query={
@@ -191,6 +191,35 @@ def downvote_idea(ID):
 
 
 '''---------------------------------------------------------------------------------------------'''
+def top_tags(user_id): #example-ObjectId("5be2eaec000f12e4ebaff63e")
+    top_tags=mongo.db.users.find( { "_id": user_id }, { "tags": {$slice: -2 } } ) #returns last two items of list
+    return dumps(top_tags)
+
+def top_subjects(user_id): #example-ObjectId("5be2eaec000f12e4ebaff63e")
+    top_subjects=mongo.db.users.find( { "_id": user_id }, { "subjects": {$slice: -2 } } )
+    return dumps(top_subjects)
+    
+
+
+'''profile page'''
+@app.route('/profile',methods='GET')
+def profile(user_id):
+    #data=request.get_json()
+    value=mongo.db.users.findOne({"_id":user_id})
+    t=top_tags(value["_id"])
+    s=top_subjects(value["_id"])
+    mongo.db.users.update({},{$set:{"subjects":s}},false,true)
+    mongo.db.users.update({},{$set:{"tags":t}},false,true)
+    return dumps(value)
+	'''return value['name']+ 'number of notes uploaded' + str(value['num_notes'])
+	return value['name']+'number of upvotes'+str(value['num_upvotes'])
+    return value['name']+'number of questions asked'+str(value['num_asked'])
+    return value['name']+'number of questions answered'+str(value['num_answered'])
+    return value['name']+'number of project ideas'+str(value['num_project_ideas'])
+    return value['name']+'number of views of notes'+str(value['num_views'])
+    return value['name']+'top 2 tags'+','.join(top_tags)
+    return value['name']+'top 2 tags'+','.join(top_subjects)'''
+
 
 
 
