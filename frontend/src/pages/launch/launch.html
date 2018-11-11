@@ -16,6 +16,34 @@
 
 <ion-content padding>
   <ion-grid>
+
+  <ion-row>
+
+    <ion-col col-4>
+      <ion-card class="cards-list-demo">
+        <button ion-button full block (click)=presentAlertQuestions()>
+          <ion-label><ion-icon name="help"></ion-icon> Questions</ion-label>
+        </button>
+      </ion-card>
+    </ion-col>
+
+    <ion-col col-4>
+      <ion-card class="cards-list-demo" (click)=presentAlertNotes()>
+        <button ion-button full block>
+          <ion-label><ion-icon name="bookmarks"></ion-icon> Notes</ion-label>
+        </button>
+      </ion-card>
+    </ion-col>
+
+    <ion-col col-4>
+      <ion-card class="cards-list-demo" (click)=presentAlertProjects()>
+        <button ion-button full block>
+          <ion-label><ion-icon name="people"></ion-icon> Projects</ion-label>
+        </button>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
     <ion-row>
       <ion-col col-12>
           <ion-item>
