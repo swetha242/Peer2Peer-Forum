@@ -92,7 +92,7 @@
         "asked_by" : "abcd@gmail.com",
         "tags": ["tag1",  "tag2", "tag3"],
         "time" : ISODate("2018-10-12T17:47:57.933Z"),
-        "description": "descp1",
+        "description": "What is the complexity of reversing a linked list?",
         "title": "t1"
     },
     {

@@ -19,13 +19,15 @@ export class NotesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
   }
   base64: any;
+  userid=this.navParams.get('userid')
+  subject=this.navParams.get('subject')
   fun(b64Data,ty)
   {
     //console.log(b64Data)
     let x=b64Data.split(',')[1]
     //http call to upload notes where x is base64 rep- when islink is 1 data will have link- anyways not sure if link will work
-    console.log(x)
-    let postParams = {'data':x,'userid':'5be700b0655e4e1078388cbc','subject':'WT','title':'Reverse Ajax','summary':'xxxx','islink':0}
+    console.log(this.userid)
+    let postParams = {'data':x,'userid':this.userid,'subject':this.subject,'tag':'Neural Networks','course':1,'title':'ANN','summary':'xxxx','islink':0}
      let headers = new Headers();
      headers.append('Content-Type','application/json');
  

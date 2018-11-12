@@ -104,7 +104,7 @@ export class LaunchPage {
 
 callNotes()
 {
-  this.navCtrl.push(NotesPage, { subject : this.selectedSubject}
+  this.navCtrl.push(NotesPage, { subject : this.selectedSubject,userid:this.userid}
   );
 }
 presentAlertNotes() {
