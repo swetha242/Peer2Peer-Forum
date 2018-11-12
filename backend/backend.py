@@ -17,6 +17,64 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
 
+#-------------------------------------update trends----------------------------------------------------------
+def updatetrends(tag,subject,userid):
+    query={"_id":ObjectId(userid)}
+    print(query)
+    user=mongo.db.users.find_one(query)
+    #update local trends
+    print(user)
+    mongo.db.users.update_one(query,{"$set":{'score':user['score']+1}})
+    if subject in user['topSubjects']:
+        sub=user['topSubjects'][subject]
+        mongo.db.users.update_one(query,{"$set":{'topSubjects.'+subject:sub+1}})
+    else:
+        mongo.db.users.update_one(query,{"$set":{'topSubjects.'+subject:1}})
+    if tag in user['topTags']:
+        tag1=user['topTags'][tag]
+        mongo.db.users.update_one(query,{"$set":{'topTags.'+tag:tag1+1}})
+    else:
+        mongo.db.users.update_one(query,{"$set":{'topTags.'+tag:1}})
+    #update global trends
+    q1=mongo.db.globaltrends.find_one({'_id':1})
+    if subject in q1['subject']:
+        mongo.db.globaltrends.update_one({'_id':1},{"$set":{'subject.'+subject:q1['subject'][subject]+1}})
+    else:
+        mongo.db.globaltrends.update_one({'_id':1},{"$set":{'subject.'+subject:1}})
+    if tag in q1['tag']:
+        mongo.db.globaltrends.update_one({'_id':1},{"$set":{'tag.'+tag:q1['tag'][tag]+1}})
+    else:
+        mongo.db.globaltrends.update_one({'_id':1},{"$set":{'tag.'+tag:1}})
+
+def topthree(obj):
+    l=[]
+    c=0
+    for a,b in obj:
+        l.append(a)
+        c=c+1
+        if(c==3):
+            return l
+@app.route('/get_trends',methods=['POST'])
+def get_trends():
+    data=request.get_json()
+    #global trends
+    glob=mongo.db.globaltrends.find_one({'_id':1})
+    glob_sub=glob['subject']
+    gs1 = [(k, glob_sub[k]) for k in sorted(glob_sub, key=glob_sub.get, reverse=True)]
+    gs=topthree(gs1)
+    glob_tag=glob['tag']
+    gt1 = [(k, glob_tag[k]) for k in sorted(glob_tag, key=glob_tag.get, reverse=True)]
+    gt=topthree(gt1)
+    #local trends
+    userid=data['userid']
+    loc=mongo.db.users.find_one({'_id':ObjectId(userid)})
+    loc_sub=loc['topSubjects']
+    ls1 = [(k, loc_sub[k]) for k in sorted(loc_sub, key=loc_sub.get, reverse=True)]
+    ls=topthree(ls1)
+    loc_tag=loc['topTags']
+    lt1 = [(k, loc_tag[k]) for k in sorted(loc_tag, key=loc_tag.get, reverse=True)]
+    lt=topthree(lt1)
+    return jsonify({'global':{'subject':gs,'tag':gt},'local':{'subject':ls,'tag':lt}})
 #-----------------------------users-----------------------------------
 # user signup
 @app.route('/v1/signup',methods=['POST'])
@@ -25,7 +83,7 @@ def adduser():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
-    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0}
+    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
     if user:
         query={
@@ -129,11 +187,13 @@ def upload_file():
             file1.write(file_decode)
             file1.close()
             data['data']=file_name
-    query={'subject':data['subject'],'course':1,'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],'link':data['data'],'time':datetime.now()}
+    query={'upl_by':data['userid'],'subject':data['subject'],'tag':[data['tag']],'course':data['course'],'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],'link':data['data'],'time':datetime.now()}
     notes_ins=mongo.db.notes.insert_one(query)
+    
     if notes_ins:
+        updatetrends(data['tag'],data['subject'],data['userid'])
         v=mongo.db.users.find_one({"_id":ObjectId(data['userid'])})['notes_upl']
-        mongo.db.users.update({"_id":ObjectId(data['userid'])},{"$set":{'notes_upl':v+1}})
+        mongo.db.users.update_one({"_id":ObjectId(data['userid'])},{"$set":{'notes_upl':v+1}})
         return jsonify({'result':'Success'})
     else:
         return jsonify({'result':'Error'})
@@ -277,7 +337,7 @@ def post_answer():
         'QID': data['QID']
     }
 
-    inserted_a = mongo.db.a.insert_one(qdata)
+    inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
         return jsonify({'result': 'Success'})
     else:
