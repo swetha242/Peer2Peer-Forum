@@ -318,7 +318,7 @@ def top_subjects(ID): #example-ObjectId("5be2eaec000f12e4ebaff63e")
     
 
 
-@app.route('/profile',methods=['GET'])
+@app.route('/profile',methods=['GET','POST'])
 def profile(ID):
     #data=request.get_json()
     value=mongo.db.users.findOne({"_id":ObjectId(ID)})
