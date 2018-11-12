@@ -1,0 +1,36 @@
+{"1":{
+        "_id" : "ObjectId('5bd86111a5281b8f9f9c8b3f')",
+        "email" : "swetha@gmail.com",
+        "password" : "123",
+        "name" : "swetha",
+        "is_student" : 1,
+        "gender " : "Female",
+
+        "numberOfQuestionsAsked" : 20,
+        "numberOfQuestionsAnswered" : 30,
+        "numberOfAnswersUpvoted" : 200,
+        "numberOfProjectIdeas" : 3, 
+        "numberOfNotesUploaded" : 10,
+        "numberOfViewsForNotes" : 30,
+
+        "topSubjects" : {"Data Structures":10,  "Algorithms": 20, "Compiler Design" : 30, "Theory Of Computation" : 100},
+        "topTags"  : {"Linked List" : 25, "Hash Maps": 30, "Binary Trees": 50,"Algorithms" : 10} 
+},
+"2":
+{
+        "_id" : "ObjectId('5bd8626a655e4e16b09ed781')",
+        "name" : "mia",
+        "password" : "123",
+        "email" : "x@gmail.com",
+        "is_student" : 1,
+        "numberOfQuestionsAsked" : 20,
+        "numberOfQuestionsAnswered" : 30,
+        "numberOfAnswersUpvoted" : 200,
+        "numberOfProjectIdeas" : 3, 
+        "numberOfNotesUploaded" : 10,
+        "numberOfViewsForNotes" : 30,
+
+        "topSubjects" : {"Data Structures":10,  "Algorithms": 20, "Compiler Design" : 30, "Theory Of Computation" : 100},
+        "topTags"  : {"Linked List" : 25, "Hash Maps": 30, "Binary Trees": 50,"Algorithms" : 30}
+
+}}

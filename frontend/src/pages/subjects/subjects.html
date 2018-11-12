@@ -1,0 +1,29 @@
+<!--
+  Generated template for the SubjectsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Subjects Page</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let item of items">
+       <button  block (click)="choosesub(item)">
+        {{ item }}
+       </button>
+
+      </ion-item>
+    </ion-list>
+</ion-content>
