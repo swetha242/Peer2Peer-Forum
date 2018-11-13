@@ -76,8 +76,28 @@ def get_userideas(ID):
 #owner Q/A
 @app.route("/users/userqa/<ID>")
 def get_userqa(ID):
-    qa = mongo.db.qa.find({'asked_by':ID})
+    qa = mongo.db.a.find({'asked_by':ID})
     return dumps(qa)
+  
+ #get id using mail
+@app.route("/users/who/<email>")
+def get_userid(email):
+	uid=mongo.db.users.find_one({'email':email})
+	if uid:
+		return jsonify({'result':'success','userid':str(uid['_id'])})
+	else:
+		return jsonify({'result':'unsuccess'})
+
+#get email using id
+@app.route("/users/getemail/<ID>")
+def get_useremail(ID):
+	uemail=mongo.db.users.find_one({'_id':ObjectId(ID)})
+	if uemail:
+		return jsonify({'result':'success','email':uemail['email']})
+	else:
+		return jsonify({'result':'unsuccess'})
+
+  
 
 #-------------------------------NOTES------------------------------------------------------
 #notes with a particular tag
@@ -153,59 +173,60 @@ def view_file():
     return jsonify({'result':'Error'})
 
 '''------------------------------------IDEAS SECTION-------------------------------------------'''
-
 #insert ideas
 @app.route('/ideas/insert')
 def insert_ideas():
 	data=request.form
 	
 	userdata={
-		'title':data['title'],
-		'links':data['links'],
-    'subject':data['subject'],
-    'time':datetime.now(),
-    'tags':data['tags'],
-		'description':data['description'],
-		'owner_id':data['owner_id'],
-		'upvotes':data['upvotes'],
-		'downvotes':data['downvotes'],
-		'collaborator_id':[],
-		'mentor_id':data['mentor_id']
+		  'title':data['title'],
+		  'links':data['links'],
+    	'subject':data['subject'],
+    	'time':datetime.now(),
+    	'tags':data['tags'],
+		  'description':data['description'],
+		  'owner_id':data['owner_id'],
+		  'upvotes':data['upvotes'],
+		  'downvotes':data['downvotes'],
+		  'collaborator_id':['collaborator'].split(','),
+		  'mentor_id':data['mentor_id']
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
 	if idea:
-    	#mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
+		mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id']) })
+		#send mail
 		return jsonify({'result':'success'})
 	else:
 		return jsonify({'result':'unsuccess'})
 
 #add collaborator
-'''
 @app.route('/ideas/insert_collaborator/<ID>',methods=['post'])
 def insert_collaborator(ID):
 	ideas_id=request.form['ideas_id']
-  	c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{$addToSet : {'collaborator_id':ID}})
-  	if c:
-  		return jsonify({"result":"success"})
-  	else:
-  		return jsonify({"result":"unsuccess"})
+	c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{'$addToSet':{'collaborator_id':ID}})
+	if c:
+		return jsonify({"result":"success"})
+	else:
+		return jsonify({"result":"unsuccess"})
+
 
 #count no of collaborator
-@app.route('/ideas/count_collaborator/<ID>',methods=['post'])
+@app.route('/ideas/count_collaborator/<ID>',methods=['post','get'])
+def count_collaborator(ID):
+	data=mongo.db.ideas.count({'_id':ObjectId(ID)})
+	return jsonify({'count':data})
 
-'''
-  
 
 #add comments
-@app.route('/ideas/insert_comment/<ID>',methods=['post'])
+@app.route('/ideas/insert_comment/<ID>',methods=['post','get'])
 def insert_comments(ID):
 	data=request.form
 
 	userdata={
-		'ideas_id':ID,
-		'comments':data['comments']
+		'comments':data['comments'],
+		'time':datetime.now()
 	}
-	comment=mongo.db.ideas_comments.insert_one(userdata)
+	comment=mongo.db.ideas.update({'_id':ObjectId(ID)},{'$push':{'comments':userdata}})
 	if comment:
 		return jsonify({'result':'success'})
 	else:
@@ -214,7 +235,7 @@ def insert_comments(ID):
 #get comments
 @app.route('/ideas/get_comments/<ID>')
 def get_comments(ID):
-    comments = mongo.db.ideas_comments.find({'ideas_id':ID})
+    comments = mongo.db.ideas.find({'_id':ObjectId(ID)})
     return dumps(comments)
 
 
@@ -253,8 +274,6 @@ def downvote_idea(ID):
 	v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['downvotes']
 	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
 	return jsonify({'downvote':v+1})
-
-
 '''---------------------------------------------------------------------------------------------'''
 
 '''------------------------------------Q&A SECTION-------------------------------------------'''
