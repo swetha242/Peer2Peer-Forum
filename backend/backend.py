@@ -164,7 +164,9 @@ def insert_ideas():
 	userdata={
 		'title':data['title'],
 		'link':data['links'],
-		'tags':data['tags'],
+    'subject':data['subject'],
+    'time':datetime.now(),
+    'tags':data['tags'],
 		'description':data['description'],
 		'owner_id':data['owner_id'],
 		'upvotes':data['upvotes'],
@@ -176,7 +178,7 @@ def insert_ideas():
 	if idea:
 		return jsonify({'result':'success'})
 	else:
-		return jsonify({'result':'unsucess'})
+		return jsonify({'result':'unsuccess'})
 
 
 #add comments
