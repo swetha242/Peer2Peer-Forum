@@ -75,7 +75,7 @@ def get_userideas(ID):
 
 #owner Q/A
 @app.route("/users/userqa/<ID>")
-def get_userideas(ID):
+def get_userqa(ID):
     qa = mongo.db.qa.find({'asked_by':ID})
     return dumps(qa)
 
@@ -174,18 +174,28 @@ def insert_ideas():
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
 	if idea:
-    mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
+    	#mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
 		return jsonify({'result':'success'})
 	else:
 		return jsonify({'result':'unsuccess'})
-'''
+
 #add collaborator
+'''
 @app.route('/ideas/insert_collaborator/<ID>',methods=['post'])
 def insert_collaborator(ID):
-  
-  c=mongo.db.ideas.update_one({'_id':ObjectId(ID)},{$addToSet : {'collaborator_id':}})
-  
+	ideas_id=request.form['ideas_id']
+  	c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{$addToSet : {'collaborator_id':ID}})
+  	if c:
+  		return jsonify({"result":"success"})
+  	else:
+  		return jsonify({"result":"unsuccess"})
+
+#count no of collaborator
+@app.route('/ideas/count_collaborator/<ID>',methods=['post'])
+
 '''
+  
+
 #add comments
 @app.route('/ideas/insert_comment/<ID>',methods=['post'])
 def insert_comments(ID):
@@ -243,6 +253,7 @@ def downvote_idea(ID):
 	v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['downvotes']
 	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
 	return jsonify({'downvote':v+1})
+
 
 '''---------------------------------------------------------------------------------------------'''
 
