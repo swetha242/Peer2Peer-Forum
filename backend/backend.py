@@ -39,8 +39,7 @@ def adduser():
     else:
         return jsonify({'result':"Something wrong"})
 
-
-"""  User Authentication  """
+#User Authentication
 @app.route('/v1/auth',methods=['POST'])
 def check_user():
     data=request.get_json()
@@ -73,13 +72,12 @@ def get_userideas(ID):
     ideas = mongo.db.ideas.find({'owner_id':ID})
     return dumps(ideas)
 
-"""
+
 #owner Q/A
 @app.route("/users/userqa/<ID>")
 def get_userideas(ID):
-    qa = mongo.db.qa.find({'owner_id':ID})
+    qa = mongo.db.qa.find({'asked_by':ID})
     return dumps(qa)
-"""
 
 #-------------------------------NOTES------------------------------------------------------
 #notes with a particular tag
@@ -163,7 +161,7 @@ def insert_ideas():
 	
 	userdata={
 		'title':data['title'],
-		'link':data['links'],
+		'links':data['links'],
     'subject':data['subject'],
     'time':datetime.now(),
     'tags':data['tags'],
@@ -171,16 +169,23 @@ def insert_ideas():
 		'owner_id':data['owner_id'],
 		'upvotes':data['upvotes'],
 		'downvotes':data['downvotes'],
-		'collaborator_id':data['collaborator_id'],
+		'collaborator_id':[],
 		'mentor_id':data['mentor_id']
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
 	if idea:
+    mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
 		return jsonify({'result':'success'})
 	else:
 		return jsonify({'result':'unsuccess'})
-
-
+'''
+#add collaborator
+@app.route('/ideas/insert_collaborator/<ID>',methods=['post'])
+def insert_collaborator(ID):
+  
+  c=mongo.db.ideas.update_one({'_id':ObjectId(ID)},{$addToSet : {'collaborator_id':}})
+  
+'''
 #add comments
 @app.route('/ideas/insert_comment/<ID>',methods=['post'])
 def insert_comments(ID):
