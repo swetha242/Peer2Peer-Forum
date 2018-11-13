@@ -39,8 +39,7 @@ def adduser():
     else:
         return jsonify({'result':"Something wrong"})
 
-
-"""  User Authentication  """
+#User Authentication
 @app.route('/v1/auth',methods=['POST'])
 def check_user():
     data=request.get_json()
@@ -73,13 +72,12 @@ def get_userideas(ID):
     ideas = mongo.db.ideas.find({'owner_id':ID})
     return dumps(ideas)
 
-"""
+
 #owner Q/A
 @app.route("/users/userqa/<ID>")
-def get_userideas(ID):
-    qa = mongo.db.qa.find({'owner_id':ID})
+def get_userqa(ID):
+    qa = mongo.db.qa.find({'asked_by':ID})
     return dumps(qa)
-"""
 
 #-------------------------------NOTES------------------------------------------------------
 #notes with a particular tag
@@ -163,21 +161,40 @@ def insert_ideas():
 	
 	userdata={
 		'title':data['title'],
-		'link':data['links'],
-		'tags':data['tags'],
+		'links':data['links'],
+    'subject':data['subject'],
+    'time':datetime.now(),
+    'tags':data['tags'],
 		'description':data['description'],
 		'owner_id':data['owner_id'],
 		'upvotes':data['upvotes'],
 		'downvotes':data['downvotes'],
-		'collaborator_id':data['collaborator_id'],
+		'collaborator_id':[],
 		'mentor_id':data['mentor_id']
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
 	if idea:
+    	#mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
 		return jsonify({'result':'success'})
 	else:
-		return jsonify({'result':'unsucess'})
+		return jsonify({'result':'unsuccess'})
 
+#add collaborator
+'''
+@app.route('/ideas/insert_collaborator/<ID>',methods=['post'])
+def insert_collaborator(ID):
+	ideas_id=request.form['ideas_id']
+  	c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{$addToSet : {'collaborator_id':ID}})
+  	if c:
+  		return jsonify({"result":"success"})
+  	else:
+  		return jsonify({"result":"unsuccess"})
+
+#count no of collaborator
+@app.route('/ideas/count_collaborator/<ID>',methods=['post'])
+
+'''
+  
 
 #add comments
 @app.route('/ideas/insert_comment/<ID>',methods=['post'])
@@ -236,6 +253,7 @@ def downvote_idea(ID):
 	v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['downvotes']
 	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
 	return jsonify({'downvote':v+1})
+
 
 '''---------------------------------------------------------------------------------------------'''
 
