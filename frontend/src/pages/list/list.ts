@@ -41,7 +41,7 @@ export class ListPage {
       });
 
     }
-    /*
+    
      //send question,userid and subject
      let postParams = {subject:this.subject}
      let headers = new Headers();
@@ -63,12 +63,12 @@ export class ListPage {
            }, (err) => {
              console.log(err);
 
-           });*/
+           });
   }
 
   askques(){
     //send question,userid and subject
-    let postParams = {question : this.question,userid:this.userid,subject:this.subject}
+    let postParams = {question : this.question,userid:this.userid,subject:this.subject}//add title
     let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -92,6 +92,7 @@ export class ListPage {
           });
   }
   itemTapped(event, item) {
+    
     this.navCtrl.push(ItemDetailsPage, { item: item , answer: this.answers}
     );
   }

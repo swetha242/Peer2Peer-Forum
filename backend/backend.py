@@ -65,16 +65,42 @@ def get_trends():
     glob_tag=glob['tag']
     gt1 = [(k, glob_tag[k]) for k in sorted(glob_tag, key=glob_tag.get, reverse=True)]
     gt=topthree(gt1)
+    user = list(mongo.db.users.find().sort([('score',-1)]))
+    gnames=[]
+    gids=[]
+    c=0
+    for k in user:
+        gids.append(str(k['_id']))
+        gnames.append(k['name'])
+        c=c+1
+        if(c==3):
+            break
     #local trends
     userid=data['userid']
     loc=mongo.db.users.find_one({'_id':ObjectId(userid)})
     loc_sub=loc['topSubjects']
-    ls1 = [(k, loc_sub[k]) for k in sorted(loc_sub, key=loc_sub.get, reverse=True)]
-    ls=topthree(ls1)
+    if(len(loc_sub)<=1):
+        if(len(loc_sub)==0):
+            ls=[]
+        else:
+            ls=[]
+            for key in loc_sub:
+                ls.append(key)
+    else:
+        ls1 = [(k, loc_sub[k]) for k in sorted(loc_sub, key=loc_sub.get, reverse=True)]
+        ls=topthree(ls1)
     loc_tag=loc['topTags']
-    lt1 = [(k, loc_tag[k]) for k in sorted(loc_tag, key=loc_tag.get, reverse=True)]
-    lt=topthree(lt1)
-    return jsonify({'global':{'subject':gs,'tag':gt},'local':{'subject':ls,'tag':lt}})
+    if(len(loc_tag)<=1):
+        if(len(loc_tag)==0):
+            lt=[]
+        else:
+            lt=[]
+            for key in loc_tag:
+                lt.append(key)
+    else:
+        lt1 = [(k, loc_tag[k]) for k in sorted(loc_tag, key=loc_tag.get, reverse=True)]
+        lt=topthree(lt1)
+    return jsonify({'global':{'subject':gs,'tag':gt,'contrib':{"names":gnames,"ids":gids}},'local':{'subject':ls,'tag':lt,'ques':loc['ques_ask'],'notes':loc['notes_upl'],'proj':loc['proj_ideas']}})
 #-----------------------------users-----------------------------------
 # user signup
 @app.route('/v1/signup',methods=['POST'])
@@ -83,7 +109,7 @@ def adduser():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
-    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
+    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
     if user:
         query={
@@ -141,9 +167,10 @@ def get_userideas(ID):
 
 #-------------------------------NOTES------------------------------------------------------
 #notes with a particular tag
-@app.route('/notes/<tag>')
-def get_notes(tag):
-    notes = mongo.db.notes.find({'tag':tag})
+@app.route('/notes/<subject>')
+def get_notes(subject):
+    notes = mongo.db.notes.find({'subject':subject})
+    print(dumps(notes))
     return dumps(notes)
 
 #latest notes with a particular tag
@@ -188,8 +215,7 @@ def upload_file():
             file1.close()
             data['data']=file_name
     query={'upl_by':data['userid'],'subject':data['subject'],'tag':[data['tag']],'course':data['course'],'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],'link':data['data'],'time':datetime.now()}
-    notes_ins=mongo.db.notes.insert_one(query)
-    
+    notes_ins=mongo.db.notes.insert_one(query)    
     if notes_ins:
         updatetrends(data['tag'],data['subject'],data['userid'])
         v=mongo.db.users.find_one({"_id":ObjectId(data['userid'])})['notes_upl']
@@ -301,24 +327,27 @@ def downvote_idea(ID):
 
 '''------------------------------------Q&A SECTION-------------------------------------------'''
 
-@app.route("/qa/qlist")
+@app.route("/qa/qlist",methods=['POST'])
 def get_questions():
-    questions = mongo.db.q.find().sort([('time', -1)])
+    data=request.get_json()
+    questions = mongo.db.q.find({'subject':data['subject']}).sort([('time', -1)])
     return dumps(questions)
 
 @app.route("/qa/ask", methods=['POST'])
 def ask_question():
     data = request.get_json()
-
     qdata = {
         'asked_by': data['asked_by'],
         'tags': data['tags'],
+        'subject':data['subject'],
         'description': data['description'],
         'title': data['title'],
         'time': datetime.now()
     }
-
     if mongo.db.q.insert_one(qdata):
+        updatetrends(data['tags'],data['subject'],data['asked_by'])
+        v=mongo.db.users.find_one({"_id":ObjectId(data['asked_by'])})['ques_ask']
+        mongo.db.users.update_one({"_id":ObjectId(data['asked_by'])},{"$set":{'ques_ask':v+1}})        
         return jsonify({'result': 'Success'})
     else:
         return jsonify({'result': 'Failure'})

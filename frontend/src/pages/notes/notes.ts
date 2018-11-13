@@ -16,6 +16,7 @@ import { ViewnotesPage} from '../viewnotes/viewnotes';
 })
 export class NotesPage {
 
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
   }
   base64: any;
