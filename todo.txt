@@ -3,6 +3,7 @@
 - Put back button in questions page and remove navbar
  'or'  Use local storage made available by two factor authentication
 - Put any in Subjects
+- Add a logout button
 Q/A
 -Search a question
 -Answer upvote/downvote

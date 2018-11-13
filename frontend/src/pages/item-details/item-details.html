@@ -1,21 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <button menuToggle *ngIf="!selectedItem">
-      <ion-icon name="menu"></ion-icon>
-    </button>
+  <ion-navbar>
     <ion-title>Item Details</ion-title>
-  </ion-toolbar>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
   <h3 text-center *ngIf="selectedItem">
-    Question Number {{selectedItem.number}} <br><br>
+   <br>
     {{selectedItem.title}}
   </h3>
-  <h3 align="center"> Asked by <b> {{selectedItem.author}} </b> </h3>
+  <h3 align="center"> Asked by <b> {{selectedItem.owner}} </b> </h3>
   <h4 text-center *ngIf="selectedItem">
-    Question is  <b>{{selectedItem.qtext}}</b>
+    Question is  <b>{{selectedItem.description}}</b>
   </h4>
+
+    <div padding>
+      <button ion-button color="primary" block (click)="answer()">Answer</button>
+    </div>
+   
 
   <ion-list>
 

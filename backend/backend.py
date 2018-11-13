@@ -262,10 +262,20 @@ def downvote_idea(ID):
 '''---------------------------------------------------------------------------------------------'''
 
 
-@app.route("/qa/qlist")
+@app.route("/qa/qlist",methods=['POST'])
 def get_questions():
-    questions = mongo.db.q.find().sort([('time', -1)])
-    return dumps(questions)
+    data=request.get_json()
+    questions = list(mongo.db.q.find({'subject':data['subject']}).sort([('time', -1)]))
+    ques={}
+    c=0
+    for i in questions:
+        i['_id']=str(i['_id'])
+        x=mongo.db.users.find_one({'_id':ObjectId(i['asked_by'])})
+        ques[str(c)]=i
+        ques[str(c)]['asked_by_n']=x['name']
+      #  print x['name']
+        c=c+1
+    return jsonify({'question':ques})
 
 @app.route("/qa/ask", methods=['POST'])
 def ask_question():
@@ -273,9 +283,10 @@ def ask_question():
 
     qdata = {
         'asked_by': data['asked_by'],
-        'tags': data['tags'],
+        'tags': [data['tags']],
         'description': data['description'],
         'title': data['title'],
+        'subject': data['subject'],
         'time': datetime.now()
     }
 
@@ -288,7 +299,7 @@ def ask_question():
 def post_answer():
     data = request.get_json()
 
-    adata = {
+    qdata = {
         'answered_by': data['answered_by'],
         'content': data['content'],
         'teacher': data['teacher'],
@@ -306,8 +317,20 @@ def post_answer():
 
 @app.route("/qa/<QID>/answers")
 def get_answers(QID):
-    answers = mongo.db.a.find({'QID': QID}).sort([('time', -1)])
-    return dumps(answers)
+    answers = list(mongo.db.a.find({'QID': QID}).sort([('time', -1)]))
+    ans={}
+    c=0
+    for i in answers:
+        i['_id']=str(i['_id'])
+        x=mongo.db.users.find_one({'_id':ObjectId(i['answered_by'])})
+        ans[str(c)]=i
+        ans[str(c)]['answered_by_n']=x['name']
+      #  print x['name']
+        c=c+1
+    print ans
+    return jsonify({'answer':ans})
+    
+    #return dumps(answers)
 
 @app.route('/qa/<AID>/upvote')
 def upvote_answer(AID):

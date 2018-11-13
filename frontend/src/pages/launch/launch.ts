@@ -20,6 +20,7 @@ import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 export class LaunchPage {
 
   selectedSubject : any;
+  userid=this.navParams.get('userid');
   subjects : Array<string>;
   globalTrend: {qno: number, top3Contributors: Array<string>,
     top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
@@ -73,7 +74,7 @@ export class LaunchPage {
 
   callQuestions()
   {
-    this.navCtrl.push(ListPage, { subject : this.selectedSubject}
+    this.navCtrl.push(ListPage, { subject : this.selectedSubject,userid:this.userid}
     );
   }
   presentAlertQuestions() {
