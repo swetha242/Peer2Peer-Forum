@@ -25,7 +25,7 @@ def adduser():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
-    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'top_tags':[],'top_subjects':[]}
+    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
     if user:
         query={
@@ -321,12 +321,14 @@ def top_subjects(ID): #example-ObjectId("5be2eaec000f12e4ebaff63e")
 @app.route('/profile',methods=['GET','POST'])
 def profile(ID):
     #data=request.get_json()
-    value=mongo.db.users.findOne({"_id":ObjectId(ID)})
-    t=top_tags(ID)
-    s=top_subjects(ID)
-    mongo.db.users.update({"_id":ObjectId(ID)},{"$set":{"top_subjects":s}})
-    mongo.db.users.update({"_id":ObjectId(ID)},{"$set":{"top_tags":t}})
-    return dumps(value)
+    user=mongo.db.users.find_one({"_id":ObjectId(ID)})
+    user['_id']=str(user['_id'])
+    return jsonify({'profile':user})
+    
+
+
+
+
 	
 if __name__ == '__main__':
    app.run(debug = True)
