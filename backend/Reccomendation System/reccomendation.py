@@ -1,5 +1,11 @@
 import json
 
+def readProjectsData():
+	with open("data/projects.json", "r") as readFile:
+		projects=json.load(readFile)
+	readFile.close()
+	return projects
+
 def readQuestions():
 	with open("data/questions.json", "r") as readFile:
 		questions=json.load(readFile)
@@ -56,55 +62,71 @@ def getQuestionsSimilarToUser(userID,k):
 		overlapQuestions.append([question,overLapScore])
 	if(noCommon==True):
 		for i in range(k):
-			questionsReturned.append(questions[str(i)])
+			questionsReturned.append(questions[str(i)]["_id"])
 			overLapScores.append(1)
 		return questionsReturned
 	overlapQuestions.sort(key=returnOverLapScore,reverse=True)
 	for i in range(k):
-		questionsReturned.append(questions[str(overlapQuestions[i][0])])
+		questionsReturned.append(questions[str(overlapQuestions[i][0])]["_id"])
 		overLapScores.append(overlapQuestions[i][1])
-	return questionsReturned,overLapScores
+	return questionsReturned
 
-def getQuestionsSimilarToNotes(notesID,k):
-	questions=readQuestions()
-	questionsReturned=[]
-	if(len(questions)<=k):
-		k=len(questions)
-	notesTags=[]
-	notesSubjects=''
-	noteFound=False
-	notes=readNotesData()
+def getProjectsSimilarToUser(userID,k):
+	projects=readProjectsData()
+
+	projectsReturned=[]
+	
+	if(len(projects)<=k):
+		k=len(projects)
+	
+	userTags={}
+	userSubjects={}
+	userFound=False
+	
+	profiles=readProfiles()
+	
 	noCommon=True
-	for note in notes:
-		if(notes[note]["_id"]==notesID):
-			notesTags=notes[note]["tag"]
-			notesSubjects=notes[note]["subject"]
-			noteFound=True
+	
+	for user in profiles:
+		if(profiles[user]["_id"]==userID):
+			userTags=profiles[user]["topTags"]
+			userSubjects=profiles[user]["topSubjects"]
+			userFound=True
 			break
-	if(not noteFound):
+	
+	if(not userFound):
 		print("User not Found")
 		return None
-	overlapQuestions=[]
-	for question in questions:
+	
+	overlapProjects=[]
+	
+	for project in projects:
 		overLapScore=1
-		questionTags=questions[question]["tag"]
-		questionSubject=questions[question]["subject"]
-		if(questionSubject == notesSubjects):
-			overLapScore+=1
-		for tag in questionTags:
-			if(tag in notesTags):
-				overLapScore+=1
+		projectTags=projects[project]["tags"]
+		projectSubject=projects[project]["subject"]
+		
+		if(projectSubject in userSubjects):
+			overLapScore+=userSubjects[projectSubject]
+		
+		for tag in projectTags:
+			if(tag in userTags):
+				overLapScore+=userTags[tag]
+		
 		if(noCommon==True and overLapScore>1):
 			noCommon=False
-		overlapQuestions.append([question,overLapScore])
+		overlapProjects.append([project,overLapScore])
+	
 	if(noCommon==True):
 		for i in range(k):
-			questionsReturned.append(questions[str(i)])
-		return questionsReturned
-	overlapQuestions.sort(key=returnOverLapScore,reverse=True)
+			projectsReturned.append(projects[str(i)]["_id"])
+		return projectsReturned
+	
+	overlapProjects.sort(key=returnOverLapScore,reverse=True)
+	
 	for i in range(k):
-		questionsReturned.append(questions[str(overlapQuestions[i][0])])
-	return questionsReturned
+		projectsReturned.append(projects[str(overlapProjects[i][0])]["_id"])
+	
+	return projectsReturned
 
 def getNotesSimilarToUser(userID,k):
 	notes=readNotesData()
@@ -147,12 +169,6 @@ def getNotesSimilarToUser(userID,k):
 		notesReturned.append(notes[str(overlapNotes[i][0])]["_id"])
 	return notesReturned
 
-a,b=getQuestionsSimilarToUser("ObjectId('5bd8626a655e4e16b09ed781')",2)
-for i in a:
-	print(i)
-for i in b:
-	print(i)
-
+print(getQuestionsSimilarToUser("ObjectId('5bd8626a655e4e16b09ed781')",2))
 print(getNotesSimilarToUser("ObjectId('5bd8626a655e4e16b09ed781')",2))
-
-print(getQuestionsSimilarToNotes("ObjectId('5bc22037fdc52ba0ad988d64')",2))
+print(getProjectsSimilarToUser("ObjectId('5bd8626a655e4e16b09ed781')",2))
