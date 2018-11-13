@@ -116,7 +116,7 @@ export class ListPage {
                 downvote: data[i].downvote,
                 answeredbyname: data[i].answered_by_n
                 }
-              );
+              )}
             
             //this.token = data.token;
             //this.storage.set('token', data.token);
