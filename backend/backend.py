@@ -109,7 +109,8 @@ def adduser():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
-    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
+    #userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
+    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
     if user:
         query={
@@ -123,8 +124,7 @@ def adduser():
     else:
         return jsonify({'result':"Something wrong"})
 
-
-"""  User Authentication  """
+#User Authentication
 @app.route('/v1/auth',methods=['POST'])
 def check_user():
     data=request.get_json()
@@ -157,13 +157,12 @@ def get_userideas(ID):
     ideas = mongo.db.ideas.find({'owner_id':ID})
     return dumps(ideas)
 
-"""
+
 #owner Q/A
 @app.route("/users/userqa/<ID>")
-def get_userideas(ID):
-    qa = mongo.db.qa.find({'owner_id':ID})
+def get_userqa(ID):
+    qa = mongo.db.qa.find({'asked_by':ID})
     return dumps(qa)
-"""
 
 #-------------------------------NOTES------------------------------------------------------
 #notes with a particular tag
@@ -249,21 +248,40 @@ def insert_ideas():
 	
 	userdata={
 		'title':data['title'],
-		'link':data['links'],
-		'tags':data['tags'],
+		'links':data['links'],
+    'subject':data['subject'],
+    'time':datetime.now(),
+    'tags':data['tags'],
 		'description':data['description'],
 		'owner_id':data['owner_id'],
 		'upvotes':data['upvotes'],
 		'downvotes':data['downvotes'],
-		'collaborator_id':data['collaborator_id'],
+		'collaborator_id':[],
 		'mentor_id':data['mentor_id']
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
 	if idea:
+    	#mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
 		return jsonify({'result':'success'})
 	else:
-		return jsonify({'result':'unsucess'})
+		return jsonify({'result':'unsuccess'})
 
+#add collaborator
+'''
+@app.route('/ideas/insert_collaborator/<ID>',methods=['post'])
+def insert_collaborator(ID):
+	ideas_id=request.form['ideas_id']
+  	c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{$addToSet : {'collaborator_id':ID}})
+  	if c:
+  		return jsonify({"result":"success"})
+  	else:
+  		return jsonify({"result":"unsuccess"})
+
+#count no of collaborator
+@app.route('/ideas/count_collaborator/<ID>',methods=['post'])
+
+'''
+  
 
 #add comments
 @app.route('/ideas/insert_comment/<ID>',methods=['post'])
@@ -323,25 +341,38 @@ def downvote_idea(ID):
 	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
 	return jsonify({'downvote':v+1})
 
+
 '''---------------------------------------------------------------------------------------------'''
 
 '''------------------------------------Q&A SECTION-------------------------------------------'''
 
+'''---------------------------------------------------------------------------------------------'''
+
+
 @app.route("/qa/qlist",methods=['POST'])
 def get_questions():
     data=request.get_json()
-    questions = mongo.db.q.find({'subject':data['subject']}).sort([('time', -1)])
-    return dumps(questions)
+    questions = list(mongo.db.q.find({'subject':data['subject']}).sort([('time', -1)]))
+    ques={}
+    c=0
+    for i in questions:
+        i['_id']=str(i['_id'])
+        x=mongo.db.users.find_one({'_id':ObjectId(i['asked_by'])})
+        ques[str(c)]=i
+        ques[str(c)]['asked_by_n']=x['name']
+      #  print x['name']
+        c=c+1
+    return jsonify({'question':ques})
 
 @app.route("/qa/ask", methods=['POST'])
 def ask_question():
     data = request.get_json()
     qdata = {
         'asked_by': data['asked_by'],
-        'tags': data['tags'],
-        'subject':data['subject'],
+        'tags': [data['tags']],
         'description': data['description'],
         'title': data['title'],
+        'subject': data['subject'],
         'time': datetime.now()
     }
     if mongo.db.q.insert_one(qdata):
@@ -374,8 +405,20 @@ def post_answer():
 
 @app.route("/qa/<QID>/answers")
 def get_answers(QID):
-    answers = mongo.db.a.find({'QID': QID}).sort([('time', -1)])
-    return dumps(answers)
+    answers = list(mongo.db.a.find({'QID': QID}).sort([('time', -1)]))
+    ans={}
+    c=0
+    for i in answers:
+        i['_id']=str(i['_id'])
+        x=mongo.db.users.find_one({'_id':ObjectId(i['answered_by'])})
+        ans[str(c)]=i
+        ans[str(c)]['answered_by_n']=x['name']
+      #  print x['name']
+        c=c+1
+    print(ans)
+    return jsonify({'answer':ans})
+    
+    #return dumps(answers)
 
 @app.route('/qa/<AID>/upvote')
 def upvote_answer(AID):
@@ -390,6 +433,31 @@ def downvote_answer(AID):
 	return jsonify({'downvote': v + 1})
 
 '''---------------------------------------------------------------------------------------------'''
+'''PROFILE PAGE'''
+def top_tags(ID): #example-ObjectId("5be2eaec000f12e4ebaff63e")
+    top_tags=mongo.db.users.find( {"_id":ObjectId(ID)}, { "top_tags": {"$slice": -2 } } ) #returns last two items of list
+    '''a=mongo.db.users.findOne({"_id":user_id})
+    b=a["top_tags"]
+    top_tags=b[-2:]'''
+    return dumps(top_tags)
 
+def top_subjects(ID): #example-ObjectId("5be2eaec000f12e4ebaff63e")
+    top_subjects=mongo.db.users.find({"_id":ObjectId(ID)}, { "top_subjects": {"$slice": -2 } } )
+    return dumps(top_subjects)
+    
+
+
+@app.route('/profile',methods=['GET','POST'])
+def profile(ID):
+    #data=request.get_json()
+    user=mongo.db.users.find_one({"_id":ObjectId(ID)})
+    user['_id']=str(user['_id'])
+    return jsonify({'profile':user})
+    
+
+
+
+
+	
 if __name__ == '__main__':
    app.run(debug = True)

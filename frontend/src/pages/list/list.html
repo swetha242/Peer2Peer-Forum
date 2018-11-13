@@ -15,6 +15,8 @@
               <ion-item>
                   <ion-label><ion-icon name="star"></ion-icon></ion-label>
                   <ion-input [(ngModel)]="question" name="question" placeholder="Ask a question" type="text"></ion-input>
+                  <ion-input [(ngModel)]="tags" name="tags" placeholder="Tag" type="text"></ion-input>
+                  <ion-input [(ngModel)]="title" name="title" placeholder="Title" type="text"></ion-input>
               </ion-item>
               <div padding>
                     <button ion-button color="primary" (click)="askques()">Post</button>
@@ -37,9 +39,11 @@
       <ion-card>
         <ion-card-header>
             <ion-icon name="star" color="bright"></ion-icon> {{item.title}}
+            <ion-icon name="star" color="bright"></ion-icon> {{item.description}}
+
     </ion-card-header>
       <ion-card-content class="item-note" item-right>
-        This was asked by {{item.author}}
+        This was asked by {{item.owner}}
       </ion-card-content>
     </ion-card>
     </button>

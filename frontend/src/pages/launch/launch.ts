@@ -21,6 +21,7 @@ export class LaunchPage {
 
   userid=this.navParams.get('userid');
   selectedSubject : any;
+  userid=this.navParams.get('userid');
   subjects : Array<string>;
   globalTrend: {qno: number, top3Contributors: Array<string>,
     top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};

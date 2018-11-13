@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import * as Enums from '../../assets/apiconfig';
+import { Http, Headers } from '@angular/http';
+
 
 /**
  * Generated class for the ProfilePage page.
@@ -18,7 +21,7 @@ export class ProfilePage {
   gender : string, numberOfUpvotes : number ,emailId : string, topTags : Array<string>, topSubjects : Array<string>,
 numberOfNotesUploaded : number, numberofProjectIdeas : number, numberOfViewsForNotes : number,
 numberOfQuestionsAsked : number};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
 
     this.profileDetails= { name : "Sai Rohit S",
     age : 21,
@@ -33,8 +36,31 @@ numberOfQuestionsAsked : number};
     numberOfQuestionsAsked : 30,
     numberOfViewsForNotes : 90
   };
+  /*document.getElementById("details").onload=profile;
+  function profile(){
+    let postParams = this.profileDetails;
+    let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        let url = Enums.APIURL.URL1;
+        let path = url.concat( "/profile");
+        console.log(postParams);
 
 
+        this.http.post(path, postParams, {headers: headers})
+          .subscribe(res => {
+ 
+            let data = res.json();
+            console.log(data)
+            //this.token = data.token;
+            //this.storage.set('token', data.token);
+            //resolve(data);
+ 
+          }, (err) => {
+            console.log(err);
+            //reject(err);
+          });
+  }*/
 
   }
 

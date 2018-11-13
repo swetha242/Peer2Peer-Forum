@@ -1,0 +1,16 @@
+-  userid?
+- Push notifications (Mallya)
+- Put back button in questions page and remove navbar
+ 'or'  Use local storage made available by two factor authentication
+- Put any in Subjects
+- Add a logout button
+Q/A
+-Search a question
+-Answer upvote/downvote
+-Views for questions(Filter based on Subjects/Tags)
+Notes
+-Remove teacher entering date thing in documentation
+-Complete frontend for notes
+IDEAS AND PROJECT
+-Owner gets to accept or reject invite
+-Suggestion of people to project based on Suggestion/Tags
