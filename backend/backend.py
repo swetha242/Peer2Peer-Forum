@@ -346,7 +346,7 @@ def get_answers(QID):
         ans[str(c)]['answered_by_n']=x['name']
       #  print x['name']
         c=c+1
-    print ans
+    #print ans
     return jsonify({'answer':ans})
     
     #return dumps(answers)
