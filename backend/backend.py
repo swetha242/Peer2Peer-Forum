@@ -17,8 +17,25 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
 
+#--------------------------------------get subjects and tags--------------------------------------------------
+# first create a db with id as 1
+@app.route('/get_subj')
+def get_subjects():
+    x=mongo.db.globaltrends.find_one({'_id':1})
+    if (x):
+        return jsonify({'subject':x['subject'],'status':'Success'})
+    else:
+        return jsonify({'status':'error'})
+
+@app.route('/get_tags')
+def get_tags():
+    x=mongo.db.globaltrends.find_one({'_id':1})
+    if (x):
+        return jsonify({'tag':x['tag'],'status':'Success'})
+    else:
+        return jsonify({'status':'error'})
 #-------------------------------------update trends----------------------------------------------------------
-def updatetrends(tag,subject,userid):
+def updatetrends(tags,subject,userid):
     query={"_id":ObjectId(userid)}
     print(query)
     user=mongo.db.users.find_one(query)
@@ -30,21 +47,23 @@ def updatetrends(tag,subject,userid):
         mongo.db.users.update_one(query,{"$set":{'topSubjects.'+subject:sub+1}})
     else:
         mongo.db.users.update_one(query,{"$set":{'topSubjects.'+subject:1}})
-    if tag in user['topTags']:
-        tag1=user['topTags'][tag]
-        mongo.db.users.update_one(query,{"$set":{'topTags.'+tag:tag1+1}})
-    else:
-        mongo.db.users.update_one(query,{"$set":{'topTags.'+tag:1}})
+    for tag in tags:
+        if tag in user['topTags']:
+            tag1=user['topTags'][tag]
+            mongo.db.users.update_one(query,{"$set":{'topTags.'+tag:tag1+1}})
+        else:
+            mongo.db.users.update_one(query,{"$set":{'topTags.'+tag:1}})
     #update global trends
     q1=mongo.db.globaltrends.find_one({'_id':1})
     if subject in q1['subject']:
         mongo.db.globaltrends.update_one({'_id':1},{"$set":{'subject.'+subject:q1['subject'][subject]+1}})
     else:
         mongo.db.globaltrends.update_one({'_id':1},{"$set":{'subject.'+subject:1}})
-    if tag in q1['tag']:
-        mongo.db.globaltrends.update_one({'_id':1},{"$set":{'tag.'+tag:q1['tag'][tag]+1}})
-    else:
-        mongo.db.globaltrends.update_one({'_id':1},{"$set":{'tag.'+tag:1}})
+    for tag in tags:
+        if tag in q1['tag']:
+            mongo.db.globaltrends.update_one({'_id':1},{"$set":{'tag.'+tag:q1['tag'][tag]+1}})
+        else:
+            mongo.db.globaltrends.update_one({'_id':1},{"$set":{'tag.'+tag:1}})
 
 def topthree(obj):
     l=[]
@@ -101,7 +120,8 @@ def get_trends():
         lt1 = [(k, loc_tag[k]) for k in sorted(loc_tag, key=loc_tag.get, reverse=True)]
         lt=topthree(lt1)
     return jsonify({'global':{'subject':gs,'tag':gt,'contrib':{"names":gnames,"ids":gids}},'local':{'subject':ls,'tag':lt,'ques':loc['ques_ask'],'notes':loc['notes_upl'],'proj':loc['proj_ideas']}})
-#-----------------------------users-----------------------------------
+
+#-----------------------------users-----------------------------------------------------------
 # user signup
 @app.route('/v1/signup',methods=['POST'])
 def adduser():
@@ -109,8 +129,8 @@ def adduser():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
-    #userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
-    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
+    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
+    #userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
     if user:
         query={
@@ -165,24 +185,50 @@ def get_userqa(ID):
     return dumps(qa)
 
 #-------------------------------NOTES------------------------------------------------------
+#get json
+def notes_now(notes):
+    note={}
+    c=0
+    for i in notes:
+        i['_id']=str(i['_id'])
+        x=mongo.db.users.find_one({'_id':ObjectId(i['upl_by'])})
+        note[str(c)]=i
+        note[str(c)]['upl_by']=x['name']
+      #  print x['name']
+        c=c+1
+    return note
+
 #notes with a particular tag
-@app.route('/notes/<subject>')
-def get_notes(subject):
-    notes = mongo.db.notes.find({'subject':subject})
-    print(dumps(notes))
-    return dumps(notes)
+@app.route('/notes/list',methods=['POST'])
+def get_notes():
+    data=request.get_json()['subject']
+    notes = mongo.db.notes.find({'subject':data})
+    #print(dumps(notes))
+    note={}
+    note=notes_now(notes)
+    return jsonify({'notes':note})
 
 #latest notes with a particular tag
-@app.route('/notes/<tag>/latest')
-def get_latest(tag):
-    notes = mongo.db.notes.find({'tag':tag}).sort([('time',-1)])
-    return dumps(notes)
+@app.route('/notes/latest',methods=['POST'])
+def get_latest():
+    data=request.get_json()
+    tag=data['tag']
+    subject=data['subject']
+    notes = mongo.db.notes.find({'tag':tag,'subject':subject}).sort([('time',-1)])
+    note={}
+    note=notes_now(notes)
+    return jsonify({'notes':note})
 
 #most popular notes based on tag
-@app.route('/notes/<tag>/popular')
-def get_popular(tag):
-    notes = mongo.db.notes.find({'tag':tag}).sort([('upvotes',-1)])
-    return dumps(notes)
+@app.route('/notes/popular',methods=['POST'])
+def get_popular():
+    data=request.get_json()
+    tag=data['tag']
+    subject=data['subject']
+    notes = mongo.db.notes.find({'tag':tag,'subject':subject}).sort([('upvotes',-1)])
+    note={}
+    note=notes_now(notes)
+    return jsonify({'notes':note})
 
 #upvote notes
 @app.route('/notes/<ID>/upvote/')
@@ -213,7 +259,9 @@ def upload_file():
             file1.write(file_decode)
             file1.close()
             data['data']=file_name
-    query={'upl_by':data['userid'],'subject':data['subject'],'tag':[data['tag']],'course':data['course'],'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],'link':data['data'],'time':datetime.now()}
+    query={'upl_by':data['userid'],'subject':data['subject'],'tag':[data['tag']],'course':data['course'],
+    'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],
+    'link':data['data'],'time':datetime.now()}
     notes_ins=mongo.db.notes.insert_one(query)    
     if notes_ins:
         updatetrends(data['tag'],data['subject'],data['userid'])
