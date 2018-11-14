@@ -21,17 +21,19 @@
 
   <ion-list>
 
-    <button ion-item *ngFor="let item of answers" block>
-      #{{item.number}}
-      <br><b>Answer : </b>{{item.atext}}
+    <div ion-item *ngFor="let item of answers" block>
+      
+      <br><b>Answer : </b>{{item.content.answer}}
       <div class="item-note" item-right>
-        This was answered by {{item.author}}
+        This was answered by {{item.answeredbyname}}
       </div>
       <br>
       <br>
-      Number of Likes : {{item.numberOfLikes}}
-
-    </button>
+      Number of Likes : {{item.upvote}}
+      <br>
+ <ion-icon name="thumbs-up" (click) ="upvote(item)">{{item.upvote}}</ion-icon>
+    <ion-icon name="thumbs-down" (click)="downvote(item)">{{item.downvote}}</ion-icon>
+    </div>
 
   </ion-list>
 </ion-content>
