@@ -17,7 +17,111 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
 
-#-----------------------------users-----------------------------------
+#--------------------------------------get subjects and tags--------------------------------------------------
+# first create a db with id as 1
+@app.route('/get_subj')
+def get_subjects():
+    x=mongo.db.globaltrends.find_one({'_id':1})
+    if (x):
+        return jsonify({'subject':x['subject'],'status':'Success'})
+    else:
+        return jsonify({'status':'error'})
+
+@app.route('/get_tags')
+def get_tags():
+    x=mongo.db.globaltrends.find_one({'_id':1})
+    if (x):
+        return jsonify({'tag':x['tag'],'status':'Success'})
+    else:
+        return jsonify({'status':'error'})
+#-------------------------------------update trends----------------------------------------------------------
+def updatetrends(tags,subject,userid):
+    query={"_id":ObjectId(userid)}
+    print(query)
+    user=mongo.db.users.find_one(query)
+    #update local trends
+    print(user)
+    mongo.db.users.update_one(query,{"$set":{'score':user['score']+1}})
+    if subject in user['topSubjects']:
+        sub=user['topSubjects'][subject]
+        mongo.db.users.update_one(query,{"$set":{'topSubjects.'+subject:sub+1}})
+    else:
+        mongo.db.users.update_one(query,{"$set":{'topSubjects.'+subject:1}})
+    for tag in tags:
+        if tag in user['topTags']:
+            tag1=user['topTags'][tag]
+            mongo.db.users.update_one(query,{"$set":{'topTags.'+tag:tag1+1}})
+        else:
+            mongo.db.users.update_one(query,{"$set":{'topTags.'+tag:1}})
+    #update global trends
+    q1=mongo.db.globaltrends.find_one({'_id':1})
+    if subject in q1['subject']:
+        mongo.db.globaltrends.update_one({'_id':1},{"$set":{'subject.'+subject:q1['subject'][subject]+1}})
+    else:
+        mongo.db.globaltrends.update_one({'_id':1},{"$set":{'subject.'+subject:1}})
+    for tag in tags:
+        if tag in q1['tag']:
+            mongo.db.globaltrends.update_one({'_id':1},{"$set":{'tag.'+tag:q1['tag'][tag]+1}})
+        else:
+            mongo.db.globaltrends.update_one({'_id':1},{"$set":{'tag.'+tag:1}})
+
+def topthree(obj):
+    l=[]
+    c=0
+    for a,b in obj:
+        l.append(a)
+        c=c+1
+        if(c==3):
+            return l
+@app.route('/get_trends',methods=['POST'])
+def get_trends():
+    data=request.get_json()
+    #global trends
+    glob=mongo.db.globaltrends.find_one({'_id':1})
+    glob_sub=glob['subject']
+    gs1 = [(k, glob_sub[k]) for k in sorted(glob_sub, key=glob_sub.get, reverse=True)]
+    gs=topthree(gs1)
+    glob_tag=glob['tag']
+    gt1 = [(k, glob_tag[k]) for k in sorted(glob_tag, key=glob_tag.get, reverse=True)]
+    gt=topthree(gt1)
+    user = list(mongo.db.users.find().sort([('score',-1)]))
+    gnames=[]
+    gids=[]
+    c=0
+    for k in user:
+        gids.append(str(k['_id']))
+        gnames.append(k['name'])
+        c=c+1
+        if(c==3):
+            break
+    #local trends
+    userid=data['userid']
+    loc=mongo.db.users.find_one({'_id':ObjectId(userid)})
+    loc_sub=loc['topSubjects']
+    if(len(loc_sub)<=1):
+        if(len(loc_sub)==0):
+            ls=[]
+        else:
+            ls=[]
+            for key in loc_sub:
+                ls.append(key)
+    else:
+        ls1 = [(k, loc_sub[k]) for k in sorted(loc_sub, key=loc_sub.get, reverse=True)]
+        ls=topthree(ls1)
+    loc_tag=loc['topTags']
+    if(len(loc_tag)<=1):
+        if(len(loc_tag)==0):
+            lt=[]
+        else:
+            lt=[]
+            for key in loc_tag:
+                lt.append(key)
+    else:
+        lt1 = [(k, loc_tag[k]) for k in sorted(loc_tag, key=loc_tag.get, reverse=True)]
+        lt=topthree(lt1)
+    return jsonify({'global':{'subject':gs,'tag':gt,'contrib':{"names":gnames,"ids":gids}},'local':{'subject':ls,'tag':lt,'ques':loc['ques_ask'],'notes':loc['notes_upl'],'proj':loc['proj_ideas']}})
+
+#-----------------------------users-----------------------------------------------------------
 # user signup
 @app.route('/v1/signup',methods=['POST'])
 def adduser():
@@ -25,7 +129,8 @@ def adduser():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
-    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
+    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
+    #userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
     if user:
         query={
@@ -76,47 +181,54 @@ def get_userideas(ID):
 #owner Q/A
 @app.route("/users/userqa/<ID>")
 def get_userqa(ID):
-    qa = mongo.db.a.find({'asked_by':ID})
+    qa = mongo.db.qa.find({'asked_by':ID})
     return dumps(qa)
 
- #get id using mail
-@app.route("/users/who/<email>")
-def get_userid(email):
-	uid=mongo.db.users.find_one({'email':email})
-	if uid:
-		return jsonify({'result':'success','userid':str(uid['_id'])})
-	else:
-		return jsonify({'result':'unsuccess'})
-
-#get email using id
-@app.route("/users/getemail/<ID>")
-def get_useremail(ID):
-	uemail=mongo.db.users.find_one({'_id':ObjectId(ID)})
-	if uemail:
-		return jsonify({'result':'success','email':uemail['email']})
-	else:
-		return jsonify({'result':'unsuccess'})
-
-
-
 #-------------------------------NOTES------------------------------------------------------
+#get json
+def notes_now(notes):
+    note={}
+    c=0
+    for i in notes:
+        i['_id']=str(i['_id'])
+        x=mongo.db.users.find_one({'_id':ObjectId(i['upl_by'])})
+        note[str(c)]=i
+        note[str(c)]['upl_by']=x['name']
+      #  print x['name']
+        c=c+1
+    return note
+
 #notes with a particular tag
-@app.route('/notes/<tag>')
-def get_notes(tag):
-    notes = mongo.db.notes.find({'tag':tag})
-    return dumps(notes)
+@app.route('/notes/list',methods=['POST'])
+def get_notes():
+    data=request.get_json()['subject']
+    notes = mongo.db.notes.find({'subject':data})
+    #print(dumps(notes))
+    note={}
+    note=notes_now(notes)
+    return jsonify({'notes':note})
 
 #latest notes with a particular tag
-@app.route('/notes/<tag>/latest')
-def get_latest(tag):
-    notes = mongo.db.notes.find({'tag':tag}).sort([('time',-1)])
-    return dumps(notes)
+@app.route('/notes/latest',methods=['POST'])
+def get_latest():
+    data=request.get_json()
+    tag=data['tag']
+    subject=data['subject']
+    notes = mongo.db.notes.find({'tag':tag,'subject':subject}).sort([('time',-1)])
+    note={}
+    note=notes_now(notes)
+    return jsonify({'notes':note})
 
 #most popular notes based on tag
-@app.route('/notes/<tag>/popular')
-def get_popular(tag):
-    notes = mongo.db.notes.find({'tag':tag}).sort([('upvotes',-1)])
-    return dumps(notes)
+@app.route('/notes/popular',methods=['POST'])
+def get_popular():
+    data=request.get_json()
+    tag=data['tag']
+    subject=data['subject']
+    notes = mongo.db.notes.find({'tag':tag,'subject':subject}).sort([('upvotes',-1)])
+    note={}
+    note=notes_now(notes)
+    return jsonify({'notes':note})
 
 #upvote notes
 @app.route('/notes/<ID>/upvote/')
@@ -147,11 +259,14 @@ def upload_file():
             file1.write(file_decode)
             file1.close()
             data['data']=file_name
-    query={'subject':data['subject'],'course':1,'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],'link':data['data'],'time':datetime.now()}
+    query={'upl_by':data['userid'],'subject':data['subject'],'tag':[data['tag']],'course':data['course'],
+    'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],
+    'link':data['data'],'time':datetime.now()}
     notes_ins=mongo.db.notes.insert_one(query)
     if notes_ins:
+        updatetrends(data['tag'],data['subject'],data['userid'])
         v=mongo.db.users.find_one({"_id":ObjectId(data['userid'])})['notes_upl']
-        mongo.db.users.update({"_id":ObjectId(data['userid'])},{"$set":{'notes_upl':v+1}})
+        mongo.db.users.update_one({"_id":ObjectId(data['userid'])},{"$set":{'notes_upl':v+1}})
         return jsonify({'result':'Success'})
     else:
         return jsonify({'result':'Error'})
@@ -173,6 +288,7 @@ def view_file():
     return jsonify({'result':'Error'})
 
 '''------------------------------------IDEAS SECTION-------------------------------------------'''
+
 #insert ideas
 @app.route('/ideas/insert',methods=['POST'])
 def insert_ideas():
@@ -193,8 +309,7 @@ def insert_ideas():
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
 	if idea:
-		mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id']) })
-		#send mail
+    	#mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
 		return jsonify({'result':'success'})
 	else:
 		return jsonify({'result':'unsuccess'})
@@ -216,17 +331,19 @@ def count_colaborator(ID):
 	data=mongo.db.ideas.count({'_id':ObjectId(ID)})
 	return jsonify({'count':data})
 
+'''
 
-#add comments
-@app.route('/ideas/insert_comment/<ID>',methods=['post','get'])
+
+#add commentss
+@app.route('/ideas/insert_comment/<ID>',methods=['post'])
 def insert_comments(ID):
 	data=request.form
 
 	userdata={
-		'comments':data['comments'],
-		'time':datetime.now()
+		'ideas_id':ID,
+		'comments':data['comments']
 	}
-	comment=mongo.db.ideas.update({'_id':ObjectId(ID)},{'$push':{'comments':userdata}})
+	comment=mongo.db.ideas_comments.insert_one(userdata)
 	if comment:
 		return jsonify({'result':'success'})
 	else:
@@ -235,7 +352,7 @@ def insert_comments(ID):
 #get comments
 @app.route('/ideas/get_comments/<ID>')
 def get_comments(ID):
-    comments = mongo.db.ideas.find({'_id':ObjectId(ID)})
+    comments = mongo.db.ideas_comments.find({'ideas_id':ID})
     return dumps(comments)
 
 
@@ -274,6 +391,8 @@ def downvote_idea(ID):
 	v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['downvotes']
 	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
 	return jsonify({'downvote':v+1})
+
+
 '''---------------------------------------------------------------------------------------------'''
 
 '''------------------------------------Q&A SECTION-------------------------------------------'''
@@ -299,7 +418,6 @@ def get_questions():
 @app.route("/qa/ask", methods=['POST'])
 def ask_question():
     data = request.get_json()
-
     qdata = {
         'asked_by': data['asked_by'],
         'tags': [data['tags']],
@@ -308,8 +426,10 @@ def ask_question():
         'subject': data['subject'],
         'time': datetime.now()
     }
-
     if mongo.db.q.insert_one(qdata):
+        updatetrends(data['tags'],data['subject'],data['asked_by'])
+        v=mongo.db.users.find_one({"_id":ObjectId(data['asked_by'])})['ques_ask']
+        mongo.db.users.update_one({"_id":ObjectId(data['asked_by'])},{"$set":{'ques_ask':v+1}})
         return jsonify({'result': 'Success'})
     else:
         return jsonify({'result': 'Failure'})
@@ -318,7 +438,7 @@ def ask_question():
 def post_answer():
     data = request.get_json()
 
-    qdata = {
+    adata = {
         'answered_by': data['answered_by'],
         'content': data['content'],
         'teacher': data['teacher'],
@@ -328,7 +448,7 @@ def post_answer():
         'QID': data['QID']
     }
 
-    inserted_a = mongo.db.a.insert_one(qdata)
+    inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
         return jsonify({'result': 'Success'})
     else:

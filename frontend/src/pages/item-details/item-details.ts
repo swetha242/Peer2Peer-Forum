@@ -12,6 +12,7 @@ import { Http, Headers } from '@angular/http';
 })
 export class ItemDetailsPage {
   selectedItem: any;
+  l:any;
   userid = this.navParams.get('userid');
 
   answersGet: Array<{answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
@@ -24,11 +25,12 @@ export class ItemDetailsPage {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
     this.answersGet=navParams.get('answer');
-
+    
+    this.l=this.answersGet.length
     console.log(this.answersGet[1]);
 
     this.answers=[];
-    for(let i = 0; i < 2; i++) {
+    for(let i = 0; i < this.l; i++) {
 
       this.answers.push({
         answeredby : this.answersGet[i].answeredby,
@@ -41,6 +43,20 @@ export class ItemDetailsPage {
       });
     }
   }
+
+  upvote(item){
+
+    item.upvote=item.upvote+1;
+
+    console.log(item.upvote)
+  }
+  downvote(item){
+
+    item.downvote=item.downvote+1;
+
+    console.log(item.upvote)
+  }
+  
   answer(){
     let alert = this.alertCtrl.create({
       title: 'ANSWER',
@@ -89,5 +105,6 @@ export class ItemDetailsPage {
     });
     alert.present();
   }
+
 }
 

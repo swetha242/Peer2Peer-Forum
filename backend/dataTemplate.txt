@@ -89,16 +89,17 @@
 [
     {
         "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "asked_by" : "abcd@gmail.com",
-        "tags": ["tag1",  "tag2", "tag3"],
+        "asked_by" : "5bea63a0655e4e03a02d0a0f",
+        "tags": ["ML",  "BackProp"],
+	"subject":"
         "time" : ISODate("2018-10-12T17:47:57.933Z"),
-        "description": "descp1",
+        "description": "What is the complexity of reversing a linked list?",
         "title": "t1"
     },
     {
         "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "asked_by" : "xyz@gmail.com",
-        "tags": ["tag1",  "tag2", "tag3"],
+        "asked_by" : "234567890",
+        "tags": ["Linked List"],
         "time" : ISODate("2018-10-12T17:47:57.933Z"),
         "description": "descp2",
         "title": "t2"
@@ -110,7 +111,7 @@
 [
     {
         "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "answered_by" : "abcd@gmail.com",
+        "answered_by" : "123252435",
         "upvotes": 2
         "downvotes": 0
         "time" : ISODate("2018-10-12T17:47:57.933Z"),
@@ -119,7 +120,7 @@
     },
     {
         "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "answered_by" : "xyz@gmail.com",
+        "answered_by" : "124346457",
         "upvotes": 4
         "downvotes": 0
         "time" : ISODate("2018-10-12T17:47:57.933Z"),

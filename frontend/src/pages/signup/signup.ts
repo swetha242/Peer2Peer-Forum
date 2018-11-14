@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage} from '../login/login';
-import { SubjectsPage } from '../subjects/subjects';
-import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+import { LaunchPage } from '../launch/launch';
 
 /**
  * Generated class for the SignupPage page.
@@ -44,7 +43,7 @@ export class SignupPage {
         buttons: ['OK']
       });
       alert.present();
-      this.navCtrl.push(HelloIonicPage,{userid:result['user_id']});
+      this.navCtrl.push(LaunchPage,{userid:result['user_id']});
     }
     }, (err) => {
       console.log(err)

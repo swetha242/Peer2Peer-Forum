@@ -37,12 +37,15 @@ export class MyApp {
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [
-
-      { title : 'Home',component: LaunchPage},
-      { title : 'Profile', component : ProfilePage},
-      { title: 'Questions and Answers', component: ListPage },
-      { title:'Notes',component:NotesPage},
-      { title : 'Projects and Ideas', component : IdeasProjectsPage}
+      
+      { title: 'Questions Page', component: ListPage },
+   //   { title : 'Login', component : LoginPage},
+     // { title : 'Sign Up',component : SignupPage},
+      { title : 'Subjects Page', component : SubjectsPage},
+      { title : 'Profile Page', component : ProfilePage},
+      {title:'Notes',component:NotesPage},
+      { title : 'Launch Page', component : LaunchPage},
+      { title : 'Projects and Ideas', component : IdeasProjectsPage},
     ];
   }
 

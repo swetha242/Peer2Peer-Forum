@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {RecoQuestionsPage} from '../reco-questions/reco-questions';
 import { ListPage } from '../list/list';
-import { ViewnotesPage} from '../viewnotes/viewnotes';
+import { NotesPage} from '../notes/notes';
 import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 /**
  * Generated class for the LaunchPage page.
@@ -19,8 +19,8 @@ import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 })
 export class LaunchPage {
 
-  selectedSubject : any;
   userid=this.navParams.get('userid');
+  selectedSubject : any;
   subjects : Array<string>;
   globalTrend: {qno: number, top3Contributors: Array<string>,
     top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
@@ -104,7 +104,7 @@ export class LaunchPage {
 
 callNotes()
 {
-  this.navCtrl.push(ViewnotesPage, { subject : this.selectedSubject}
+  this.navCtrl.push(NotesPage, { subject : this.selectedSubject,userid:this.userid}
   );
 }
 presentAlertNotes() {
