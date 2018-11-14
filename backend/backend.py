@@ -289,13 +289,35 @@ def view_file():
 
 '''------------------------------------IDEAS SECTION-------------------------------------------'''
 
+
+# get id using mail
+@app.route("/users/whoid/<email>")
+def get_userid(email):
+    uid=mongo.db.users.find_one({'email':email})
+    if uid:
+        return uid['_id']
+    else:
+        return None
+
+@app.route("/users/whoemail/<ID>")
+def get_useremail(ID):
+    uid=mongo.db.users.find_one({'_id':ObjectId(ID)})
+    if uid:
+        return uid['email']
+    else:
+        return None
+
 #insert ideas
 @app.route('/ideas/insert',methods=['POST'])
 def insert_ideas():
-	data=request.get_json()
-
-	userdata={
-		  'title':data['title'],
+    data=request.get_json()
+    l=list()
+    for i in data['collaborator'].split(','):
+        s=get_userid(i)
+        if s:
+            l.append(s)
+    userdata={
+        'title':data['title'],
 		  'links':data['links'],
     	'subject':data['subject'],
     	'time':datetime.now(),
@@ -304,16 +326,15 @@ def insert_ideas():
 		  'owner_id':data['owner_id'],
 		  'upvotes':data['upvotes'],
 		  'downvotes':data['downvotes'],
-		  'colaborator_id':data['colaborator'].split(','),
+		  'colaborator_id':l,
 		  'mentor_id':data['mentor_id']
 	}
-	idea=mongo.db.ideas.insert_one(userdata)
-	if idea:
+    idea=mongo.db.ideas.insert_one(userdata)
+    if idea:
     	#mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
-		return jsonify({'result':'success'})
-	else:
-		return jsonify({'result':'unsuccess'})
-
+        return jsonify({'result':'success'})
+    else:
+        return jsonify({'result':'unsuccess'})
 #add colaborator
 @app.route('/ideas/insert_colaborator/<ID>',methods=['post'])
 def insert_colaborator(ID):
