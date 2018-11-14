@@ -188,7 +188,7 @@ def insert_ideas():
 		  'owner_id':data['owner_id'],
 		  'upvotes':data['upvotes'],
 		  'downvotes':data['downvotes'],
-		  'collaborator_id':['collaborator'].split(','),
+		  'collaborator_id':data['collaborator'].split(','),
 		  'mentor_id':data['mentor_id']
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
