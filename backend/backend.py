@@ -295,17 +295,17 @@ def insert_ideas():
 	data=request.form
 	
 	userdata={
-		'title':data['title'],
-		'links':data['links'],
-    'subject':data['subject'],
-    'time':datetime.now(),
-    'tags':data['tags'],
-		'description':data['description'],
-		'owner_id':data['owner_id'],
-		'upvotes':data['upvotes'],
-		'downvotes':data['downvotes'],
-		'collaborator_id':[],
-		'mentor_id':data['mentor_id']
+		  'title':data['title'],
+		  'links':data['links'],
+    	'subject':data['subject'],
+    	'time':datetime.now(),
+    	'tags':data['tags'],
+		  'description':data['description'],
+		  'owner_id':data['owner_id'],
+		  'upvotes':data['upvotes'],
+		  'downvotes':data['downvotes'],
+		  'collaborator_id':data['collaborator'].split(','),
+		  'mentor_id':data['mentor_id']
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
 	if idea:
@@ -463,7 +463,7 @@ def get_answers(QID):
         ans[str(c)]['answered_by_n']=x['name']
       #  print x['name']
         c=c+1
-    print(ans)
+    #print ans
     return jsonify({'answer':ans})
     
     #return dumps(answers)
