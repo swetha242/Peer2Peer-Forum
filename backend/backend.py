@@ -184,8 +184,6 @@ def get_userqa(ID):
     qa = mongo.db.qa.find({'asked_by':ID})
     return dumps(qa)
 
- #get id using mail
-@app.route("/users/who/<email>")
 def get_userid(email):
 	uid=mongo.db.users.find_one({'email':email})
 	if uid:
@@ -193,8 +191,6 @@ def get_userid(email):
 	else:
 		return jsonify({'result':'unsuccess'})
 
-#get email using id
-@app.route("/users/getemail/<ID>")
 def get_useremail(ID):
 	uemail=mongo.db.users.find_one({'_id':ObjectId(ID)})
 	if uemail:
@@ -335,12 +331,6 @@ def insert_ideas():
         if s:
             l.append(s)
     userdata={
-        'title':data['title'],
-	data=request.get_json()
-    #use email to user id here aand create a new list of user_id for colaborator and mentors
-    #then use that bellow after making a converted list
-
-	userdata={
 		  'title':data['title'],
 		  'links':data['links'],
 	      'subject':data['subject'],
@@ -359,6 +349,7 @@ def insert_ideas():
         return jsonify({'result':'success'})
     else:
         return jsonify({'result':'unsuccess'})
+
 #add colaborator
 @app.route('/ideas/insert_colaborator/<ID>',methods=['post'])
 def insert_colaborator(ID):
