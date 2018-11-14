@@ -91,6 +91,8 @@ export class ListPage {
             console.log(err);
             //reject(err);
           });
+           this.navCtrl.push(ListPage, {subject:this.subject});
+
   }
   itemTapped(event, item) 
   {
