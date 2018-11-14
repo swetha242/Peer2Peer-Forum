@@ -4,6 +4,7 @@
     "title" : "PeerToPeer",
     "link" : "www.google.com",
     "summary" : "About Learning",
+    "description" : "this is a peer to peer platform",
     "subject" : "Machine Learning",
     "tags" : ["ML","Neural Netwoks","Backprop"],
     "ownerId": "ObjectId('5bd86111a5281b8f9f9c8b3f')",

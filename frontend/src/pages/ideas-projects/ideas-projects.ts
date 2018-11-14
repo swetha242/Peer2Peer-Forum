@@ -45,7 +45,8 @@ export class IdeasProjectsPage {
     let url = Enums.APIURL.URL1;
 
     //default view is latest ideas
-    let path = url.concat("/idea/latest/",this.subject);
+    let path = url.concat("/ideas/latest/",this.subject);
+
 
     console.log(this.user_id);
     console.log(this.subject);
