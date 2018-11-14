@@ -442,6 +442,7 @@ def post_answer():
         'time': datetime.now(),
         'upvotes': 0,
         'downvotes': 0,
+        'votes':[],
         'QID': data['QID']
     }
 
@@ -468,11 +469,19 @@ def get_answers(QID):
     
     #return dumps(answers)
 
-@app.route('/qa/<AID>/upvote')
-def upvote_answer(AID):
-	v = mongo.db.a.find_one({"_id": ObjectId(AID)})['upvotes']
-	mongo.db.a.update({"_id": ObjectId(AID)}, {"$set": {'upvotes': v + 1}})
-	return jsonify({'upvote': v + 1})
+@app.route('/qa/upvote',methods=['POST'])
+def upvote_answer():
+    data=request.get_json()
+    aid=data['aid']
+    uid=data['uid']
+    upv = mongo.db.a.find_one({"_id": ObjectId(aid)})
+    if uid not in upv['votes']:
+        upv['votes'].append(uid)
+        mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
+        mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'votes': upv['votes']}})
+        return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
+    else:
+        return jsonify({'result':'Error'})
 	
 @app.route('/qa/<AID>/downvote')
 def downvote_answer(AID):
