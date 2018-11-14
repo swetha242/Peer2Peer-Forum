@@ -331,8 +331,6 @@ def count_colaborator(ID):
 	data=mongo.db.ideas.count({'_id':ObjectId(ID)})
 	return jsonify({'count':data})
 
-'''
-
 
 #add commentss
 @app.route('/ideas/insert_comment/<ID>',methods=['post'])
