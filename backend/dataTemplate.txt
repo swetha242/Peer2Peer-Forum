@@ -1,46 +1,73 @@
+--------------------------sample JSONs for subjects, tags-----------------------------------------------------------------------------
+This has to be inserted for backend to work
+db.globaltrends.find().pretty()
+{
+        "_id" : 1,
+        "subject" : {
+                "Data Structures" : 10,
+                "Algorithms" : 26,
+                "Compiler Design" : 30,
+                "Theory Of Computation" : 100,
+                "Machine Learning" : 2
+        },
+        "tag" : {
+                "Linked List" : 25,
+                "Hash Maps" : 30,
+                "Binary Trees" : 50,
+                "Neural Networks" : 6,
+                "LL" : 1,
+                "ML" : 1
+        }
+}
+
+
 ----------------------------------Sample JSONs for notes database--------------------------------------
 '''
+
 {
-    "_id" : ObjectId("5bc0de4d7495c3f50f6c5bd6"),
-    "subject" : "Machine Learning",
-    "tag" : ["ML","Neural Netwoks","Backprop"],
-    "course" : 1,
-    "upvotes" : 10,
-    "downvotes" : 2,
-    "title" : "Neural networks",
-    "summary" : "An overview of neural networks",
-    "block" : 0,
-    "islink" : 1,
-    "link" : "http://neuralnetworksanddeeplearning.com/chap1.html",
-    "time" : ISODate("2018-10-12T17:47:57.933Z")
+        "_id" : ObjectId("5bea537c655e4e02f016a317"),
+        "upl_by" : "5be99c81655e4e46487ad3b2",
+        "subject" : "Algorithms",
+        "tag" : [
+                "Neural Networks"
+        ],
+        "course" : 1,
+        "upvotes" : 0,
+        "downvotes" : 0,
+        "title" : "ANN",
+        "summary" : "xxxx",
+        "link" : "2269947.pdf",
+        "time" : ISODate("2018-11-13T10:00:52.908Z")
 }
 {
-    "_id" : ObjectId("5bc22037fdc52ba0ad988d64"),
-    "subject" : "Data Structures"
-    "tag" : ["Data Structures", "Linked List","Insertion", "Deletion"],
-    "course" : 1,
-    "upvotes" : 10,
-    "downvotes" : 2,
-    "title" : "Regression",
-    "summary" : "A brief of linear and logistic regression",
-    "block" : 0,
-    "islink" : 1,
-    "link" : "https://www.listendata.com/2014/11/difference-between-linear-regression.html",
-    "time" : ISODate("2018-10-13T16:41:27.899Z")
+        "_id" : ObjectId("5bea53ae655e4e02f016a318"),
+        "upl_by" : "5be99c81655e4e46487ad3b2",
+        "subject" : "Algorithms",
+        "tag" : [
+                "Neural Networks"
+        ],
+        "course" : 1,
+        "upvotes" : 0,
+        "downvotes" : 0,
+        "title" : "ANN",
+        "summary" : "xxxx",
+        "link" : "5625067.pdf",
+        "time" : ISODate("2018-11-13T10:01:42.748Z")
 }
 {
-    "_id" : ObjectId("5bc220e2fdc52ba0ad988d65"),
-    "subject"  : "OOMD",
-    "tag" : ["OOMD","Use Case","Actors"],
-    "course" : 1,
-    "upvotes" : 11,
-    "downvotes" : 2,
-    "title" : "OOMD",
-    "summary" : "Unit 2",
-    "block" : 0,
-    "islink" : 0,
-    "link" : "1232454.pdf",
-    "time" : ISODate("2018-10-13T16:44:18.340Z")
+        "_id" : ObjectId("5bea53fd655e4e02f016a319"),
+        "upl_by" : "5be99c81655e4e46487ad3b2",
+        "subject" : "Algorithms",
+        "tag" : [
+                "Neural Networks"
+        ],
+        "course" : 1,
+        "upvotes" : 0,
+        "downvotes" : 0,
+        "title" : "ANN",
+        "summary" : "xxxx",
+        "link" : "6913322.pdf",
+        "time" : ISODate("2018-11-13T10:03:01.865Z")
 }
 '''
 
@@ -54,8 +81,6 @@
         "password" : "123",
         "name" : "swetha",
         "is_student" : 1,
-        "gender " : "Female",
-
         "ques_ask" : 20,
         "ques_ans" : 30,
         "ans_upvote" : 200,
