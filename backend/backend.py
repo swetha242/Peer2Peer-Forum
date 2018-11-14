@@ -184,6 +184,24 @@ def get_userqa(ID):
     qa = mongo.db.qa.find({'asked_by':ID})
     return dumps(qa)
 
+ #get id using mail
+@app.route("/users/who/<email>")
+def get_userid(email):
+	uid=mongo.db.users.find_one({'email':email})
+	if uid:
+		return jsonify({'result':'success','userid':str(uid['_id'])})
+	else:
+		return jsonify({'result':'unsuccess'})
+
+#get email using id
+@app.route("/users/getemail/<ID>")
+def get_useremail(ID):
+	uemail=mongo.db.users.find_one({'_id':ObjectId(ID)})
+	if uemail:
+		return jsonify({'result':'success','email':uemail['email']})
+	else:
+		return jsonify({'result':'unsuccess'})
+
 #-------------------------------NOTES------------------------------------------------------
 #get json
 def notes_now(notes):
@@ -293,13 +311,15 @@ def view_file():
 @app.route('/ideas/insert',methods=['POST'])
 def insert_ideas():
 	data=request.get_json()
-
+    #use email to user id here aand create a new list of user_id for colaborator and mentors
+    #then use that bellow after making a converted list
+    
 	userdata={
 		  'title':data['title'],
 		  'links':data['links'],
-    	'subject':data['subject'],
-    	'time':datetime.now(),
-    	'tags':data['tags'],
+	      'subject':data['subject'],
+    	  'time':datetime.now(),
+    	  'tags':data['tags'],
 		  'description':data['description'],
 		  'owner_id':data['owner_id'],
 		  'upvotes':data['upvotes'],

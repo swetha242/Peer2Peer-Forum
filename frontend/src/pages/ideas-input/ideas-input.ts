@@ -18,20 +18,22 @@ import * as Enums from '../../assets/apiconfig';
   templateUrl: 'ideas-input.html',
 })
 export class IdeasInputPage {
-
   user_id: any;
-  description: string;
   idea: Array<{user_id: string,title:string, description:string, summary:string, subject:string, tags:Array<"">, links:Array<"">, mentors:string, colaborators:Array<"">}>;
   public form 	: FormGroup;
 
   constructor(public navCtrl 		: NavController,public navParams 	: NavParams,private _FB : FormBuilder, public http: Http) {
     this.idea = [];
+    this.idea.links = [];
+    this.idea.tags = [];
+    this.idea.colaborators = [];
+    this.user_id = this.navParams.get('userid');
     this.form = this._FB.group({
       title: ['', Validators.required],
-      value: [''],
       subject: ['',Validators.required],
       summary: ['',Validators.required],
-      mentor_email: new FormControl('', Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+      description: ['',Validators.required],
+      value: [''],
       email: new FormControl('', Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
       links: this._FB.array([this.initLinks()]),
       colaborators: this._FB.array([this.initColab()]),
@@ -102,27 +104,29 @@ export class IdeasInputPage {
   {
    console.dir(val);
 
-   let i = 0;
-
+   var i = 0;
+   this.idea['user_id'] = this.user_id;
    this.idea['title'] = val.title;
    this.idea['subject'] = val.subject;
-   this.idea['summary'] = val.summary.value;
-   this.idea['description'] = this.description;
+   this.idea['summary'] = val.summary;
+   this.idea['description'] = val.description;
    this.idea['mentor'] = val.email;
+
    for(let link of val.links){
-     this.idea['links'].push(val.links.i.value);
+     this.idea['links'].push(val.links[i].value);
      i = i + 1;
    }
    i = 0;
    for(let colab of val.colaborators){
-     this.idea['colaborators'].push(val.colaborators.i.email);
+     this.idea['colaborators'].push(val.colaborators[i].email);
      i = i + 1;
    }
    i=0;
    for(let tag of val.tags){
-     this.idea['tags'].push(val.tags.i.value);
+     this.idea['tags'].push(val.tags[i].value);
+     i = i + 1;
    }
-
+   console.log(this.idea);
   }
 
 

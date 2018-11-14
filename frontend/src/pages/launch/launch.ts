@@ -133,7 +133,7 @@ alert.addButton({
 
 
  callProjects(){
-   this.navCtrl.push(IdeasProjectsPage, { subject : this.selectedSubject}
+   this.navCtrl.push(IdeasProjectsPage, { subject : this.selectedSubject,userid:this.userid}
  );
  }
  presentAlertProjects() {
