@@ -236,7 +236,7 @@ def upvote(ID):
 	v=mongo.db.notes.find_one({"_id":ObjectId(ID)})['upvotes']
 	mongo.db.notes.update({"_id":ObjectId(ID)},{"$set":{'upvotes':v+1}})
 	return jsonify({'upvote':v+1})
-	
+
 #downvote notes
 @app.route('/notes/<ID>/downvote/')
 def downvote(ID):
@@ -262,7 +262,7 @@ def upload_file():
     query={'upl_by':data['userid'],'subject':data['subject'],'tag':[data['tag']],'course':data['course'],
     'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],
     'link':data['data'],'time':datetime.now()}
-    notes_ins=mongo.db.notes.insert_one(query)    
+    notes_ins=mongo.db.notes.insert_one(query)
     if notes_ins:
         updatetrends(data['tag'],data['subject'],data['userid'])
         v=mongo.db.users.find_one({"_id":ObjectId(data['userid'])})['notes_upl']
@@ -290,10 +290,10 @@ def view_file():
 '''------------------------------------IDEAS SECTION-------------------------------------------'''
 
 #insert ideas
-@app.route('/ideas/insert')
+@app.route('/ideas/insert',methods=['POST'])
 def insert_ideas():
-	data=request.form
-	
+	data=request.get_json()
+
 	userdata={
 		  'title':data['title'],
 		  'links':data['links'],
@@ -304,7 +304,7 @@ def insert_ideas():
 		  'owner_id':data['owner_id'],
 		  'upvotes':data['upvotes'],
 		  'downvotes':data['downvotes'],
-		  'collaborator_id':data['collaborator'].split(','),
+		  'colaborator_id':data['colaborator'].split(','),
 		  'mentor_id':data['mentor_id']
 	}
 	idea=mongo.db.ideas.insert_one(userdata)
@@ -314,24 +314,25 @@ def insert_ideas():
 	else:
 		return jsonify({'result':'unsuccess'})
 
-#add collaborator
-'''
-@app.route('/ideas/insert_collaborator/<ID>',methods=['post'])
-def insert_collaborator(ID):
+#add colaborator
+@app.route('/ideas/insert_colaborator/<ID>',methods=['post'])
+def insert_colaborator(ID):
 	ideas_id=request.form['ideas_id']
-  	c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{$addToSet : {'collaborator_id':ID}})
-  	if c:
-  		return jsonify({"result":"success"})
-  	else:
-  		return jsonify({"result":"unsuccess"})
+	c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':ID}})
+	if c:
+		return jsonify({"result":"success"})
+	else:
+		return jsonify({"result":"unsuccess"})
 
-#count no of collaborator
-@app.route('/ideas/count_collaborator/<ID>',methods=['post'])
 
-'''
-  
+#count no of colaborator
+@app.route('/ideas/count_colaborator/<ID>',methods=['post','get'])
+def count_colaborator(ID):
+	data=mongo.db.ideas.count({'_id':ObjectId(ID)})
+	return jsonify({'count':data})
 
-#add comments
+
+#add commentss
 @app.route('/ideas/insert_comment/<ID>',methods=['post'])
 def insert_comments(ID):
 	data=request.form
@@ -381,7 +382,7 @@ def upvote_idea(ID):
 	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'upvotes':v+1}})
 	return jsonify({'upvote':v+1})
 
-	
+
 #downvote idea
 @app.route('/ideas/downvote/<ID>')
 def downvote_idea(ID):
@@ -426,7 +427,7 @@ def ask_question():
     if mongo.db.q.insert_one(qdata):
         updatetrends(data['tags'],data['subject'],data['asked_by'])
         v=mongo.db.users.find_one({"_id":ObjectId(data['asked_by'])})['ques_ask']
-        mongo.db.users.update_one({"_id":ObjectId(data['asked_by'])},{"$set":{'ques_ask':v+1}})        
+        mongo.db.users.update_one({"_id":ObjectId(data['asked_by'])},{"$set":{'ques_ask':v+1}})
         return jsonify({'result': 'Success'})
     else:
         return jsonify({'result': 'Failure'})
@@ -466,23 +467,15 @@ def get_answers(QID):
         c=c+1
     #print ans
     return jsonify({'answer':ans})
-    
+
     #return dumps(answers)
 
-@app.route('/qa/upvote',methods=['POST'])
-def upvote_answer():
-    data=request.get_json()
-    aid=data['aid']
-    uid=data['uid']
-    upv = mongo.db.a.find_one({"_id": ObjectId(aid)})
-    if uid not in upv['votes']:
-        upv['votes'].append(uid)
-        mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
-        mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'votes': upv['votes']}})
-        return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
-    else:
-        return jsonify({'result':'Error'})
-	
+@app.route('/qa/<AID>/upvote')
+def upvote_answer(AID):
+	v = mongo.db.a.find_one({"_id": ObjectId(AID)})['upvotes']
+	mongo.db.a.update({"_id": ObjectId(AID)}, {"$set": {'upvotes': v + 1}})
+	return jsonify({'upvote': v + 1})
+
 @app.route('/qa/<AID>/downvote')
 def downvote_answer(AID):
 	v = mongo.db.a.find_one({"_id": ObjectId(AID)})['downvotes']
@@ -501,7 +494,7 @@ def top_tags(ID): #example-ObjectId("5be2eaec000f12e4ebaff63e")
 def top_subjects(ID): #example-ObjectId("5be2eaec000f12e4ebaff63e")
     top_subjects=mongo.db.users.find({"_id":ObjectId(ID)}, { "top_subjects": {"$slice": -2 } } )
     return dumps(top_subjects)
-    
+
 
 
 @app.route('/profile',methods=['GET','POST'])
@@ -510,11 +503,11 @@ def profile(ID):
     user=mongo.db.users.find_one({"_id":ObjectId(ID)})
     user['_id']=str(user['_id'])
     return jsonify({'profile':user})
-    
 
 
 
 
-	
+
+
 if __name__ == '__main__':
    app.run(debug = True)

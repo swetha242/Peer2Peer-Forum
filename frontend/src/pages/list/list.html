@@ -22,10 +22,20 @@
                     <button ion-button color="primary" (click)="askques()">Post</button>
               </div>
         </ion-col>
-        <ion-col>
-          <div padding>
-                <button ion-button color="primary" block (click)="search()">Search Question</button>
-          </div>
+     
+        </ion-row>
+        <ion-row>
+             <ion-col>
+          <br>
+          <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+          <ion-list>
+            <ion-item *ngFor="let item of items1">
+             <button  block (click)="choosesub(item)">
+              {{ item.description }}
+             </button>
+      
+            </ion-item>
+          </ion-list>
         </ion-col>
         </ion-row>
   <ion-row>
