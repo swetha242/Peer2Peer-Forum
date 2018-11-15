@@ -303,24 +303,6 @@ def view_file():
 
 '''------------------------------------IDEAS SECTION-------------------------------------------'''
 
-
-# get id using mail
-@app.route("/users/whoid/<email>")
-def get_userid(email):
-    uid=mongo.db.users.find_one({'email':email})
-    if uid:
-        return uid['_id']
-    else:
-        return None
-
-@app.route("/users/whoemail/<ID>")
-def get_useremail(ID):
-    uid=mongo.db.users.find_one({'_id':ObjectId(ID)})
-    if uid:
-        return uid['email']
-    else:
-        return None
-
 #insert ideas
 @app.route('/ideas/insert',methods=['POST'])
 def insert_ideas():
