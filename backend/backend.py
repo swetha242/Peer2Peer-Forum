@@ -313,62 +313,64 @@ def insert_ideas():
         if s:
             l.append(s)
     userdata={
-		  'title':data['title'],
-		  'links':data['links'],
-	      'subject':data['subject'],
-    	  'time':datetime.now(),
-    	  'tags':data['tags'],
-		  'description':data['description'],
-		  'owner_id':data['owner_id'],
-		  'upvotes':data['upvotes'],
-		  'downvotes':data['downvotes'],
-		  'colaborator_id':l,
-		  'mentor_id':data['mentor_id']
-	}
+          'title':data['title'],
+          'links':data['links'],
+          'subject':data['subject'],
+          'time':datetime.now(),
+          'tags':data['tags'],
+          'description':data['description'],
+          'owner_id':data['owner_id'],
+          'upvotes':0,
+          'downvotes':0,
+          'views':0,
+          'colaborator_id':l,
+          'mentor_id':get_userid(data['mentor_id']),
+          'comments':[]
+    }
     idea=mongo.db.ideas.insert_one(userdata)
     if idea:
-    	#mentor_email=user1=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})
+        #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
         return jsonify({'result':'success'})
     else:
         return jsonify({'result':'unsuccess'})
 
 #add colaborator
-@app.route('/ideas/insert_colaborator/<ID>',methods=['post'])
+@app.route('/ideas/insert_colaborator/<ID>',methods=['post','get'])
 def insert_colaborator(ID):
-	ideas_id=request.form['ideas_id']
-	c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':ID}})
-	if c:
-		return jsonify({"result":"success"})
-	else:
-		return jsonify({"result":"unsuccess"})
+    ideas_id=request.form['ideas_id']
+    c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':ID}})
+    if c:
+        return jsonify({"result":"success"})
+    else:
+        return jsonify({"result":"unsuccess"})
 
 
 #count no of colaborator
 @app.route('/ideas/count_colaborator/<ID>',methods=['post','get'])
 def count_colaborator(ID):
-	data=mongo.db.ideas.count({'_id':ObjectId(ID)})
-	return jsonify({'count':data})
+    data=mongo.db.ideas.count({'_id':ObjectId(ID)})
+    return jsonify({'count':data})
 
 
 #add commentss
 @app.route('/ideas/insert_comment/<ID>',methods=['post'])
 def insert_comments(ID):
-	data=request.form
+    data=request.form
 
-	userdata={
-		'ideas_id':ID,
-		'comments':data['comments']
-	}
-	comment=mongo.db.ideas_comments.insert_one(userdata)
-	if comment:
-		return jsonify({'result':'success'})
-	else:
-		return jsonify({'result':'unsuccess'})
+    userdata={
+        'time':datetime.now(),
+        'comments':data['comments']
+    }
+    comment=mongo.db.ideas.update_one({'_id':ObjectId(ID)},{'$push':{'comments':userdata}})
+    if comment:
+        return jsonify({'result':'success'})
+    else:
+        return jsonify({'result':'unsuccess'})
 
 #get comments
 @app.route('/ideas/get_comments/<ID>')
 def get_comments(ID):
-    comments = mongo.db.ideas_comments.find({'ideas_id':ID})
+    comments = mongo.db.ideas.find({'ideas_id':ID})['comments']
     return dumps(comments)
 
 
@@ -376,6 +378,10 @@ def get_comments(ID):
 @app.route('/ideas/<tag>')
 def get_idea(tag):
     idea = mongo.db.ideas.find({'tags':{'$in':[tag]}})
+    coll_list=[]
+    for i in idea['colaborator_id']:
+        coll_list.append(get_useremail(i))
+    idea['colaborator_email']=coll_list
     return dumps(idea)
 
 
@@ -383,6 +389,10 @@ def get_idea(tag):
 @app.route('/ideas/latest/<tag>')
 def get_latest_idea(tag):
     idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('time',-1)])
+    coll_list=[]
+    for i in idea['colaborator_id']:
+        coll_list.append(get_useremail(i))
+    idea['colaborator_email']=coll_list
     return dumps(idea)
 
 
@@ -390,23 +400,38 @@ def get_latest_idea(tag):
 @app.route('/ideas/popular/<tag>')
 def get_popular_idea(tag):
     idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('upvotes',-1)])
+    coll_list=[]
+    for i in idea['colaborator_id']:
+        coll_list.append(get_useremail(i))
+    idea['colaborator_email']=coll_list
     return dumps(idea)
 
 
 #upvote idea
-@app.route('/ideas/upvote/<ID>')
-def upvote_idea(ID):
-	v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['upvotes']
-	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'upvotes':v+1}})
-	return jsonify({'upvote':v+1})
+@app.route('/ideas/upvote/',methods=['post'])
+def upvote_idea():
+    ID=request.form['id']
+    v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['upvotes']
+    mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'upvotes':v+1}})
+    return jsonify({'upvote':v+1})
 
 
 #downvote idea
-@app.route('/ideas/downvote/<ID>')
-def downvote_idea(ID):
-	v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['downvotes']
-	mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
-	return jsonify({'downvote':v+1})
+@app.route('/ideas/downvote/',methods=['post'])
+def downvote_idea():
+    ID=request.form['id']
+    v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['downvotes']
+    mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
+    return jsonify({'downvote':v+1})
+
+
+#view count
+@app.route('/ideas/views/',methods=['post'])
+def ideas_views_count():
+    ID=request.form['id'];
+    v=mongo.db.ideas.find_one({"_id":ObjectId(ID)})['views']
+    mongo.db.ideas.update({"_id":ObjectId(ID)},{"$set":{'views':v+1}})
+    return jsonify({'views':v+1})
 
 
 '''---------------------------------------------------------------------------------------------'''
