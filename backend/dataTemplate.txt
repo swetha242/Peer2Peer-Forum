@@ -137,8 +137,8 @@ db.globaltrends.find().pretty()
     {
         "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
         "answered_by" : "123252435",
-        "upvotes": 2
-        "downvotes": 0
+        "upvotes": 2,
+        "downvotes": 0,
         "time" : ISODate("2018-10-12T17:47:57.933Z"),
         "teacher": "false",
         "content": "answer text"
