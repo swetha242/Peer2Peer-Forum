@@ -62,8 +62,8 @@ export class ListPage {
                 title : data[i].title,
                 description : data[i].description
               });
-              
-            
+
+
             }
             // let ques=data['questions'];
              //traverse the questions array
@@ -230,10 +230,14 @@ initializeItems(ev){
             console.log(err);
             //reject(err);
           });
+<<<<<<< HEAD
           //this.navCtrl.push(ListPage, {subject:this.subject,userid:this.userid})
+=======
+           this.navCtrl.push(ListPage, {subject:this.subject});
+>>>>>>> 0d8711637024d6540969d2882e3e97536a7c8c66
 
   }
-  itemTapped(event, item) 
+  itemTapped(event, item)
   {
     let postParams = {}
     let headers = new Headers();
@@ -249,7 +253,7 @@ initializeItems(ev){
         this.http.get(path, {headers: headers})
           .subscribe(res => {
 
-            
+
             let data = res.json()['answer'];
             for(let i in data){
               this.answers.push({
@@ -274,7 +278,7 @@ initializeItems(ev){
             console.log(err);
             //reject(err);
           });
-  
+
     }
 
     onCancel(ev){

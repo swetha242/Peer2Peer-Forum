@@ -10,6 +10,7 @@
     "ownerId": "ObjectId('5bd86111a5281b8f9f9c8b3f')",
     "upvotes" : 10,
     "downvotes" : 2,
+    "views" : 100,
     "collaboratorId" : ["ObjectId('5bd86111a5281b8f9f9c8b3f')","ObjectId('5bd86111a5281b8f9f9c8b3f')","ObjectId('5bd86111a5281b8f9f9c8b3f')"],
     "mentorID" : "ObjectId('5bd86111a5281b8f9f9c8b3f')",
     "time" : "ISODate('2018-10-12T17:47:57.933Z')"
