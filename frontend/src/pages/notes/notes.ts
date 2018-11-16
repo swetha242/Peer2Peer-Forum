@@ -15,15 +15,14 @@ import { ViewnotesPage} from '../viewnotes/viewnotes';
   templateUrl: 'notes.html',
 })
 export class NotesPage {
-<<<<<<< HEAD
+
   subject=this.navParams.get('subject');
   userid=this.navParams.get('userid');
   items: Array<{number:number,title:string,author:string,qtext:string}>;
 
-=======
->>>>>>> 0d8711637024d6540969d2882e3e97536a7c8c66
 
-  
+
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
   }
   base64: any;

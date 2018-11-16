@@ -230,11 +230,7 @@ initializeItems(ev){
             console.log(err);
             //reject(err);
           });
-<<<<<<< HEAD
           //this.navCtrl.push(ListPage, {subject:this.subject,userid:this.userid})
-=======
-           this.navCtrl.push(ListPage, {subject:this.subject});
->>>>>>> 0d8711637024d6540969d2882e3e97536a7c8c66
 
   }
   itemTapped(event, item)
