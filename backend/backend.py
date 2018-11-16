@@ -245,18 +245,34 @@ def get_popular():
     return jsonify({'notes':note})
 
 #upvote notes
-@app.route('/notes/<ID>/upvote/')
-def upvote(ID):
-	v=mongo.db.notes.find_one({"_id":ObjectId(ID)})['upvotes']
-	mongo.db.notes.update({"_id":ObjectId(ID)},{"$set":{'upvotes':v+1}})
-	return jsonify({'upvote':v+1})
+@app.route('/notes/upvote',methods=['POST'])
+def upvote():
+    data=request.get_json()
+    nid=data['nid']
+    uid=data['uid']
+    upv = mongo.db.notes.find_one({"_id": ObjectId(nid)})
+    if uid not in upv['votes']:
+        upv['votes'].append(uid)
+        mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
+        mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'votes': upv['votes']}})
+        return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
+    else:
+        return jsonify({'result':'Error'})
 
 #downvote notes
-@app.route('/notes/<ID>/downvote/')
-def downvote(ID):
-	v=mongo.db.notes.find_one({"_id":ObjectId(ID)})['downvotes']
-	mongo.db.notes.update({"_id":ObjectId(ID)},{"$set":{'downvotes':v+1}})
-	return jsonify({'downvote':v+1})
+@app.route('/notes/downvote',methods=['POST'])
+def downvote():
+    data=request.get_json()
+    nid=data['nid']
+    uid=data['uid']
+    upv = mongo.db.notes.find_one({"_id": ObjectId(nid)})
+    if uid not in upv['votes']:
+        upv['votes'].append(uid)
+        mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
+        mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'votes': upv['votes']}})
+        return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
+    else:
+        return jsonify({'result':'Error'})
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -274,7 +290,7 @@ def upload_file():
             file1.close()
             data['data']=file_name
     query={'upl_by':data['userid'],'subject':data['subject'],'tag':[data['tag']],'course':data['course'],
-    'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],
+    'upvotes':0,'downvotes':0,'title':data['title'],'summary':data['summary'],'votes':[],
     'link':data['data'],'time':datetime.now()}
     notes_ins=mongo.db.notes.insert_one(query)
     if notes_ins:
