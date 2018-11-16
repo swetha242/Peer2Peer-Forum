@@ -24,9 +24,9 @@ export class IdeasInputPage {
 
   constructor(public navCtrl 		: NavController,public navParams 	: NavParams,private _FB : FormBuilder, public http: Http) {
     this.idea = [];
-    this.idea.links = [];
-    this.idea.tags = [];
-    this.idea.colaborators = [];
+    this.idea['links'] = [];
+    this.idea['tags'] = [];
+    this.idea['colaborators'] = [];
     this.user_id = this.navParams.get('userid');
     this.form = this._FB.group({
       title: ['', Validators.required],
