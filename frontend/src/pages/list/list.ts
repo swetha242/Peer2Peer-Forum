@@ -14,7 +14,7 @@ import { LaunchPage } from '../launch/launch';
 })
 export class ListPage {
   items: Array<{description:string,subject:string,qid:string,owner:string,title:string,tag:Array<"">}>;
-  answers: Array<{answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
+  answers: Array<{aid:string,answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
   items1: Array<{description:string,subject:string,qid:string,owner:string,title:string,tag:Array<"">}>;
   //items2 : Array<""> 
   //the question asked by user
@@ -30,50 +30,13 @@ export class ListPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public storage: Storage) {
 
-    this.items = [];
     this.items1 = []
     this.answers=[];
     
    
     console.log(this.userid);
     this.initializeItemsbegin();
-    //console.log(this.subject);
-   
-    
-     //send question,userid and subject
-     let postParams = {subject:this.subject}
-     let headers = new Headers();
-     headers.append('Content-Type', 'application/json');
-
-         let url = Enums.APIURL.URL1;
-         let path = url.concat( "/qa/qlist");
-         console.log(postParams);
-
-         this.http.post(path, postParams, {headers: headers})
-           .subscribe(res => {
-            console.log(res)
-             let data = res.json()['question'];
-            for(let i in data){
-              this.items.push({
-                subject : data[i].subject,
-                qid : data[i]._id,
-                owner : data[i].asked_by_n,
-                tag : data[i].tags,
-                title : data[i].title,
-                description : data[i].description
-              });
-
-
-            }
-            // let ques=data['questions'];
-             //traverse the questions array
-
-
-           }, (err) => {
-             console.log(err);
-
-           });
-  }
+    }
 initializeItemsbegin()
 {
     let postParams = {description : this.question,asked_by:this.userid,subject:this.subject,title:this.title,tags:this.tags}
@@ -108,7 +71,8 @@ initializeItemsbegin()
 
 initializeItems(ev){
      
-    let postParams = {description : this.question,asked_by:this.userid,subject:this.subject,title:this.title,tags:this.tags}
+  this.items1=[]  
+   let postParams = {description : this.question,asked_by:this.userid,subject:this.subject,title:this.title,tags:this.tags}
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -158,39 +122,11 @@ initializeItems(ev){
 
           console.log('out1')
           console.log(this.items1)
- /*   this.items = [
-      'Chemistry',
-      'Physics',
-      'Maths',
-      'Operating System',
-      'Computer Network',
-      'Software Engineering'
-    ];*/
+ 
   }
   getItems(ev: any) {
     // Reset items back to all of the items
     this.initializeItems(ev);
-//  console.log(ev.target.description)
-    // set val to the value of the ev target
-/*      var val = ev.target.value;
-    console.log('this is val')
-    console.log(val)
-    console.log('here')
-    console.log(this.items1)
-    console.log('finished')
-    if (val && val.trim() != '') {
-      this.items1 = this.items1.filter((item) => {
-        console.log('here')
-        console.log(item.description.toLowerCase().indexOf(val.toLowerCase()) > -1)
-        console.log('finished')
-        return (item.description.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
-  
-/*   choosesub(it)
-  {
-    this.navCtrl.push(ListPage,{ description: this.q});
-  }*/
 
 
 }
@@ -253,6 +189,7 @@ initializeItems(ev){
             let data = res.json()['answer'];
             for(let i in data){
               this.answers.push({
+                aid:data[i]._id,
                 answeredby : data[i].answered_by,
                 teacher : data[i].teacher,
                 content : data[i].content,

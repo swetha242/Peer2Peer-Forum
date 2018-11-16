@@ -24,12 +24,11 @@
     <div ion-item *ngFor="let item of answers" block>
       
       <br><b>Answer : </b>{{item.content.answer}}
-      <div class="item-note" item-right>
-        This was answered by {{item.answeredbyname}}
+      <div class="item-note" item-right (click)="profile(item)">
+          <ion-icon name="person"></ion-icon>
+      {{item.answeredbyname}}
       </div>
       <br>
-      <br>
-      Number of Likes : {{item.upvote}}
       <br>
  <ion-icon name="thumbs-up" (click) ="upvote(item)">{{item.upvote}}</ion-icon>
     <ion-icon name="thumbs-down" (click)="downvote(item)">{{item.downvote}}</ion-icon>

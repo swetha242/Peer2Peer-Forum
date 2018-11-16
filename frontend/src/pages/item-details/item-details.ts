@@ -15,9 +15,9 @@ export class ItemDetailsPage {
   l:any;
   userid = this.navParams.get('userid');
 
-  answersGet: Array<{answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
+  answersGet: Array<{aid:string,answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
 
-  answers: Array<{answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
+  answers: Array<{aid:string,answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
   
 
 
@@ -27,12 +27,13 @@ export class ItemDetailsPage {
     this.answersGet=navParams.get('answer');
     
     this.l=this.answersGet.length
-    console.log(this.answersGet[1]);
+    //console.log(this.answersGet[1]);
 
     this.answers=[];
     for(let i = 0; i < this.l; i++) {
 
       this.answers.push({
+        aid:this.answersGet[i].aid,
         answeredby : this.answersGet[i].answeredby,
         teacher: this.answersGet[i].teacher,
         content: this.answersGet[i].content,
@@ -46,15 +47,53 @@ export class ItemDetailsPage {
 
   upvote(item){
 
-    item.upvote=item.upvote+1;
+    //item.upvote=item.upvote+1;
+        let postParams = {aid:item.aid,uid:item.answeredby}
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let url = Enums.APIURL.URL1;
+        let path = url.concat( "/qa/upvote");
+        console.log(postParams);     
 
-    console.log(item.upvote)
+        this.http.post(path, postParams, {headers: headers})
+          .subscribe(res => {
+            let data=res.json()
+            console.log(data)
+            if(data['result']=='Success')        
+            {
+              item.upvote=item.upvote+1
+            }
+
+          }, (err) => {
+            console.log(err);
+            //reject(err);
+          });
+    //console.log(item)
   }
   downvote(item){
 
-    item.downvote=item.downvote+1;
+    let postParams = {aid:item.aid,uid:item.answeredby}
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let url = Enums.APIURL.URL1;
+        let path = url.concat( "/qa/downvote");
+        console.log(postParams);     
 
-    console.log(item.upvote)
+        this.http.post(path, postParams, {headers: headers})
+          .subscribe(res => {
+            let data=res.json()
+            console.log(data)
+            if(data['result']=='Success')
+            {        
+            item.downvote=item.downvote+1
+            }
+
+          }, (err) => {
+            console.log(err);
+            //reject(err);
+          });
+
+    //console.log(item)
   }
   
   answer(){
@@ -96,6 +135,7 @@ export class ItemDetailsPage {
             //this.storage.set('token', data.token);
             //resolve(data);
             self.answers.push({
+              aid:data['_id'],
               answeredby : self.userid,
               teacher : 0,
               content : postParams['content'],
