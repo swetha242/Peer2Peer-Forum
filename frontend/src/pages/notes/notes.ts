@@ -18,13 +18,10 @@ import * as Enums from '../../assets/apiconfig';
 export class NotesPage {
   subject=this.navParams.get('subject');
   userid=this.navParams.get('userid');
-  
+  items: Array<{number:number,title:string,author:string,qtext:string}>;
 
-<<<<<<< HEAD
+
   
-=======
-  items: Array<{title: string, author: string, number : number, qtext : string}>;
->>>>>>> 56bed20f05c62171d1caffaf3ce56c850f9c4371
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
     this.items = [];
     let url = Enums.APIURL.URL1;
@@ -44,8 +41,8 @@ export class NotesPage {
   }
 
   base64: any;
-  userid=this.navParams.get('userid')
-  subject=this.navParams.get('subject')
+//  userid=this.navParams.get('userid')
+  //subject=this.navParams.get('subject')
   fun(b64Data,ty)
   {
     //console.log(b64Data)
@@ -53,11 +50,7 @@ export class NotesPage {
     let x=b64Data.split(',')[1]
     //http call to upload notes where x is base64 rep- when islink is 1 data will have link- anyways not sure if link will work
     console.log(this.userid)
-<<<<<<< HEAD
     let postParams = {'data':x,'userid':this.userid,'subject':this.subject,'tag':'Neural Networks','course':1,'title':'ANN','summary':'xxxx','islink':0}
-=======
-    let postParams = {'data':x,'userid':this.userid,'subject':this.subject,'title':'Reverse Ajax','summary':'xxxx','islink':0}
->>>>>>> 56bed20f05c62171d1caffaf3ce56c850f9c4371
      let headers = new Headers();
      headers.append('Content-Type','application/json');
  

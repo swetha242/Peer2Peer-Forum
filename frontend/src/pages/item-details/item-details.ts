@@ -58,6 +58,7 @@ export class ItemDetailsPage {
   }
   
   answer(){
+    let self=this
     let alert = this.alertCtrl.create({
       title: 'ANSWER',
       message:'Enter an answer',
@@ -85,7 +86,7 @@ export class ItemDetailsPage {
         let url = Enums.APIURL.URL1;
         let path = url.concat( "/qa/answer");
         console.log(postParams);
-
+       
 
         this.http.post(path, postParams, {headers: headers})
           .subscribe(res => {
@@ -94,11 +95,22 @@ export class ItemDetailsPage {
             //this.token = data.token;
             //this.storage.set('token', data.token);
             //resolve(data);
+            self.answers.push({
+              answeredby : self.userid,
+              teacher : 0,
+              content : postParams['content'],
+              upvote : 0,
+              downvote: 0,
+              answeredbyname: data['name']
+              });
+        
+
 
           }, (err) => {
             console.log(err);
             //reject(err);
           });
+          //this.navCtrl.push(ItemDetailsPage,{item:this.selectedItem,answer:this.answers,userid:this.userid});
           }
         }
       ]

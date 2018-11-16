@@ -1,11 +1,11 @@
 
 <ion-header>
-  <ion-toolbar>
+  <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Questions</ion-title>
-  </ion-toolbar>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
@@ -27,39 +27,34 @@
         <ion-row>
              <ion-col>
           <br>
-          <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+          <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="getItems($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
           <ion-list>
-            <ion-item *ngFor="let item of items1">
-             <button  block (click)="choosesub(item)">
+            <ion-item (click)="itemTapped($event, item)" *ngFor="let item of items1">
+             
+             
+              <ion-card>
+                <ion-card-header>
+                    <ion-icon name="star" color="bright"></ion-icon> {{item.title}}
+                    <ion-icon name="star" color="bright"></ion-icon> {{item.description}}
+        
+            </ion-card-header>
+              <ion-card-content class="item-note" item-right>
+                This was asked by {{item.owner}}
+              </ion-card-content>
+            </ion-card>
+             
+             
+             
+             
+             
+             <!-- <button  block >
               {{ item.description }}
              </button>
-      
+            -->
             </ion-item>
           </ion-list>
         </ion-col>
         </ion-row>
-  <ion-row>
-  <ion-card class="cards-list-demo">
-    <ion-card-header>
-      Recently asked questions
-    </ion-card-header>
-  <ion-list>
-    
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-card>
-        <ion-card-header>
-            <ion-icon name="star" color="bright"></ion-icon> {{item.title}}
-            <ion-icon name="star" color="bright"></ion-icon> {{item.description}}
 
-    </ion-card-header>
-      <ion-card-content class="item-note" item-right>
-        This was asked by {{item.owner}}
-      </ion-card-content>
-    </ion-card>
-    </button>
-  
-  </ion-list>
-  </ion-card>
-</ion-row>
 </ion-grid>
 </ion-content>
