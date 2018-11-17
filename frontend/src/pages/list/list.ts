@@ -21,9 +21,10 @@ export class ListPage {
   question:string;
   title:string;
   tags:string;
-  
+  userid:any;
   //userid from prev page
-  userid = this.navParams.get('userid');
+  
+  //userid = this.navParams.get('userid');
   subject=this.navParams.get('subject');
   searchQuery: string ='';
   @ViewChild(Navbar) navBar: Navbar;
@@ -32,10 +33,17 @@ export class ListPage {
 
     this.items1 = []
     this.answers=[];
-    
+    this.storage.get('userid').then((uid) => {
+      this.setuid(uid)
+    });
    
     console.log(this.userid);
     this.initializeItemsbegin();
+    }
+    setuid(res)
+    {
+      this.userid=res;
+      console.log(this.userid)
     }
 initializeItemsbegin()
 {

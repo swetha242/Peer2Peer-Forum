@@ -3,8 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {RecoQuestionsPage} from '../reco-questions/reco-questions';
 import { ListPage } from '../list/list';
+import { Storage } from '@ionic/storage';
 import { NotesPage} from '../notes/notes';
 import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
+import { AuthProvider } from '../../providers/auth/auth';
+import { fn } from '@angular/compiler/src/output/output_ast';
 /**
  * Generated class for the LaunchPage page.
  *
@@ -19,15 +22,17 @@ import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 })
 export class LaunchPage {
 
-  userid=this.navParams.get('userid');
+  userid:any;
+  uname:any;
   selectedSubject : any;
   subjects : Array<string>;
   globalTrend: {qno: number, top3Contributors: Array<string>,
-    top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
+  top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
 
-    personalTrend: {qno: number,top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
+  personalTrend: {qno: number,top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  
+  constructor(public navCtrl: NavController, public authService: AuthProvider , public navParams: NavParams, private alertCtrl: AlertController,public storage:Storage) {
 
     this.globalTrend = {qno : 120,
       totalNumberOfNotes : 20,
@@ -38,7 +43,12 @@ export class LaunchPage {
       top3Contributors : ["sai", "sondhi", "swetha"]
 
     };
-
+    this.storage.get('userid').then((uid)=>
+    {
+      //console.log(result)
+       this.setuid(uid)
+    });
+    
     this.personalTrend = { qno : 12,
       totalNumberOfNotes : 5,
       totalNumberOfProjects : 4,
@@ -52,7 +62,11 @@ export class LaunchPage {
 
 
   }
-
+  setuid(res)
+  {
+    this.userid=res;
+    console.log(this.userid)
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LaunchPage');
   }
@@ -74,7 +88,9 @@ export class LaunchPage {
 
   callQuestions()
   {
-    this.navCtrl.push(ListPage, { subject : this.selectedSubject,userid:this.userid}
+    console.log('hello1')
+      console.log(this.userid)
+    this.navCtrl.push(ListPage, { subject : this.selectedSubject}
     );
   }
   presentAlertQuestions() {
@@ -104,7 +120,7 @@ export class LaunchPage {
 
 callNotes()
 {
-  this.navCtrl.push(NotesPage, { subject : this.selectedSubject,userid:this.userid}
+  this.navCtrl.push(NotesPage, { subject : this.selectedSubject}
   );
 }
 presentAlertNotes() {
@@ -133,7 +149,7 @@ alert.addButton({
 
 
  callProjects(){
-   this.navCtrl.push(IdeasProjectsPage, { subject : this.selectedSubject,userid:this.userid}
+   this.navCtrl.push(IdeasProjectsPage, { subject : this.selectedSubject}
  );
  }
  presentAlertProjects() {

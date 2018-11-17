@@ -3,6 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage'
 import { HttpClientModule } from '@angular/common/http';
@@ -75,4 +76,7 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
     AuthProvider
   ]
 })
-export class AppModule {}
+export class AppModule {
+  
+
+}

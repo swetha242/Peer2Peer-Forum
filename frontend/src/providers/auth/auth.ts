@@ -12,7 +12,19 @@ export class AuthProvider {
   constructor(public http: Http, public storage: Storage) {
 
   }
+  /*giveuid()
+  {
+    return new Promise((resolve, reject) => {
 
+      //Load token if exists
+      this.storage.get('userid').then((value) => {
+
+          resolve(value);
+          
+      });
+
+  });
+  }*/
   checkAuthentication(){
 
     return new Promise((resolve, reject) => {
@@ -61,7 +73,9 @@ export class AuthProvider {
             let data = res.json();
             console.log(data)
             //this.token = data.token;
-            this.storage.set('token', data['user_id']);
+            this.storage.set('userid', data['user_id']);
+            this.storage.set('uname',data['uname']);
+            
             resolve(data);
 
           }, (err) => {
@@ -93,7 +107,8 @@ export class AuthProvider {
             let data = res.json();
             console.log(data);
             //this.token = data.result;
-            this.storage.set('token', data['user_id']);
+            this.storage.set('userid', data['user_id']);
+            this.storage.set('uname',data['uname']);
             resolve(data);
 
           }, (err) => {

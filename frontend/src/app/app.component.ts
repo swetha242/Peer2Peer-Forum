@@ -14,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LaunchPage} from '../pages/launch/launch';
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,15 +26,20 @@ export class MyApp {
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
-
+  uname:any;
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public storage:Storage
   ) {
     this.initializeApp();
-
+    
+  this.storage.get('uname').then((val) => {      
+    this.uname=val;
+    //console.log(this.userid)
+  });
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [

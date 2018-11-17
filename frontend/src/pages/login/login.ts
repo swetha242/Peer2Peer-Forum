@@ -9,7 +9,7 @@ import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import {LaunchPage} from '../launch/launch';
 
 @IonicPage()
-@Component({
+@Component({ 
   selector: 'page-login',
   templateUrl: 'login.html',
 })
@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
     //console.log(result)
     //console.log(JSON.parse(JSON.stringify(result)));
     if(data=="Success"){
-      this.navCtrl.push(LaunchPage,{ userid: result['user_id']});
+      this.navCtrl.push(LaunchPage);
     }
     else if(data=="Invalid password"){
       //console.log("y");

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
-
+import { Storage } from '@ionic/storage';
 import * as Enums from '../../assets/apiconfig';
 import { Http, Headers } from '@angular/http';
 
@@ -13,7 +13,7 @@ import { Http, Headers } from '@angular/http';
 export class ItemDetailsPage {
   selectedItem: any;
   l:any;
-  userid = this.navParams.get('userid');
+  userid:any;
 
   answersGet: Array<{aid:string,answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
 
@@ -21,14 +21,16 @@ export class ItemDetailsPage {
   
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,public http:Http) {
+  constructor(public storage:Storage,public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,public http:Http) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
     this.answersGet=navParams.get('answer');
     
     this.l=this.answersGet.length
     //console.log(this.answersGet[1]);
-
+    this.storage.get('userid').then((uid) => {
+      this.setuid(uid)
+    });
     this.answers=[];
     for(let i = 0; i < this.l; i++) {
 
@@ -44,7 +46,11 @@ export class ItemDetailsPage {
       });
     }
   }
-
+  setuid(res)
+  {
+    this.userid=res;
+    console.log(this.userid)
+  }
   upvote(item){
 
     //item.upvote=item.upvote+1;
@@ -135,7 +141,7 @@ export class ItemDetailsPage {
             //this.storage.set('token', data.token);
             //resolve(data);
             self.answers.push({
-              aid:data['_id'],
+              aid:data['aid'],
               answeredby : self.userid,
               teacher : 0,
               content : postParams['content'],

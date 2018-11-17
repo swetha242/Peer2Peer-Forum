@@ -54,7 +54,7 @@ export class SignupPage implements OnInit {
         buttons: ['OK']
       });
       alert.present();
-      this.navCtrl.push(LaunchPage,{userid:result['user_id']});
+      this.navCtrl.push(LaunchPage);
     }
     }, (err) => {
       console.log(err)
