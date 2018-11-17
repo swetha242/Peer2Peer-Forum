@@ -488,13 +488,13 @@ def ask_question():
         'time': datetime.now()
     }
     x= mongo.db.q.insert_one(qdata)
-    print(x)
+    print(x.inserted_id)
     print(qdata)
     if x:
         updatetrends(qdata['tags'],qdata['subject'],qdata['asked_by'])
         v=mongo.db.users.find_one({"_id":ObjectId(data['asked_by'])})
         mongo.db.users.update_one({"_id":ObjectId(data['asked_by'])},{"$set":{'ques_ask':v['ques_ask']+1}})
-        return jsonify({'result': 'Success','qid':str(x),"name":v['name']})
+        return jsonify({'result': 'Success','qid':str(x.inserted_id),"name":v['name']})
     else:
         return jsonify({'result': 'Failure'})
 
@@ -516,7 +516,7 @@ def post_answer():
     inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
         x=mongo.db.users.find_one({'_id':ObjectId(data['answered_by'])})
-        return jsonify({'result': 'Success','name':x['name']})
+        return jsonify({'result': 'Success','name':x['name'],'aid':str(inserted_a.inserted_id)})
     else:
         return jsonify({'result': 'Failure'})
 
