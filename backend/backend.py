@@ -140,7 +140,7 @@ def adduser():
         #return jsonify(query)
         user=mongo.db.users.find_one(query)
         user['_id']=str(user['_id'])
-        return jsonify({'user_id':user['_id'],'result':'Success'})
+        return jsonify({'user_id':user['_id'],'uname':data['username'],'result':'Success'})
     else:
         return jsonify({'result':"Something wrong"})
 
@@ -157,7 +157,7 @@ def check_user():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user:
         user['_id']=str(user['_id'])
-        return jsonify({'user_id':user['_id'],'result':'Success'})
+        return jsonify({'user_id':user['_id'],'uname':user['name'],'result':'Success'})
     elif user1:
         return jsonify({'result':"Invalid password"})
     else:
@@ -203,11 +203,13 @@ def get_useremail(ID):
 def notes_now(notes):
     note={}
     c=0
+    print(notes)
     for i in notes:
         i['_id']=str(i['_id'])
         x=mongo.db.users.find_one({'_id':ObjectId(i['upl_by'])})
+        print(x)
         note[str(c)]=i
-        note[str(c)]['upl_by']=x['name']
+        #note[str(c)]['upl_by']=x['name']
       #  print x['name']
         c=c+1
     return note
@@ -215,8 +217,10 @@ def notes_now(notes):
 #notes with a particular tag
 @app.route('/notes/list',methods=['POST'])
 def get_notes():
-    data=request.get_json()['subject']
-    notes = mongo.db.notes.find({'subject':data})
+    data=request.get_json()
+    #print(data)
+    notes = list(mongo.db.notes.find({'subject':data['subject']}))
+    #print(notes)
     #print(dumps(notes))
     note={}
     note=notes_now(notes)
