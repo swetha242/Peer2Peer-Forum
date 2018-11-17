@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage} from '../login/login';
 import { LaunchPage } from '../launch/launch';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 /**
  * Generated class for the SignupPage page.
@@ -16,12 +17,22 @@ import { LaunchPage } from '../launch/launch';
   selector: 'page-signup',
   templateUrl: 'signup.html',
 })
-export class SignupPage {
+export class SignupPage implements OnInit {
 
   email:string;
   password:string;
   name: string ;
+  signupform: FormGroup;
   constructor(public navCtrl: NavController, public authService: AuthProvider, public alertCtrl : AlertController ) {
+  }
+  ngOnInit() {
+    let EMAILPATTERN = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i;
+    this.signupform = new FormGroup({
+      //username: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(10)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
+      name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]+'), Validators.minLength(4), Validators.maxLength(30)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)]),
+    });
   }
 
   ionViewDidLoad() {
