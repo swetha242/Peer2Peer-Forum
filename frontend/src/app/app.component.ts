@@ -46,6 +46,7 @@ export class MyApp {
       {title:'Notes',component:NotesPage},
       { title : 'Launch Page', component : LaunchPage},
       { title : 'Projects and Ideas', component : IdeasProjectsPage},
+      {title:'Logout',component:HelloIonicPage}
     ];
   }
 
