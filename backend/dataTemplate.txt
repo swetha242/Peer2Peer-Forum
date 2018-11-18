@@ -87,7 +87,7 @@ db.globaltrends.find().pretty()
         "proj_ideas" : 3, 
         "notes_upl" : 10,
         "view_notes" : 30,
-
+	"score":1,
         "topSubjects" : {"Data Structures":10,  "Algorithms": 20, "Compiler Design" : 30, "Theory Of Computation" : 100},
         "topTags"  : {"Linked List" : 25, "Hash Maps": 30, "Binary Trees": 50} 
 }
@@ -103,7 +103,7 @@ db.globaltrends.find().pretty()
         "proj_ideas" : 3, 
         "notes_upl" : 10,
         "view_notes" : 30,
-
+	"score":1,
         "topSubjects" : {"Data Structures":10,  "Algorithms": 20, "Compiler Design" : 30, "Theory Of Computation" : 100},
         "topTags"  : {"Linked List" : 25, "Hash Maps": 30, "Binary Trees": 50}
 
@@ -116,7 +116,7 @@ db.globaltrends.find().pretty()
         "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
         "asked_by" : "5bea63a0655e4e03a02d0a0f",
         "tags": ["ML",  "BackProp"],
-	"subject":"
+	"subject":"ML",
         "time" : ISODate("2018-10-12T17:47:57.933Z"),
         "description": "What is the complexity of reversing a linked list?",
         "title": "t1"
@@ -124,6 +124,7 @@ db.globaltrends.find().pretty()
     {
         "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
         "asked_by" : "234567890",
+"subject":"ML",
         "tags": ["Linked List"],
         "time" : ISODate("2018-10-12T17:47:57.933Z"),
         "description": "descp2",
@@ -135,23 +136,20 @@ db.globaltrends.find().pretty()
 
 [
     {
-        "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "answered_by" : "123252435",
-        "upvotes": 2,
-        "downvotes": 0,
-        "time" : ISODate("2018-10-12T17:47:57.933Z"),
-        "teacher": "false",
-        "content": "answer text"
-    },
-    {
-        "_id" : ObjectId("5bd86111a5281b8f9f9c8b3f"),
-        "answered_by" : "124346457",
-        "upvotes": 4
-        "downvotes": 0
-        "time" : ISODate("2018-10-12T17:47:57.933Z"),
-        "teacher": "true",
-        "content": "answer text"
-    },
+        "_id" : ObjectId("5bf0ed15655e4e100ce36f10"),
+        "answered_by" : "5bea63a0655e4e03a02d0a0f",
+        "content" : {
+                "answer" : "hello"
+        },
+        "teacher" : 0,
+        "time" : ISODate("2018-11-18T10:09:49.170Z"),
+        "upvotes" : 1,
+        "downvotes" : 0,
+        "votes" : [
+                "5bea63a0655e4e03a02d0a0f"
+        ],
+        "QID" : "5bf0d180655e4e227c1f72a4"
+}
 ]
 
 3) /q/AID/upvote - upvote an answer (AID is answer ID)

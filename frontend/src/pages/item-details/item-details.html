@@ -23,7 +23,7 @@
 
     <div ion-item *ngFor="let item of answers" block>
       
-      <br><b>Answer : </b>{{item.content.answer}}
+      <br><b>Answer : </b>{{item.content}}
       <div class="item-note" item-right (click)="profile(item)">
           <ion-icon name="person"></ion-icon>
       {{item.answeredbyname}}

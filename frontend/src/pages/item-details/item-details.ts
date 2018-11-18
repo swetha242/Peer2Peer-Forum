@@ -124,7 +124,7 @@ export class ItemDetailsPage {
           text: 'Submit',
           handler: data => {
             console.log(data);
-            let postParams = {answered_by : this.userid,content:data,teacher:0,QID:this.selectedItem.qid}
+            let postParams = {answered_by : this.userid,content:data['answer'],teacher:0,QID:this.selectedItem.qid}
             let headers = new Headers();
             headers.append('Content-Type', 'application/json');
 
