@@ -25,6 +25,7 @@ export class NotesPage {
   items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number, nid : string}>;
   userid:any;
   subject=this.navParams.get('subject');
+  file_upload_event:any;
 
   title:string;
   summary:string;
@@ -56,7 +57,7 @@ export class NotesPage {
           this.items.push({
             nid:data[i]._id,
             number : data[i].upvotes,
-            title: data[i].subject,
+            title: data[i].title,
             author: data[i].upl_by,
             qtext : data[i].summary,
             when: data[i].time,
@@ -81,7 +82,7 @@ export class NotesPage {
     let x=b64Data.split(',')[1]
     //http call to upload notes where x is base64 rep- when islink is 1 data will have link- anyways not sure if link will work
     console.log(this.userid)
-    let postParams = {'upl_by':this.userid,'userid':this.userid,'subject':this.subject,'tag':this.subject,'course':'BTech','title':'Reverse Ajax','summary':'xxxx','data':x,'islink':0}
+    let postParams = {'upl_by':this.userid,'userid':this.userid,'subject':this.subject,'tag':this.subject,'course':'BTech','title':this.title,'summary':this.summary,'data':x,'islink':0}
      let headers = new Headers();
      headers.append('Content-Type','application/json');
 
@@ -100,23 +101,23 @@ export class NotesPage {
 
   }
   onUploadChange(ev) {
-    let file = ev.target.files[0];
-    console.log(file.type)
-  let fileReader = new FileReader();
-            let self=this;
-            // Onload of file read the file content
-            fileReader.addEventListener("load", function () {
-              self.base64 = fileReader.result;
-              //console.log(self.base64);
-              self.fun(self.base64,file.type);
-            }, false);
-            // Convert data to base64
-            fileReader.readAsDataURL(file);
-  //console.log(postParams)
-  //console.log(this.base64);
+    this.file_upload_event = ev;
   }
-  upload() {
-
+  uploadNotes() {
+    let file = this.file_upload_event.target.files[0];
+    console.log(file.type)
+    let fileReader = new FileReader();
+    let self=this;
+    // Onload of file read the file content
+    fileReader.addEventListener("load", function () {
+      self.base64 = fileReader.result;
+      //console.log(self.base64);
+      self.fun(self.base64,file.type);
+    }, false);
+    // Convert data to base64
+    fileReader.readAsDataURL(file);
+    //console.log(postParams)
+    //console.log(this.base64);
   }
   upvote(item){
 
