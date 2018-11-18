@@ -5,6 +5,7 @@ import { iterateListLike } from '@angular/core/src/change_detection/change_detec
 import { Storage } from '@ionic/storage';
 import * as Enums from '../../assets/apiconfig';
 import { Http, Headers } from '@angular/http';
+import { ProfilePage } from '../profile/profile'
 
 @Component({
   selector: 'page-item-details',
@@ -45,6 +46,10 @@ export class ItemDetailsPage {
  
       });
     }
+  }
+  profile(item)
+  {
+    this.navCtrl.push(ProfilePage,{item})
   }
   setuid(res)
   {
