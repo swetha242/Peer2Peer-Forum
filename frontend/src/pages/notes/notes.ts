@@ -169,8 +169,8 @@ export class NotesPage {
 
     //console.log(item)
   }
-  download(){
-    let postParams = {'userid':'5be700b0655e4e1078388cbc','notesid':'5be72447655e4e19b4be7f27'}
+  download(item){
+    let postParams = {userid:this.userid,notesid:item.nid}
      let headers = new Headers();
      headers.append('Content-Type','application/json');
 
@@ -181,7 +181,8 @@ export class NotesPage {
 
              console.log(res)
              let data = res.json();
-             var byteCharacters = atob(data['data']);
+             console.log(data);
+             var byteCharacters = window.atob(data['data']);
               var byteNumbers = new Array(byteCharacters.length);
               for (var i = 0; i < byteCharacters.length; i++) {
                   byteNumbers[i] = byteCharacters.charCodeAt(i);
@@ -200,8 +201,33 @@ export class NotesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotesPage');
   }
-    itemTapped(event, item) {
-    this.navCtrl.push(ViewnotesPage, { item: item }
-    );
+    itemTapped(item) {
+      let postParams = {userid:this.userid,notesid:item.nid}
+       let headers = new Headers();
+       headers.append('Content-Type','application/json');
+
+           let path="http://127.0.0.1:5000/notes/view"
+
+           this.http.post(path, postParams, {headers: headers})
+             .subscribe(res => {
+
+               console.log(res)
+               let data = res.json();
+               console.log(data);
+               var byteCharacters = window.atob(data['data']);
+                var byteNumbers = new Array(byteCharacters.length);
+                for (var i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                var byteArray = new Uint8Array(byteNumbers);
+                var blob = new Blob([byteArray], {type: 'application/pdf'});
+                //var blobUrl = URL.createObjectURL(blob);
+                let pdfUrl = {pdfUrl: URL.createObjectURL(blob)};
+                this.navCtrl.push(ViewnotesPage, pdfUrl);
+
+             }, (err) => {
+               console.log(err);
+
+             });
   }
 }
