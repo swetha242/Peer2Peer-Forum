@@ -22,7 +22,7 @@ import { LaunchPage } from '../launch/launch';
 })
 export class NotesPage {
 
-  items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number}>;
+  items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number, nid : string}>;
   userid:any;
   subject=this.navParams.get('subject');
 
