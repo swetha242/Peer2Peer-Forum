@@ -146,7 +146,7 @@ export class NotesPage {
   }
   downvote(item){
 
-    let postParams = {nid:item.nid,uid:item.answeredby}
+    let postParams = {nid:item.nid,uid:this.userid}
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let url = Enums.APIURL.URL1;
