@@ -22,10 +22,12 @@ import { LaunchPage } from '../launch/launch';
 })
 export class NotesPage {
 
-  items: Array<{title: string, author: string, number : number, qtext : string}>;
+  items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number}>;
   userid:any;
   subject=this.navParams.get('subject');
-  
+
+  title:string;
+  summary:string;
   @ViewChild(Navbar) navBar: Navbar;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage) {
@@ -48,15 +50,18 @@ export class NotesPage {
         //console.log(res)
         let data = res.json()['notes'];
         //console.log("this is data");
-        //console.log(data['notes']);
+        console.log(data);
         let j = 0;
         for(let i in data) {
           this.items.push({
-            number : j++,
+            nid:data[i]._id,
+            number : data[i].upvotes,
             title: data[i].subject,
             author: data[i].upl_by,
             qtext : data[i].summary,
-
+            when: data[i].time,
+            upvote: data[i].upvotes,
+            downvote: data[i].downvotes,
           });
         }
       }, (err) => {
@@ -109,8 +114,59 @@ export class NotesPage {
             fileReader.readAsDataURL(file);
   //console.log(postParams)
   //console.log(this.base64);
+  }
+  upload() {
 
+  }
+  upvote(item){
 
+    //item.upvote=item.upvote+1;
+        let postParams = {nid:item.nid,uid:this.userid}
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let url = Enums.APIURL.URL1;
+        let path = url.concat( "/notes/upvote");
+        console.log(postParams);
+
+        this.http.post(path, postParams, {headers: headers})
+          .subscribe(res => {
+            let data=res.json()
+            console.log(data)
+            if(data['result']=='Success')
+            {
+              item.upvote=item.upvote+1
+            }
+
+          }, (err) => {
+            console.log(err);
+            //reject(err);
+          });
+    //console.log(item)
+  }
+  downvote(item){
+
+    let postParams = {nid:item.nid,uid:item.answeredby}
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let url = Enums.APIURL.URL1;
+        let path = url.concat( "/notes/downvote");
+        console.log(postParams);
+
+        this.http.post(path, postParams, {headers: headers})
+          .subscribe(res => {
+            let data=res.json()
+            console.log(data)
+            if(data['result']=='Success')
+            {
+            item.downvote=item.downvote+1
+            }
+
+          }, (err) => {
+            console.log(err);
+            //reject(err);
+          });
+
+    //console.log(item)
   }
   download(){
     let postParams = {'userid':'5be700b0655e4e1078388cbc','notesid':'5be72447655e4e19b4be7f27'}
