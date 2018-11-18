@@ -255,10 +255,8 @@ def upvote():
     nid=data['nid']
     uid=data['uid']
     upv = mongo.db.notes.find_one({"_id": ObjectId(nid)})
-    if uid not in upv['votes']:
-        upv['votes'].append(uid)
-        mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
-        mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'votes': upv['votes']}})
+    res_notes_upvote=mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
+    if res_notes_upvote:
         return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
     else:
         return jsonify({'result':'Error'})
@@ -270,10 +268,8 @@ def downvote():
     nid=data['nid']
     uid=data['uid']
     upv = mongo.db.notes.find_one({"_id": ObjectId(nid)})
-    if uid not in upv['votes']:
-        upv['votes'].append(uid)
-        mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
-        mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'votes': upv['votes']}})
+    res_notes_downvote=mongo.db.notes.update({"_id": ObjectId(nid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
+    if res_notes_downvote:
         return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
     else:
         return jsonify({'result':'Error'})
