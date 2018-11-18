@@ -25,38 +25,47 @@
         </ion-col>
         <ion-col>
           <div padding>
-                <button ion-button color="primary" block (click)="searchNotes()">Search</button>
+              <button ion-button color="primary" block (click)="searchNotes()">Search</button>
           </div>
         </ion-col>
-        </ion-row>
-        <ion-row>
-          <div padding>
-            <ion-input type="file" accept="pdf/*"  (change)="onUploadChange($event)"></ion-input>
-            <ion-item>
-                  <ion-label><ion-icon name="star"></ion-icon></ion-label>
-                  <ion-input [(ngModel)]="summary" name="summary" placeholder="Notes Summary" type="text"></ion-input>
-              </ion-item>
-            <button ion-button color="primary" (click)="uploadNotes()">Post</button>
-          </div>
-        </ion-row>
+      </ion-row>
+      <ion-row>
+        <ion-card>
+        <div padding>
+          <ion-item>
+              <ion-input [(ngModel)]="title" name="title" placeholder="Notes Title" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input [(ngModel)]="summary" name="summary" placeholder="Notes Summary" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input type="file" accept="pdf/*"  (change)="onUploadChange($event)"></ion-input>
+          </ion-item>
+          <button ion-button color="primary" (click)="uploadNotes()">Post</button>
+        </div>
+        </ion-card>
+      </ion-row>
   <ion-row>
   <ion-card class="cards-list-demo">
     <ion-card-header>
       Highly viewed Notes
     </ion-card-header>
-  <ion-list>
-    
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-card>
-        <ion-card-header>
+  <ion-list ion-item *ngFor="let item of items">
+        <ion-card>
+          <ion-card-header>
+            <img src="profile.png">
+            <h2>{{item.author}}</h2>
             <ion-icon name="star" color="bright"></ion-icon> {{item.title}}
     </ion-card-header>
       <ion-card-content class="item-note" item-right>
-        This was uploaded by {{item.author}}
+        {{item.qtext}}
+        <button ion-button color="primary" block (click)="itemTapped($event, item)">View</button>
         <button ion-button color="primary" block (click)="download()">Download</button>
+
       </ion-card-content>
+        <ion-icon name="thumbs-up" (click) ="upvote(item)">{{item.upvote}}</ion-icon>
+        <ion-icon name="thumbs-down" (click)="downvote(item)">{{item.downvote}}</ion-icon>
     </ion-card>
-    </button>
   </ion-list>
   </ion-card>
 </ion-row>
