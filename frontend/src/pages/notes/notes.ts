@@ -15,7 +15,7 @@ import { LaunchPage } from '../launch/launch';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-notes',
   templateUrl: 'notes.html',
@@ -23,16 +23,18 @@ import { LaunchPage } from '../launch/launch';
 export class NotesPage {
 
   items: Array<{title: string, author: string, number : number, qtext : string}>;
-
+  userid:any;
   subject=this.navParams.get('subject');
-  userid=this.navParams.get('userid');
+  
   @ViewChild(Navbar) navBar: Navbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage) {
     console.log("notes page starts here");
 
     this.items = [];
-
+    this.storage.get('userid').then((uid) => {
+      this.setuid(uid)
+    });
     let postParams = {subject:this.subject, upl_by:this.userid}
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -61,7 +63,11 @@ export class NotesPage {
              console.log(err);
       });
   }
-
+  setuid(res)
+  {
+    this.userid=res;
+    console.log(this.userid)
+  }
   base64: any;
   fun(b64Data,ty)
   {
