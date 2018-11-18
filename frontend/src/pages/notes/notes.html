@@ -59,8 +59,8 @@
     </ion-card-header>
       <ion-card-content class="item-note" item-right>
         {{item.qtext}}
-        <button ion-button color="primary" block (click)="itemTapped($event, item)">View</button>
-        <button ion-button color="primary" block (click)="download()">Download</button>
+        <button ion-button color="primary" block (click)="itemTapped(item)">View</button>
+        <button ion-button color="primary" block (click)="download(item)">Download</button>
 
       </ion-card-content>
         <ion-icon name="thumbs-up" (click) ="upvote(item)">{{item.upvote}}</ion-icon>
