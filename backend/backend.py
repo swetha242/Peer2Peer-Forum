@@ -579,11 +579,33 @@ def top_subjects(ID): #example-ObjectId("5be2eaec000f12e4ebaff63e")
 
 
 
-@app.route('/profile',methods=['GET','POST'])
-def profile(ID):
-    #data=request.get_json()
-    user=mongo.db.users.find_one({"_id":ObjectId(ID)})
+@app.route('/profile',methods=['POST'])
+def profile():
+    data=request.get_json()
+    user=mongo.db.users.find_one({"_id":ObjectId(data['userid'])})
     user['_id']=str(user['_id'])
+    loc_sub=user['topSubjects']
+    if(len(loc_sub)<=1):
+        if(len(loc_sub)==0):
+            ls=[]
+        else:
+            ls=[]
+            for key in loc_sub:
+                ls.append(key)
+    else:
+        ls1 = [(k, loc_sub[k]) for k in sorted(loc_sub, key=loc_sub.get, reverse=True)]
+        user['topSubjects']=topthree(ls1)
+    loc_tag=user['topTags']
+    if(len(loc_tag)<=1):
+        if(len(loc_tag)==0):
+            lt=[]
+        else:
+            lt=[]
+            for key in loc_tag:
+                lt.append(key)
+    else:
+        lt1 = [(k, loc_tag[k]) for k in sorted(loc_tag, key=loc_tag.get, reverse=True)]
+        user['topTags']=topthree(lt1)
     return jsonify({'profile':user})
 
 

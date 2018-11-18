@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
 import { Http, Headers } from '@angular/http';
-
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ProfilePage page.
@@ -17,28 +17,34 @@ import { Http, Headers } from '@angular/http';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  profileDetails : { name : string, age : number, numberOfQuestionsAnswered : number,
-  gender : string, numberOfUpvotes : number ,emailId : string, topTags : Array<string>, topSubjects : Array<string>,
-numberOfNotesUploaded : number, numberofProjectIdeas : number, numberOfViewsForNotes : number,
-numberOfQuestionsAsked : number};
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http) {
+  userid:any;
+  name : string;
+   numberOfQuestionsAnswered : number;
+    numberOfUpvotes : number ;
+    emailId : string;
+     topTags : Array<string>;
+      topSubjects : Array<string>;
+numberOfNotesUploaded : number;
+ numberofProjectIdeas : number;
+  numberOfViewsForNotes : number;
+numberOfQuestionsAsked : number;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage) {
 
-    this.profileDetails= { name : "Sai Rohit S",
-    age : 21,
-    numberOfQuestionsAnswered: 20,
-    gender : "Male",
-    emailId : "srth21@gmail.com",
-    numberOfUpvotes : 200,
-    topTags : ["LinkedList", "Arrays"],
-    topSubjects : ["Data Structures", "Algorithms"],
-    numberOfNotesUploaded : 10,
-    numberofProjectIdeas : 3,
-    numberOfQuestionsAsked : 30,
-    numberOfViewsForNotes : 90
-  };
-  /*document.getElementById("details").onload=profile;
-  function profile(){
-    let postParams = this.profileDetails;
+    this.topTags=[]
+        this.topSubjects=[]
+    this.storage.get('userid').then((uid) => {
+      this.setuid(uid)
+    });
+  }
+  setuid(res)
+    {
+      this.userid=res;
+      console.log(this.userid)
+      this.sendreq()
+    }
+    sendreq()
+    {
+    let postParams = {userid:this.userid};
     let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -46,12 +52,32 @@ numberOfQuestionsAsked : number};
         let path = url.concat( "/profile");
         console.log(postParams);
 
-
+        
         this.http.post(path, postParams, {headers: headers})
           .subscribe(res => {
  
-            let data = res.json();
+            let data = res.json()['profile'];
             console.log(data)
+            this.name=data['name']
+            
+            this.numberOfQuestionsAnswered= data['ques_ans']
+            this.emailId = data['email']
+            this.numberOfUpvotes = data['ans_upvote']
+            //this.topTags = data['topTags']
+            if(data['topTags'].length!=0)
+              {
+                this.topTags = data['topTags']
+              }
+            //this.topSubjects = data['topSubjects']
+            if(data['topSubjects'].length!=0)
+              {
+                this.topSubjects = data['topSubjects']
+              }
+            this.numberOfNotesUploaded = data['notes_upl']
+            this.numberofProjectIdeas = data['proj_ideas']
+            this.numberOfQuestionsAsked = data['ques_ask']
+            this.numberOfViewsForNotes = data['view_notes']
+          
             //this.token = data.token;
             //this.storage.set('token', data.token);
             //resolve(data);
@@ -60,9 +86,9 @@ numberOfQuestionsAsked : number};
             console.log(err);
             //reject(err);
           });
-  }*/
-
   }
+
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');

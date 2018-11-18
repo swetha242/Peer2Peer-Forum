@@ -19,12 +19,15 @@
     <ion-grid>
       <ion-row>
         <ion-col col-6 style="border:solid 1px black;border-radius:4px;margin:2px;">
-            <h3 text-wrap style="font-size:20px;color:white;border:solid 1px;border-radius:4px;background-color:#387ef5"> {{profileDetails.name}} </h3>
-            <p><b><u>Email Id</u> : {{profileDetails.emailId}}</b> <p>
-            <p><b><u>Gender</u>: {{profileDetails.gender}}</b> </p>
+            <h3 text-wrap style="font-size:20px;color:white;border:solid 1px;border-radius:4px;background-color:#387ef5">Details</h3>
+            <p><b><u>Name</u> : {{name}}</b> <p></p>
+            
+            <p><b><u>Email Id</u> : {{emailId}}</b> <p>
+            
+            
             <!--img src="/assets/160_F_84671939_jxymoYZO8Oeacc3JRBDE8bSXBWj0ZfA9.jpg" alt="hi"-->
             <!--ion-col col-6 style="border:solid 1px black;border-radius:4px;margin:2px;"-->
-            <ion-icon name="contact" style="font-size:110px;position:relative;left:500px;top:-80px"></ion-icon>
+            <ion-icon name="contact" style="font-size:200px;position:relative;left:250px;top:-80px"></ion-icon>
             <!--/ion-col-->
           </ion-col>
 
@@ -32,40 +35,45 @@
         <ion-col col-3 style="border:solid 1px black;margin:2px;border-radius:4px;left:150px">
           <h3 text-wrap text-center style="font-size:20px;color:white;border:solid 1px;border-radius:4px;background-color:#387ef5"> Contribution Details </h3>
           <!--div id="details"-->
-          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Questions Asked : {{profileDetails.numberOfQuestionsAsked}} </ion-item>
-          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Questions Answered : {{profileDetails.numberOfQuestionsAnswered}} </ion-item>
-          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Answers Upvoted : {{profileDetails.numberOfUpvotes}} </ion-item>
-          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Project Ideas : {{profileDetails.numberofProjectIdeas}} </ion-item>
-          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Notes Uploaded : {{profileDetails.numberOfNotesUploaded}} </ion-item>
-          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Views for Notes : {{profileDetails.numberOfViewsForNotes}} </ion-item>
+          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Questions Asked : {{numberOfQuestionsAsked}} </ion-item>
+          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Questions Answered : {{numberOfQuestionsAnswered}} </ion-item>
+          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Answers Upvoted : {{numberOfUpvotes}} </ion-item>
+          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Project Ideas : {{numberofProjectIdeas}} </ion-item>
+          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Notes Uploaded : {{numberOfNotesUploaded}} </ion-item>
+          <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Views for Notes : {{numberOfViewsForNotes}} </ion-item>
           <!--/div-->
         </ion-col>
       </ion-row>
 
       <ion-row>
+
         <ion-col col-4 style="border:solid 1px black;margin:2px;border-radius:4px;top:100px">
           <div class="item item-divider">
             <h3 text-wrap text-center style="border:solid 1px;color:white;border-radius:4px;background-color:#387ef5 ">Top Subjects</h3>
           </div>
-          <div *ngFor="let topSubject of profileDetails.topSubjects">
+          <ng-container *ngIf="topSubjects.length">
+          <div *ngFor="let topSubject of topSubjects">
             <!--ul class="list"-->
               <ion-item text-wrap text-center style="color:white;background-color:black">
                 {{topSubject}}
               </ion-item>
               <!--/ul-->
           </div>
+        </ng-container>
         </ion-col>
         <ion-col col-4 style="border:solid 1px black;margin:2px;border-radius:4px;left:300px;top:100px">
           <div class="item item-divider">
             <h3 text-wrap text-center style="border:solid 1px;color:white;border-radius:4px;background-color:#387ef5">Top Tags</h3>
           </div>
-          <div *ngFor="let topTag of profileDetails.topTags">
+          <ng-container *ngIf="topTags.length">
+          <div *ngFor="let topTag of topTags">
             <!--ul class="list"-->
               <ion-item text-wrap text-center style="color:white;background-color:black">
                 {{topTag}}
               </ion-item>
             <!--/ul-->
           </div>
+        </ng-container>
         </ion-col>
       </ion-row>
     </ion-grid>
