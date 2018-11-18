@@ -6,6 +6,8 @@ from bson.objectid import ObjectId
 import os
 import random
 import base64
+import smptlib
+import pyotp
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
@@ -16,6 +18,42 @@ ALLOWED_EXTENSIONS = set(['pdf'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
+
+otp = pyotp.HOTP('base32secret3232')
+otp_counter = 0
+
+email_server = smtplib.SMTP('smtp.gmail.com', 587)
+email_server.starttls()
+email_server.login('peerforum5@gmail.com','peertopeer5')
+
+#----------------------------------------------OTP------------------------------------------------------------
+# send OTP to email
+@app.route('/otp/send', methods=['POST'])
+def send_otp():
+    data = request.get_json()
+    to_email = data['email']
+
+    otp_code = otp.at(otp_counter)
+
+    try:
+        email_server.sendmail('peerforum5@gmail.com', to_email, otp_code)
+        return jsonify({'result': "Success"})
+    except:
+        return jsonify({'result': "Something wrong"})
+
+# verify OTP
+@app.route('/otp/verify', methods=['POST'])
+def verify_otp():
+    data = request.get_json()
+    otp_code = data['otp']
+
+    otp_code = otp.at(otp_counter)
+
+    try:
+        email_server.sendmail('peerforum5@gmail.com', to_email, otp_code)
+        return jsonify({'result': "Success"})
+    except:
+        return jsonify({'result': "Something wrong"})
 
 #--------------------------------------get subjects and tags--------------------------------------------------
 # first create a db with id as 1
