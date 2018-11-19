@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 import os
 import random
 import base64
-import smptlib
+import smtplib
 import pyotp
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -19,7 +19,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
 
-otp = pyotp.HOTP('base32secret3232')
+otp_generator = pyotp.HOTP('base32secret3232')
 otp_counter = 0
 
 email_server = smtplib.SMTP('smtp.gmail.com', 587)
