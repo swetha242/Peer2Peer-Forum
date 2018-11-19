@@ -565,11 +565,11 @@ def post_answer():
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
 
-        notif_msg = 
-            answerer['name'] +
-            ' answered the following to your question (' +
-            question['title'] +
-            '): ' +
+        notif_msg = '' + \
+            answerer['name'] + \
+            ' answered the following to your question (' + \
+            question['title'] + \
+            '): ' + \
             adata['content']
 
         send_email(asker['email'], notif_msg)
