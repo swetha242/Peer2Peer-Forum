@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 import os
 import random
 import base64
-import smptlib
+import smtplib
 import pyotp
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -19,8 +19,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
 
-otp = pyotp.HOTP('base32secret3232')
-otp_counter = 0
+otp_generator = pyotp.TOTP('base32secret3232')
+otp_times = []
 
 email_server = smtplib.SMTP('smtp.gmail.com', 587)
 email_server.starttls()
@@ -33,7 +33,9 @@ def send_otp():
     data = request.get_json()
     to_email = data['email']
 
-    otp = otp_generator.at(otp_counter)
+    now_time = datetime.now()
+    otp = otp_generator.at(now_time)
+    otp_times.append(now_time)
 
     try:
         email_server.sendmail('peerforum5@gmail.com', to_email, otp)
@@ -47,11 +49,12 @@ def verify_otp():
     data = request.get_json()
     otp = data['otp']
 
-    if otp_generator.verify(otp, otp_counter):
-        otp_counter += 1
-        return jsonify({'result': "Success"})
-    else:
-        return jsonify({'result': "Failure"})
+    for otp_time in otp_times:
+        if otp_generator.verify(otp, otp_time):
+            otp_times.remove(otp_time)
+            return jsonify({'result': "Success"})
+        
+    return jsonify({'result': "Failure"})
 
 #--------------------------------------get subjects and tags--------------------------------------------------
 # first create a db with id as 1
