@@ -60,7 +60,7 @@ export class NotesPage {
             title: data[i].title,
             author: data[i].upl_by,
             qtext : data[i].summary,
-            when: data[i].time,
+            //when: data[i].time,
             upvote: data[i].upvotes,
             downvote: data[i].downvotes,
           });
