@@ -26,6 +26,9 @@ email_server = smtplib.SMTP('smtp.gmail.com', 587)
 email_server.starttls()
 email_server.login('peerforum5@gmail.com','peertopeer5')
 
+def send_email(to_addr, msg):
+    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
+
 #----------------------------------------------OTP------------------------------------------------------------
 # send OTP to email
 @app.route('/otp/send', methods=['POST'])
@@ -38,7 +41,7 @@ def send_otp():
     otp_times.append(now_time)
 
     try:
-        email_server.sendmail('peerforum5@gmail.com', to_email, otp)
+        send_email(to_email, otp)
         return jsonify({'result': "Success"})
     except:
         return jsonify({'result': "Failure"})
@@ -554,8 +557,24 @@ def post_answer():
 
     inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
-        x=mongo.db.users.find_one({'_id':ObjectId(data['answered_by'])})
-        return jsonify({'result': 'Success','name':x['name'],'aid':str(inserted_a.inserted_id)})
+
+        question = mondo.db.q.find_one({'_id': ObjectId(data['QID'])})
+        asker_id = question['asked_by']
+        asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
+        
+        answerer_id = data['answered_by']
+        answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
+
+        notif_msg = 
+            answerer['name'] +
+            ' answered the following to your question (' +
+            question['title'] +
+            '): ' +
+            adata['content']
+
+        send_email(asker['email'], notif_msg)
+
+        return jsonify({'result': 'Success', 'name': answerer['name'], 'aid': str(inserted_a.inserted_id)})
     else:
         return jsonify({'result': 'Failure'})
 
