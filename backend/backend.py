@@ -77,15 +77,15 @@ def getTags(text, subject):
 otp_generator = pyotp.TOTP('base32secret3232')
 otp_times = []
 
-#email_server = smtplib.SMTP('smtp.gmail.com', 587)
-#email_server.starttls()
-#email_server.login('peerforum5@gmail.com','peertopeer5')
+email_server = smtplib.SMTP('smtp.gmail.com', 587)
+email_server.starttls()
+email_server.login('peerforum5@gmail.com','peertopeer5')
 
-#def send_email(to_addr, msg):
-#    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
+def send_email(to_addr, msg):
+    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
 
 #----------------------------------------------OTP------------------------------------------------------------
-# send OTP to email
+#send OTP to email
 @app.route('/otp/send', methods=['POST'])
 def send_otp():
     data = request.get_json()
@@ -547,7 +547,7 @@ def update_members():
     colab = data['mode']
 
     if colab:
-        res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$addToSet:{'colaborator_id':member_id}'})
+        res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':member_id}})
         if res:
             return jsonify({'result':'success'})
             #call notify to member_id with message saying colab request accepted
@@ -608,10 +608,12 @@ def get_idea(tag):
 def get_latest_idea(tag):
     idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('time',-1)])
     coll_list=[]
-    for i in idea['colaborator_id']:
-        coll_list.append(get_useremail(i))
-    idea['colaborator_email']=coll_list
-    return dumps(idea)
+    if idea:
+        for i in idea:
+            for colab in i['colaborator_id']:
+                coll_list.append(get_useremail(i))
+            i['colaborator_email']=coll_list
+        return dumps(idea)
 
 
 #most popular idea based on tag
@@ -730,12 +732,7 @@ def post_answer():
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
 
-        notif_msg =
-            answerer['name'] +
-            ' answered the following to your question (' +
-            question['title'] +
-            '): ' +
-            adata['content']
+        notif_msg = answerer['name']+' answered the following to your question ('+question['title']+'):'+adata['content']
 
         send_email(asker['email'], notif_msg)
 
