@@ -28,11 +28,11 @@ mongo = PyMongo(app)
 stopWords = set(stopwords.words('english'))
 stopWords = list(stopWords)
 
-#subjectsFile = open("subjects.pickle","rb")
-#subjectsTagsFile = open("subjectsWords.pickle","rb")
+subjectsFile = open("subjects.pickle","rb")
+subjectsTagsFile = open("subjectsWords.pickle","rb")
 
-#subjects = pickle.load(subjectsFile)
-#subjectsTags = pickle.load(subjectsTagsFile)
+subjects = pickle.load(subjectsFile)
+subjectsTags = pickle.load(subjectsTagsFile)
 
 def cleanText(string):
     string=string.strip("\n")
@@ -725,7 +725,7 @@ def post_answer():
     inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
 
-        question = mondo.db.q.find_one({'_id': ObjectId(data['QID'])})
+        question = mongo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
         asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
 
