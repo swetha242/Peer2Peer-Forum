@@ -1,3 +1,26 @@
 page-launch {
-
+  .tranparentButton{
+    background-color: #7a776c;
+    opacity: 0.5;
+  }
+  .transparentItem{
+    opacity: 0.75;
+  }
+  .transparentdiv{
+    background-color: #dbdad6;
+    opacity : 0.5;
+  }
+  .parentCard{
+    opacity : 0.9;
+  }
+  .nonTransparentChild{
+    opacity: 1;
+  }
+  .changeFont{
+    font-family: sans-serif;
+  }
+  .transparentHead{
+    background-color: #7a776c;
+    opacity : 0.4;
+  }
 }
