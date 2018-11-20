@@ -1,4 +1,32 @@
 page-hello-ionic {
+    .logoHeader {
+        text-align: center !important;
+        margin-top: 10% !important;
+      }
+      .welcomeHeader {
+        text-align: center;
+        color: map_get($colors,theme_color);
+        font-family: "sans-serif";
+      }
+      button.login {
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+        background:  #1ABC9C !important;
+        padding: 22px !important;
+        &.activated {
+          background-color: #1ABC9C;
+        }
+      }
+      button.signup {
+        background-color: white;
+        color: map_get($colors, theme_color);
+        border: 3px solid map_get($colors, theme_color) !important;
+        padding: 19px !important;
+        opacity : 0.8;
+       // width : 150px;
+      }
+      .login disable-hover button button-ios button-default button-default-ios button-block button-block-ios {
+        background-color: map_get($colors, theme_color);
+      }
     
 
 }
