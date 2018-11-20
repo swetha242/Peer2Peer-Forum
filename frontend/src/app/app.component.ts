@@ -3,10 +3,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav, NavParams } from 'ionic-angular';
 import { Injectable } from "@angular/core";
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ListPage } from '../pages/list/list';
-import {LoginPage} from '../pages/login/login'
-import { SignupPage} from '../pages/signup/signup';
-import { SubjectsPage} from '../pages/subjects/subjects';
 import { ProfilePage } from '../pages/profile/profile';
 import { NotesPage } from '../pages/notes/notes';
 import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
@@ -15,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {LaunchPage} from '../pages/launch/launch';
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 import { Storage } from '@ionic/storage';
+import {NotifPage} from '../pages/notif/notif';
 
 @Component({
   templateUrl: 'app.html'
@@ -51,7 +48,7 @@ export class MyApp {
       { title : 'Profile Page', component : ProfilePage},
       //{title:'Notes',component:NotesPage},
       { title : 'Launch Page', component : LaunchPage},
-      //{ title : 'Projects and Ideas', component : IdeasProjectsPage},
+      { title : 'Notifications', component : NotifPage},
       {title:'Logout',component:HelloIonicPage}
     ];
   }

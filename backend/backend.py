@@ -118,15 +118,33 @@ def verify_otp():
 @app.route('/get_notif',methods=['POST'])
 def get_notif():
     user=request.get_json()['userid']
-    notif_all=list(mongo.db.notif.find({'userid':user}).sort([('time',-1)]))
+    notif_all=mongo.db.notif.find_one({'userid':user})['notif']
+    sorted(notif_all, key=lambda k: k['time'], reverse=True)
     notif={}
     c=0
     for i in notif_all:
-        i['_id']=str(i['_id'])
-        notif[str(c)]=i
-      #  print x['name']
-        c=c+1
+        if(i['read']==0):
+            notif[str(c)]=i
+            c=c+1
     return jsonify({'notif':notif})
+
+@app.route('/notif/mark_as_read',methods=['POST'])
+def notif_read():
+    notif=request.get_json()
+    user=notif['userid']
+    notif_id=notif['notif_id']
+    notif_all=mongo.db.notif.find_one({'userid':user})['notif']
+    notif_upd=[]
+    print(notif_id)
+    for i in notif_all:
+        print(i['notif_id'])
+        if(i['notif_id']==notif_id):
+            i['read']=1
+            notif_upd.append(i)
+    print(notif_upd)
+    mongo.db.notif.update_one({'userid':user},{'$set':{'notif':notif_upd}})
+    return jsonify({'result':'Success'})
+
 #--------------------------------------get subjects and tags--------------------------------------------------
 # first create a db with id as 1
 @app.route('/get_subj')
@@ -248,6 +266,11 @@ def adduser():
             'password':data['password']
         }
         #return jsonify(query)
+        notif={
+            "userid":str(user.inserted_id),
+            "notif":[]
+        }
+        mongo.db.notif.insert_one(notif)
         user=mongo.db.users.find_one(query)
         user['_id']=str(user['_id'])
         return jsonify({'user_id':user['_id'],'uname':data['username'],'result':'Success'})
@@ -267,6 +290,13 @@ def check_user():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user:
         user['_id']=str(user['_id'])
+        notif_exists=mongo.db.notif.find_one({'userid':user['_id']})
+        if not notif_exists:
+            notif={
+            "userid":user['_id'],
+            "notif":[]
+            }
+            mongo.db.notif.insert_one(notif)
         return jsonify({'user_id':user['_id'],'uname':user['name'],'result':'Success'})
     elif user1:
         return jsonify({'result':"Invalid password"})
@@ -321,7 +351,7 @@ def get_userid(email):
 def get_useremail(ID):
 	uemail=mongo.db.users.find_one({'_id':ObjectId(ID)})
 	if uemail:
-		return jsonify({'result':'success','email':uemail['email']})
+		return jsonify({'result':'success','email':uemail['email'],'uname':uemail['name']})
 	else:
 		return jsonify({'result':'unsuccess'})
 
@@ -478,14 +508,17 @@ def insert_ideas():
           'comments':[]
     }
     idea=mongo.db.ideas.insert_one(userdata)
+    notif_id=str(random.randrange(100,10000000,1))
     if idea:
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
         x=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
+        
         notif_q={
             "type":5,
             "msg":x['name'] + "has chosen you as mentor for"+data['title'],
             "project_id":str(idea.inserted_id),
             'time': datetime.now(),
+            'notif_id':notif_id,
             "student_id":data['owner_id'],
             "read":0
         }
@@ -499,6 +532,7 @@ def insert_ideas():
             "msg":x['name'] +"has invited you to colaborate on"+data['title'],
             "project_id":str(idea.inserted_id),
             'time': datetime.now(),
+            'notif_id':notif_id,
             "student_id":data['owner_id'],
             "read":0
             }
@@ -520,15 +554,14 @@ def insert_colaborator():
     if True:
         data=mongo.db.ideas.find_one({'_id':ObjectId(ideas_id)})
         uinfo=get_useremail(colab_id)['uname']
-        #notif_id=str(random.randrange(100,10000000,1))
-        #mentor to notify
-        #notif_user=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
+        notif_id=str(random.randrange(100,10000000,1))
         notif_q={
             "type":5,
             "msg":uinfo +"wants to colaborate on"+data['title'],
             "project_id":ideas_id,
             'time': datetime.now(),
             "colab_id":colab_id,
+            'notif_id':notif_id,
             "read":0
         }
         notif_msg=mongo.db.notif.find_one({'userid':data['owner_id']})['notif']
@@ -545,10 +578,23 @@ def update_members():
     ideas = mongo.db.ideas.find_one({"_id":ObjectId(ideas_id)})
     member_id = data['member_id']
     colab = data['mode']
-
+    owner_name=get_useremail(ideas['owner_id'])['uname']
+    notif_id=str(random.randrange(100,10000000,1))
     if colab:
         res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':member_id}})
         if res:
+            notif_q={
+                "type":3,
+                "msg":owner_name +"accepted your request to join "+ideas['title'],
+                "project_id":ideas_id,
+                'time': datetime.now(),
+                "member_id":ideas['owner_id'],
+                'notif_id':notif_id,
+                "read":0
+            }
+            notif_msg=mongo.db.notif.find_one({'userid':member_id})['notif']
+            notif_msg.append(notif_q)
+            mongo.db.notif.update_one({'userid':member_id},{"$set":{'notif':notif_msg}})
             return jsonify({'result':'success'})
             #call notify to member_id with message saying colab request accepted
 
@@ -557,6 +603,18 @@ def update_members():
     else:
         res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$set':{'mentor_id':member_id}})
         if res:
+            notif_q={
+                "type":4,
+                "msg":member_name +"accepted your request to mentor "+ideas['title'],
+                "project_id":ideas_id,
+                'time': datetime.now(),
+                "member_id":member_id,
+                'notif_id':notif_id,
+                "read":0
+            }
+            notif_msg=mongo.db.notif.find_one({'userid':ideas['owner_id']})['notif']
+            notif_msg.append(notif_q)
+            mongo.db.notif.update_one({'userid':ideas['owner_id']},{"$set":{'notif':notif_msg}})
             return jsonify({'result':'success'})
             #call notify to owner_id of the idea saying mentor has accepted
 
@@ -724,17 +782,28 @@ def post_answer():
 
     inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
-
         question = mongo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
         asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
 
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
-
+        notif_id=str(random.randrange(100,10000000,1))
         notif_msg = answerer['name']+' answered the following to your question ('+question['title']+'):'+adata['content']
 
         send_email(asker['email'], notif_msg)
+        notif_q={
+            "type":1,
+            "msg":answerer['name'] + "has answered your question on "+question['title'],
+            "ans":data['content'],
+            'time': datetime.now(),
+            "qid":data['QID'],
+            'notif_id':notif_id,
+            "read":0
+        }
+        notif_msg=mongo.db.notif.find_one({'userid':asker_id})['notif']
+        notif_msg.append(notif_q)
+        mongo.db.notif.update_one({'userid':asker_id},{"$set":{'notif':notif_msg}})
 
         return jsonify({'result': 'Success', 'name': answerer['name'], 'aid': str(inserted_a.inserted_id)})
     else:

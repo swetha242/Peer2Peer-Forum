@@ -5,14 +5,29 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>notif</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Notifications</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
 
+    <div ion-item *ngFor="let item of qa" block (click)="get_ans(item)">
+      
+      <br><b>{{item.msg}} </b>
+      <br>
+      <div class="item-note">
+      {{item.answer}}
+      </div>
+      <br>
+      <button ion-button item-right (click)="mark_as_read(item)">Mark as Read</button>
+      <br>
+    </div>
+
+  </ion-list>
 </ion-content>

@@ -38,12 +38,13 @@ export class ListPage {
     });
    
     console.log(this.userid);
-    this.initializeItemsbegin();
+    
     }
     setuid(res)
     {
       this.userid=res;
       console.log(this.userid)
+      this.initializeItemsbegin();
     }
 initializeItemsbegin()
 {
