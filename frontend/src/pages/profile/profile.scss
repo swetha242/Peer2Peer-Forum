@@ -1,6 +1,21 @@
 page-profile {
-    .masters {
-        background-color:lavender;
+ 
+      .slide{
+        position: relative;
+        top: 0px  ; left:0px ; bottom: 600px; right: 0px;
+        opacity : 0.7   ;
+        border:solid;
+        //background-color: rgb(191, 211, 174);
+        border-radius:4px
+
+      }
+      .slide1{
+        position: relative;
+        top: 0px  ; left:0px ; bottom: 400px; right: 0px;
+        opacity : 0.7   ;
+        //background-color: rgb(191, 211, 174);
+        border-radius:4px
+
       }
       /*ion-icon {
         font-size: 150px; //Preferred size here
