@@ -539,6 +539,8 @@ def insert_ideas():
             notif_msg=mongo.db.notif.find_one({'userid':colab})['notif']
             notif_msg.append(notif_q)
             mongo.db.notif.update_one({'userid':colab},{"$set":{'notif':notif_msg}})
+        #profile update
+        mongo.db.users.update_one({"_id":ObjectId(data['owner_id'])},{"$set":{'proj_ides':x['proj_ideas']+1}})
         return jsonify({'result':'success'})
     else:
         return jsonify({'result':'failure'})
@@ -603,6 +605,7 @@ def update_members():
     else:
         res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$set':{'mentor_id':member_id}})
         if res:
+            member_name=get_useremail(member_id)['uname']
             notif_q={
                 "type":4,
                 "msg":member_name +"accepted your request to mentor "+ideas['title'],
@@ -739,12 +742,12 @@ def ask_question():
     data = request.get_json()
     description = data['description']
     subject = data['subject']
-    tagsForQuestions = getTags(description,subject)
-    tagsForQuestions.append(data['tags'])
+    #tagsForQuestions = getTags(description,subject)
+    #tagsForQuestions.append(data['tags'])
 
-    data['tags']= tagsForQuestions
+    #data['tags']= tagsForQuestions
 
-    print(tagsForQuestions)
+    #print(tagsForQuestions)
 
     qdata = {
         'asked_by': data['asked_by'],
@@ -785,7 +788,6 @@ def post_answer():
         question = mongo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
         asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
-
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
         notif_id=str(random.randrange(100,10000000,1))
@@ -804,7 +806,8 @@ def post_answer():
         notif_msg=mongo.db.notif.find_one({'userid':asker_id})['notif']
         notif_msg.append(notif_q)
         mongo.db.notif.update_one({'userid':asker_id},{"$set":{'notif':notif_msg}})
-
+        mongo.db.users.update_one({"_id":ObjectId(answerer_id)},{"$set":{'ques_ans':answerer['ques_ans']+1}})
+        
         return jsonify({'result': 'Success', 'name': answerer['name'], 'aid': str(inserted_a.inserted_id)})
     else:
         return jsonify({'result': 'Failure'})
@@ -836,6 +839,10 @@ def upvote_answer():
         upv['votes'].append(uid)
         mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
         mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'votes': upv['votes']}})
+        #update profile
+        v=mongo.db.users.find_one({"_id":ObjectId(upv['answered_by'])})
+        mongo.db.users.update_one({"_id":ObjectId(upv['answered_by'])},{"$set":{'ans_upvote':v['ans_upvote']+1}})
+        
         return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
     else:
         return jsonify({'result':'Error'})
