@@ -28,11 +28,11 @@ mongo = PyMongo(app)
 stopWords = set(stopwords.words('english'))
 stopWords = list(stopWords)
 
-subjectsFile = open("subjects.pickle","rb")
-subjectsTagsFile = open("subjectsWords.pickle","rb")
+#subjectsFile = open("subjects.pickle","rb")
+#subjectsTagsFile = open("subjectsWords.pickle","rb")
 
-subjects = pickle.load(subjectsFile)
-subjectsTags = pickle.load(subjectsTagsFile)
+#subjects = pickle.load(subjectsFile)
+#subjectsTags = pickle.load(subjectsTagsFile)
 
 def cleanText(string):
     string=string.strip("\n")
@@ -50,7 +50,7 @@ def cleanText(string):
     string = re.sub(r"\)", " ) ", string)
     string = re.sub(r"\?", " ? ", string)
     string = re.sub(r"\s{2,}", " ", string)
-    
+
     return string.strip().lower()
 
 def getTags(text, subject):
@@ -85,7 +85,7 @@ def send_email(to_addr, msg):
     email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
 
 #----------------------------------------------OTP------------------------------------------------------------
-# send OTP to email
+#send OTP to email
 @app.route('/otp/send', methods=['POST'])
 def send_otp():
     data = request.get_json()
@@ -111,7 +111,7 @@ def verify_otp():
         if otp_generator.verify(otp, otp_time):
             otp_times.remove(otp_time)
             return jsonify({'result': "Success"})
-        
+
     return jsonify({'result': "Failure"})
 
 #--------------------------------------get notifications-------------------------------------------------------
@@ -467,12 +467,14 @@ def insert_ideas():
           'time':datetime.now(),
           'tags':data['tags'],
           'description':data['description'],
+          'max_colaborators':data['max_colaborators'],
           'owner_id':data['owner_id'],
           'upvotes':0,
           'downvotes':0,
           'views':0,
-          'colaborator_id':l,
+          'colaborator_id':[],
           'mentor_id':get_userid(data['mentor_id']),
+          'mentor_status':0,
           'comments':[]
     }
     idea=mongo.db.ideas.insert_one(userdata)
@@ -505,15 +507,15 @@ def insert_ideas():
             mongo.db.notif.update_one({'userid':colab},{"$set":{'notif':notif_msg}})
         return jsonify({'result':'success'})
     else:
-        return jsonify({'result':'unsuccess'})
+        return jsonify({'result':'failure'})
 
 #colaborator request to join
 @app.route('/ideas/insert_colaborator',methods=['POST'])
 def insert_colaborator():
     ideas=request.get_json()
     ideas_id=ideas['ideas_id']
-    colab_id=ideas['colab_id']   
-    #call fn to update 
+    colab_id=ideas['colab_id']
+    #call fn to update
     #c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':colab_id}})
     if True:
         data=mongo.db.ideas.find_one({'_id':ObjectId(ideas_id)})
@@ -534,8 +536,32 @@ def insert_colaborator():
         mongo.db.notif.update_one({'userid':data['owner_id']},{"$set":{'notif':notif_msg}})
         return jsonify({"result":"success"})
     else:
-        return jsonify({"result":"unsuccess"})
+        return jsonify({"result":"failure"})
 
+@app.route('/ideas/update_members/',methods=['post'])
+def update_members():
+    data = request.get_json()
+    ideas_id = data['ideas_id']
+    ideas = mongo.db.ideas.find_one({"_id":ObjectId(ideas_id)})
+    member_id = data['member_id']
+    colab = data['mode']
+
+    if colab:
+        res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':member_id}})
+        if res:
+            return jsonify({'result':'success'})
+            #call notify to member_id with message saying colab request accepted
+
+        else:
+            return jsonify({'result':'failure'})
+    else:
+        res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$set':{'mentor_id':member_id}})
+        if res:
+            return jsonify({'result':'success'})
+            #call notify to owner_id of the idea saying mentor has accepted
+
+        else:
+            return jsonify({'result':'failure'})
 
 #count no of colaborator
 @app.route('/ideas/count_colaborator/<ID>',methods=['post','get'])
@@ -582,10 +608,12 @@ def get_idea(tag):
 def get_latest_idea(tag):
     idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('time',-1)])
     coll_list=[]
-    for i in idea['colaborator_id']:
-        coll_list.append(get_useremail(i))
-    idea['colaborator_email']=coll_list
-    return dumps(idea)
+    if idea:
+        for i in idea:
+            for colab in i['colaborator_id']:
+                coll_list.append(get_useremail(i))
+            i['colaborator_email']=coll_list
+        return dumps(idea)
 
 
 #most popular idea based on tag
@@ -698,16 +726,16 @@ def post_answer():
     if inserted_a:
         question = mongo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
+<<<<<<< HEAD
         asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})        
+=======
+        asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
+
+>>>>>>> bfe3bb425643cfc8eeb2f7d696106dcbfbcdbbec
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
 
-        notif_msg = '' + \
-            answerer['name'] + \
-            ' answered the following to your question (' + \
-            question['title'] + \
-            '): ' + \
-            adata['content']
+        notif_msg = answerer['name']+' answered the following to your question ('+question['title']+'):'+adata['content']
 
         send_email(asker['email'], notif_msg)
         notif_q={

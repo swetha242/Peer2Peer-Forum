@@ -1,4 +1,13 @@
 page-login {
+    .card{
+        align-items: center;
+        position: absolute;
+      top: 200px; left: 0 ; bottom: 500px; right: 0;
+      opacity : 0.7
+    }
+    .background{
+            background-image: url('../assets/img/final.jpg');
+    }
 
 }
 .ios, .md {
@@ -52,6 +61,7 @@ page-login {
             background-color: transparent;
             border: 1px solid #fff;
         }
+       
 
     }
 
