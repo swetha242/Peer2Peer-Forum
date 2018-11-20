@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
 import { ViewnotesPage} from '../viewnotes/viewnotes';
 import { Storage } from '@ionic/storage';
 import { ViewChild } from '@angular/core';
 import { Navbar } from 'ionic-angular';
 import { LaunchPage } from '../launch/launch';
+import { File } from '@ionic-native/file';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 
 /**
  * Generated class for the NotesPage page.
@@ -23,17 +26,19 @@ import { LaunchPage } from '../launch/launch';
 export class NotesPage {
 
   items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number, nid : string}>;
+  search_items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number, nid : string}>;
+
   userid:any;
   subject=this.navParams.get('subject');
   file_upload_event:any;
-
   title:string;
   summary:string;
+
   @ViewChild(Navbar) navBar: Navbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage, private documet: DocumentViewer, private file: File, private transfer: FileTransfer, private platform: Platform) {
     console.log("notes page starts here");
-
+    this.search_items = [];
     this.items = [];
     this.storage.get('userid').then((uid) => {
       this.setuid(uid)
@@ -144,6 +149,61 @@ export class NotesPage {
           });
     //console.log(item)
   }
+  search(ev){
+    this.items = [];
+    let postParams = {subject:this.subject, upl_by:this.userid}
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let url = Enums.APIURL.URL1;
+    let path = url.concat("/notes/list");
+    console.log(postParams);
+
+    this.http.post(path, postParams, {headers: headers})
+      .subscribe(res => {
+        console.log("this is res");
+        console.log(res)
+        let data = res.json()['notes'];
+        console.log("this is data");
+        console.log(data);
+        let j = 0;
+        for(let i in data) {
+          this.items.push({
+            nid:data[i]._id,
+            number : data[i].upvotes,
+            title: data[i].title,
+            author: data[i].upl_by,
+            qtext : data[i].summary,
+            //when: data[i].time,
+            upvote: data[i].upvotes,
+            downvote: data[i].downvotes,
+          });
+          console.log('search');
+          console.log(this.items);
+        }
+        console.log('out')
+        console.log(this.items)
+        console.log('val')
+        console.log(ev.target.value)
+        var val = ev.target.value
+        if (val && val.trim() != '') {
+          this.items = this.items.filter((item) => {
+            console.log(item.qtext);
+            console.log(val);
+            console.log(item.qtext.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            return(item.qtext.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          })
+        }
+      }, (err) => {
+             console.log(err);
+      });
+      console.log('out');
+      console.log(this.search_items);
+  }
+  getItems(ev: any){
+    console.log('going to search');
+    this.search(ev);
+  }
   downvote(item){
 
     let postParams = {nid:item.nid,uid:this.userid}
@@ -170,6 +230,8 @@ export class NotesPage {
     //console.log(item)
   }
   download(item){
+    let path_download = null;
+    let pdfUrl;
     let postParams = {userid:this.userid,notesid:item.nid}
      let headers = new Headers();
      headers.append('Content-Type','application/json');
@@ -190,14 +252,35 @@ export class NotesPage {
               var byteArray = new Uint8Array(byteNumbers);
               var blob = new Blob([byteArray], {type: 'application/pdf'});
               //var blobUrl = URL.createObjectURL(blob);
-              let pdfUrl = {pdfUrl: URL.createObjectURL(blob)};
-              this.navCtrl.push(ViewnotesPage, pdfUrl);
+              pdfUrl = {pdfUrl: URL.createObjectURL(blob)};
+              //this.navCtrl.push(ViewnotesPage, pdfUrl);
+              console.log(pdfUrl);
+              if(this.platform.is('ios')){
+                path_download = this.file.documentsDirectory;
+              }
+              else{
+                path_download = this.file.dataDirectory;
+              }
+              const transfer = this.transfer.create();
+              transfer.download(pdfUrl, path + 'myFile.pdf').then(entry=> {
+                let url = entry.toURL();
+                //this.document.viewDocument(url, 'application/pdf', {});
+              });
 
            }, (err) => {
              console.log(err);
 
            });
   }
+  /*download() {
+    const url = 'http://www.example.com/file.pdf';
+    fileTransfer.download(url, this.file.dataDirectory + 'file.pdf').then((entry) => {
+      console.log('download complete: ' + entry.toURL());
+    }, (error) => {
+      // handle error
+    });
+  }*/
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotesPage');
   }
@@ -229,5 +312,9 @@ export class NotesPage {
                console.log(err);
 
              });
+  }
+  onCancel(ev){
+    console.log('pressed cancel')
+    return 0;
   }
 }
