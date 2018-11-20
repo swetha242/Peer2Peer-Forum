@@ -77,12 +77,12 @@ def getTags(text, subject):
 otp_generator = pyotp.TOTP('base32secret3232')
 otp_times = []
 
-#email_server = smtplib.SMTP('smtp.gmail.com', 587)
-#email_server.starttls()
-#email_server.login('peerforum5@gmail.com','peertopeer5')
+email_server = smtplib.SMTP('smtp.gmail.com', 587)
+email_server.starttls()
+email_server.login('peerforum5@gmail.com','peertopeer5')
 
-#def send_email(to_addr, msg):
-#    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
+def send_email(to_addr, msg):
+    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
 
 #----------------------------------------------OTP------------------------------------------------------------
 # send OTP to email
@@ -321,7 +321,7 @@ def get_userid(email):
 def get_useremail(ID):
 	uemail=mongo.db.users.find_one({'_id':ObjectId(ID)})
 	if uemail:
-		return jsonify({'result':'success','email':uemail['email']})
+		return jsonify({'result':'success','email':uemail['email'],'uname':uemail['name']})
 	else:
 		return jsonify({'result':'unsuccess'})
 
@@ -696,11 +696,9 @@ def post_answer():
 
     inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
-
-        question = mondo.db.q.find_one({'_id': ObjectId(data['QID'])})
+        question = mongo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
-        asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
-        
+        asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})        
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
 
@@ -712,6 +710,17 @@ def post_answer():
             adata['content']
 
         send_email(asker['email'], notif_msg)
+        notif_q={
+            "type":1,
+            "msg":answerer['name'] + "has answered your question on "+question['title'],
+            "ans":data['content'],
+            'time': datetime.now(),
+            "qid":data['QID'],
+            "read":0
+        }
+        notif_msg=mongo.db.notif.find_one({'userid':asker_id})['notif']
+        notif_msg.append(notif_q)
+        mongo.db.notif.update_one({'userid':asker_id},{"$set":{'notif':notif_msg}})
 
         return jsonify({'result': 'Success', 'name': answerer['name'], 'aid': str(inserted_a.inserted_id)})
     else:

@@ -36,7 +36,7 @@ export class NotesPage {
 
   @ViewChild(Navbar) navBar: Navbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage, private documet: DocumentViewer, private file: File, private transfer: FileTransfer, private platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage, private platform: Platform) {
     console.log("notes page starts here");
     this.search_items = [];
     this.items = [];
@@ -230,7 +230,7 @@ export class NotesPage {
     //console.log(item)
   }
   download(item){
-    let path_download = null;
+    /*let path_download = null;
     let pdfUrl;
     let postParams = {userid:this.userid,notesid:item.nid}
      let headers = new Headers();
@@ -270,7 +270,7 @@ export class NotesPage {
            }, (err) => {
              console.log(err);
 
-           });
+           });*/
   }
   /*download() {
     const url = 'http://www.example.com/file.pdf';
