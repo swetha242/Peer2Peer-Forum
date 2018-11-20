@@ -33,6 +33,12 @@ export class LoginPage implements OnInit {
         email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN)]),
       });
     }
+    signup(){
+      this.navCtrl.push(SignupPage)
+    }
+    home(){
+      this.navCtrl.push(HelloIonicPage)
+    }
   doLogin(){
     //if the username and password are valid
     //this.navCtrl.push(HelloIonicPage);

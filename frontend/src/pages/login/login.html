@@ -10,13 +10,13 @@
 
   <ion-toolbar>
 
-    <ion-title>loginPage</ion-title>
+    <ion-title text-center>LoginPage</ion-title>
   </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class = "includeimage" color = "twitter">
 
     <form novalidate (ngSubmit)="doLogin()" [formGroup]="loginform">
         <ion-list>
@@ -44,11 +44,20 @@
         </ion-item>
 
           <div padding>
-            <button type="submit" ion-button color="primary" block [disabled]="loginform.invalid">LogIn</button>
+            <button type="submit" ion-button color="dark" block [disabled]="loginform.invalid">LogIn</button>
           </div>
 
+
+          <ion-fab top right >
+              <button ion-fab color = "dark">BACK</button>
+              <ion-fab-list side="bottom">
+                <button ion-fab color = "dark" (click) = "home()">Home</button>
+                <button ion-fab color = "dark" (click) = "signup()">SIGNUP</button>
+                
+              </ion-fab-list>
+          </ion-fab>
+  
         </ion-list>
       </form>
-
-
+ 
 </ion-content>

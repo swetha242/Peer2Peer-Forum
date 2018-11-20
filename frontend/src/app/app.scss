@@ -14,3 +14,14 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+  //This theme overrides the $positive and $calm variable
+$positive: #36465d !default;
+$calm: #519ec8 !default;
+$dark-positive: #445569;
+$extra-dark: #2e3f53;
+$light: #ffffff;
+
+//Global Body class
+.includeimage {
+ background-color: black;
+}
