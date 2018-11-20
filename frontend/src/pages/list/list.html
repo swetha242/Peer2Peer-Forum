@@ -8,6 +8,64 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content class="background">
+    <ion-fab top left>
+        <button ion-fab>Ask</button>
+        <ion-fab-list side="right">
+          <ion-item>
+              <ion-input style="width:800px;border-block-end-style: ridge" [(ngModel)]="question" name="question" placeholder="Ask a question" type="text"></ion-input>
+              <p></p>
+              <ion-input style="width:200px;border-block-end-style: ridge;background-color: dimgray" [(ngModel)]="tags" name="tags" placeholder="Tag" type="text"></ion-input>
+              <b></b>
+              <ion-input style="width:200px;border-block-end-style: ridge" [(ngModel)]="title" name="title" placeholder="Title" type="text"></ion-input>
+<b></b>
+
+          </ion-item>
+          <p></p>
+          <button ion-button color="primary" (click)="askques()">Post</button>
+
+        </ion-fab-list>
+      </ion-fab>
+
+      <ion-searchbar style="position:relative;top:70px" [showCancelButton]="shouldShowCancel" (ionInput)="getItems($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+     <!-- <ion-list style="position:relative;top:70px">
+        <ion-item (click)="itemTapped($event, item)" text-wrap text-center  *ngFor="let item of items1">
+        -->
+         
+          <ion-card (click)="itemTapped($event, item)" text-wrap text-center  *ngFor="let item of items1" style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey;opacity:0.6;position:relative;top:70px">
+           
+          <ion-card-content class="item-note" item-right>
+              <ion-icon name="quote" color="bright"></ion-icon> {{item.title}}    <p></p>
+              <ion-icon name="help" color="bright"></ion-icon> {{item.description}} <p></p>
+            This was asked by {{item.owner}}
+          </ion-card-content>
+        </ion-card>
+     <!--   </ion-item>
+      </ion-list> -->
+        
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <ion-content>
     <ion-grid>
         <ion-row>
@@ -50,7 +108,7 @@
              <!-- <button  block >
               {{ item.description }}
              </button>
-            -->
+            
             </ion-item>
           </ion-list>
         </ion-col>
@@ -58,3 +116,4 @@
 
 </ion-grid>
 </ion-content>
+-->
