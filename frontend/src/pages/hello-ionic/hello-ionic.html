@@ -1,37 +1,53 @@
+<!--
 <ion-header>
 
-  <ion-toolbar>
+   <ion-title text-center>Welcome to Your Peer to Peer Forum</ion-title>
     
-    <ion-title>Home</ion-title>
-  </ion-toolbar>
+  
+ 
 
 </ion-header>
+-->
+
+<ion-content padding class = "includeimage">
 
 
-<ion-content padding>
 
-  <h3>Welcome to your Peer to Peer Forum!</h3>
+<!--
+  <ion-slides >
+    <ion-slide (click)="goToSlide2()" >
+      <h1 text-center><button ion-button round outline color = "twitter">QUESTION AND ANSWERING</button></h1>
+      <ion-img src="../assets/img/qna.jpg"></ion-img>
+    </ion-slide>
+    <ion-slide (click)="goToSlide3()">
+        <h1 text-center><button ion-button round outline color = "twitter">NOTES SHARING</button></h1>
+     
+      <ion-img src="../assets/img/noteshare.jpg"></ion-img>
+    </ion-slide>
+ 
+      <ion-slide (click)="goToSlide1()">
+          <h1 text-center><button ion-button round outline solid color = "twitter">IDEAS SHARING</button></h1>
+      <ion-img src="../assets/img/ideashare.jpg"></ion-img>
+    </ion-slide>
+  </ion-slides>
 
-  <p>
-    This gives you three different services as a client.
-  </p>
-  <p>
-    They are :
-    <br>
-    1. Questions and Answering
-    <br>
-    2. Notes Sharing
-    <br>
-    3. Ideas Forum
-  </p>
   
+-->
+<ion-slides>
+  <ion-slide>
+ <h1 text center color = "twiiter"><button ion-button round outline color = "twitter">WELCOME TO PEER TO PEER FORUM </button> </h1>
+ <ion-img src="../assets/img/p2pLogo.jpg"></ion-img>
+</ion-slide>
+</ion-slides>
 
-  <div padding>
-    <button ion-button color="primary" block (click)="Login()">LOGIN_BUTTON</button>
+  
+ <div padding>
+    <button ion-button round outline color = "twitter" block (click)="Login()">LOGIN_BUTTON</button>
   </div>
 
   <div padding>
-    <button ion-button color="primary" block (click)="Signup()">SIGNUP_BUTTON</button>
+    <button ion-button round outline solid color="twitter" block (click)="Signup()">SIGNUP_BUTTON</button>
   </div>
+
 
 </ion-content>
