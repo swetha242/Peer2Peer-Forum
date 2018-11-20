@@ -27,7 +27,7 @@ import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { DocumentViewer } from '@ionic-native/document-viewer';
-
+import {NotifPage} from '../pages/notif/notif';
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 
 @NgModule({
@@ -46,7 +46,8 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
     LaunchPage,
     RecoQuestionsPage,
     IdeasProjectsPage,
-    IdeasInputPage
+    IdeasInputPage,
+    NotifPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +71,8 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
     LaunchPage,
     RecoQuestionsPage,
     IdeasProjectsPage,
-   IdeasInputPage
+   IdeasInputPage,
+   NotifPage
   ],
   providers: [
     StatusBar,
