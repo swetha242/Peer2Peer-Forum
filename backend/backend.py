@@ -84,9 +84,6 @@ otp_times = []
 #def send_email(to_addr, msg):
 #    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
 
-def send_email(to_addr, msg):
-    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
-
 #----------------------------------------------OTP------------------------------------------------------------
 # send OTP to email
 @app.route('/otp/send', methods=['POST'])
@@ -733,19 +730,11 @@ def post_answer():
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
 
-<<<<<<< current
-        notif_msg = '' + \
-            answerer['name'] + \
-            ' answered the following to your question (' + \
-            question['title'] + \
-            '): ' + \
-=======
         notif_msg =
             answerer['name'] +
             ' answered the following to your question (' +
             question['title'] +
             '): ' +
->>>>>>> before discard
             adata['content']
 
         send_email(asker['email'], notif_msg)
