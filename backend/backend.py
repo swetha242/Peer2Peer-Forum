@@ -56,7 +56,7 @@ def verify_otp():
         if otp_generator.verify(otp, otp_time):
             otp_times.remove(otp_time)
             return jsonify({'result': "Success"})
-        
+
     return jsonify({'result': "Failure"})
 
 #--------------------------------------get subjects and tags--------------------------------------------------
@@ -369,11 +369,12 @@ def view_file():
 @app.route('/ideas/insert',methods=['POST'])
 def insert_ideas():
     data=request.get_json()
-    l=list()
+    colab_list = list()
+    mentor_id = get_userid(data['mentor_id'])['userid']
     for i in data['collaborator'].split(','):
         s=get_userid(i)
         if s:
-            l.append(s)
+            colab_list.append(s)
     userdata={
           'title':data['title'],
           'links':data['links'],
@@ -385,10 +386,15 @@ def insert_ideas():
           'upvotes':0,
           'downvotes':0,
           'views':0,
-          'colaborator_id':l,
-          'mentor_id':get_userid(data['mentor_id']),
+          'colaborator_id':[],
+          'mentor_id':mentor_id,
+          'mentor_status': 0,
           'comments':[]
     }
+
+    #add notify here to the list of colab if present
+    #add notify to mentor here
+
     idea=mongo.db.ideas.insert_one(userdata)
     if idea:
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
@@ -561,7 +567,7 @@ def post_answer():
         question = mondo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
         asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
-        
+
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
 
