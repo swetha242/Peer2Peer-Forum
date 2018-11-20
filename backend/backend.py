@@ -50,7 +50,7 @@ def cleanText(string):
     string = re.sub(r"\)", " ) ", string)
     string = re.sub(r"\?", " ? ", string)
     string = re.sub(r"\s{2,}", " ", string)
-    
+
     return string.strip().lower()
 
 def getTags(text, subject):
@@ -77,15 +77,15 @@ def getTags(text, subject):
 otp_generator = pyotp.TOTP('base32secret3232')
 otp_times = []
 
-#email_server = smtplib.SMTP('smtp.gmail.com', 587)
-#email_server.starttls()
-#email_server.login('peerforum5@gmail.com','peertopeer5')
+email_server = smtplib.SMTP('smtp.gmail.com', 587)
+email_server.starttls()
+email_server.login('peerforum5@gmail.com','peertopeer5')
 
-#def send_email(to_addr, msg):
-#    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
+def send_email(to_addr, msg):
+    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
 
 #----------------------------------------------OTP------------------------------------------------------------
-# send OTP to email
+#send OTP to email
 @app.route('/otp/send', methods=['POST'])
 def send_otp():
     data = request.get_json()
@@ -111,9 +111,22 @@ def verify_otp():
         if otp_generator.verify(otp, otp_time):
             otp_times.remove(otp_time)
             return jsonify({'result': "Success"})
-        
+
     return jsonify({'result': "Failure"})
 
+#--------------------------------------get notifications-------------------------------------------------------
+@app.route('/get_notif',methods=['POST'])
+def get_notif():
+    user=request.get_json()['userid']
+    notif_all=list(mongo.db.notif.find({'userid':user}).sort([('time',-1)]))
+    notif={}
+    c=0
+    for i in notif_all:
+        i['_id']=str(i['_id'])
+        notif[str(c)]=i
+      #  print x['name']
+        c=c+1
+    return jsonify({'notif':notif})
 #--------------------------------------get subjects and tags--------------------------------------------------
 # first create a db with id as 1
 @app.route('/get_subj')
@@ -442,6 +455,7 @@ def view_file():
 def insert_ideas():
     data=request.get_json()
     l=list()
+    #list of colab ids
     for i in data['collaborator'].split(','):
         s=get_userid(i)
         if s:
@@ -453,47 +467,60 @@ def insert_ideas():
           'time':datetime.now(),
           'tags':data['tags'],
           'description':data['description'],
+          'max_colaborators':data['max_colaborators'],
           'owner_id':data['owner_id'],
           'upvotes':0,
           'downvotes':0,
           'views':0,
-          'colaborator_id':l,
+          'colaborator_id':[],
           'mentor_id':get_userid(data['mentor_id']),
+          'mentor_status':0,
           'comments':[]
     }
     idea=mongo.db.ideas.insert_one(userdata)
     if idea:
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
         x=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
-        notif_id=str(random.randrange(100,10000000,1))
-        #mentor to notify
-        notif_user=uinfo=get_useremail(data['mentor_id'])['uname']
         notif_q={
             "type":5,
             "msg":x['name'] + "has chosen you as mentor for"+data['title'],
             "project_id":str(idea.inserted_id),
             'time': datetime.now(),
-            "student_id":data['owner_id']
+            "student_id":data['owner_id'],
+            "read":0
         }
         notif_msg=mongo.db.notif.find_one({'userid':data['mentor_id']})['notif']
         notif_msg.append(notif_q)
         mongo.db.notif.update_one({'userid':data['mentor_id']},{"$set":{'notif':notif_msg}})
+        #notify colaborators
+        for colab in l:
+            notif_q={
+            "type":6,
+            "msg":x['name'] +"has invited you to colaborate on"+data['title'],
+            "project_id":str(idea.inserted_id),
+            'time': datetime.now(),
+            "student_id":data['owner_id'],
+            "read":0
+            }
+            notif_msg=mongo.db.notif.find_one({'userid':colab})['notif']
+            notif_msg.append(notif_q)
+            mongo.db.notif.update_one({'userid':colab},{"$set":{'notif':notif_msg}})
         return jsonify({'result':'success'})
     else:
-        return jsonify({'result':'unsuccess'})
+        return jsonify({'result':'failure'})
 
 #colaborator request to join
 @app.route('/ideas/insert_colaborator',methods=['POST'])
 def insert_colaborator():
     ideas=request.get_json()
     ideas_id=ideas['ideas_id']
-    colab_id=ideas['colab_id']   
-    #call fn to update 
+    colab_id=ideas['colab_id']
+    #call fn to update
     #c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':colab_id}})
     if True:
         data=mongo.db.ideas.find_one({'_id':ObjectId(ideas_id)})
         uinfo=get_useremail(colab_id)['uname']
-        notif_id=str(random.randrange(100,10000000,1))
+        #notif_id=str(random.randrange(100,10000000,1))
         #mentor to notify
         #notif_user=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
         notif_q={
@@ -501,15 +528,40 @@ def insert_colaborator():
             "msg":uinfo +"wants to colaborate on"+data['title'],
             "project_id":ideas_id,
             'time': datetime.now(),
-            "colab_id":colab_id
+            "colab_id":colab_id,
+            "read":0
         }
         notif_msg=mongo.db.notif.find_one({'userid':data['owner_id']})['notif']
         notif_msg.append(notif_q)
         mongo.db.notif.update_one({'userid':data['owner_id']},{"$set":{'notif':notif_msg}})
         return jsonify({"result":"success"})
     else:
-        return jsonify({"result":"unsuccess"})
+        return jsonify({"result":"failure"})
 
+@app.route('/ideas/update_members/',methods=['post'])
+def update_members():
+    data = request.get_json()
+    ideas_id = data['ideas_id']
+    ideas = mongo.db.ideas.find_one({"_id":ObjectId(ideas_id)})
+    member_id = data['member_id']
+    colab = data['mode']
+
+    if colab:
+        res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':member_id}})
+        if res:
+            return jsonify({'result':'success'})
+            #call notify to member_id with message saying colab request accepted
+
+        else:
+            return jsonify({'result':'failure'})
+    else:
+        res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$set':{'mentor_id':member_id}})
+        if res:
+            return jsonify({'result':'success'})
+            #call notify to owner_id of the idea saying mentor has accepted
+
+        else:
+            return jsonify({'result':'failure'})
 
 #count no of colaborator
 @app.route('/ideas/count_colaborator/<ID>',methods=['post','get'])
@@ -556,10 +608,12 @@ def get_idea(tag):
 def get_latest_idea(tag):
     idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('time',-1)])
     coll_list=[]
-    for i in idea['colaborator_id']:
-        coll_list.append(get_useremail(i))
-    idea['colaborator_email']=coll_list
-    return dumps(idea)
+    if idea:
+        for i in idea:
+            for colab in i['colaborator_id']:
+                coll_list.append(get_useremail(i))
+            i['colaborator_email']=coll_list
+        return dumps(idea)
 
 
 #most popular idea based on tag
@@ -674,16 +728,11 @@ def post_answer():
         question = mondo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
         asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
-        
+
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
 
-        notif_msg = '' + \
-            answerer['name'] + \
-            ' answered the following to your question (' + \
-            question['title'] + \
-            '): ' + \
-            adata['content']
+        notif_msg = answerer['name']+' answered the following to your question ('+question['title']+'):'+adata['content']
 
         send_email(asker['email'], notif_msg)
 

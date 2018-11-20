@@ -184,3 +184,4 @@ db.globaltrends.find().pretty()
 3- for student- student accepted your request to join 
 4-for student- mentor approved idea
 5- for teacher- idea proposal - view idea and approve
+6- owner invitation to colaborate
