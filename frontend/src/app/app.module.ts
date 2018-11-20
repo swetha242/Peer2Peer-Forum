@@ -24,6 +24,9 @@ import { AuthProvider } from '../providers/auth/auth';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { IdeasProjectsPage } from '../pages/ideas-projects/ideas-projects';
 import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
+import { File } from '@ionic-native/file';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 
@@ -73,10 +76,13 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    File,
+    FileTransfer,
+    DocumentViewer
   ]
 })
 export class AppModule {
-  
+
 
 }

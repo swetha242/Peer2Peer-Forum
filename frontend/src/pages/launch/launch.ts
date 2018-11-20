@@ -31,7 +31,7 @@ export class LaunchPage {
 
   personalTrend: {qno: number,top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
 
-  
+
   constructor(public navCtrl: NavController, public authService: AuthProvider , public navParams: NavParams, private alertCtrl: AlertController,public storage:Storage) {
 
     this.globalTrend = {qno : 120,
@@ -48,7 +48,7 @@ export class LaunchPage {
       //console.log(result)
        this.setuid(uid)
     });
-    
+
     this.personalTrend = { qno : 12,
       totalNumberOfNotes : 5,
       totalNumberOfProjects : 4,

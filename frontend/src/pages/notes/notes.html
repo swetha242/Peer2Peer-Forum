@@ -16,19 +16,6 @@
 
 <ion-content padding>
       <ion-grid>
-        <ion-row>
-          <ion-col col-8>
-              <ion-item>
-                  <ion-label><ion-icon name="star"></ion-icon></ion-label>
-                  <ion-input [(ngModel)]="notes" name="notes" placeholder="Search Notes?" type="text"></ion-input>
-              </ion-item>
-        </ion-col>
-        <ion-col>
-          <div padding>
-              <button ion-button color="primary" block (click)="searchNotes()">Search</button>
-          </div>
-        </ion-col>
-      </ion-row>
       <ion-row>
         <ion-card>
         <div padding>
@@ -45,15 +32,17 @@
         </div>
         </ion-card>
       </ion-row>
+
   <ion-row>
-  <ion-card class="cards-list-demo">
-    <ion-card-header>
-      Highly viewed Notes
-    </ion-card-header>
-  <ion-list ion-item *ngFor="let item of items">
+    <ion-col>
+      <br>
+    <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="getItems($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items">
         <ion-card>
           <ion-card-header>
-            <img src="profile.png">
+            <img src="assets/imgs/sttudent.png" width="20">
             <h2>{{item.author}}</h2>
             <ion-icon name="star" color="bright"></ion-icon> {{item.title}}
     </ion-card-header>
@@ -66,8 +55,9 @@
         <ion-icon name="thumbs-up" (click) ="upvote(item)">{{item.upvote}}</ion-icon>
         <ion-icon name="thumbs-down" (click)="downvote(item)">{{item.downvote}}</ion-icon>
     </ion-card>
+    </ion-item>
   </ion-list>
-  </ion-card>
+  </ion-col>
 </ion-row>
 </ion-grid>
 </ion-content>

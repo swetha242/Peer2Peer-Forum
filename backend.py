@@ -7,9 +7,10 @@ import os
 import random
 import base64
 import smtplib
-import pyotp
 from werkzeug.utils import secure_filename
+import pyotp
 from datetime import datetime
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -19,12 +20,16 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
 
+#----------------- OTP ------------------------- #
 otp_generator = pyotp.TOTP('base32secret3232')
 otp_times = []
 
-#email_server = smtplib.SMTP('smtp.gmail.com', 587)
-#email_server.starttls()
-#email_server.login('peerforum5@gmail.com','peertopeer5')
+email_server = smtplib.SMTP('smtp.gmail.com', 587)
+email_server.starttls()
+email_server.login('peerforum5@gmail.com','peertopeer5')
+
+def send_email(to_addr, msg):
+    email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
 
 #----------------------------------------------OTP------------------------------------------------------------
 # send OTP to email
@@ -38,7 +43,7 @@ def send_otp():
     otp_times.append(now_time)
 
     try:
-        email_server.sendmail('peerforum5@gmail.com', to_email, otp)
+        send_email(to_email, otp)
         return jsonify({'result': "Success"})
     except:
         return jsonify({'result': "Failure"})
@@ -179,7 +184,6 @@ def adduser():
         #return jsonify(query)
         user=mongo.db.users.find_one(query)
         user['_id']=str(user['_id'])
-        mongo.db.notif.insert_one({'userid':user['_id'],'notif':[]})
         return jsonify({'user_id':user['_id'],'uname':data['username'],'result':'Success'})
     else:
         return jsonify({'result':"Something wrong"})
@@ -197,9 +201,6 @@ def check_user():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user:
         user['_id']=str(user['_id'])
-        find_notif=mongo.db.notif.find_one({'userid':user['_id']})
-        if not find_notif:
-            mongo.db.notif.insert_one({'userid':user['_id'],'notif':[]})
         return jsonify({'user_id':user['_id'],'uname':user['name'],'result':'Success'})
     elif user1:
         return jsonify({'result':"Invalid password"})
@@ -227,6 +228,19 @@ def get_userqa(ID):
     qa = mongo.db.qa.find({'asked_by':ID})
     return dumps(qa)
 
+
+#get user details from profile
+def get_userDetails(ID):
+	ID = ObjectId(ID)
+	userdata =	mongo.db.users.find_one({'_id' : ID})
+	print("Extracted user data : ",userdata)
+	userdata['_id'] = str(userdata['_id'])
+	#if userdata:
+	#	return jsonify({'result' : 'success', 'data' : userdata})
+	#else:
+	#	return jsonify({'result' : 'unsuccess'})
+	return userdata
+
 def get_userid(email):
 	uid=mongo.db.users.find_one({'email':email})
 	if uid:
@@ -237,7 +251,7 @@ def get_userid(email):
 def get_useremail(ID):
 	uemail=mongo.db.users.find_one({'_id':ObjectId(ID)})
 	if uemail:
-		return jsonify({'result':'success','email':uemail['email'],'uname':uemail['name']})
+		return jsonify({'result':'success','email':uemail['email']})
 	else:
 		return jsonify({'result':'unsuccess'})
 
@@ -252,7 +266,7 @@ def notes_now(notes):
         x=mongo.db.users.find_one({'_id':ObjectId(i['upl_by'])})
         print(x)
         note[str(c)]=i
-        note[str(c)]['upl_by']=x['name']
+        #note[str(c)]['upl_by']=x['name']
       #  print x['name']
         c=c+1
     return note
@@ -393,48 +407,16 @@ def insert_ideas():
     idea=mongo.db.ideas.insert_one(userdata)
     if idea:
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
-        x=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
-        notif_id=str(random.randrange(100,10000000,1))
-        #mentor to notify
-        notif_user=uinfo=get_useremail(data['mentor_id'])['uname']
-        notif_q={
-            "type":5,
-            "msg":x['name'] + "has chosen you as mentor for"+data['title'],
-            "project_id":str(idea.inserted_id),
-            'time': datetime.now(),
-            "student_id":data['owner_id']
-        }
-        notif_msg=mongo.db.notif.find_one({'userid':data['mentor_id']})['notif']
-        notif_msg.append(notif_q)
-        mongo.db.notif.update_one({'userid':data['mentor_id']},{"$set":{'notif':notif_msg}})
         return jsonify({'result':'success'})
     else:
         return jsonify({'result':'unsuccess'})
 
-#colaborator request to join
-@app.route('/ideas/insert_colaborator',methods=['POST'])
-def insert_colaborator():
-    ideas=request.get_json()
-    ideas_id=ideas['ideas_id']
-    colab_id=ideas['colab_id']   
-    #call fn to update 
-    #c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':colab_id}})
-    if True:
-        data=mongo.db.ideas.find_one({'_id':ObjectId(ideas_id)})
-        uinfo=get_useremail(colab_id)['uname']
-        notif_id=str(random.randrange(100,10000000,1))
-        #mentor to notify
-        #notif_user=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
-        notif_q={
-            "type":5,
-            "msg":uinfo +"wants to colaborate on"+data['title'],
-            "project_id":ideas_id,
-            'time': datetime.now(),
-            "colab_id":colab_id
-        }
-        notif_msg=mongo.db.notif.find_one({'userid':data['owner_id']})['notif']
-        notif_msg.append(notif_q)
-        mongo.db.notif.update_one({'userid':data['owner_id']},{"$set":{'notif':notif_msg}})
+#add colaborator
+@app.route('/ideas/insert_colaborator/<ID>',methods=['post','get'])
+def insert_colaborator(ID):
+    ideas_id=request.form['ideas_id']
+    c=mongo.db.ideas.update_one({'_id':ObjectId(ideas_id)},{'$addToSet':{'colaborator_id':ID}})
+    if c:
         return jsonify({"result":"success"})
     else:
         return jsonify({"result":"unsuccess"})
@@ -590,20 +572,24 @@ def post_answer():
 
     inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
-        x=mongo.db.users.find_one({'_id':ObjectId(data['answered_by'])})
-        notif_id=str(random.randrange(100,10000000,1))
-        notif_user=mongo.db.q.find_one({'_id':ObjectId(data['QID'])})['asked_by']
-        notif_q={
-            "type":1,
-            "ans":data['content'],
-            "msg":"Your question has been answered by "+x['name'],
-            "qid":data['QID'],
-            'time':datetime.now()
-        }
-        notif_msg=mongo.db.notif.find_one({'userid':notif_user})['notif']
-        notif_msg.append(notif_q)
-        mongo.db.notif.update_one({'userid':notif_user},{"$set":{'notif':notif_msg}})
-        return jsonify({'result': 'Success','name':x['name'],'aid':str(inserted_a.inserted_id)})
+
+        question = mondo.db.q.find_one({'_id': ObjectId(data['QID'])})
+        asker_id = question['asked_by']
+        asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
+        
+        answerer_id = data['answered_by']
+        answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
+
+        notif_msg = '' + \
+            answerer['name'] + \
+            ' answered the following to your question (' + \
+            question['title'] + \
+            '): ' + \
+            adata['content']
+
+        send_email(asker['email'], notif_msg)
+
+        return jsonify({'result': 'Success', 'name': answerer['name'], 'aid': str(inserted_a.inserted_id)})
     else:
         return jsonify({'result': 'Failure'})
 
@@ -695,10 +681,211 @@ def profile():
         user['topTags']=topthree(lt1)
     return jsonify({'profile':user})
 
+'''
+------------------------- ML Model and Reccomendation Systems
+------------------------------------------------------------------
+
+'''
+#to sort questions
+def returnOverLapScore(a):
+	return a[1]
+
+#get questions similar to user
+#takes userID and the number of questions
+@app.route('/qa/recoqa',methods=['POST'])
+def getQuestionsSimilarToUser():
+	k=10
+	data=request.get_json()
+	print(data)
+	userID= data['asked_by']
+
+	noCommon = True
+
+	print("User id : ",userID)
+	overLapScores=[]
+	questions=list(mongo.db.q.find())
+	questionsReturned=[]
+
+	if(len(questions)<=k):
+		k=len(questions)
+
+	userTags={}
+	userSubjects={}
+	userFound=False
+
+	profileData = get_userDetails(userID)
+	print("Profile Data : :",profileData)
+	#if(profileData['result']=='unsuccess'):
+	#	return
+
+	userdata = profileData
+	userSubjects = userdata["topSubjects"]
+	userTags = userdata["topTags"]
+	overlapQuestions=[]
+
+	for question in questions:
+		overLapScore=1
+		questionTags=question["tags"]
+		questionSubject=question["subject"]
+		if(questionSubject in userSubjects):
+			overLapScore+=userSubjects[questionSubject]
+		for tag in questionTags:
+			if(tag in userTags):
+				overLapScore+=userTags[tag]
+		if(noCommon==True and overLapScore>1):
+			noCommon=False
+		overlapQuestions.append([question,overLapScore])
+
+	if(noCommon==True):
+		number = 10
+		for question in questions:
+			if(number >= 0):
+				questionsReturned.append(question)
+			else:
+				break
+			number-=1
+		return jsonify({'questions':questionsReturned})
+
+	overlapQuestions.sort(key=returnOverLapScore,reverse=True)
+	print("Overlap is : ",overlapQuestions)
+	for i in range(k):
+		overlapQuestions[i][0]['_id']=str(overlapQuestions[i][0]['_id'])
+		questionsReturned.append(overlapQuestions[i][0])
+		overLapScores.append(overlapQuestions[i][1])
+
+	return jsonify({'questions':questionsReturned})
 
 
+#get notes similar to user
+@app.route('/notes/reconotes',methods=['POST'])
+def getNotesSimilarToUser():
+	k=10
+	data=request.get_json()
+	print(data)
+	userID= data['asked_by']
 
+	noCommon = True
 
+	print("User id : ",userID)
+	overLapScores=[]
 
+	notes=list(mongo.db.notes.find())
+	notesReturned=[]
+
+	if(len(notes)<=k):
+		k=len(notes)
+
+	userTags={}
+	userSubjects={}
+	userFound=False
+
+	profileData = get_userDetails(userID)
+	print("Profile Data : :",profileData)
+	#if(profileData['result']=='unsuccess'):
+	#	return
+
+	userdata = profileData
+	userSubjects = userdata["topSubjects"]
+	userTags = userdata["topTags"]
+	overlapNotes=[]
+
+	for note in notes:
+		overLapScore=1
+		noteTags=note["tag"]
+		noteSubject=note["subject"]
+		if(noteSubject in userSubjects):
+			overLapScore+=userSubjects[noteSubject]
+		for tag in noteTags:
+			if(tag in userTags):
+				overLapScore+=userTags[tag]
+		if(noCommon==True and overLapScore>1):
+			noCommon=False
+		overlapNotes.append([note,overLapScore])
+
+	if(noCommon==True):
+		number = 10
+		for note in notes:
+			if(number >= 0):
+				notesReturned.append(note)
+			else:
+				break
+			number-=1
+		return jsonify({'notes':notesReturned})
+
+	overlapNotes.sort(key=returnOverLapScore,reverse=True)
+	print("Overlap is : ",overlapNotes)
+	for i in range(k):
+		overlapNotes[i][0]['_id']=str(overlapNotes[i][0]['_id'])
+		notesReturned.append(overlapNotes[i][0])
+		overLapScores.append(overlapNotes[i][1])
+
+	return jsonify({'notes':notesReturned})
+
+#get notes similar to user
+@app.route('/projects/recoprojects',methods=['POST'])
+def getProjectsSimilarToUser():
+	k=10
+	data=request.get_json()
+	print(data)
+	userID= data['asked_by']
+
+	noCommon = True
+
+	print("User id : ",userID)
+	overLapScores=[]
+
+	projects=list(mongo.db.ideas.find())
+	projectsReturned=[]
+
+	if(len(projects)<=k):
+		k=len(projects)
+
+	userTags={}
+	userSubjects={}
+	userFound=False
+
+	profileData = get_userDetails(userID)
+	print("Profile Data : :",profileData)
+	#if(profileData['result']=='unsuccess'):
+	#	return
+
+	userdata = profileData
+	userSubjects = userdata["topSubjects"]
+	userTags = userdata["topTags"]
+	overlapProjects=[]
+
+	for project in projects:
+		overLapScore=1
+		projectTags=project["tag"]
+		projectSubject=project["subject"]
+		if(projectSubject in userSubjects):
+			overLapScore+=userSubjects[projectSubject]
+		for tag in projectTags:
+			if(tag in userTags):
+				overLapScore+=userTags[tag]
+		if(noCommon==True and overLapScore>1):
+			noCommon=False
+		overlapProjects.append([project,overLapScore])
+
+	if(noCommon==True):
+		number = 10
+		for project in projects:
+			if(number >= 0):
+				projectsReturned.append(project)
+			else:
+				break
+			number-=1
+		return jsonify({'projects':projectsReturned})
+
+	overlapProjects.sort(key=returnOverLapScore,reverse=True)
+	print("Overlap is : ",overlapProjects)
+	for i in range(k):
+		overlapProjects[i][0]['_id']=str(overlapProjects[i][0]['_id'])
+		projectsReturned.append(overlapProjects[i][0])
+		overLapScores.append(overlapProjects[i][1])
+
+	return jsonify({'projects':projectsReturned})
+
+#ML Part ends here.
 if __name__ == '__main__':
    app.run(debug = True)
