@@ -1,0 +1,3605 @@
+UECS
+INTRODUCTION TO COMPUTING USING PYTHON 
+Course Objectives
+The objectives of this course is to
+Learn basics of computer hardware and programming.
+Learn how to solve a given problem.
+Learn various paradigms of programming.
+Learn Python as a programming language.
+Learn how to combine data structures and functions available in Python to
+solve problems.
+Course Outcomes
+At the end of the course the student will be able to
+ Outline the process involved in executing a computer program.
+ Program effectively using Python programming language.
+ Think using different paradigms of programming.
+Course Content
+. Introduction Computational Problem Solving Limits of Computational
+Problem Solving Computer Algorithm Computer Hardware Digital
+Computer Operating System Limits of IC Technology Computer Software
+Syntax Semantics and Program Translation.
+. Process of Computational Problem Solving Introduction to Python
+Programming Language Output Function Variables Types id Operators
+and Expressions Control Structures Lists Dictionaries Sets Tuples and
+Strings.
+. Functions Definition Call Positional and Keyword Parameters Default
+Parameters Variable Number of Arguments Modules Import
+Mechanisms Functional Programming map filter reduce max min and
+lambda functions List Comprehension.
+. Object Oriented Programming Classes and Objects Inheritance
+Polymorphism Error Handling and Exceptions try except and raise
+Exception Propagation.
+. File Processing Reading and Writing Files.
+Prerequisite Courses None.
+Reference Books
+. Introduction to Computer Science Using Python A Computational
+ProblemSolving Focus Charles Dierbach John Wiley.
+UECS
+INTRODUCTION TO COMPUTING USING PYTHON LABORATORY
+
+Course Objectives
+The objectives of this course is to
+Learn basics of computer programming.
+Learn how to solve a given problem.
+Learn to use various paradigms of programming.
+Learn Python as a programming language.
+Learn how to implement data structures and functions available in Python
+to solve problems.
+Course Outcomes
+At the end of the course the student will be able to
+ Illustrate problem solving using Python programming.
+Course Content
+. UNIX Commands and Utilities.
+. Program to demonstrate Input Output Functions Operators and
+Expressions.
+. Program to demonstrate the Usage of Libraries.
+. Program to demonstrate Control Structures.
+. Program to demonstrate Control Structures.
+. Program to demonstrate Lists and Tuples.
+. Program to demonstrate Sets and Dictionaries.
+. Program to demonstrate String Related Operations.
+. Program to demonstrate the Usage of Functions.
+. Program to demonstrate Functional Programming.
+. Program to demonstrate Functional Programming.
+. Program to demonstrate File Handling in Python.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering
+PES University.
+SECOND SEMESTER
+UECS
+PROBLEM SOLVING WITH C 
+Course Objectives
+The objectives of this course is to
+ Learn how to solve common types of computing problems.
+ Learn to map problems to programming features of C.
+ Understand computer programming and its roles in problem solving.
+ Understand and develop wellstructured programs using C language.
+ Learn the basic data structures through implementation in C language.
+Course Outcomes
+At the end of the course the student will be able to
+ Analyze the given problem and develop an algorithm to solve the
+problem.
+ Optimize the solution given for an existing problem.
+ Use C language constructs in the right way.
+ Design develop and test programs written in C.
+Course Content
+. Counting Introduction to Programming Salient Features of C Program
+Structure Variables Data Types Operators and Expressions Control
+Structures Input/ Output Functions.
+. Text Processing and String Manipulation Single Character Input and
+Output Arrays and Pointers Strings String Manipulation.
+. Prioritized Scheduling Functions Structures and Unions Dynamic
+Memory Management Lists Priority Queue.
+. Sorting Sorting Combination of Structures Arrays and Pointers
+Callback Sorting using Callback.
+. File Handling Enums Bit Fields Storage Class Qualifiers Life and Scope
+PreProcessor Directives Conditional Compilation Pragmas.
+Prerequisite Courses None.
+Reference Books
+. How To Solve It By Computer R G Dromey Pearson .
+. The C Programming Language Brian Kernighan and Dennis Ritchie nd
+Edition Prentice Hall PTR .
+UECS
+PROBLEM SOLVING WITH C LABORATORY
+
+Course Objectives
+The objectives of this course is to
+ Learn and implement how to solve common types of computing problems.
+ Use data types and control structures of C.
+ Learn to map problems to programming features of C.
+ Learn to write good portable C programs.
+Course Outcomes
+At the end of the course the student will be able to
+ Analyze a given problem and implement an algorithm to solve the
+problem.
+ Improve upon a solution to a problem.
+ Implement the C language constructs in the right way.
+ Design develop and test programs written in C.
+Course Content
+. Program to demonstrate Input Output Functions and Control Structures.
+. Program to demonstrate Word/ Line/ Character Count in a Given Input
+Data.
+. Program to demonstrate Operators and Control Structures.
+. Program to demonstrate Character Input and Output.
+. Program to demonstrate Functions Arrays and Pointers.
+. Program to demonstrate Strings Pointers using Multiple Files Usage.
+. Program to demonstrate the use of MultiDimensional Arrays.
+. Program to demonstrate the usage of Structures Array of Structures and
+Array of Pointers.
+. Program to demonstrate List using Multiple files.
+. Program to demonstrate Enumerations.
+. Program to demonstrate File Handling in C.
+. Program to demonstrate File Handling in C.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering
+PES University.
+THIRD SEMESTER
+UECS
+DIGITAL DESIGN AND COMPUTER ORGANIZATION 
+Course Objectives
+The objectives of this course is to
+ Learn to design digital circuits and systems using stateoftheart
+ComputerAided Design CAD tools.
+ Learn how to represent a digital system using a Hardware Description
+Language Verilog HDL and how to simulate the design.
+ By the end of this course each student would have designed a full basic
+microprocessor.
+Course Outcomes
+At the end of the course the student will be able to
+ Convert a specification of a small to medium scale digital system into an
+implementation.
+ Hierarchically decompose a complex specification into simpler
+components.
+ Understand concurrency and develop concurrent system specifications
+and implementations.
+Course Content
+. Combinational and Sequential Logic Design Introduction Boolean
+Equations Karnaugh Maps Combinational Building Blocks Synchronous
+Logic Design.
+. Digital Building Blocks Introduction Finite State Machines Parallelism
+Arithmetic Circuits Sequential Building Blocks Memory Arrays Logic
+Arrays.
+. Architecture Introduction Assembly Language Machine Language
+Programming Addressing Modes Compiling Assembling Loading.
+. Microarchitecture Introduction Performance Analysis SingleCycle
+Processor MultiCycle Processor Pipelined Processor Advanced
+Microarchitecture.
+. Memory Systems Introduction Memory System Performance Analysis
+Caches Virtual Memory Introduction to I/O Systems.
+Prerequisite Courses None.
+Reference Books
+. Digital Design M Morris Mano Michael D Ciletti th Edition Pearson.
+. Computer Organization and Design David A Patterson John L
+Hennessey th Edition Elsevier.
+. Digital Design and Computer Architecture David Money Harris Sarah L
+Harris nd Edition Elsevier.
+UECS
+DATA STRUCTURES 
+Course Objectives
+The objectives of this course is to
+ Enable the learner with the concepts of recursion and linear data
+structures viz. Linked Lists Stacks and Queues.
+ Enable the learner with the concepts of nonlinear data structures viz.
+Graphs Trees Heaps Trie and Hashing.
+ Hone the learner such that they obtain the ability to compare different
+implementations of data structures and recognize the advantages and
+disadvantages of different implementations.
+ Inculcate in the learner the aspects of choosing the appropriate data
+structure and algorithm design method for a specified application and with
+the usage of standard libraries.
+Course Outcomes
+At the end of the course the student will be able to
+ Implement fundamental data structures viz. Lists Stacks Queues Linked
+Lists Binary Trees from first principles.
+ Demonstrate the use of appropriate data structures for a given problem.
+ Design and implement solutions to basic practical problems using
+customized data structures.
+ Develop quick and foolproof solutions to practical problems using abstract
+data types.
+Course Content
+. Data Structures Overview Recursion Pointers Programming Practices.
+Lists Definition Create Insert Delete Update Traverse and Positionbased
+Operations Linked List and Array Implementations Concatenate
+Merge and Reverse Lists DoublyLinked List Implementation and
+Operations Circular Lists and MultiList Applications of Lists.
+. Stacks Definition Operations Implementation using LinkedList and
+Arrays Applications of Stacks Postfix Conversion and Expression
+Evaluation Parentheses Balancing. Queues Definition Operations
+Implementation Applications Circular Queue Dequeue.
+. Graphs Definition Complete Graphs Regular Graphs Paths
+Connectivity Euler and Hamilton Graphs Representation of Graphs 
+Adjacency/ Cost Matrix Adjacency Lists and Traversal of Graphs. Trees
+General Tree Representation Traversals Applications. Binary Trees
+Definition Properties Implementation Traversals Applications.
+. Binary Search Tree Definition Implementation Search Insert Delete
+operations. Building and Evaluating Binary Expression Tree. Heap Tree
+Implementation Insert Delete FindMin operations. Priority Queue using
+Arrays and Heap.
+. Tries Definition Implementation Applications. Hashing Hash Table
+Hash Functions Collision Handling by Open Addressing Chaining.
+Prerequisite Courses UECS Problem Solving with C.
+Reference Books
+. Data Structures and Program Design in C Robert Kruse C L Tondo
+Bruce Leung and Shashi Mogalla PHI nd Edition .
+. Data Structures Using C and C Tanenbaum Langsam Augenstein
+Pearson nd Edition .
+UECS
+INTRODUCTION TO DATA SCIENCE 
+Course Objectives
+The objectives of this course is to
+ Provide insights about the basic roles of a Data Scientist. Develop a
+greater understanding of the importance of Data Visualization techniques.
+ Develop problemsolving skills.
+ Make inferences about the population parameters using sample data.
+ Test a hypothesis about the population parameters to draw meaningful
+conclusions.
+ Provide an understanding on the importance and techniques of predicting
+a relationship between the two sets of data and determine the goodness
+of fitted model.
+Course Outcomes
+At the end of the course the student will be able to
+ Develop various visualizations of the data in hand and communicate
+results of analysis effectively visually and verbally.
+ Analyze a real world problem and solve the same with the knowledge
+gained from various distributions study.
+ Analyze an extremely large data set and perform exploratory data
+analysis to extract meaningful insights.
+ Develop and test a hypothesis about the population parameters to draw
+meaningful conclusions.
+ Fit a regression model to data and use it for prediction.
+Course Content
+. Introduction to Data Science using Python Motivating Examples and
+Scope. Sampling Sampling Methods Sampling Errors. Getting and
+Analyzing Data Reading Files Need for Data Cleaning and Its Basics
+Scraping the Web. Statistics Introduction Types of Statistics. Data
+Visualization and Interpretation Histogram Bar Charts Line Charts
+Scatter Plots Box Plots Good vs. Bad Visualization.
+. Probability Basics Conditional Probability and Independence. Random
+Variables Random Variables Expectation Functions of Random
+Variables. Probability Distributions Discrete Distributions Bernoulli
+Binomial Poisson Continuous Distributions Normal Normal Probability
+Plots Student s t Distribution.
+. Probability Distributions Principles of Point Estimation Mean Squared
+Error Maximum Likelihood Estimate The Central Limit Theorem and
+Applications. Confidence Intervals Using Simulation to Construct
+Confidence Intervals Interval Estimates for Mean of Large and Small
+Samples Factors affecting Margin of Error.
+. Confidence Intervals Interval Estimates for Proportion of Large
+Samples Confidence Intervals for the Difference between Two Means
+Interval Estimates for Paired Data. Hypothesis and Inference
+Hypothesis Testing for Population Mean and Population Proportion of Large
+Samples Relationship between Hypothesis Tests and Confidence Intervals
+LargeSample Tests for the Difference Between Two Means Errors in
+Hypothesis Testing.
+. Hypothesis and Inference Power of a Test Factors Affecting Power of a
+Test Distribution Free Tests ChiSquared Test. Simple Linear
+Regression Correlation Inference on Population Correlation Building the
+Regression Model Predictions using Regression Models Residual Plots.
+Prerequisite Courses None.
+Reference Books
+. Statistics for Engineers and Scientists William Navidi McGraw Hill
+Education India rd Edition .
+. Data Science from Scratch Joel Grus OReilly st Edition .
+UECS
+WEB TECHNOLOGIES I 
+Course Objectives
+The objectives of this course is to
+ Teach students HTML and CSS for designing webpages.
+ Introduce students to the basics of JavaScript as a programming language.
+ Familiarize students with the Document Object Model and enable them to
+create dynamic webpages that react to user input.
+ Teach students about installing and configuring Apache Server and
+incorporating backend support for their web pages.
+ Introduce students to the newer features available as part of the HTML
+standard.
+ Familiarize students with jQuery and Bootstrap.
+Course Outcomes
+At the end of the course the student will be able to
+ Design visually appealing websites using HTML and CSS.
+ Design solutions for programming questions using JavaScript.
+ Create dynamic webpages by manipulating the Document Object Model.
+ Setup a web server and host a website with backend support.
+ Incorporate the latest HTML features in the webpages designed by them
+with fallback options wherever required.
+ Use Bootstrap and jQuery to enhance the functionality of their websites.
+Course Content
+. Introduction UI Design and UX Internet WWW Web Servers and
+Browsers URLs MIME http Basic Markup Images Hyperlinks Lists
+Tables Forms DataList Canvas Audio and Video GeoLocation Local
+Storage Web Workers Offline Web Applications Drag and Drop.
+. JavaScript Introduction to Client Side Scripting JavaScript Basics Screen
+Input and Keyboard Output Functions Objects Inheritance Hoisting
+Arrays JavaScript Objects Accessing and Modifying DOM Events and
+Event Handlers Load Mouse Synthetic Events Key and Form Related
+Events Event Bubbling Cookies.
+. Apache httpd Server Request Response Formats Basics Configuration
+Debugging .htaccess.
+. PHP Basics File Handling and System Calls Strings and Regular
+Expressions Arrays Cookies Sessions Functions Classes Database
+Access.
+. Bootstrap Grid Systems Layout Tables and Forms Buttons and Images
+Progress Bar Navigations. jQuery Usage Selecting DOM Elements
+Getting and Setting Attributes Changing Styles File Handling and System
+Calls Arrays Cookies Sessions Database Access.
+Prerequisite Courses None.
+Reference Books
+. JavaScript Absolute Beginner s Guide Kirupa Chinnathambi st Edition
+.
+. Programming the World Wide Web Robert W Sebesta Pearson th
+Edition .
+. HTML Up and Running Mark Pilgrim OReilly st Edition .
+UECS
+DISCRETE MATHEMATICS AND LOGIC 
+Course Objectives
+The objectives of this course is to
+ Develop logical thinking and its application to computer science with
+emphasis on the importance of proving statements correctly.
+ Introduce fundamental discrete structures like Sets Functions and
+Relations.
+ Introduce combinatorial objects and counting techniques.
+ Draw similarities between Mathematical Induction and Recurrences and
+use them to design recursive functions.
+ Introduce algebraic structures like Groups Rings and their usage in coding
+theory.
+Course Outcomes
+At the end of the course the student will be able to
+ Comprehend formal logical arguments.
+ Specify and manipulate basic mathematical objects such as Sets
+Functions and Relations and will also be able to verify simple
+mathematical properties that these objects possess.
+ Apply basic counting techniques to solve combinatorial problems.
+ Design a recursive function by developing a Recurrence and prove its
+correctness using Mathematical Induction.
+ Apply the concepts of algebraic structures in coding theory.
+Course Content
+. Logic Propositional Logic Propositional Equivalences Predicates and
+Quantifiers Nested Quantifiers Rules of Inference.
+. Sets Functions and Relations Sets and Set Operations Functions
+Relations and Their Properties Sequences and Summations Countably
+Infinite and Uncountably Infinite Sets Representing Relations Closures of
+Relations Equivalence Relations Partial Orderings.
+. Counting The Sum and the Product Rules The Pigeonhole Principle
+Permutations and Combinations Binomial Coefficients Generalized
+Permutations and Combinations.
+. Induction Recursion and Recurrence Relations Mathematical
+Induction Strong Induction Recursive Definitions Recursive Algorithms
+Recurrence Relations Solving Linear Recurrence Relations.
+. Algebraic Structures The Structure of Algebras Semi Groups Monoids
+and Groups Homomorphisms Normal Subgroups and Congruence
+Relations Rings Integral Domains and Fields Coding Theory Hamming
+Codes.
+Prerequisite Courses None.
+Reference Books
+. Discrete Mathematics and its Applications Kenneth H Rosen th Edition
+Indian adaptation by Kamala Krithivasan Tata McGrawHill .
+. Discrete and Combinatorial Mathematics An Applied Introduction
+Grimaldi Ramana th Edition Pearson .
+UECS
+DIGITAL DESIGN AND COMPUTER ORGANIZATION
+LABORATORY
+
+Course Objectives
+The objectives of this course is to
+ Explain the elements of digital system abstractions such as digital
+representations of information Digital Logic Boolean Algebra State
+Elements and Finite State Machine FSMs.
+ Design simple digital systems based on these digital abstractions using
+the Digital Paradigm including discrete sampled information.
+ Use the Tools of the Trade Basic Instruments Devices and Design Tools.
+ Work in a design team that can propose design successfully implement
+and report on a digital systems project.
+ Communicate the purpose and results of a design project in written and
+oral presentations.
+Course Outcomes
+At the end of the course the student will be able to
+ Achieve knowledge and awareness of various components to design
+stable digital circuits.
+ Analyze and design combinational circuits.
+ Design and develop sequential circuits.
+ Design and develop a basic microprocessor.
+ Translate real world problems into digital logic formulations using Verilog.
+Course Content
+. Implementing Basic Gates and Adder Circuit using Trainer Kit.
+. Verilog Basics I.
+. Verilog Basics II and Combinational Design Adders/ Multiplexers.
+. Designing a basic ALU.
+. Sequential Design Counters.
+. Sequential Design Register Files.
+. Sequential Design FSM.
+. Design of Datapath Unit.
+. HDL Representation of SingleCycle Processor.
+. Mini Project.
+. Mini Project.
+. Mini Project.
+. Mini Project.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering PES University.
+UECS
+DATA STRUCTURES LABORATORY
+
+Course Objectives
+The objectives of this course is to
+ Enable the learner with the concepts of recursion and linear data
+structures viz. Linked Lists Stacks and Queues.
+ Enable the learner with the concepts of nonlinear data structures viz.
+Graphs Trees Heaps Trie and Hashing.
+ Hone the learner such that they obtain the ability to compare different
+implementations of data structures and recognize the advantages and
+disadvantages of the different implementations.
+ Inculcate in the learner the aspects of choosing the appropriate data
+structure and algorithm design method for a specified application and with
+usage of standard library.
+Course Outcomes
+At the end of the course the student will be able to
+ Implement fundamental data structures viz. Lists Stacks Queues Linked
+Lists Binary Trees from first principles.
+ Demonstrate the use of appropriate data structures for a given problem.
+ Design and implement solutions to basic practical problems using
+customized data structures.
+ Develop quick and foolproof solutions to practical problems using abstract
+data types.
+Course Content
+. Write a program to perform the following operations using a Linked List
+a Insert an element at the beginning.
+b Delete the specified element from the list.
+c Display elements of the list.
+. Write a program to perform the following operations using Linked List
+a Insert an element at a specified position.
+b Delete the element at the end of the list.
+c Reverse the nodes in the list.
+d Display elements of the list.
+. Write a program to perform the following operations using Doubly Linked
+List
+a Insert an element at the beginning.
+b Delete the specified element from the list.
+. Write a program to perform the following operations using Doubly Linked
+List
+a Insert an element at a specified position.
+b Delete the element at the end of the list.
+. Create an array or linked list implementation of Stack. Provide PUSH PEEP
+or TOP and POP methods. Check for
+a Overflow
+b Underflow
+exceptions during these operations.
+. Create an array or linked list implementation of Queue. Provide ENQUEUE
+DEQUEUE and FRONT methods. Check for
+a Overflow
+b Underflow
+exceptions during these operations.
+. Covert a given infix expression to postfix expression.
+. Write a program to perform matching of brackets parentheses square
+and flower brackets.
+. Implement a circular queue CQUEUE and implement ENQUEUE and
+DEQUEUE functions.
+. Write a C program to find the number of connected components in
+an undirected graph using DFS traversal.
+. Implement a Binary Search Tree and perform the following
+a Insert a node.
+b Preorder Traversal.
+c Postorder Traversal.
+d Inorder Traversal.
+. Implement a Binary Search Tree and perform the following
+a Find the minimum element in the tree.
+b Find the maximum element in the tree.
+c Find the number of nodes in the tree.
+d Find the number of internal nodes in the tree.
+e Find the number of external nodes in the tree.
+. Implement a Priority Queue using heap with
+a Insert.
+b Remove Min methods.
+. Construct a dictionary of keyvalue pair using Trie and search for a
+value matching a key.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering PES University.
+FOURTH SEMESTER
+UECS
+DESIGN AND ANALYSIS OF ALGORITHMS 
+Course Objectives
+The objectives of this course is to
+ Learn to design and analyze algorithms with an emphasis on the resource
+utilization in terms of time and space.
+ Learn various techniques in development of algorithms so that the effect
+of problem size and architecture design on the efficiency of the algorithm
+is appreciated.
+ Learn to prove the correctness of algorithms.
+Course Outcomes
+At the end of the course the student will be able to
+ Identify the design technique used in an algorithm.
+ Design an algorithm for a problem in a known design technique.
+ Prove the correctness of an algorithm.
+ Analyze the resource utilization of an algorithm in terms of time and
+space.
+ Understand the limits of algorithms and the ways to cope with the
+limitations.
+Course Content
+. Introduction Algorithms Fundamentals of Algorithmic Problem Solving
+Important Problem Types. Analysis of Algorithm Efficiency Analysis
+Framework Asymptotic Notations and Basic Efficiency Classes
+Mathematical Analysis of Non Recursive and Recursive Algorithms.
+. Brute Force Sequential Search Brute Force String Matching Selection
+Sort Bubble Sort DepthFirst Search and BreadthFirst Search Exhaustive
+Search. DivideandConquer Merge Sort Quick Sort Binary Search
+Binary Tree Traversals Multiplication of Large Integers Strassens Matrix
+Multiplication and Master Theorem.
+. DecreaseandConquer Insertion Sort Topological Sorting Algorithms
+for Generating Combinatorial Objects DecreasebyaConstantFactor
+Algorithms. TransformandConquer Presorting Heap Sort AVL Trees
+RedBlack Trees Trees and B Trees.
+. Space and Time Tradeoffs Sorting by Counting Input Enhancement in
+String Matching Horspools and BoyerMoore Algorithms. Dynamic
+Programming Computing a Binomial Coefficient The Knapsack Problem
+and Memory Functions Warshalls and Floyds Algorithms.
+. Greedy Technique Prims Algorithm Kruskals Algorithm Dijkstras
+Algorithm Huffman Trees. Limitations of Algorithm Power Lower
+Bound Arguments Decision Trees P NP and NPComplete Problems.
+Coping with the Limitations of Algorithm Power Backtracking
+BranchandBound.
+Prerequisite Courses UECS Problem Solving with C.
+Reference Books
+. Introduction to the Design and Analysis of Algorithms Anany Levitin nd
+Edition Pearson Education Updated Version of the Book.
+. Introduction to Algorithms Thomas H Cormen Charles E Leiserson
+Ronald L Rivest and Clifford Stein rd Edition PrenticeHall India .
+. Fundamentals of Computer Algorithms Horowitz Sahni Rajasekaran
+/e Universities Press .
+. Algorithm Design Jon Kleinberg Eva Tardos Pearson Education .
+UECS
+DATABASE MANAGEMENT SYSTEMS 
+Course Objectives
+The objectives of this course is to
+ Introduce fundamental concepts terminology and application of
+databases.
+ Teach design concepts and creation of relational databases.
+ Teach basic and advanced SQL commands.
+ Provide overview of database programming and procedural languages.
+ Provide overview of transaction management database recovery and
+security.
+Course Outcomes
+At the end of the course the student will be able to
+ Construct an EntityRelationship ER model from specifications and
+transform it to a relational model.
+ Design databases and apply normalization constraints.
+ Construct queries in SQL or Relational Algebra to perform CRUD Create
+Retrieve Update and Delete operations on database.
+ Understand and apply the concepts of procedural languages.
+ Apply the principles of database transaction management database
+recovery and security.
+Course Content
+. Introduction to Database and Conceptual Design using ERD
+Introduction to Databases Conceptual Model Conceptual Design using
+ERD Entity Weak Entity Relationships Attributes and Keys Roles and
+Constraints Relational Model Constraints and Database Schemas ER to
+Relational Mapping Relational Algebra Unary Operations SELECT and
+PROJECT Set Theory Operations Binary Relational Operations JOIN
+DIVISION Aggregate Functions and Grouping.
+. SQL SQL Data Definition Primary Data Types and Advanced Data Types
+like CLOBBLOB Specifying Constraints in SQL Basic Retrieval Queries
+Insert Delete Update and Schema Change Statements in SQL Advanced
+SQL Queries Specifying General Constraints as Assertions and Triggers
+Views Additional Features of SQL Database Programming PL/SQL.
+. Database Design Informal Design Guidelines for Schemas Functional
+Dependencies Inference Rules Closure Equivalence Minimal Cover
+Normal Forms Based on Primary Keys st nd and rd NF General
+Definitions of Second and Third Normal Forms BoyceCodd Normal Form
+Properties of Relational Decompositions Overview of Higher Normal
+Forms.
+. DBMS Architecture and Database Security ThreeSchema
+Architecture Data Abstraction and Data Independence Database
+Languages and Interfaces DBMS Modules Database Security Access
+Control.
+. Transaction Management and Database Security ACID Properties
+Transactions and Schedules Serializability and Recoverability Precedence
+Graphs Concurrency LockBased Protocols PL Strict PL Protocols
+TimestampBased Protocols DeadlocksDetection and Prevention Crash
+Recovery Advanced Topics NoSQL.
+Prerequisite Courses None.
+Reference Books
+. Fundamentals of Database Systems Ramez Elamsri Shamkant B
+Navathe Pearson th Edition .
+. Database Management Systems Johannes Gehrke and Raghu
+Ramakrishnan McGrawHill rd Edition .
+. Database Systems The Complete Book GarciaMolina J D Ullman and
+Widom nd Edition PrenticeHall .
+. Silberschatz H Korth and S Sudarshan Database System Concepts th
+Edition McGrawHill .
+UECS
+MICROPROCESSOR AND COMPUTER ARCHITECTURE 
+
+Course Objectives
+The objectives of this course is to
+ Introduce concepts of basic processor architecture and its design.
+ Introduce concepts of pipeline architecture and hazards.
+ Bring in the study of memory hierarchy cache memory and its
+optimizations.
+ Introduce multicore/ many core processor architecture and programming.
+Course Outcomes
+At the end of the course the student will be able to
+ Demonstrate ability to understand the design of different instruction sets
+like RISC/ CISC and their addressing modes.
+ Demonstrate the ability to understand the design of a pipelined processor
+and its challenges.
+ Demonstrate the use of tools to analyse the performance of programs on
+different architectures.
+ Design alternative memory hierarchy layouts and optimizations.
+ Demonstrate and appreciate modern trends in architecture such as
+multicore architectures.
+Course Content
+. Introduction to Architecture Introduction ISA Classification RISC and
+CISC Memory Addressing Operands Types and Size Instruction Set 
+Operations Control Flow Instruction Encoding Case Study ARM/ MIPS/
+x Processor.
+. Introduction to Pipeline Stage Pipelining Stage Pipelining
+Pipeline Hazards Data Structural and Branch Hazards Branch Prediction
+Mechanisms Performance Metrics Trends in Technology Power and
+Energy in Integrated Circuits.
+. Memory Hierarchy Mapping Techniques Fully Associative Direct
+Mapped and Set Associative Cache Performance Basic Cache
+Optimizations.
+. I/O and Interrupts Interrupts and Interrupt Handling Mechanisms 
+Polling and Daisy Chain PIC DMA AMBA and APB Bus.
+. Advances in Architecture Introduction to Parallel Architecture
+Amdahls Law Gustafson Law Instruction Level Parallelism MultiCore
+Architecture.
+Prerequisite Courses None.
+Reference Books
+. Computer Organization and Design Patterson and Hennessey th
+Edition Morgan Kaufmann.
+. ARM SystemonChip Architecture Steve Furber nd Edition 
+Pearson India.
+. Computer Architecture A Quantitative Approach Hennessey and
+Patterson th Edition.
+UECS
+THEORY OF COMPUTATION 
+Course Objectives
+The objectives of this course is to
+ Teach students to construct basic machines like DFA NFA which represent
+Regular Languages.
+ To familiarize students to construct Regular Expressions Regular
+Grammars and to identify Non Regular Languages.
+ Teach students to identify Context Free Languages to construct Push
+Down Automata which represent Context Free Languages to convert the
+given grammar to various normal forms and to make use of Membership
+Algorithm.
+ Teach students to understand closure properties of Context Free
+Languages to identify Non Context Free Languages and to construct
+Turing Machines.
+ To familiarize students with concepts like Recursively Enumerable
+languages Recursive Languages PCP and Undecidable Problems.
+Course Outcomes
+At the end of the course the student will be able to
+ Design simple machines like DFA NFA convert NFA to DFA and minimize a
+given DFA.
+ Construct regular expressions for different languages verify that some
+languages are regular and some are not.
+ Analyze the difference between Regular Languages and Context Free
+Languages design Push Down automata construct Context Free
+Grammars convert one form of the grammar to other form.
+ Enumerate the properties of Context Free Grammars verify that some
+languages are context free and some are not design Turing Machines
+analyze the difference between acceptability and decidability.
+ Analyze the difference between Recursive and Recursively Enumerable
+Languages Decidable Languages Turing Recognizable and Co Turing 
+Recognizable some problems that cannot be solved by Turing Machines
+reduce one Undecidable Problem to another Undecidable Problems for
+Recursively Enumerable Languages Post Correspondence Problem
+Undecidable Problem for Context Free Languages.
+Course Content
+. Introduction Computers Computation Computability and Languages.
+Finite Automata and Regular Languages Deterministic Finite Automata
+Non deterministic Finite Automata Constructing Finite Automata
+Equivalence of Deterministic and Non deterministic Finite Automata
+Minimizing Finite Automata.
+. Regular Expressions Regular Grammars and NonRegular
+Languages Regular Expressions Equivalence of Regular Expressions
+Regular Expressions in Practice Regular Grammars. Properties of Regular
+Languages Closure Properties of Regular Languages Answering Questions
+about Regular Languages Pumping Lemma and Identifying Non Regular
+Languages.
+. ContextFree Languages and Grammars Introduction to Context 
+Free Languages and Push Down Automata Context Free Grammars
+Parsing and Ambiguity Conversion to Chomsky and Greibach Normal Forms
+A Membership Algorithm for Context Free Languages.
+. Properties of ContextFree Languages Closure Properties and
+Questions about Context Free Languages Pumping Lemma for Context 
+Free Languages. Turing Machines The Standard Turing Machine
+Constructing Turing Machines Church Turing Thesis.
+. Decidability Recursive and Recursively Enumerable Languages
+Decidable Languages Turing Recognizable and Co Turing Recognizable.
+Undecidability Problems That Cannot Be Solved By Turing Machines
+Reducing One Undecidable Problem To Another Undecidable Problems for
+Recursively Enumerable Languages The Post Correspondence Problem
+Undecidable Problem for Context Free Languages.
+Prerequisite Courses None.
+Reference Books
+. An Introduction to Formal Languages and Automata Peter Linz th
+Edition Jones and Bartlett New Delhi India .
+. Theory of Computation Michael Sipser Cengage Learning New Delhi
+India .
+. Introduction to Automata Theory Languages and Computation John E
+Hopcroft Rajeev Motwani Jeffrey D Ullman rd Edition Pearson Education
+New Delhi India .
+. Theory of Computation A ProblemSolving Approach Kavi Mahesh
+Wiley India New Delhi .
+UECS
+DESIGN AND ANALYSIS OF ALGORITHMS LABORATORY 
+
+Course Objectives
+The objectives of this course is to
+ To design and implement algorithms of Brute Force technique.
+ To design and implement algorithms with Divide and Conquer technique.
+ To design and implement algorithms with Decrease and Conquer and
+Transform and conquer techniques.
+ To design and implement algorithms with Space and Time Tradeoffs.
+ To design and implement optimization algorithms using Dynamic
+Programming and Greedy technique.
+Course Outcomes
+At the end of the course the student will be able to
+ Design and implement algorithms of Brute Force Technique.
+ Design and implement algorithms with Divide and Conquer technique.
+ Design and implement algorithms with Decrease and Conquer and
+Transform and Conquer techniques.
+ Design and implement algorithms with Space and Time Tradeoffs.
+ Design and implement optimization algorithms using Dynamic
+Programming and Greedy technique.
+Course Content
+. Brute Force Implementation of Sequential Search Algorithm.
+. Brute Force Implementation of Brute Force String Matching Algorithm.
+. Brute Force Implementation of Selection Sort and Bubble Sort
+Algorithms.
+. Brute Force Implementation of Depth First Search and Breadth First
+Search Algorithms.
+. Brute Force Exhaustive Search Algorithm for solving the Traveling
+Salesman Problem.
+. DivideandConquer Implementation of Merge Sort and Binary Search
+Algorithms.
+. DivideandConquer Implementation of Quick Sort Algorithm.
+. DecreaseandConquer Implementation of Insertion Sort Algorithm and
+Topological Sort.
+. TransformandConquer Implementation of AVL Trees.
+. a TransformandConquer Implementation of Heap Sort
+Algorithm.
+b Space and Time Tradeoffs Implementation of Distribution Counting
+Sort Algorithm.
+. Space and Time Tradeoffs Implementation of Horspools
+Algorithm for String Matching.
+. Dynamic Programming Implementation of Warshalls and Floyds
+Algorithms.
+. Greedy Technique Implementation of Dijkstras Algorithm.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering PES University.
+UECS
+MICROPROCESSOR AND COMPUTER ARCHITECTURE
+LABORATORY 
+Course Objectives
+The objectives of this course is to
+ Implement assembly language programs and develop strong
+competencies in contemporary ISAs.
+ Develop edit compile and debug assembly language programs using
+present day simulators.
+ Know various addressing modes that are defined in a given instruction set
+architecture and illustrate how machine language instructions in that
+architecture identify the operands of each instruction.
+ Practice interfacing experiments using various sensors with Arduino board.
+ Learner to imbibe the skills of formulation of a complex problem design a
+suitable solution using Arduino/ Raspberry Pi processors and demonstrate
+the end results.
+Course Outcomes
+At the end of the course the student will be able to
+ Inculcate the importance of instruction set architecture and their
+fundamental concepts using assembly language programming.
+ Demonstrate editing compiling executing and debugging an assembly
+language program of a contemporary microprocessor.
+ Demonstrate the usage of subroutines and recursion supported by the
+ISA.
+ Imbibe strong assembly language programming skills by implementing
+solutions to problems using simulators.
+ Instilling the idea to formulate a complex problem definition approach to
+solve the problem methodology to apply and implement suitable
+algorithm and check for the final results.
+Course Content
+. Introduction to Instruction Set ARM/ x Processor. Sample programs
+using Simulator.
+. Programs on ARM/ x using Simulator.
+. Programs on ARM/ x using Simulator.
+. Case Study Stage Pipeline using Simulator.
+. Case Study Stage Pipeline using Simulator.
+. Case Study Data Hazards using Simulator RAW WAR WAW.
+. Case Study Memory Performance Analysis using Simulator.
+. Confirmation of Mini Project Titles and Literature Survey.
+. Mini Project.
+. Mini Project.
+. Mini Project Evaluation.
+. Simple Scalar Simulator Memory Performance Simcache.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering PES University.
+FIFTH SEMESTER
+UECS
+COMPUTER NETWORKS 
+Course Objectives
+The objectives of this course is to
+ Impart the core principles of Information Communication Technology
+which is an inevitable part of the modern Internet starting from the
+layered architecture.
+ Teach the principles of Application Layer and introduce sample popular
+Application Layer protocols HTTP DNS.
+ Provide an insight into the most widely used Transport Layer protocols 
+TCP and UDP. Convey dimensions of Network layer through the Internet
+Protocol that glues billions of hosts across the globe and associated
+routing protocols.
+ Give an essence of the Data Link Layer building blocks of Local Area
+Network and consolidate how all layers are involved to provide a browsing
+application.
+ Provide the experience of use of network tools to imbibe the diagnostic
+and debugging skills to deal with networking issues.
+Course Outcomes
+At the end of the course the student will be able to
+ Sketch the big picture of complex Internet in terms of building blocks
+organized layered architecture.
+ Analyze HTTP DNS and other protocols and use socket programming.
+ Illustrate how reliable communication is achieved on a public internet
+using TCP and select the right transport protocol for a given application.
+ Design subnets configure routers in simulated environment and analyze
+IP using a protocol analyzer.
+ Demonstrate the role of multiple protocols used in all the layers while
+running a popular application like browsing.
+Course Content
+. Introduction to Computer Networks and the Internet Building
+Blocks of Communication Networks and Internet Elements of Network
+Edge Access Networks and Physical Media Network Core Concepts of
+Switching Layered Architecture Introduction List of Responsibility and
+Functions of Each Layer Introduction to Network Tools such as Wireshark
+nc ssh.
+. Application Layer Network Application Principles The Web and HTTP 
+Overview HTTP Message Format Web Caching Cookies and
+Authentication DNS Services DNS Hierarchy DNS Records Socket
+Programming with TCP and UDP.
+. Transport Layer Introduction to Transport Layer Services UDP Protocol
+Principles of Reliable Data Transfer Stop N Wait protocol Sliding
+Window Concepts Go Back N Protocol TCP Features Header Connection
+Management Flow Control Error Control and Congestion Control TCP
+Streaming Vs. UDP Message Oriented Delivery.
+. Network Layer and Internet Protocol IPV Datagram Format
+Fragmentation Addressing Subnet Principles Forwarding Mechanisms
+DHCP NAT ICMP ARP IP Static Routing Hierarchical Addressing and
+Route Aggregation Longest Prefix Match Introduction to IPTABLES
+Introduction to IPV.
+. Link Layer and LAN Introduction to Link Layer Error Detection
+Principles CRC Building Blocks of Local Area Network LAN Switch 
+Working Principles Introduction to MAC Protocols CSMA/CD
+Retrospective A Web Page Request Case Study Introduction to Wireless
+LAN and WPA/ WPA and Access Point.
+Prerequisite Courses None.
+Reference Books
+. Computer Networking A Top Down Approach James F Kurose Keith
+W Pearson th Edition .
+. Computer Networks A Top Down Approach Behrouz A Forouzan
+Firouz Mosharraf Pearson Special Indian Edition .
+UECS
+INTRODUCTION TO OPERATING SYSTEMS 
+Course Objectives
+The objectives of this course is to
+ Provide an understanding on the various components of an Operating
+System.
+ The course focuses on fundamental problems and optimal solutions for
+resource management in operating systems such as process disk and
+memory management.
+ The course will introduce design principles and tradeoffs in the design of
+Operating Systems.
+ The course will also introduce the interface for interacting with a
+contemporary Operating system such as Linux.
+Course Outcomes
+At the end of the course the student will be able to
+ Gain extensive knowledge on principles and modules of Operating
+Systems.
+ Understand the design of various algorithms for scheduling and their
+relative performance.
+ Design pieces of operating systems such as process management
+concurrent processes and threads memory management and virtual
+memory.
+ Use tools and interface of the operating system.
+ Explore design tradeoffs in designing various components of an Operating
+System.
+Course Content
+. Introduction and CPU What Operating Systems Do? Introduction to
+Virtualization of Resources CPU/ Memory Concurrency Persistence.
+The Process Abstraction Process States Description Control API fork/
+exec. Scheduling Workload Assumptions Metrics Types of
+Scheduling FIFO SJF Response Time Round Robin Multi Level Feedback
+Queue. Case Study Linux/ Windows/ UNIX Scheduling Algorithms.
+. Concurrency Introduction and Threads Types of Threads Multi Core/
+Multi Threading Shared Data Thread API Thread Creation
+Completion Locks Condition Variables Compilation. Mutual Exclusion
+and Synchronization Software Approaches Principles of Concurrency
+Hardware Support Semaphores Message Passing Readers Writers
+Problem pthread Locks. Deadlocks and Starvation Principles of
+Deadlock Tools for Detection.
+. Memory Requirements Partitioning Paging Segmentation Memory API
+ malloc/ free Errors. Virtual Memory Hardware and Control Structures
+OS Support Address Translation Dynamic Relocation Segmentation
+Paging TLBs Context Switches Replacement Policy LRU Design
+Alternatives Inverted Page Tables Bigger Pages Swapping. Case Study
+Linux/ UNIX Memory Management.
+. Persistence I/O Devices System Architecture Canonical Devices/
+Protocol Organization of I/O CPU Overheads and Interrupts DMA OS
+Design Issues Device Interaction Device Driver Buffering. Disk Drives
+Performance Parameters Geometry I/O Time Computation Disk
+Scheduling Policies Data Integrity and Protection Checksum.
+. File Systems File Organization and Access Directories Sharing Security
+ Access Controls Record Allocation Secondary Storage Management.
+Case Study UNIX/ Windows/ Linux File System. FS Interface Creating/
+Reading/ Writing Random Access fsync Renaming Hard Links and
+Symbolic Links Mounting File Systems. Security Intruders and Malicious
+Software Buffer Overflow OS Hardening Case Study UNIX/ Windows.
+Prerequisite Courses UECS Data Structures.
+Reference Books
+. Operating Systems Internals and Design Principles William Stallings
+th Edition Pearson .
+. Operating Systems Three Easy Pieces Remzi Arpaci Dusseau and
+Andrea Arpaci Dusseau http//pages.cs.wisc.edu/remzi/OSTEP/
+. Advanced Programming in the Unix Environment Richard Stevens and
+Stephen A Rago Pearson rd edition .
+. Operating System Concepts Abraham Silberschatz Peter Baer Galvin
+Greg Gagne th Edition John Wiley and Sons .
+. Operating Systems Harvey Deitel Paul Deitel David Choffnes rd
+Edition Prentice Hall.
+. Modern Operating Systems Andrew S Tannenbaum rd Edition Pearson.
+UECS
+PRINCIPLES OF PROGRAMMING LANGUAGES 
+Course Objectives
+The objectives of this course is to
+ Enable students to learn constructs in a language.
+ Enable students to design a new construct/ language.
+ Enable students to choose appropriate language for real world problem
+solving based on the required features.
+ Enable students to evaluate various language design features considering
+the programming paradigm.
+ Introduce various paradigms and their support in language design.
+Course Outcomes
+At the end of the course the student will be able to
+ Choose a particular language for problem solving depending on the
+application domain.
+ Analyze and compare programming language concepts.
+ Analyze the implementation issues related to a language design.
+ Identify the language design features of any language and evaluate them.
+ Identify language features required for supporting various paradigms.
+Course Content
+. Preliminary Concepts Reasons for Studying Concepts of Programming
+Languages Programming Domains Language Evaluation Criteria
+Influences on Language Design Language Categories Programming
+Paradigms Imperative Object Oriented Functional Programming Logic
+Programming Programming Language Implementation Compilation and
+Virtual Machines Programming Environments. Names Binding Type
+Checking and Scopes Names Variables Binding of Attributes to
+Variables Type Bindings Type Inferencing Type Checking Strong Typing.
+. Type Checking and Scopes continued Type Equivalence Scope
+Scope and Lifetime Referencing Environments. Data types Introduction
+Primitives Character User Defined Array Associative Record Union
+Pointer and Reference Types Design and Implementation Issues Related
+to These Types Names Variable Concept of Binding Type Checking
+Strong Typing Type Compatibility Named Constants Variable
+Initialization. Expressions and Statements Short Circuit Evaluation
+Mixed Mode Assignment Assignment Statements Cascading Operators.
+. Control Structures Statement Level Compound Statements Selection
+Iteration Unconditional Statements Guarded Commands. Subprograms
+and Blocks Fundamentals of Subprograms Scope and Lifetime of
+Variable Static and Dynamic Scope Design Issues of Subprograms and
+Operations Local Referencing Environments Parameter Passing Methods
+Overloaded Subprograms Generic Subprograms Parameters that are
+Subprogram Names.
+. Functions continued Design Issues for Functions User Defined
+Overloaded Operators Co Routines and Function Closures. Abstract
+Data types Abstractions and Encapsulation Introduction to Data
+Abstraction Design Issues Object Oriented Concepts with Reference to
+Java and Python.
+. Exception handling Exceptions Specifications Exception Propagation.
+Logic Programming Language Introduction and Overview of Logic
+Programming Basic Elements of Prolog Application of Logic Programming.
+Functional Programming Languages Introduction Fundamentals of
+FPL Applications of Functional Programming Languages and Exploration of
+the Features Comparison of Functional and Imperative Languages.
+Prerequisite Courses None.
+Reference Books
+. Concepts of Programming Languages Robert W Sebesta Pearson
+Education th Edition .
+. Programming Language Pragmatics Michael L Scott Elsevier rd
+Edition .
+. Programming Languages Design and Implementation Pratt and
+Zelkowitz Prentice Hall/ Pearson Education th Edition .
+UECS
+COMPUTER NETWORKS LABORATORY 
+Course Objectives
+The objectives of this course is to
+ Make familiar with some of the popular software tools being used in the
+networking industry.
+ Facilitate the student to see the packet and sense the protocol in both
+virtual and real time environment as a result understand the computer
+networks domain.
+ Impart the principles of architecting a typical network through design
+engineering and configuration.
+ Develop the skills of analyzing a protocol which would help in
+troubleshooting a network.
+ Create an environment to apply programming knowledge and skills to
+computer network domain.
+Course Outcomes
+At the end of the course the student will be able to
+ Effectively use the industry standard network simulation tool CISCO
+PACKET TRACER and analysis tool Wireshark.
+ Interpret a protocol in terms of syntax semantics and sequence of
+actions.
+ Design engineer and test the network in a virtual environment.
+ Analyze standard protocols using industry standard protocol analyzer.
+ Apply algorithmic approach and coding to implement the principles/
+protocols of networking.
+Course Content
+. Study the principle of a switched network using the simulator CISCO
+PACKET TRACER.
+. Study the concept of layered architecture using the protocol analyzer 
+Wireshark.
+. Analyze HTTP protocol in different scenarios.
+. Design and analyze a Domain Name Resolution System.
+. Write a program to create a simple web server client system using
+socket programming.
+. Write a program to illustrate reliable data transfer in internet.
+. Analyze Transmission Control Protocol in different scenarios.
+. Analyze the protocols IP ICMP and DHCP.
+. Design and engineer a router based wide area Network
+. Write a program to illustrate Distance Vector Routing.
+. Simulate a switched LAN and study Spanning Tree Algorithm.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering PES University.UECS
+INTRODUCTION TO OPERATING SYSTEMS LABORATORY 
+
+Course Objectives
+The objectives of this course is to
+ Teach students the design aspects of operating system.
+ Teach process management concepts and techniques.
+ Teach memory management concepts.
+ Enable students to learn the problems in interprocess communication and
+the possible solutions.
+ Imbibe students with disk scheduling concepts and techniques.
+Course Outcomes
+At the end of the course the student will be able to
+ Write programs to implement the basic functionality of an operating
+system and its components.
+ Write programs to implement the various scheduling algorithms and
+analyze their performance tradeoffs.
+ Implement algorithmic solutions to process synchronization problems.
+ Implement algorithmic solutions to handle deadlocks.
+ Write programs to implement memory and device management.
+Course Content
+Each lab will be of weeks duration and will involve a component of design and
+a component of analysis.
+. Objective Process Management Build a shell and execute
+commands. Include piping and standard I/O redirection. Implement a
+command to list all the processes on the system and their threads.
+a. Objective
+i. Demonstrate ability to work with process management system
+calls like fork exec pthreads.
+ii. Design and performance tradeoffs between using threads and
+processes.
+iii. Demonstrate ability to use inter process communication and
+decide when to use a mutex vs a semaphore.
+. Objective Memory Management Write a program to allocate
+memory that pushes another executing process out of memory into swap.
+Determine how many pages are accessed by the new process. Compute
+page fault rate.
+a. Objective
+i. Understand the memory layout of a process/ thread. Map this
+to types of variables and scope in a program.
+ii. Analyze the paging system using tools to understand
+scenarios of swapping.
+. Objective File Systems and Device Management Build a user level
+file system on a layer of an abstract block device. Design the metadata
+layout of the file system.
+a. Analysis Analyze the system fragmentation v/s performance when
+block size is modified.
+. Putting It All Together Boot Minix and write a new system call into
+Minix. Modify the default scheduling algorithm for Minix.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering PES University.
+ELECTIVE 
+UECS
+ADVANCED ALGORITHMS 
+Course Objectives
+The objectives of this course is to
+ Understand basics of Recurrences and Amortized Complexity Analysis of
+Data Structures.
+ Understand a few String Matching/ Prediction Algorithms and their
+applications.
+ Understand the design strategy of Dynamic Programming.
+ Understand some Polynomial and Number Theoretic Algorithms.
+ Learn about Randomized Algorithms.
+Course Outcomes
+At the end of the course the student will be able to
+ Perform Amortized Analysis on complex data structures.
+ Decide usage of Randomized Algorithms for practical intractable
+problems.
+ Compare and evaluate String Matching Algorithms.
+ Apply Number Theoretic concepts in applications like Cryptography.
+ Solve complex problems using Dynamic Programming.
+ Implement an efficient FFT Algorithm.
+Course Content
+. Basics of Complexity Notations Randomized Algorithms and Amortized
+Complexity Analysis.
+. String Algorithms String Matching BoyerMoore RabinKarp Finite
+Automata and KnuthMorrisPratt Algorithms Suffix Trees Applications
+of Suffix Trees Regular Expression Searches Using Suffix Trees.
+. Number Theoretic Algorithms Modular Arithmetic RSA Cryptography
+Primality Testing and Factorization.
+. Dynamic Programming Elements of Dynamic Programming Problems 
+CoinRow RodCutting MatrixChain Multiplication Longest Common
+Subsequence.
+. Polynomials and FFT Representation of Polynomials DFT and FFT
+Efficient Implementation of FFT.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. Introduction to Algorithms T H Cormen C E Leiserson R L Rivest and C
+Stein PHI rd Edition .
+. The Algorithm Manual Steven Skiena Springer ISBN .
+UECS
+ADVANCED DATABASE MANAGEMENT SYSTEMS 
+Course Objectives
+The objectives of this course is to
+ Acquire knowledge on Parallel and Distributed Databases.
+ Learn topics of Data Warehousing for solving analytical data processing
+problems.
+ Learn basics of NoSQL Databases and Big Data systems.
+ Learn specialized Application Databases.
+ Choose the appropriate database and storage technique.
+Course Outcomes
+At the end of the course the student will be able to
+ Analyze issues related to implementing relational database for large
+datasets.
+ Apply Data Warehousing techniques for solving analytical processing
+requirements.
+ Apply Parallel and Distributed Database approach to problems of large
+databases.
+ Select the NoSQL nonrelational database approach to the BigData
+problem.
+ Apply specialized databases for advanced applications.
+Course Content
+. Review of Relational Data Model Reporting and Analytical databases
+Data Warehousing OLAP SQL Analytical Functions Column Oriented
+Storage Introduction to Data Mining.
+. Parallel and Distributed Databases Concepts Parallel and Distributed
+databases and issues.
+. Introduction to NoSQL Emergence of NoSQL databases Characteristics
+of NoSQL Categories of NoSQL systems CAP Theorem. NoSQL
+Databases Document Databases with Example MongoDB CouchDB
+Column Oriented Databases with Example Cassandra KeyValues Stores
+with Example Riak Voldemort Graph Databases with Example NeoJ.
+. Introduction to Big Data What is Big Data Hadoop HDFS and Apache
+Spark.
+. Specialty Databases InMemory Databases for RDBMS VoltDB and Key
+ Value Store Redis TimeSeries DBMS Search Engines Spatial
+Temporal Deductive.
+Prerequisite Courses UECS Database Management Systems.
+Reference Books
+. Database System Concepts Silberschatz Korth and Sudarshan th
+Edition McGraw Hill .
+. Fundamentals of Database Systems Elmasri and Navathe th Edition
+Pearson Education .
+. Data Mining Concepts and Techniques Jiawei Han et. al. rd Edition
+Morgan Kaufmann .
+. NoSQL Distilled Pramod J Sadalage and Martin Fowler Addison Wesley
+.
+. Seven Databases in Seven Weeks A Guide to Modern Databases and the
+NoSQL Movement Eric Redmond and Jim R. Wilson O Reilly .
+UECS
+BIG DATA 
+Course Objectives
+The objectives of this course is to
+ Provide an introduction to Big Data.
+ Introduce storage technologies for Big Data.
+ Introduce computational issues and infrastructure for Big Data.
+ Introduce algorithms for processing Big Data.
+ Application of Big Data techniques to various real life problems.
+Course Outcomes
+At the end of the course the student will be able to
+ Explore various characteristics of Big Data problems.
+ Understand principles and design alternative storage technologies for Big
+Data.
+ Design Big Data applications using available infrastructure for Big Data
+through practical assignments.
+ Apply and differentiate between algorithms for processing Big Data and
+Normal Algorithms.
+ Apply Big Data techniques in real life problems through a groupbased
+project.
+Course Content
+. Introduction Big Data Definition Challenges and Opportunities with Big
+Data Data Intensive Scientific Discovery and the Role of Big Data History
+Map Reduce Storage HDFS Computation Model Case Study Google
+YARN Introduction Introduction to Sample Big Data Algorithms Matrix
+Multiplication and Page Rank.
+. Big Data Infrastructures Compute/ Storage Overview of Hadoop
+Ecosystem Relational Operators on Map Reduce Case Study HIVE Other
+storage Hbase.
+. In Memory Computation Issues with Hadoop Spark and Scala
+Resource Management using Mesos Complexity of Big Data Algorithms.
+. Real Time Analysis Streaming Analysis Use Cases Streaming Spark
+Storm Streaming Algorithms Case Study.
+. Advance Analytics on Big Data Clustering Algorithms and
+Collaborative Filtering Case Study Mahout/ MLLib/ Tensor Flow/ Watson.
+Prerequisite Courses UECS Database Management Systems.
+Reference Books
+. Hadoop The Definitive Guide Tom White O Reilly th Edition .
+. Big Data Analytics Beyond Hadoop RealTime Applications with Storm
+Spark and More Hadoop Alternatives Vijay Srinivasa Agneeswaran
+Pearson Education .
+. Mining of Massive Datasets Anand Rajaraman Jure Leskovec Jeffrey D
+Ullman Cambridge Press .
+. Spark Cluster Computing with Working Sets Zaharia M Chowdhury M
+Franklin M J Shekhar S Stoica I HotCloud ACM New York .
+. Resilient Distributed Datasets A Faulttolerant Abstraction for Inmemory
+Cluster Computing Zaharia Matei et al. Proceedings of the th USENIX
+Conference on Networked Systems Design and Implementation USENIX
+Association .
+. Learning Spark Matei Zaharia Patrick Wendell Andy Konwinski Holden
+Karau. O Reilly Media .
+UECS
+MULTIMEDIA COMPUTING 
+Course Objectives
+The objectives of this course is to
+ Teach the basic concepts of Multimedia and Hypermedia World Wide Web
+and Overview of Multimedia Software Tools and exploring multimedia
+applications.
+ Train students to understand graphics and image data representation
+color in image and video and types of video signals and basics of digital
+audio.
+ Teach various text image and video compression standards.
+ Identify the current and future issues related to multimedia technology.
+ Identify both theoretical and practical aspects in designing multimedia
+systems surrounding the emergence of multimedia technologies using
+contemporary hardware and software technologies.
+Course Outcomes
+At the end of the course the student will be able to
+ Apply different compression techniques depending on the multimedia
+object streams interpret the various standards for multimedia
+communications and their features.
+ Demonstrate multimedia and its applications to potential clients.
+ Identify and describe the function of the general skill sets in the
+multimedia industry.
+ Identify the basic hardware and software requirements for multimedia
+development and playback.
+ Design and develop applications and exercise proper design choices and
+meet Quality of Service requirements.
+Course Content
+. Introduction to Multimedia What is Multimedia? Multimedia and
+Hypermedia World Wide Web Overview of Multimedia Software Tools.
+Graphics and Image Data Representation Graphic/ Image Data
+Types Popular File Formats. Color in Image and Video Color Science
+Color Models in Images Color Models in Video.
+. Fundamental Concepts in Video Types of Video Signals Analog
+Video Digital Video. Basics of Digital Audio Digitization of Sound
+MIDI Musical Instruments Digital Interface Quantization and
+Transmission of Audio.
+. Lossless Compression Algorithms Introduction Basics of
+Information Theory Run Length Coding Variable Length Coding
+Dictionary Based Coding Arithmetic Coding Lossless Image
+Compression. Lossy Compression Algorithms Introduction
+Distortion Measures The RateDistortion Theory Quantization Transform
+Coding Wavelet Based Coding Wavelet Packets Embedded Zero Tree of
+Wavelet Coefficients Set Partitioning in Hierarchical Trees.
+. Image Compression Standards The JPEG Standard The JPEG
+Standard The JPEGLS Standard BiLevel Image Compression
+Standards. Basic Video Compression Techniques Introduction to
+Video Compression Video Compression Based on Motion Compensation
+Search for Motion Vectors H. H..
+. MPEG Video Coding I MPEG and Overview MPEG MPEG.
+MPEG Video Coding II MPEG and Beyond Overview of MPEG
+ ObjectBased Visual Coding in MPEG Synthetic Object Coding in
+MPEG MPEG Object Types Profiles and Levels MPEG
+Part/H. MPEG MPEG.
+Prerequisite Courses None.
+Reference Books
+. Fundamentals of Multimedia ZeNian Li and Mark S. Drew Pearson
+Education Inc. .
+ELECTIVE 
+UECS
+COMPUTER GRAPHICS AND VISUALIZATION 
+Course Objectives
+The objectives of this course is to
+ Impart the basics of computer graphics different graphics systems and
+applications of computer graphics.
+ Discuss various algorithms for scan conversion and filling of basic objects
+and their comparative analysis.
+ Introduce the use of geometric transformations on graphics objects and
+their application in composite form.
+ Impart frame extraction with different clipping algorithms and
+transformation to a graphics display device.
+ Introduce projections and visible surface detection techniques for display
+of D scene on D screen and rendering of projected objects to naturalize
+the scene in D view.
+Course Outcomes
+At the end of the course the student will be able to
+ Demonstrate the fundamentals of computer graphics and display pipeline
+systems.
+ Be able to draw different D objects using scan conversion algorithms and
+also fill basic objects and perform their comparative analysis.
+ Use geometric transformations on graphics D objects and demonstrate
+their application in composite form.
+ Be able to extract a D object using clipping algorithms and apply
+transformations to a graphics display system
+ Apply Graphics in greater depth to more complex courses like Image
+Processing Virtual Augmented Reality etc.
+Course Content
+. Implementation Basic Implementation Strategies Four Major Tasks
+Clipping LineSegment Clipping Polygon Clipping Clipping of Other
+Primitives Clipping in Three Dimensions Rasterization Bresenhams
+Algorithm Polygon Rasterization HiddenSurface Removal Anti Aliasing
+Display Considerations.
+. Introduction Applications of Computer Graphics A Graphics System
+Images Physical and Synthetic Imaging Systems The Synthetic Camera
+Model The Programmers Interface Graphics Architectures
+Programmable Pipelines Performance Characteristics Graphics
+Programming The Sierpinski Gasket Programming Two Dimensional
+Applications. The OpenGL The OpenGL API Primitives and Attributes
+Color Viewing Control Functions The Gasket Program Polygons and
+Recursion The Three Dimensional Gasket Plotting Implicit Functions.
+. Geometric Objects and TransformationsI Scalars Points and
+Vectors ThreeDimensional Primitives Coordinate Systems and Frames
+Modelling a Colored Cube Affine Transformations Rotation Translation
+and Scaling.
+. Geometric Objects and TransformationsII Geometric Objects and
+Transformations Transformation in Homogeneous Coordinates
+Concatenation of Transformations OpenGL Transformation Matrices
+Interfaces to Three Dimensional Applications Quaternions.
+. Viewing Classical and Computer Viewing Viewing with a Computer
+Positioning of the Camera Simple Projections Projections in OpenGL
+Introduction to ParallelProjection Matrices PerspectiveProjection
+Matrices.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. Interactive Computer Graphics A TopDown Approach with OpenGL
+Edward Angel Pearson Education th Edition .
+. Computer Graphics Using OpenGL Francis S Hill Jr. Stephen M Kelley 
+rd Edition PHI .
+. Computer Graphics James D Foley Andries Van Dam Steven K Feiner
+John F Hughes Pearson Education .
+. Computer Graphics OpenGL Version Donald Hearn and Pauline Baker 
+Pearson Education rd Edition .
+UECS
+DATA ANALYTICS 
+Course Objectives
+The objectives of this course is to
+ Provide an insight into data preprocessing summarization and
+visualization techniques.
+ Teach role of data analytics in business decision making.
+ Teach model building and validation using various techniques.
+ Develop handson experience in a relevant project based on reallife data.
+ Teach the skill of effectively communicating the results of data analytics.
+Course Outcomes
+At the end of the course the student will be able to
+ Perform exploratory data analysis on a given set of data including
+visualization techniques.
+ Build regression models and use them for prediction.
+ Analyze data to infer underlying patterns and formulate
+recommendations.
+ Build time series models and use them for prediction.
+ Perform text analysis involving classification and clustering.
+Course Content
+. Exploratory Data Analysis and Visualization Introduction Data
+Sources Data Cleaning Dimensionality Reduction Data Summarization
+Visualization Graphics and Plotting R Graphics and Relevant Packages
+and Maps Case Studies.
+. Regression Analysis Multiple Regression Logistic Regression Case
+Studies.
+. Recommendation Systems Mining of Association Rules Other
+Techniques to Design Recommendation Systems.
+. Time Series Analysis Simple Smoothing Trend Analysis Decomposing
+Time Series Exponential Smoothing ARIMA Modelling Case Studies.
+. Text Analytics Text Processing Lexical Analysis Text Classification Text
+Clustering Case Studies.
+Prerequisite Courses UECS Introduction to Data Science.
+Reference Books
+. R for Data Science Dan Toomey PACKT Publishing .
+. Practical Data Science with R Nina Zumel and John Mount Manning
+Publications .
+. Building a Recommendation System with R Suresh R Gorakala and
+Michelle Usuelli PACKT Publishing .
+. Learning Predictive Analytics with R Eric Mayor PACKT Publishing .
+. Data Analysis with Open Source Tools Philip K Janert O Reilly .
+. Data Mining Concepts and Techniques Jiawei Han
+Micheline Kamber and Jian Pei The Morgan Kaufmann Series in Data
+Management Systems rd Edition .
+UECS
+FUZZY LOGIC 
+Course Objectives
+The objectives of this course is to
+ Learn about formal methods to represent vague and less
+mathematical knowledge.
+ Combine some of the traditional design approaches with Fuzzy Logic.
+ Exposure to new and exciting applications of vague knowledge
+processing.
+Course Outcomes
+At the end of the course the student will be able to
+ Have a broad knowledge of Fuzzy Logic operations.
+ Demonstrate the ability to think critically in making decisions based on
+Fuzzy Logic.
+ Apply a new thinking methodology to real life problems including
+engineering ones.
+Course Content
+. Introduction Classical Sets and Fuzzy Sets The Case for
+Imprecision A Historical Perspective The Utility of Fuzzy Systems
+Limitations of Fuzzy Systems The Illusion Uncertainty and Accuracy
+Uncertainty and Information Fuzzy Sets and Membership Chance versus
+Fuzziness Sets as Points in Hypercube Classical Sets Operations on
+Classical Sets Properties of Classical Crisp Sets Mapping of Classical
+Sets to Functions Fuzzy Sets Fuzzy Set Operations Properties of Fuzzy
+Sets Alternative Fuzzy Set Operations.
+. Classical Relations and Fuzzy Relations Cartesian Product Crisp
+Relations Cardinality of Crisp Relations Operations on Crisp Relations
+Properties of Crisp Relations Composition Fuzzy Relations Cardinality of
+Fuzzy Relations Operations on Fuzzy Relations Properties of Fuzzy
+Relations Fuzzy Cartesian Product and Composition Non Interactive
+Fuzzy Sets Tolerance and Equivalence Relations Crisp Equivalence
+Relation Crisp Tolerance Relation Fuzzy Tolerance and Equivalence
+Relations Value Assignments Cosine Amplitude MaxMin Method Other
+Similarity Methods.
+. Properties of Membership Functions Fuzzification and
+Defuzzification Features of the Membership Function Various Forms
+Fuzzification Defuzzification to Crisp Sets Lambda Cuts for Fuzzy Sets
+Lambda Cuts for Fuzzy Relations Defuzzification to Scalars
+Development of Membership Functions Membership Value Assignments
+Intuition Inference Rank Ordering Neural Networks Genetic Algorithms
+Fuzzy Arithmetic and Extension Principle Extension Principle Crisp
+Functions Mapping and Relations Functions of Fuzzy Sets Extension
+Principle Fuzzy Transform Mapping Practical Considerations Fuzzy
+Arithmetic Interval Analysis in Arithmetic Approximate Methods of
+Extension Vertex Method DSW Algorithm Restricted DSW Algorithm
+Comparisons.
+. Logic and Fuzzy Systems Classical Predicate Logic Tautologies
+Contradictions Equivalence Exclusive OR and Neither Exclusive NOR
+Logical Proofs Deductive Inferences Fuzzy Logic Approximate Reasoning
+Other forms of the Implication Operation. Fuzzy Systems Natural
+Language Linguistic Hedges Rule Based Systems Multiple Conjunctive
+Antecedents Multiple Disjunctive Antecedents Aggregation of Fuzzy
+Rules Graphical Techniques of Inference.
+. Decision Making with Fuzzy Information Fuzzy Synthetic Evaluation
+Fuzzy Ordering Non Transitive Ranking Preference and Consensus Multi
+Objective Decision Making Fuzzy Bayesian Decision Method Decision
+Making under Fuzzy States and Fuzzy Actions. Fuzzy Classification
+Classification by Equivalence Relations Crisp Relations Fuzzy Relations
+Cluster Analysis Cluster Validity cMeans Clustering Hard cMeans
+HCM Fuzzy cMeans FCM Classification Metric Hardening the Fuzzy c
+Partition Similarity Relations from Clustering.
+Prerequisite Courses UECS Discrete Mathematics and Logic.
+Reference Books
+. Fuzzy Logic with Engineering Applications Timothy J. Ross Wiley India
+rd Edition .
+. Fuzzy Sets and Fuzzy Logic Theory and Applications George K Klirand
+and Bo Yuan Prentice Hall .
+. Neural Networks and Fuzzy Systems A Dynamical System Approach B
+Kosko PHI
+.
+UECS
+SCIENTIFIC COMPUTING 
+Course Objectives
+The objectives of this course is to
+ Formulate and solve engineering problems using numerical techniques.
+ Understand mathematical basis for numerical computing.
+ Understand inherent errors in numerical computing and deal with them.
+ Devise computational algorithms for techniques studied.
+ Exposure to software packages for numerical computing.
+Course Outcomes
+At the end of the course the student will be able to
+ Find roots of equations.
+ Solve systems of linear algebraic equations.
+ Compute derivatives of functions.
+ Compute integrals of functions.
+ Find numerical solutions to systems of ordinary differential equations.
+ Estimate errors for methods used.
+Course Content
+. Modelling Problem Solving and Error Analysis Using Mathematical
+Models to Solve Engineering Problems FloatingPoint Representation
+Approximations and RoundOff Errors Truncation Errors and Taylor Series
+Case Studies.
+. Roots of Equations Bracketing methods Open Methods Roots of
+Polynomials Case Studies. Linear Algebraic Equations Gaussian
+Elimination Gauss Jordan Crout LU Decomposition GaussSiedel Method
+Case Studies.
+. Numerical Differentiation and Integration NewtonCoates
+Integration Formulas Numerical Integration Numerical Differentiation
+Case Studies.
+. Interpolation Techniques Newtonian Interpolation Techniques
+Lagrange Interpolation Techniques. Curve Fitting Linear and Quadratic
+Curve Fitting.
+. Ordinary Differential Equations RungeKutta Methods Boundary
+Value and Eigen value Problems Case Studies.
+Prerequisite Courses None.
+Reference Books
+. Numerical Methods for Engineers Steven C. Chapra and Raymond P.
+Canale McGraw Hill th Edition .
+UECS
+ARTIFICIAL INTELLIGENCE 
+Course Objectives
+The objectives of this course is to
+ Provide an introduction to Machine Intelligence Problem Solving Heuristic
+Search.
+ Provide an introduction to Game Playing.
+ Provide an introduction to various knowledge representation techniques
+reasoning and expert systems.
+ Provide an introduction to planning and learning in AI.
+ Introduce Understanding Natural Language Processing and Robotics 
+Perception and Action.
+Course Outcomes
+At the end of the course the student will be able to
+ Apply various search techniques for solving problems in AI.
+ Write programs to play games.
+ Apply knowledge representation techniques and build algorithms for
+reasoning with knowledge.
+ Apply planning and learning algorithms to enhance AI problem solving.
+ Identify the AI research and problem areas and choose appropriate
+problem solving methods.
+Course Content
+. Introduction to Artificial Intelligence Origins Historical Perspective
+Successes and Failures. State Space Search AI Problems Intelligent
+Agents State Space Search Heuristic Search Techniques.
+. Advanced Search Techniques Game Playing Adversarial Search
+Simulated Annealing Beam Search Genetic Algorithm Constraint
+Satisfaction Problems.
+. Knowledge Representation using Logic Propositional Logic First
+Order Predicate Logic Reasoning Logic Programming.
+. Structured KR Techniques Semantic Nets and Frames. Expert
+Systems Rules Rule Chaining Rule Based Systems Rete Algorithm.
+. Planning STRIPS Model Goal Stack Planning Hierarchical Planning
+Graph Plan. Introduction to Advanced Topics Perception and Action
+Learning Understanding and NLP. Current Applications in AI Robotics
+Gaming.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. A First Course in Artificial Intelligence Deepak Khemani McGraw Hill st
+Edition .
+. Artificial Intelligence A Modern Approach Stuart Russell and Peter
+Norvig Pearson rd Edition Paperback .
+. Artificial Intelligence E Rich and K Knight and Shivashankar Nair Tata
+McGraw Hill rd Edition .
+SIXTH SEMESTER
+UECS
+COMPILER DESIGN 
+Course Objectives
+The objectives of this course is to
+ Introduce the major concept areas of Language Translation and Compiler
+Design.
+ Develop a greater understanding of the issues involved in programming
+language design and implementation.
+ Provide practical programming skills necessary for constructing a
+compiler.
+ Develop an awareness of the function and complexity of modern
+compilers.
+ Provide an understanding on the importance and techniques of optimizing
+a code from a compiler s perspective.
+Course Outcomes
+At the end of the course the student will be able to
+ Use the knowledge of patterns tokens and regex for solving the problems
+in the field of Data Mining.
+ Analyze and design the semantic behavior of a compiler.
+ Design and develop the behavior of a construct.
+ Design and implement a simple compiler.
+ Optimize the performance of a program in terms of speed and space using
+new code optimization techniques.
+Course Content
+. Compilers The Language Processing System The Phases of a Compiler
+The Grouping of Phases into Passes Variations in Compiler Models.
+Lexical Analysis The Role of the Lexical Analyzer Input Buffering
+Specification of Tokens Recognition of Tokens Design of a Lexical
+Analyzer Generator. Syntax Analysis The role of Parser Syntax Error
+Handling ErrorRecovery Strategies. Top Down Parsing Recursive
+Descent Parser RDP with Backtracking.
+. Syntax Analysis Top Down Parsing LL Parser. Bottom Up
+Parsing Shift Reduce Parsing LR SLR Viable Prefixes CLR LALR.
+. Syntax Directed Translation Syntax Directed Definitions SDDs
+Evaluation Orders for SDDs Applications of Syntax Directed Translation
+SDT Syntax Directed Translation Schemes Postfix Translation
+Schemes. Parser Stack Implementation Parser Stack Implementation
+of Postfix SDTs SDTs with Actions Inside Productions SDTs for L 
+Attributed Definitions. Implementing L Attributed SDDs L 
+Attributed SDDs and LL Parsing.
+. Syntax Directed Translation Implementing L Attributed SDDs
+Bottom Up Parsing. Intermediate Code Generation Variants of
+Syntax Trees Directed Acyclic Graphs for Expressions Three Address
+Code Addresses and Instructions Quadruples Triples Indirect Triples
+SSA Form Control Flow Graph Machine Independent Optimization
+Different Optimizations.
+. Machine Independent Optimization Optimization of Basic Blocks
+LiveVariable Analysis. Run Time Environments Storage Organization
+Stack Allocation of Space Access to Non Local Data on the Stack. Code
+Generation Issues in the Design of a Code Generator The Target
+Language Addresses in the Target Code Static Allocation Stack
+Allocation Run Time Addresses for Names.
+Prerequisite Courses UECS Data Structures UECS Theory of
+Computation.
+Reference Books
+. Compilers Principles Techniques and Tools Alfred V Aho Monica S
+Lam Ravi Sethi Jeffery D Ullman nd Edition Pearson Education .
+. Modern Compiler Design Dick Grune Kees van Reeuwijk Henri E Bal
+Ceriel J.H. Jacobs Koen Langendoen nd Edition .
+UECS
+CLOUD COMPUTING 
+Course Objectives
+The objectives of this course is to
+ Understand the rationale behind the Cloud Computing revolution.
+ Introduce various models of Cloud Computing.
+ Understand how to design applications on Cloud and the role of security.
+ Understand and design distributed systems for scalability.
+ Understand and apply various tradeoffs in designing Cloud architectures.
+Course Outcomes
+At the end of the course the student will be able to
+ Comprehend the technical and business rationale behind Cloud
+Computing.
+ Decide the model of Cloud Computing to use for solving a particular
+problem.
+ Build applications for the Cloud and understand the security implications.
+ Apply the fundamentals of distributed systems design to Cloud
+Computing.
+ Apply the concepts learnt in solving a real life problem in a group setting.
+Course Content
+. Introduction and Cloud models Cloud Computing Business
+Perspective Models SOA and REST IaaS Model and Case Study PaaS
+Model.
+. Virtualization Compute CPU Virtualization Hardware/ Software
+Lightweight Virtualization Containers Microservices.
+. Storage and Network Virtualization CAP Theorem Object and Block
+Storage Virtualization Scaling Storage Multitenancy Network
+Virtualization Architecture.
+. Resource Allocation and Scheduling Algorithms for Allocation of
+Compute Storage. Container Orchestration FairShare and Capacity
+Schedulers.
+. Distributed Architectures Architectures Peer to Peer Master Slave
+Cluster Coordination Failure Availability/ Reliability SaaS Model Security
+in Cloud.
+Prerequisite Courses None.
+Reference Books
+. Moving to the Cloud Developing Apps in the New World of Cloud
+Computing Dinkar Sitaram and Geetha Manjunath Syngress .
+UECS
+MACHINE LEARNING 
+Course Objectives
+The objectives of this course is to
+ Introduce Basics of Matrices Random Variates and Distributions relevant
+for the study of Machine Learning Techniques.
+ Formulate a well defined Machine Learning problem with clear metrics.
+ Familiarize with techniques for Dimensionality Reduction and
+Computational Efficiency.
+ Understand the notions of Hypotheses Space Hypotheses Structure and
+Search.
+ Become conversant with types of Machine Learning Algorithms their
+applicability and Inductive Bias.
+Course Outcomes
+At the end of the course the student will be able to
+ Distinguish categories of Data Attributes Dimensions Sample Sizes.
+ Acquire a thorough understanding of Supervised Unsupervised Learning.
+ Understand Logistic and Linear Regression and Function Estimation.
+ To cluster and classify data.
+ Extract Rules and Associations and provide impactful recommendations
+from data.
+ Decide on the data that matters for the learning problem at hand.
+Course Content
+. Introduction/Basics Learning Problems Designing Learning Systems
+Perspectives and Issues. Concept Learning Version Spaces and
+Candidate Elimination Algorithm Inductive Bias.
+. Classification and Regression Decision Trees kNearest Neighbors
+Logistic Regression and Neural Networks and Back Propagation Support
+Vector Machines Boosting Ada Boost Linear Regression Logistic
+Regression Tree Based Regression Instance Based Learning kNN
+. Stochastic Models Bayesian Learning Genetic Algorithms Markov
+Models Document Similarity and Text Classification.
+. Unsupervised Learning Kmeans Hierarchical Clustering 
+Agglomerative Divisive Distance measures Density Based Clustering 
+DBScan Pattern and Association Rule Mining Apriori Algorithm Frequent
+Pattern Growth Algorithm.
+. Dimensionality Reduction and Recent Trends in ML Matrices
+Properties Eigen Values Eigen Vectors Principal Component Analysis
+Singular Value Decomposition Deep Learning Introduction CNN GAN
+Reinforcement Learning.
+Prerequisite Courses UEMA Linear Algebra UECS Design
+and Analysis of Algorithms.
+Reference Books
+. Machine Learning Tom Mitchell McGraw Hill Education India .
+. Pattern Recognition and Machine Learning Christopher Bishop nd
+Printing Springer .
+. Introduction to Machine Learning Ethem Alpaydin st Edition PHI
+Learning .
+. Appropriate Handouts for Matrices Random Variates Recent Trends in ML.
+UECS
+COMPILER DESIGN LABORATORY 
+Course Objectives
+The objectives of this course is to
+ Deepen the understanding of Compiler Design.
+ Develop problem solving ability using programming.
+ Develop ability to design and analyze a compiler.
+Course Outcomes
+At the end of the course the student will be able to
+ Acquire the generic skills to design and implement a compiler.
+ Analyze practical aspects.
+Course Content
+. Lex to count number of characters words newlines and white spaces.
+. Lex for Number Base Conversion.
+. Lex for finding the ASCII values of Escape Sequence character.
+. Lex to remove comment lines.
+. Yacc to validate identifiers.
+. Yacc to validate Context Free Grammars.
+. Yacc to validate Nested IF ELSE construct.
+. Convert The BNF rules into Yacc form and write code to generate Abstract
+Syntax Tree.
+. Write a C program for implementing the functionalities of a Predictive
+Parser.
+. Program to implement semantic rules to
+calculate the expression that takes an expression with digits and * and
+computes the value.
+. Mini Project.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering PES University.
+UECS
+MACHINE LEARNING LABORATORY 
+Course Objectives
+The objectives of this course is to
+ To reinforce the Machine Learning Theory and Algorithms by
+implementations of meaningful problems using Python.
+Course Outcomes
+At the end of the course the student will be able to
+ Distinguish categories of Data Attributes Dimensions Sample Sizes.
+ Acquire a thorough understanding of Supervised Unsupervised Learning.
+ Understand Logistic and Linear Regression and Function Estimation.
+ To cluster and classify data.
+ Extract Rules and Associations and provide impactful recommendations
+from data.
+ Decide on the data that matters for the learning problem at hand.
+Course Content
+. Mini Project Batch Formation and Problem Statement Finalization.
+. Construct/ Visualize a Decision Tree using Information Gain Entropy
+attributes on a at least size data set with at least attributes.
+. Implement a Genetic Algorithm based Hand Written Character
+Recognition.
+. Implement a Layer Neural Network input hidden and output
+neurons to perform Face Recognition faces st week.
+. Implement a Layer Neural Network input hidden and output
+neurons to perform Face Recognition faces nd week.
+. Mini Project Literature Survey and Design Submission.
+. Implement an SVM Based Binary Classifier for Movie Review
+Classification. Write your own code for the SMO Algorithm. Use the IMDB
+Data Set.
+. Implement Naive Bayes Sentiment Analyzer for Document Classification
+ classes atleast.
+. Implement an HMM Based Emotion Predictor on an audio input st
+week.
+. Implement an HMM Based Emotion Predictor on an audio input
+nd week.
+. Implement DBSCAN based Clustering on election data to find
+meaningful clusters.
+. Mini Project Submission and Evaluation.
+Prerequisite Courses None.
+Reference Books
+. Laboratory Manual prepared by Department of Computer Science and
+Engineering PES University.
+ELECTIVE 
+UECS
+COMPUTER NETWORK SECURITY 
+Course Objectives
+The objectives of this course is to
+ Provide an overall view of what Computer and Network Security is all
+about and generate interest in this field to be able to take this as a further
+specialization area or a career path.
+ Introduction of Perimeter Security Firewall IDS IPSEC VPN
+Authentication and Access Management Cryptography Malware Secure
+Programming Applications Security Security and Privacy Policy.
+Course Outcomes
+At the end of the course the student will be able to
+ Choose Cryptography Algorithms based on the application domain of the
+network.
+ Write code to implement various Encryption/ Decryption algorithms.
+ Apply Authentication Protocols and Processes.
+Course Content
+. Overview Computer Security Concepts Requirements Architecture
+Trends Strategy. Perimeter Security Firewalls Intrusion Detection
+Intrusion Prevention Systems Honeypots. User Authentication
+Password Password Based Token Based Biometric Remote User
+Authentication. Access Control Principles Access Rights Discretionary
+Access Control UNIX File Access Control Role Based Access Control.
+Internet Authentication Applications Kerberos X. PKI Federated
+Identity Management.
+. Human Factors Security Awareness Training and Education
+Organization Security Policy Employment Practices and Policy. IT
+Security Management and Risk Assessment IT Security
+Management Risk Assessment Analysis IT Security Controls. Plans and
+Procedures IT Security Management Implementation Security Controls
+Plan Implementation of Controls.
+. Cryptographic Tools Confidentiality with Symmetric Encryption
+Message Authentication and Hash Functions Digital Signatures Random
+Numbers Symmetric Encryption and Message Confidentiality DES
+AES Stream Ciphers Cipher Block Modes of Operation Key Distribution.
+Public Key Cryptography and Message Authentication Asymmetric
+Encryption Secure Hash Functions HMAC RSA Diffie Hellman Algorithm.
+Internet Security Protocols SSL TLS IPSEC S/ MIME.
+. Cloud Security Cloud Computing Service Models and Layers Security
+Issues in Cloud Computing. Bluetooth Security Bluetooth Protocol
+Stack Multiple Security Modes. Mobile Security Security Concepts
+Requirements Architecture.
+. Wireless Network Security Wireless Communications and .
+WLAN Standards Wireless Protected Access WPA IEEE .x .i/
+WPA Wireless Network Threats ZigBee Security Wireless Mesh Network
+Security.
+Prerequisite Courses UECS Computer Networks.
+Reference Books
+. Computer Security Principles and Practice William Stallings and Lawrie
+Brown Indian Edition Pearson .
+UECS
+STORAGE AREA NETWORKS 
+Course Objectives
+The objectives of this course is to
+ Introduce students to the current storage technologies.
+ Equip students with an understanding of SAN technologies in Data
+Centers SAN architectures its advantages and complexities.
+ Walk through the IO path from an Application to bits and bytes stored in a
+device with all the related technologies in the path.
+ Provide hands on exposure to Cloud Storage and how you would write/
+read data there.
+ Exposure to SAN applications like Backup Security and Management
+aspects of SAN/ NAS.
+Course Outcomes
+At the end of the course the student will be able to
+ Analyze the logical and physical components of a storage infrastructure.
+ Design different types of RAID implementations and enumerate their
+benefits.
+ Analyze and walk through the data path from Application to a Disk
+ Contrast SCSI Fiber Channel and iSCSI protocols.
+ Analyze benefits of storage virtualization.
+ Write an application which would write/ read data from a Cloud Storage.
+Course Content
+. Introduction to Storage Systems IO Techniques and Intelligent
+Disk Systems Structured and Unstructured Data Data Centers Key
+Requirements of Data Centers Storage in Data Centers Types of Storage
+including SDS Converged Storage Futures in Storage Technologies
+Storage Centric IT Architecture and Its Advantages The Physical I/O Path
+from the CPU to the Storage System. Introduction to Storage
+Components Disks Physical Structure of Disks Categorization of Disk
+Subsystems Architecture of a Disk Subsystem Internal I/O Channels and
+Their Design Variations RAID Levels Availability of Disk Systems.
+. Storage Protocols SCSI FC iSCSI SCSI Basics Components
+Addressing Protocol and Functioning. Fiber Channel FC Basics FC
+Protocol Stack iSCSI.
+. SAN and NAS Components and Hardware and Software
+Architecture Network Attached Storage Introduction NAS Hardware
+and Software Components and Architecture SAN Hardware and Software
+Components and Architecture.
+. Storage Virtualization and Large Storage Systems Storage
+Virtualization Implementation Considerations Server Device and
+Network Centric Storage Virtualization Storage Virtualization in Block or
+File Level In Band OutBand IP Storage Object Storage Cloud Storage
+REST Based Cloud Storage Access. Illustrations of Cloud Storage
+Google FS Openstack Swift Amazon S MS Azure.
+. Storage Management and Applications SAN and NAS Management
+CIM/ WEBEM SMIS. Storage Security Security Considerations in
+Storage Information Security Security Methods Storage Security
+Technologies and Challenges Best Practices in Security. Business
+Continuity and Storage Applications Backup Recovery and Archival.
+Prerequisite Courses None.
+Reference Books
+. Storage Networks Explained Ulf Troppens Rainer Erkens and Wolfgang
+Muller Wiley India .
+. Storage Networking Fundamentals An Introduction to Storage Devices
+Subsystems Applications Management and File Systems Marc Farley
+Cisco Press .
+. Storage Networks The Complete Reference Robert Spalding Tata
+McGrawHill .
+. Storage Area Network Essentials A Complete Guide to Understanding
+and Implementing SANs Richard Barker and Paul Massiglia Wiley India
+.
+UECS
+NATURAL LANGUAGE PROCESSING 
+Course Objectives
+The objectives of this course is to
+ Expose students to the concepts of ngrams and Language Modelling with
+ngram.
+ Expose students to the Natural Language Processing pipeline i.e.
+Morphology Lexical Analysis Syntactic Analysis Semantic Analysis and
+Discourse.
+ Expose students to the Information Extraction problems and end to end
+Natural Language Generation problems as applications of Natural
+Language Processing.
+ Introduce students to the various Neural Network methods for Natural
+Language Processing.
+Course Outcomes
+At the end of the course the student will be able to
+ Implement meaningful course or research projects using current Natural
+Language Processing technology.
+Course Content
+. Text Normalization Morphology and Finite State Transducer
+Concept/ Types of Ambiguity in Natural Language Processing Empirical
+Laws Zipfs Law Heaps Law. Text Normalization Content and Function
+Words Type vs. Token Unix Tools for Crude Tokenization and
+Normalization Word Tokenization and Normalization Lemmatization and
+Stemming Sentence Segmentation. Morphology and Finite State
+Transducers Survey of English Morphology Finite State Morphological
+Parsing Combining FST Lexicon and Rules Lexicon Free FST The Porter
+Stemmer Human Morphological Parsing.
+. NGrams Edit Distance and Language Modelling ngrams
+Evaluating Language Models Perplexity Generalization and Zeros
+Smoothing KneserNey Smoothing Web and Stupid Back Off Perplexitys
+Relation to Entropy. Spelling Correction and Noisy Channel Noisy
+Channel Model Real World Spelling Error Minimum Edit Distance
+Algorithm Improved Edit Models. Word Classes and PartofSpeech
+POS Tagging English Word Classes Penn Tagsets for English Rule
+Based PartofSpeech Tagging TransformationBased Tagging POS Tagging
+using Hidden Markov Model Maximum Entropy Model and Conditional
+Random Fields Neural Language Models with Deep Artificial Neural
+Network.
+. Parsing Context Free Grammar. Syntactic Parsing Ambiguity
+Presented By Parse Trees CKY Parsing Chart Parsing and Earley Parser.
+Partial Parsing Chunking. Statistical Parsing Probabilistic Context
+Free Grammar Probabilistic CKY Parsing of PCFG Problems with PCFG
+Probabilistic Lexicalized PCFG. Introduction to Dependency Parsing
+Dependency Relations Dependency Formalisms Dependency Tree Banks
+Evaluating Parsers.
+. Semantics Lexical semantics Word Senses and Relations Between
+Word Senses WordNet A Database of Lexical Relations Word Sense
+Disambiguation Overview Supervised Word Sense Disambiguation WSD
+ Dictionary and Thesaurus Methods SemiSupervised WSD Unsupervised
+Word Sense Induction. Word Similarity or Semantic Relatedness
+Based On Thesaurus Resnik Similarity Lin Similarity JiangConrath
+Distance Extended Gloss Overlap And Extended Lesk Method. Lexicons
+For Sentiment and Affect Extraction Available Sentiment Lexicons
+Using Wordnet Synonyms And Antonyms Sentiwordnet Supervised
+Learning of Word Sentiments Using Lexicon For Sentiment Recognition
+Lexicons For Emotions And Other Affective States. Representation Of
+Meaning Computational Desiderata for Representations Meaning
+Structure of Language First Order Predicate Calculus Some Linguistically
+Relevant Concepts Related Representational Approaches Alternative
+Approaches To Meaning. Syntax Driven Semantics SyntaxDriven
+Semantic Analysis Attachments for a Fragment of English Integrating
+Semantic Analysis into the Earley Parser Idioms And Compositionality
+Robust Semantic Analysis. CoReference Resolution and Discourse
+Lappin and Lease Algorithm Hobbs Algorithm.
+. Information Retrieval Natural Language Generation and Neural
+Network Methods for Natural Language Processing Information
+retrieval Information Extraction vs. Retrieval Information Extraction
+SubProblems Named Entity Recognition Practical NER Architectures.
+Natural Language Generation An Architecture Question Answering
+System IR Based Factoid Question Answering Knowledge Based
+Question Answering IBMs Watson Dialogue System And Chatbot Rule
+Based And Corpus Based Chatbots. Vector Semantics Words And
+Vectors Pointwise Mutual Information Measuring Similarity Using Syntax
+to Define a Words Context Evaluating Vector Models. Semantics With
+Dense Vectors Dense Vectors via SVD Distributional Hypothesis
+Embedding from Predictions Skip Gram And CBOW Properties Of
+Embedding PreTrained Word Representations Wordvec And Glove
+Limitation Of Distributional Methods. Neural Network Methods For
+Natural Language Processing CNN and RNN as Feature Extractors
+Modeling With Recurrent Neural Network Sentiment Classification Part
+of Speech Tagging Conditioned Generation By RNN EncoderDecoder
+Seqseq Models Seqseq Chatbots.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. Speech and Natural Language Processing Daniel Jurafsky and James H.
+Martin rd Edition Draft http//web.stanford.edu/jurafsky/slp/
+. Neural Network Methods for Natural Language Processing Yoav
+Goldberg Morgan and Claypool Publishers.
+. Natural Language Processing with Python Analyzing text with natural
+Language Toolkit Steven Bird Ewan Klein and Edward Loper Orielly
+books https//www.nltk.org/book/
+. Deep Learning With Python Francois Chollet Manning.
+UECS
+MULTI CORE COMPUTING 
+Course Objectives
+The objectives of this course is to
+ Introduce the factors influencing a program s performance.
+ Teach how various factors influencing performance of programs including
+both hardware and software.
+ Use and design appropriate tools to monitor measure and optimize
+performance.
+ Introduce different programming models to write high performance
+programs.
+Course Outcomes
+At the end of the course the student will be able to
+ Analyze existing applications for performance bottlenecks.
+ Design and debug performance efficient applications.
+ Understand and apply design tradeoffs in choosing different models of
+parallel programming.
+ Use tools to aid in creating high performance computing applications.
+Course Content
+. Introduction to Performance and Architecture Introduction to
+Performance High Performance Computing Applications Metrics
+Benchmarks Motivating Example Overview of Computer Systems and
+Their Impact on Performance Types of Architectures Concurrency and
+Parallelism Types of Parallelism Review of Pipelining. Instruction Level
+Parallelism Concepts and Challenges Data Hazards Performance
+Measures Multiple Issues Compiler Optimization Loop Unrolling
+Dynamic Scheduling Examples and Algorithm Bus vs. Interconnection
+Networks in Processors.
+. Compiler Optimizations and Performance Fusion Transformations for
+Performance Enhancement Speculation Limitations of ILP
+Hyperthreading Thread Level Parallelism Multithreading Architectural
+Support MultiCores Amdahls law Gustafsons Law Introduction to GPU
+Parallel Architectures Shared vs Distributed Memory Architectures.
+. Threading and OpenMP Designing for Threads Programming Patterns
+Data Structure Choice Reader/ Writer Locks Deadlocks OpenMP 
+Computation of Pi Parallel False Sharing OpenMP Sections Locks
+Memory Models Storage Attributes OpenMP Synchronization Critical
+Section Atomics Loop WorkSharing and Scheduling.
+. Memory Hierarchy and Optimizations Case Study Intel Core i
+Memory Hierarchy Memory Consistency Models Cache Coherence and
+NUMA and Interconnects.
+. GPU Computing CUDA Motivating Example Matrix Multiplication
+Examples CUDA Threads Blocks and Latency Recent Trends in Multi/
+Many Core Architectures Putting It All Together Example Case Study HPC
+App and Its Optimization.
+Prerequisite Courses UECS Microprocessor and Computer
+Architecture.
+Reference Books
+. Computer Architecture A Quantitative Approach Hennessey Patterson
+th Edition.
+. Computer Systems A Programmers Perspective Randal Bryant David
+OHalloran nd Edition Prentice Hall .
+. Programming Massively Parallel Processors A Hands On Approach
+David Kirk WenmeiHwu Morgan Kaufmann.
+UECS
+PARALLEL COMPUTING 
+Course Objectives
+The objectives of this course is to
+ Understand various models of parallel computations such as threads
+OpenMP MPI clusters.
+ Develop programs using parallel languages and appreciate parallel
+compilers using parallel architectures.
+Course Outcomes
+At the end of the course the student will be able to
+ Design efficient parallel algorithms and applications.
+ Analyze the effectiveness of any parallel program.
+Course Content
+. Parallel Programming Models Introduction to Analytical Models and
+Message Passing Communications MPI Review of Shared Memory
+Programming Models OpenMP/ CUDA.
+. Parallel Algorithms Sequences and String Scan Prefix Sums List
+Ranking Sorting Merging Medians Searching String Matching.
+. Graph Algorithms Trees and Graphs Spanning Trees Shortest Path
+Transitive Closure Connected Components.
+. Computational Geometry Convex Hull Closest Pairs. Numeric/
+Scientific Applications Matrix Multiplication Sparse Matrix Map
+Reduce.
+. Constructs in Parallel Languages Haskell Scala GO Lang C 
+and Java . Features Concurrent Data Structures Java . Concurrent
+Collections.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. Introduction to Parallel Computing Ananth Grama Anshul Gupta
+George Karypis Vipin Kumar AddisonWesley .
+. Art of Concurrency Clay Breshears O Reilly .
+. Parallel Programming in C with MPI and OpenMP Michael Quinn TMH
+.
+. Introduction to Parallel Computing Petersen and Arbenz Oxford
+University Press .
+. Parallel Programming Wilkinson and Allen Pearson .
+. Parallel Computer Architecture Culler Singh and Gupta Morgan
+Kaufmann .
+. Parallel Computing Theory and Practice Michael Quinn McgrawHill
+.
+. Introduction to Automata Theory Languages and Computation John E
+Hopcroft Rajeev Motwani Jeffrey D Ullman rd Edition Pearson Education
+Delhi India .
+UECS
+GENERIC PROGRAMMING 
+Course Objectives
+The objectives of this course is to
+ Understand the rationale behind Generic Programming.
+ Understand compile time checks.
+ Gain insights into the concept of Meta Programming.
+Course Outcomes
+At the end of the course the student will be able to
+ Solve programming problems and improve programs using Generic
+Programming.
+ Evaluate Generic Programming methods/ approaches and understand
+their pros and cons.
+Course Content
+. Template Functions Definition Instantiation Implicit and Explicit
+Specialization Type and NonType Template Parameter.
+. Template Class Instantiation Templates and Static Members Templates
+and Inheritance Templates and Composition Templates and Friends
+Template Member Functions Dependent Type Default Template
+Parameter Nested Templates Traits and Policies STL Philosophy Efficiency
+of Algorithms Separation of Behavior from Container Classes Functor
+and Iterator Iterator Hierarchy Adaptors Examples of Containers and
+Algorithms.
+. Template Meta Programming Overview CompileTime Programming
+Nature and Limitations of Template MetaProgramming.
+. Building Blocks Values Functions Branching Recursion CompileTime
+If Conventions for Structured Template Meta Programming.
+. Generics in Java Generic Methods Constructors Type Inference
+Bounded Type Parameters Subtyping Wildcards Type Erasure Overview
+of Generic Collection Classes Generics in C Generic Constraints
+Generics and Casting Inheritance and Generics Generic Methods Generic
+Delegates Generics and Reflection.
+Prerequisite Courses None.
+Reference Books
+. C Primer Lippman AddisonWesley .
+. A tour of C Bjarne Stroustrup AddisonWesley .
+. Templates The Complete Guide David Vandevoorde Nicolai M Josuttis
+AddisonWesley .
+. STL Tutorial and Reference Musser Derge and Saini nd Edition
+AddisonWesley .
+. Java Tutorials Online Reference Link https//docs.oracle.com/java
+. se/tutorial/.
+. MSDN for C generics.
+UECS
+DRONE COMPUTING 
+Course Objectives
+The objectives of this course is to
+ To enable the students to have handson experience with
+drones/quadcopters.
+ To understand the basic principles of flying.
+ To write program to fly drones.
+ To use mission planners for accomplishing GPS related tasks.
+ To enrich the drone computing applications to serve the society.
+Course Outcomes
+At the end of the course the student will be able to
+ Students will be able to fly drones/ quadcopter both using RF controller
+and semiautonomously.
+ Students will be able to write programs to guide the paths of drones.
+ Students will be able to use GPS coordinates to locate positions while
+flying.
+ Students will be able to apply the fundaments of drone computing for
+their projects.
+ Students will be able to innovate workable ideas to address the
+challenging problems in the society.
+Course Content
+. Building a Simple Drone Introduction to Drones Types of Drones
+Configuration of Flight Controller Configuration of Receiver Transmitter
+Control Assembling Drone Components Experiments with Simple Flight
+Paths.
+. Understanding Control Theory of PTD Controller Experiments Flying
+with PID Theory of Electronic Control Experiments Flying with EC
+Analyzing Path Accuracies and Flight Stability with Experiments.
+. Path Planning with GPS Introduction to GPS Experiments with GPS
+Modules Path Planning with GPS Coordinates Experimenting Path
+Planning with GPS Coordinates Analyzing Path Accuracies and Flight
+Stability with Experiments.
+. Impact of Payload Introduction to Payload Impact of Payload
+Maximizing Payload Experiments with Different Payloads Analyzing Path
+Accuracies and Flight Stability with Experiments.
+. Tracking with Camera Introduction to Tracking with Camera Object
+Recognition Obstacle Avoidance Experiments for Tracking Objects
+Analyzing FollowUp Accuracies and Flight Stability with Experiments.
+Prerequisite Courses None.
+Reference Books
+. Getting Started with Drones Build and Customize Your Own Quadcopter
+Terry Kilby Belinda Kilby Maker Media Inc st Edition October .
+. Make Drones Teach an Arduino to Fly David McGriffy Maker Media
+Inc st Edition October .
+. Drone/ UAV Dictionary Includes Commercial UAV Applications Dr.
+Jerry LeMieux CreateSpace Independent Publishing Platform st Edition
+May .
+ELECTIVE 
+UECS
+SOFTWARE DEFINED NETWORKS 
+Course Objectives
+The objectives of this course is to
+ Understand the rationale behind evolution of Software Defined Network
+technology.
+ Understand SDN based managed network services through abstraction of
+higherlevel functionality.
+ Understand the architecture of SDN traffic through Control and Data
+planes.
+Course Outcomes
+At the end of the course the student will be able to
+ Implement SDN approach to design engineer and manage the networks.
+ Configure Network services using SDN with ease efficiently and remotely
+monitor QoS.
+Course Content
+. History and evolution of Software Defined Network SDN Architecture.
+. Control and Data Plane Separation Control Plane Network Virtualization
+Data Plane.
+. Programming SDNs Openflow.
+. Verification and Debugging Use Cases and Looking Forward.
+. Handson using simulator Mininet.
+Prerequisite Courses UECS Computer Networks.
+Reference Books
+. Software Defined Networks Programmability Technologies Thomas D.
+Nadeau Ken Gray SDN O Reilly Media .
+. Software Defined Networks A Comprehensive Approach Paul
+Goransson and Chuck Black Morgan Kaufmann .
+UECS
+KNOWLEDGE MANAGEMENT 
+Course Objectives
+The objectives of this course is to
+ Understand and appreciate the rationale and theory of Knowledge
+Management.
+ Learn various tools for Knowledge Management.
+ Understand the significance of Knowledge Management.
+ Learn different ways of knowledge creation and transfer.
+ Understand the role and implications of technology in the field of
+Knowledge Management.
+Course Outcomes
+At the end of the course the student will be able to
+ Apply Knowledge Management paradigms in applications like Semantic
+Web.
+ Select and use various tools for effective Knowledge Management.
+Course Content
+. The Basics Working Smarter Knowledge Management KM Myths and
+Lifecycle Implications of KM. Understanding Knowledge Definitions
+Cognition and KM Data Information and Knowledge Types of Knowledge
+Expert Knowledge Human Thinking and Learning Implications for KM.
+Knowledge Management Systems Lifecycle Challenges
+Conventional versus KM System Lifecycle Implications for KM. KM
+Strategy Economy of Plan Economy of Change Economy of Control.
+. Knowledge Creation and Capture Knowledge Creation and Knowledge
+Architecture Nonakas Model Knowledge Architecture Implications
+Capturing Tacit Knowledge Knowledge Capture Evaluating the Expert
+Developing a Relationship with Experts Fuzzy Reasoning and Quality of
+Knowledge Interview as a Tool Guide to a Successful Interview Rapid
+Prototyping Implications.
+. Design of KM Systems Economy of Scope Economy of Effort Economy
+in Deployment Other Knowledge Capturing Techniques Onsite
+Observation BrainStorming Protocol Analysis Consensus Decision
+Making The Repertory Grid NGT Delphi Method Concept Mapping and
+BlackBoarding Knowledge Codification Why Codify Modes of Knowledge
+Conversion How to Codify Knowledge Codification Tools and Procedures
+Knowledge Developers Skill Set Implications. System Testing and
+Deployment Quality and Assurance Knowledge Testing Approaches to
+Logical and User Acceptance Testing Managing the Test Phase KM System
+Deployment Issues User Training and Deployment PostImplementation
+Review Implications Knowledge Transfer and Sharing as a Step in a
+Process Transfer Methods Role of Internet Implications.
+. Knowledge Transfer in EWorld The EWorld EBusiness Implications
+KM System Tools and Portals Learning from Data Data Visualization
+Neural Networks as a Learning Model Association Rules Classification
+Types Implications Data Mining Knowing the Unknown Data Mining and
+Business Intelligence Business and Technical Drivers Data Mining Virtual
+Cycle and Data Management Data Mining in Practice Role of DM in
+Customer Relationship Implications. Knowledge Management Tools
+and Portals Portals The Basics Business Challenge Knowledge Portal.
+. Technologies Implications Ethical Legal and Managerial Issues
+Knowledge Owners Legal Issues Ethical Factor Improving the Climate
+Implications.
+Prerequisite Courses None.
+Reference Books
+. Knowledge Management Elias M. Awad and Hassan Ghaziri Pearson
+Publications .
+. Ten Steps to Maturity in Knowledge Management Lessons in Economy
+J.K. Suresh and Kavi Mahesh Chandos Publishing .
+UECS
+SYSTEM MODELING AND SIMULATION 
+Course Objectives
+The objectives of this course is to
+ To provide a background to students on the principles of modeling and
+simulation and expose them to different types of models.
+ To train students on the techniques of how to model a scenario using
+discrete event system models. Expose students to typical applications
+such as queueing systems and inventory systems.
+ To train students to conduct endtoend simulation experiments and
+assess the fitness of simulation.
+ To expose students to continuous systems and application of continuous
+simulation to real life systems.
+ To expose students to agentbased modeling.
+Course Outcomes
+At the end of the course the student will be able to
+ Student will be able to model a given scenario/ problem and generate
+inputs to simulate the same and derive simulation table that includes
+inputs and outputs.
+ Student will be able to apply simulation techniques to typical discrete
+event systems such as queuing systems inventory systems and reliability
+of machines.
+ Student will be able to generate inputs for simulation using understanding
+of statistical distributions.
+ Student will be able to validate the input models and assess the
+simulation output relative to real life data.
+ Student will be able to model continuous systems using numeric methods.
+ Student will be able to apply agentbased modeling techniques.
+Course Content
+. Introduction to Simulation Principles of Modeling and Simulation
+Model Taxonomies Fundamentals of Queuing Theory Random Variate
+Generation Monte Carlo Simulation Performance Measures of Queuing
+Systems.
+. Building Discrete Event Simulation Models Managing Event Lists
+Queue Disciplines Priorities Application to Simulation of Computer
+Subsystems and Concurrent Processes.
+. Design of Simulation Experiments Generation of Random Numbers
+Validation of Random Numbers Generating Variates Input Data Analysis
+to Determine Distributions.
+. Validation of Simulation and Output Analysis Verification and
+Validation of Simulation Models Analysis of Simulation Output Tests of
+Significance and Design of Experiments Variance Reduction Techniques.
+. Continuous System Simulation and Agent Based Simulation
+Modeling Systems using Differential Equations Principles of Numerical
+Integration Numerical Integration Methods Simulation of Discontinuities
+Combined DiscreteContinuous Simulation Application to Population
+Ecology and Other Systems The Need for AgentBased Simulation Agent
+Concepts Characteristics and Interaction Topologies AgentBased
+Simulation Platforms Netlogo and Others Applications Examples.
+Prerequisite Courses UECS Introduction to Data Science
+Reference Books
+. Discrete Event System Simulation Jerry Banks et al th Edition Pearson
+.
+. Numerical Methods for Engineers Steven C Chapra and Raymond
+P.Canale th Edition McGraw Hill .
+. Simulation with Arena W David Kelton th Edition McGraw Hill .
+UECS
+NETWORK MANAGEMENT 
+Course Objectives
+The objectives of this course is to
+ Challenges associated with Network Management NM.
+ Standards related to Network Management.
+ Applications related to NM like FCAPS.
+ Building of a NM interaction using SNMP.
+ Evolving technologies with NM.
+Course Outcomes
+At the end of the course the student will be able to
+ Analyze the challenges associated with Network Management.
+ Contrast the different NM architectures and their salient points
+ Demonstrate applications associated with NM using some of the Open
+source tools
+ Create a MIB Manager and Agent using SNMP and demonstrate the basics
+of NM
+Course Content
+. Introduction to Network Management Introduction What is Network
+Management Element and Network Management Systems Challenges
+associated with Managing Networks Variety and MultiVendor
+Environments Scale and Complexity Types of Networks Network
+Topologies Functions and Types Internet And Network Management;
+Administrative Entities Their Autonomy and Responsibilities in Terms of
+Policies Data Center Networks. NM The Big Picture and the Activities/IT
+Groups which Support them NOCs Network Devices and Services which
+Need to be Managed Benefits of Automation Maturity of Network
+Management What are the Expectations from an NMS; In an Element
+based NMS Who is Best Suited for Providing a Network Management
+System to Manage the Components? What should a typical NM system
+provide Architectural Approaches of NMS.
+. Standards based Network Management Models IETF and OSI
+CIM/WEBEM Interoperability Models. Network Element Management
+Functional Grouping of Network Management Activities. A Review of
+Network Elements and Services Introduction Network Devices and
+Network Services Network Elements and Element Management Effect of
+Physical Organization on Management Examples of Network Elements 
+Hardware components like Switches Cable Modem System DSL Modem
+System and DSLAM IP Router Software Components like Firewall DNS
+Server DHCP Server Web Server HTTP Load Balancer.
+. FCAPS The Industry Standard Definition Organization of Management
+Software. Configuration Management Introduction Intuition for
+Configuration Configuration and Protocol Layering Dependencies among
+Configuration Parameters Configuration and Temporal Consequences
+Configuration and Global Consistency Configuration and Default Values
+Configuration Types and Ways of Keeping the Environment Stable in Terms
+of Transactions Rollbacks etc. Fault Management Fault Management
+Basics Detection Correlation Isolation Tracking of Faults and Resolution
+of Faults Fault detection tools Benefits of Fault management tools.
+. Performance Management What is Network Performance
+Management Network Performance Measures How Are They Measured
+Where Are They Measured Capacity Planning QoS. Accounting
+Management What is Accounting Management Context of Billing and
+Accounting in NM Account Management Architecture and Process Service
+Providers Revenues and The Relationship to Accounting SLAs Billing.
+Security Management Basics of Security Network Security
+Management Goals Related to Security Common Security Attacks
+Security Policies Risk Assessment Technologies for Network Security
+Security Architecture.
+. Introduction to Software Defined Networks Relationship to NM
+Autonomic Computing. Simple Network Management Protocol
+SNMP Topics for Writing a MIB Manager and Agent and Their
+implementation. Network Management with BYODs Network
+Management with Hybrid Cloud Challenges and the Approach.
+Prerequisite Courses UECS Computer Networks.
+Reference Books
+. Automated Network Management Systems Douglas E Comer st Edition
+AddisonWesley .
+. Communications Network Management Terplan Kornel nd Edition
+Prentice Hall .
+. SNMP SNMPv and CMIP William Stallings AddisonWesley .
+. Network Management Principles and Practice Mani Subramanian
+Pearson Education .
+. Network Management Fundamentals Alexander Clemm CISCO Press
+.
+. A Practical Approach to WEBEM/CIM Management Chris Hobbs CRC
+Press .
+. Advances in Network Management Jianguo Ding .
+. Various Articles from Internet Published Papers.
+UECS
+DIGITAL IMAGE PROCESSING 
+Course Objectives
+The objectives of this course is to
+ To understand the image fundamentals Acquisition Storage and Viewing.
+ To gain an insight to the mathematical transforms necessary for
+processing of grayscale and binary images.
+ To assess the quality of an image and study the application of
+enhancement techniques in the spatial and frequency domains.
+ To understand some types of noise that affects images and study
+techniques for denoising and restoration.
+ To understand some of the techniques used for processing of D color
+images.
+ Introduce the technology of Image Compression.
+Course Outcomes
+At the end of the course the student will be able to
+ Understand image formation and the role human visual system plays in
+perception of gray and color image data.
+ Apply image processing techniques in both the spatial and frequency
+Fourier domains.
+ Assess the quality of an image and apply appropriate enhancement
+techniques.
+ Design and evaluate methodologies for image segmentation.
+ Conduct an independent study and analysis of feature extraction
+techniques.
+ Design and / or apply algorithms to solve problems pertaining to image
+processing and analysis.
+Course Content
+. Introduction What is Digital Image Processing DIP Examples of Fields
+That Use DIP Fundamental Steps in Digital Image Processing Elements of
+Visual Perception Basic Concepts in Sampling and Quantization
+Representing Digital Images Spatial and GrayLevel Resolution Zooming
+and Shrinking Digital Images Some Basic Relationships between Pixels
+Linear and Nonlinear Operations.
+. Image Enhancement in the Spatial Domain Some Basic Gray Level
+Transformations Histogram Processing Enhancement using Arithmetic /
+Logic Operations Basics of Spatial Filtering Smoothing Spatial Filters
+Sharpening Spatial Filters Combining Spatial Enhancement Methods.
+. Image Enhancement in the Frequency Domain Introduction to the
+Fourier Transform and the Frequency Domain Smoothing Frequency
+Domain Filters Sharpening Frequency Domain Filters Homomorphic
+Filtering.
+. Morphological Image Processing and Segmentation Preliminaries
+Dilation and Erosion Opening and Closing The HitorMiss Transformation
+Some Basic Morphological Algorithms. Image Segmentation Detection
+of Discontinuities Edge Linking and Boundary Detection Thresholding
+RegionBased Segmentation.
+. Color Fundamentals and Basics of Compression Color Models
+Pseudocolor Image Processing Basics of FullColor Image Processing
+Color Transformations Smoothing and Sharpening Color Segmentation
+Noise in Color Images. Image Compression Fundamentals Image
+Compression Models Some encoding techniques.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. Digital Image Processing Rafael C Gonzalez and Richard E. Woods
+Prentice Hall th Edition .
+. Digital Image Processing and Analysis Scott E Umbaugh CRC Press
+.
+. Digital Image Processing S Jayaraman S Esakkirajan T Veerakumar
+McGraw Hill Ed. India Pvt. Ltd. .
+. Digital Signal and Image Processing Tamal Bose John Wiley .
+UECS
+ADVANCED COMPUTER NETWORKS 
+Course Objectives
+The objectives of this course is to
+ Expose the host of factors converging to produce the latest revolution in
+computer and communication networks.
+ Teach the principles of wireless and mobile networking the inevitable part
+of modern ubiquitous communication.
+ Impart the principles of the technology which is making a revolution in
+networking namely Software Defined Networking SDN.
+ Present the ecosystem of the technology that is making our globe smart
+ Internet of Things IoT.
+ Bring out the significance of various virtualization techniques in modern
+networks with a focus on Network Function Virtualization NFV.
+Course Outcomes
+At the end of the course the student will be able to
+ Realize the need for new technologies in computer networks to meet
+growing needs of IT users.
+ Compare and contrast various wireless technologies.
+ Innovate ways to design networks using SDN techniques and tools and be
+able to take up projects.
+ Conceptualize the applications of IoT relevant to Indian society and be
+geared up to take up internship projects in the industry.
+ Identify different subdomains in advanced computer networking to
+pursue career or higher studies.
+Course Content
+. Elements of Modern Networking Networking Architecture Ethernet
+WiFi G/ G Cellular Cloud Computing Internet of Things.
+Requirements and Technology Types of Network and Internet Traffic
+Demand Big Data Cloud Computing Mobile Traffic Requirements QOS
+QOE Routing Congestion Control SDN and NFV.
+. Wireless Networks Elements of Wireless Network Types of Wireless
+Networks WiFi Network Mobile Phone Network Architecture GGG
+Mobility Principle.
+. The Internet of Things Scope Components Sensors Actuators
+Microcontrollers Transceivers RFID IoT architecture and Implementation 
+ITUT IoT Reference Model IoT World Forum Reference Model CISCO IoT
+System SDN Data Plane OpenFlow Logical Network Device OpenFlow
+Protocol SDN Control Plane SDN Control Plane Architecture ITUT Model.
+. Software Defined Networks Evolving Networking Requirements The
+SDN Approach SDN Data Plane Control Plane Application Plane
+OpenDaylight REST Cooperation and Coordination among Controllers
+High Availability Clusters SDN Application Plane Architecture Network
+Services Abstraction Layer Abstractions in SDN.
+. Virtualization Network Function Virtualization Concepts and
+Architecture Background and Motivation for NFV Virtual Machines NFV
+Concepts Benefits and Requirements Architecture Network Virtualization
+Virtual LANs Virtual Private Networks.
+Prerequisite Courses UECS Computer Networks.
+Reference Books
+. Computer Networking A TopDown Approach James Kurose Keith Ross
+th Edition Pearson .
+. Foundations of Modern Networking William Stallings st Edition
+AddisonWesley .
+UECS
+RECONFIGURABLE COMPUTING 
+Course Objectives
+The objectives of this course is to
+ Understand the motivation for reconfigurable computing.
+ Introduction to internal structure of reconfigurable devices.
+ Understand design of accelerator logic.
+ Learn industry standard development tools.
+Course Outcomes
+At the end of the course the student will be able to
+ Comprehend the rationale behind reconfigurable computing.
+ Build computation structures to accelerate processing.
+ Use industry standard tools to implement accelerator logic.
+ Design and implement accelerator logic to speed up an application.
+Course Content
+. Introduction Business and Technical Motivations such as Moores law
+challenges and big data computation requirements for Reconfigurable
+Computing.
+. FPGA Architecture Architecture and Organization Logic Blocks
+Interconnect Memory and Arithmetic Blocks of Modern FPGA Field
+Programmable Gate Array Reconfigurable Devices.
+. Accelerator Logic Design of Logic Structures Memory Structures and
+State Machines and Their Implementation using Structural Verilog HDL.
+. Development Software Industry Standard Tools for Compiling
+Optimizing Simulating and Debugging Accelerator Logic.
+. Applications Hands on Programming of Basic Computation Structures
+and At Least One Application That Performs Much Faster Than Software.
+Prerequisite Courses None.
+Reference Books
+. Digital System Design with FPGA Implementation Using Verilog and
+VHDL st Edition Cem nsalan and Bora Tar McGrawHill Education
+.
+SEVENTH SEMESTER
+UECS
+OBJECT ORIENTED MODELING AND DESIGN 
+Course Objectives
+The objectives of this course is to
+ Introduce students to Object Oriented Programming Object Oriented
+Analysis and Modeling using the Unified Modeling Language UML.
+ Familiarize them with the models used in UML including static as well as
+dynamic behavioral models.
+ Make students appreciate the importance of system architecture and
+system design in product development.
+ Introduce students to important design principles including GRASP and
+SOLID.
+ Introduce students to Design Patterns and their use in software
+development.
+Course Outcomes
+At the end of the course the student will be able to
+ Use the concepts of classes and objects in Object Oriented Programming.
+Use UML to model a complex system by defining actors and use cases.
+ Construct Class Models and analyze the dynamics of a system using
+Activity Sequence State and Process models.
+ Depict the architecture of a software system by using component and
+deployment models and design a database based on a class model.
+ Use GRASP and SOLID principles in the design of software.
+ Apply software design patterns in a variety of situations.
+Course Content
+. Introduction Use Cases and Class Models Introduction to Object
+Oriented Programming Introduction to Modeling Introduction to UML Use
+Case Models Application to Case Study.
+. Class Models and Dynamic Models Class Modeling Object Constraint
+Language Advanced Class Modeling Activity Models Business Process
+Models Sequence Models ATM Case Study Application Class / Interaction
+Models State Models Advanced State Models Relationship between Class
+and State Models Application to Case Study.
+. System Design Component and System Design Class Design
+Implementation Models Deployment Models ObjectRelational Mapping
+Database Design.
+. Object Oriented Design Principles GRASP General Responsibility
+Assignment Software Patterns and SOLID Single Responsibility Open
+Closed Liskov Substitution Interface Segregation Dependency Inversion.
+. Design Patterns What Design Patterns Are How Design Patterns Solve
+Problems How to Select a Design Pattern How to Implement a Design
+Pattern Introduction to Widely Used Design Patterns including Creational
+Structural and Behavioural Patterns.
+Prerequisite Courses None.
+Reference Books
+. ObjectOriented Modeling and Design with UML Michael R Blaha and
+James R Rumbaugh nd Edition Pearson.
+. The Complete Reference Java Herbert Schildt th Edition TATA
+McGRAW HILL.
+. Applying UML and Patterns Craig Larman rd Edition Pearson.
+. The Unified Modeling Language User Guide Grady Booch James
+Rumbaugh and Ivar Jacobso nd Edition Pearson.
+. Design Patterns Elements of Reusable ObjectOriented Software Erich
+Gamma Richard Helm Ralph Johnson John Vlissides Pearson.
+UECS
+SOFTWARE ENGINEERING 
+Course Objectives
+The objectives of this course is to
+ Ensure the relevance and need of an engineering approach to software
+development.
+ Learn Software Engineering concepts.
+ Expose students to the tools available as part of the Software
+Development and Product Development Life Cycle.
+ Enable the students to practice the principles of Software Product
+Development.
+Course Outcomes
+At the end of the course the student will be able to
+ Relate to the challenges of Software Development and relate to Software
+Engineering as a methodical approach for development.
+ Use Software Development Life Cycles with an understanding of when and
+where to use.
+ Work through and produce different artifacts expected at each phase of
+the lifecycle.
+ Work on a project plan track and manage projects.
+ Appreciate the importance and usage of quality and metrics in Software
+Development.
+Course Content
+. Introduction to Software Engineering Understand the Context of
+Software Engineering Contrasting System Development Product
+Development Software Products Project Engineering Generic Process
+Framework Phases in the Development of Software Product Life Cycle
+Phases Roles in Product Development Product Development EcoSystem
+Introduction to Software Development Models including Waterfall Model
+Incremental Model Evolutionary Model Agile Model etc. Software
+Project and Product Management Overview Planning a Software
+Development Project with Overview of Different Aspects of Software
+Engineering Management and Process Maturities. Requirements
+Engineering and Modeling Requirements Engineering Tasks
+Requirements Documentation / Specification and Management
+Requirements Traceability.
+. Software Architecture Software Architecture Software Life Cycle
+Architecture Design Architectural Views Architectural Styles The Unified
+Modeling Language. Software Design Classical Design Methods Object
+Oriented Analysis and Design Methods Design Patterns Service
+Orientation Service Descriptions and Service Communication Service
+Oriented Architecture. Implementation Coding Standards and
+Guidelines Code Review / Peer Review Patching and Patch Management.
+. Change and Build Management Elements of a Configuration
+Management System Baselines Repository SCM Process Configuration
+Management Plan Management of Code Versions Release Versions
+Exposure to Code Management Tools / Build.
+. Software Testing Test Objectives Testing and the Software Life cycle
+Testing Strategies Verification and Validation Planning and
+Documentation Manual Test Techniques Coverage Based Test Techniques
+Fault Based Test Techniques Error Based Test Techniques Comparison of
+Test Techniques Test Stages and Estimating Software Reliability.
+. Software Quality Managing Software Quality A Taxonomy of Quality
+Attributes Perspectives on Quality The Quality System Software Quality
+Assurance The Capability Maturity Model Personal Software Process.
+Other Eng. Topics CBSE Software Metrics Software Engineering in a
+Global Environment Software Estimation Software Engineering and
+Hacking Ethics in Software Engineering. DevOps Introduction Overview
+and Component.
+Prerequisite Courses None.
+Reference Books
+. Software Engineering Principles and Practice Hans van Vliet rd Edition
+Wiley India .
+. Software Engineering A Practitioners Approach Roger S Pressman th
+Edition McGraw Hill .
+. Software Engineering International Computer Science Series Ian
+Sommerville th Edition Pearson Education .
+. IEEE SWEBOK and Other Sources from Internet.
+UECS
+WEB TECHNOLOGIES II 
+Course Objectives
+The objectives of this course is to
+ Provide an indepth insight into Asynchronous Communication using AJAX
+techniques.
+ Provide an introduction to challenges involved in improving performance
+of rich web sites.
+ Learn the basics of Web Services and Reverse AJAX techniques.
+ Provide an overview of various Server Side Frameworks for web
+development.
+ Provide a basic overview of nonfunctional side of the WWW.
+Course Outcomes
+At the end of the course the student will be able to
+ Design Rich Web Applications with techniques like AJAX ServerPush etc.
+ Use Node.js as a Server Side Framework to develop web sites that provide
+fast and reliable content.
+ Develop RESTful Web Services and consume them.
+ Develop robust web sites that are immune to malicious web attacks.
+Course Content
+. AJAX Hidden Frames Technique ImageBased AJAX Dynamic Script
+Loading XMLHttpRequest CrossDomain Access CORS Maintaining
+History in AJAX Calls Fetching Binary Data with XHR. AJAX Patterns 
+Predictive Fetch MultiStage download Periodic Refresh and Fallback
+Patterns Submission Throttling.
+. Syndication Reverse AJAX and Web Services RSS / Atom Feeds
+JSON and XML JSON vs XML XML Based Parsers. Reverse AJAX COMET
+HTTP Streaming and Long Poll iFrames Technique Using XMLHttpRequest
+HTML Server Sent Events Overview of COMET Frameworks Web Sockets.
+Web Services Principles of REST Architecture of SOAPBased Services
+REST vs. SOAP Based Services Building and Invoking RESTful Web
+Services using PHP Hosting Web Services on Cloud Introduction to Micro
+Services.
+. Angular JS Introduction Directives and Controllers Forms Inputs and
+Services Server Communication with $http Filters.
+. NonFunctional Aspects of the Web Performance Considerations 
+Timeouts Retries Handling Server Errors Multiple Requests The HTTP .
+Two Connection Limit Race Conditions Caching on Client Side
+Compression of Data Request Management Scalability. HTTP . New
+Features HTTP . vs .. Security Web Attack Surfaces
+Reconnaissance Review Various Vulnerabilities and Precautions SQL
+Injection XSS XST CSRF HTTP Authentication and its Configuration in
+Apache.
+. Server side Frameworks Overview of Popular Server side Frameworks 
+Ruby on Rails CodeIgniter Django MEAN.IO. Node.js Basics Callbacks
+HTTP Responses File and Database Access.
+Prerequisite Courses UECS Web Technologies I.
+Reference Books
+. Professional AJAX Joe Fawcett Nicholas C Zakas Jeremy McPeak nd
+Edition Wiley Publishing .
+. Angular JS Up and Running Shyam Sheshadri and Brad Green O Reily
+st Edition .
+. AJAX The Complete Reference Thomas A Powell McGraw Hill .
+. Handouts for Web Sockets HTTP . protocol Node.js.
+UECS
+OBJECT ORIENTED PROGRAMMING WITH JAVA 
+Course Objectives
+The objectives of this course is to
+ Learn the basics of Object Oriented Programming.
+ Learn how to solve different types of computing problems.
+ Understand and develop wellstructured programs using Java
+programming language.
+Course Outcomes
+At the end of the course the student will be able to
+ Appreciate the Object Oriented Programming paradigm.
+ Develop solutions to problems in problem domain and map them to
+solution domain.
+ Read write understand and modify programs in Java.
+Course Content
+. Java Fundamentals Introduction to Programming in Java Java Language
+and Java Platform Program Structure Translation Process Simple I/O
+Constants Variables Type Mixed Mode Operation Primitive Types and
+Reference Types. Object Based Programming Abstraction
+Encapsulation Composition Class Attributes Behaviour Objects and
+Methods. Interface and Implementation Instance Fields and Methods
+Initialization of Fields Role of Constructors and Destructors Garbage
+Collector Parameter Passing Value Type and Reference Type Overloading
+of Methods Scope. Control Structures Selection if switch Looping 
+while for do while break and continue Nested Control Structures.
+. Recursion. Class Attributes and Behaviour Difference between Class
+Methods and Instance Methods Necessity to Use Class Methods.
+Enumerated Data Type Class Containing Fixed Number of Objects.
+Programming for Safety Assertions Exception Handling Exception
+Propagation Use and Misuse of Exception Mechanism.
+. Arrays as Abstract Data Type Creation Initialization Methods on
+Arrays BuiltIn Methods Higher Order Arrays Strings as Abstract Data
+Type Creation Initialization Immutability String Methods. Composition
+and Inheritance has a and is a Relationship LISKOVs Property of
+Substitution When to Use and When Not to Use Inheritance Super and
+Sub Classes Polymorphism Overriding.
+. Inheritance Continued Concepts of Single Rooted Hierarchy and
+Interface Abstract Class in Programming Languages Object Class in Java.
+Composition Flexibility of Composition over Inheritance Examples of
+Composition and Inheritance. Package Need of Package Concept User
+Defined Package Introduction to BuiltIn Packages.
+. Nested Types Need for Type within Type Different Types of Inner
+Classes Anonymous Inner Classes Callback Mechanism. Persistence
+Reading from Files Writing into Files Concept of Serialization.
+Introduction to Generics and Collections Generic Programming
+Concepts Concept of Generic Box List Interface Sort and Search.
+Prerequisite Courses None.
+Reference Books
+. Core Java Volume I Fundamentals Cay S Horstmann Gary Cornell th
+Edition Pearson.
+. Learning Java Patrick Niemeyer and Daniel Leuck th Edition O Reilly.
+ELECTIVE 
+UECS
+ENTERPRISE RESOURCE PLANNING 
+Course Objectives
+The objectives of this course is to
+ To learn the strategic importance of Enterprise Resource Planning systems
+in industry
+ To learn the basics of ERP the modules of ERP
+ To learn the key selection criteria and implementation issues risks of
+ERP To be aware of ERP related technologies
+ To be aware of commercial ERP software.
+Course Outcomes
+At the end of the course the student will be able to
+ Identify typical functionality of ERP subsystems.
+ Apply criteria to select ERP Package
+ Apply criteria to select ERP Consulting Partner
+ Systematically develop plans for an ERP Implementation project and
+ Identify critical success factors and associated risks.
+Course Content
+. Introduction to Enterprise Resource Planning Systems
+Introduction Value Chain Framework Problems with Disintegrated Data in
+an Organization Evolution of ERP Systems Role of ERP Systems in an
+Organization Are ERP Systems Different from Traditional Information
+Systems? Scope of ERP Systems General Model of Business and Role of
+ERP Major ERP Players Implementations in India. Life Cycle of an ERP
+Implementation Project Introduction Life Cycle of an ERP Project ERP
+Project Teams Implementation Methodologies Deployment Methods.
+Benefits and Cost of an ERP System Introduction Benefits Cost of an
+ERP Implementation CostBenefit Analysis.
+. Change Management Introduction People Issues Are You Ready for
+ERP? Factors that Influence Preimplementation Attitude How to Enhance
+Attitude? Change Management Strategies to Handle Organizational
+Issues Creating a Change Management Strategy to Handle Organizational
+Issues Tools for Assessing the Organizational Changes. ReEngineering
+Introduction Processes and their Characteristics Life Cycle of a BPR
+Project Life Cycle of an ITdriven BPR Project Reengineering Examples
+Case Studies. Business Process Modelling and Business Modelling
+BPM Introduction Business Process Hierarchy Standards for Business
+Processes and Modelling Process Modelling Maturity and Multi
+Dimensional Modelling Process Modelling Software Business Modelling
+Integrated Data Modelling.
+. ERP Functional Modules Human Capital Management Introduction
+Human Capital Management Systems Leading HR Solutions from ERP
+Vendors Strategic Vs. Operational HR Processes and HR Outsourcing
+Employee Health and Safety. Financial Management Introduction ERP
+Financial Application Financial Modules in Detail. Procurement and
+Inventory Management Procurement Inventory Management.
+Production Planning and Execution Understanding MRP II Concepts
+How ERP PP module supports MRP II Processes Critical Master Data
+Elements Managing different Production Scenarios.
+. ERP Selection Introduction ERP System Selection Team ERP Solution
+and Vendor Selection Information Gathering Preliminary Filtering
+Parameters for ERP Selection Prepare and Release Request for Proposal
+RFP Gap Analysis AHP for ERP Selection. Managing an ERP Project
+Introduction Success of an ERP System is Multidimensional Critical
+Success Factors Risk Associated with an ERP Project Measuring
+Performance of ERP System using Balanced Scorecard.
+. ERP and Related Technologies Introduction Electronic Data
+Interchange EDI Supply Chain Management SCM Customer
+Relationship Management CRM Product Life Cycle Management PLM
+Data Warehousing Business Intelligence DWBI. Introduction to
+Commercial ERP Software Introduction Indian Market SAP Oracle
+Peoplesoft JD Edwards MS Dynamics. Implementations in India; Articles
+and Cases.
+Prerequisite Courses None.
+Reference Books
+. Enterprise Resource Planning A Managerial Perspective Veena Bansal
+Pearson Education India .
+. Enterprise Resource Planning Text Cases Rajesh Ray Tata McGraw
+Hill New Delhi .
+. ERP Demystified Alexis Leon McGraw Hill Education rd Edition .
+UECS
+ALGORITHMS FOR INFORMATION RETRIEVAL 
+Course Objectives
+The objectives of this course is to
+ Understand the architecture models and algorithms used in Information
+Retrieval.
+ Understand the basic principles and implementation of Indexing and
+Search.
+ Understand how web search works.
+ Understand the use of machine learning in Information Retrieval.
+ Become familiar with applications and latest trends in Information
+Retrieval.
+Course Outcomes
+At the end of the course the student will be able to
+ Implement an efficient index for a document collection.
+ Perform searches on a document collection rank and evaluate results.
+ Implement components of a web search system.
+ Apply Machine Learning techniques in Information Retrieval Systems.
+ Describe modern applications and research trends in Information
+Retrieval.
+Course Content
+. Introduction to Information Retrieval Background Architecture and
+Strategies of Information Retrieval IR Systems IR Models Boolean and
+Extended Boolean Models Dictionary Vocabulary Positional Postings
+Phrase Queries and Tolerant Retrieval.
+. Indexing and Vector Space Model Algorithms for Indexing and Index
+Compression Vector Space Model for Scoring tfidf and Variants Efficient
+Scoring and Ranking.
+. Evaluation of IR / Other IR Models Performance Measurement
+Relevance Feedback Query Expansion Other IR Models.
+. Web Search Web Search Basics Economic Model of Web Search Search
+User Experience Web Crawling and Indices Link Analysis The PageRank
+Algorithm Building a Complete Search System.
+. Applications of IR Text Classification and Clustering Snippet
+Generation Summarization Topic Detection and Tracking Question
+Answering Personalization.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. Introduction to Information Retrieval Christopher D. Manning
+Prabhakar Raghavan Hinrich Schtze ISBN Cambridge
+University Press .
+. Modern Information Retrieval The Concepts and Technology behind
+Search Ricardo Baeza Yates and Berthier Ribeiro Neto nd Edition ACM
+Press Books .
+. Search Engines Information Retrieval in Practice Bruce Croft Donald
+Metzler and Trevor Strohman st Edition Addison Wesley .
+. Information Retrieval Implementing and Evaluating Search Engines
+Stephen Buettcher Charles L A Clarke and Gordon V Carmack MIT Press
+.
+UECS
+CONTENT MANAGEMENT 
+Course Objectives
+The objectives of this course is to
+ Learn the basic concepts of a Content Management System CMS and its
+components.
+ Learn the architecture of a CMS.
+ Learn to design components of a CMS.
+ Learn relevant tools and technologies CML XML.
+ Learn to build Collection systems Management Systems and Publishing
+systems.
+Course Outcomes
+At the end of the course the student will be able to
+ Identify the fundamental concepts of a CMS and its components.
+ Identify the architecture of a CMS.
+ Design components of a CMS.
+ Identify and study tools and technologies such as CML and XML.
+ Build Collection systems Management systems and Publishing systems.
+Course Content
+. What is Content Defining Data Information and Content Content
+Format Structure Functionality is Content. What is Content
+Management Understanding Content Management Introducing the
+Major Parts of a Content Management System The Roots and Branches of
+Content Management.
+. Logical Design of a CMS The Wheel of Content Management Working
+with Metadata Catalog Audiences.
+. Designing Publications Designing Content Components Accounting for
+Authors Accounting for Acquisition Sources.
+. Designing Content Access structures Designing Workflow and Staffing
+Models Building a Content Management System Content Markup
+Languages XML and Content Management Processing Content.
+. Explore Commercial CMS and Learn Current Trends in CMS
+Implementation Hands on CMS Implementation Building Collection
+Systems Building Management Systems Building Publishing Systems.
+Prerequisite Courses None.
+Reference Books
+. Content Management Bible Bob Boiko Wiley India Ltd .
+. Enterprise Content Management Stephen A Cameron BCS .
+UECS
+COMPUTER VISION 
+Course Objectives
+The objectives of this course is to
+ To create an awareness of the imaging fundamentals in terms of
+acquisition storage and display.
+ To gain an insight into the mathematical transforms necessary for binary
+and gray scale images.
+ To study the quality of the image and the enhancement of images in
+spatial and frequency domains.
+ To design and evaluate the methods of mathematical morphology and
+image segmentation.
+ To translate the techniques of gray scale images to D/color images.
+Course Outcomes
+At the end of the course the student will be able to
+ Identify typical defects in an image and assess a suitable technique for
+processing the image to mitigate/ remove the defect and enhance the
+image.
+ Design methods to automatically extract regions of interest from each
+other and the background either in binary grayscale or color images.
+ Extract the gist of any method in literature for processing of images for a
+particular application and be able to explain this clearly extending their
+learning of concepts such as histogram equalization to local/ adaptive
+histogram equalization and enhancement techniques in the spatial and
+frequency domains to block processing of images realized through
+seminars in class.
+ Assess hardware available for acquisition and viewing of images for
+advantages and limitations and be able to identify a suitable imaging
+modality for a given application.
+ Implement basic techniques using open source tools and take up a
+problem conceptualize the solutions and implement in a programming
+language of their choice realized through a handson workshop
+assignment and class project.
+ Application of spatial and frequency domain processing for computer
+vision.
+Course Content
+. Introduction to Computer Vision A Brief History of Computer Vision
+The Digital Camera Point Operators Linear Filtering Neighborhood
+Operators Basics of Frequency Domain Processing.
+. Feature Detection and Matching and Segmentation Features 
+Feature Extraction Binary Object Features Histogram Features Color
+Features Spectral Image Features Corner Detection Scale Invariance
+Projections Segmentation Points Lines Split and Merge Mean Shift.
+. Computational Photography Photometric Calibration High Dynamic
+Range Imaging Super Resolution and Blur Removal Basics of Image
+Matting and Texture Analysis.
+. Stereo and D Reconstruction Stereo An Introduction Epipolar
+Geometry Sparse and Dense Correspondence Local Methods Feature
+Tracking and Optical Flow.
+. Recognition Object Detection Face Recognition Category Recognition
+Context and Scene Understanding.
+Prerequisite Courses None.
+Reference Books
+. Computer Vision Algorithms and Applications Richard Szeliski nd
+Edition Springer .
+. Computer Vision A Modern Approach Forsythe and Ponce nd Edition
+Pearson .
+. Dictionary of Computer Vision and Image Processing R B Fisher T P
+Breckon K DawsonHowe A Fitzgibbon C Robertson E Trucco C. K. I.
+Williams Chichester West Sussex John Wiley and Sons Inc. .
+UECS
+ADVANCED MACHINE LEARNING 
+Course Objectives
+The objectives of this course is to
+ To impart handson knowledge on Advanced Machine Learning Topics.
+ Introduce students to programming with TensorFlow and Keras tools.
+ Provide indepth coverage of Support Vector Machines.
+ Introduce students to Deep Learning techniques CNN and RNN.
+ Introduce students to Reinforcement Learning and Generative Adversarial
+Networks.
+Course Outcomes
+At the end of the course the student will be able to
+ Implement Machine Learning techniques with TensorFlow and Keras.
+ Solve timeseries related problems with RNN.
+ Classify realworld data using Support Vector Machines.
+ Classify images using CNN.
+ Generate data in the form of images using GAN.
+ Develop simple game engines using Reinforcement Learning.
+Course Content
+. TensorFlow and Keras and Reinforcement Learning Brief overview of
+Deep Learning Frameworks. TensorFlow Installation Creating and
+Managing Graphs Lifecycle of a Node Value Linear Regression Gradient
+Descent Visualizing Graphs using TensorBoard. Keras Installation Loading
+Data Defining and Compiling Models Fitting and Evaluating Models Simple
+Neural Networks Implementation FineTuning Hyperparameters.
+Reinforcement Learning Learning to Optimize Rewards Credit
+Assignment Problem Temporal Difference Learning and QLearning. Case
+Study Learning to play a simple game using deep Qlearning 
+implementation.
+. Support Vector Machines A Very Brief Recap of the Support Vector
+Machine SVM Problem SoftMargin SVM Noisy Data Kernel Functions 
+Linear Polynomial Gaussian Other Types The SMO Algorithm MultiClass
+SVMs TextClassification Building Applications.
+. Recurrent Neural Networks RNN and Unsupervised Feature
+Learning Recurrent Neurons Memory Cells Static and Dynamic Unrolling
+through Time VariableLength InputOutput Sequences Training RNNs 
+Sequence Classifier Predicting Time Series Deep RNNs LSTM Cell and GRU
+Cell Text Classification with RNN RNN Vs Nave Bayes Unsupervised Feature
+Learning Autoencoders and Variations.
+. CNN GAN and Transfer Learning CNN Architecture of CNNs Filters
+Feature Maps MaxPool Layers Other Pooling Types Case Study Image
+Recognition Using CNN HandsOn Implementation Using Keras. GAN 
+Architecture and Training Methods ImageGeneration HandsOn
+Implementation Using Keras. Transfer Learning Motivation Variations Use
+in CNNs.
+. Paper Review and Implementation Selection of two stateoftheart
+papers recent on deep learning in depth study of the papers in class and
+their implementation.
+NOTE Unit will be part of Endsemester Assessment. Questions will
+be asked on the chosen papers.
+Prerequisite Courses UECS Machine Learning.
+Reference Books
+. Handson Machine Learning with ScikitLearn and TensorFlow Aurelien
+Geron First Edition OREILLY .
+. Deep Learning with Keras Antonio Gulli and Sujit Pal Packt Publishing First
+Edition .
+. Pattern Recognition and Machine Learning Christopher Bishop First
+Edition Springer Reprint.
+. Handouts for SVM Transfer Learning.
+UECS
+WIRELESS NETWORK COMMUNICATIONS 
+Course Objectives
+The objectives of this course is to
+ To provide an overview of Wireless Communication networks area and its
+applications in communication engineering.
+ To appreciate the contribution of Wireless Communication networks to
+overall technological growth.
+ To understand the various terminology principles devices schemes
+concepts algorithms and different methodologies used in Wireless
+Communication Networks.
+Course Outcomes
+At the end of the course the student will be able to
+ Understand the cellular system design and technical challenges.
+ Analyze the Mobile radio propagation fading diversity concepts and the
+channel modeling.
+ Analyze the design parameters link design smart antenna beam forming
+and MIMO systems.
+ Analyze Multiuser Systems CDMA WCDMA network planning and OFDM
+Concepts.
+ Summarize the principles and applications of wireless systems and
+standards
+Course Content
+. Overview of Wireless communication Cellular Phone Standards
+Cellular Evaluation Wireless Local Loop WLL and LMDS Wireless Local
+Area Networks WLANs Bluetooth and Personal Area Networks PANs
+Overview of WLAN standards .g/n/ac/ad and channel management.
+Handover in WLAN network.
+. Overview of Wireless CommunicationII Wifi Wimax IEEE .a
+IoT Wireless Topologies Zigbee Wireless Networks and Transceivers NFC
+LoWPAN Tradeoff between Battery Bandwidth and Distance. Wireless
+Channel Models Path Loss and Shadowing Models Millimeter Wave
+Propagation Statistical Fading Models Narrowband Fading Wideband
+Fading Models.
+. Design of WLAN in public place e.g. Cafes hotels Railway Stations
+Airports. Impact of Fading and ISI on Wireless Performance
+Capacity of Wireless Channels Digital Modulation and its Performance.
+Overview of SOHO Internet Technologies DSL PON Cable and
+Satellite.
+. Adaptive Modulation Multiple Input/ Output Systems MIMO.
+. ISI Countermeasures Multicarrier Systems and OFDM Multiuser and
+Cellular Systems.
+Prerequisite Courses UECS Computer Networks.
+Reference Books
+. Wireless Communication Andrea Goldsmith First Edition Cambridge
+University Press.
+. Fundamentals of Wireless Communication David Tse Pramod
+Viswanath First Edition Cambridge University Press.
+. Advanced Wireless Communication and Internet Future Evolving
+Technologies Savo G Glisic Third Edition Wiley.
+ELECTIVE 
+UECS
+INFORMATION SECURITY 
+Course Objectives
+The objectives of this course is to
+ Learn the challenges and pitfalls of Software Development and Secure
+Programming across the Web Mobile Devices and IoT.
+ Learn the possible attacks and available remedies.
+ Learn about security design and testing best practices.
+Course Outcomes
+At the end of the course the student will be able to
+ Understand the security limitations of commonly used Operating Systems
+Browsers and Mobile Operating Systems.
+ Understand the security limitations of popular programming languages.
+ Understand the common security pitfalls in various application
+development approaches platforms and how to avoid them.
+ Learn how to use some common security testing strategies and
+Penetration Testing.
+Course Content
+. Introduction Software Threats and Vulnerabilities OWASP Top SANS
+Top CVE etc. Various Type of Attacks like BruteForce Attacks DDOS
+Phishing Credentials Misuse Malware etc. Significance/ Importance of
+Secure Coding Secure Coding Terminology Secure Coding Principles
+Threat Modeling Secure Coding Resources Both online and offline.
+. Secure Software Development and Programming Common
+Operating Systems and Their Security Limitations Common Programming
+Languages and Their Security Limitations Secure Application
+Development Database Security Ransomware Virus Malicious Code
+Testing and Prevention Best Practices.
+.. C Catastrophe Calls to Delete Constructors Lack of
+Reinitialization Ignorance of STL Pointer Initialization Testing
+Techniques and Defensive Measures. Catching Exceptions Overview
+Structured Exception Handling Signal Handling Failure to Handle
+Errors Correctly Yielding Too Much Information Ignoring Errors
+Misinterpreting Errors Using Useless Return Values Using NonError
+Return Values. Platform Security Code Integrity and Code Signing
+Secure Boot Measured Boot and Root of Trust Security threats from
+peripherals e.g. DMA IOMMU.
+.. Vulnerabilities and Exploits like Buffer Overflows SQL Injection
+Insecure Direct Object References Security Misconfiguration Sensitive
+Data Exposure.
+. Web Application Security Issues Challenges Browser Security SQL
+Injection CrossSite Scripting CrossSite Request Forgery Session
+Hijacking TLS Stripping CrossSite Scripting XSS Broken Authentication
+and Session Management.
+.. HTTP Security Overview of HTTP Security MITM Attacks and
+Solutions HTTP Security Headers CSP ContentSecurityPolicy HSTS
+HTTP Strick Transport Security HPKP HTTP Protocol Key Pining XFrame
+Options XXSSProtection XContentTypeoptions CORS Cross
+Origin Resource Sharing HTTP/ and Security Challenges HTTP
+Security Considerations Transfer of Sensitive Information and Its
+Encoding Privacy Issues and HTTP Authentication.
+.. Executing Code with Too Much Privilege Examples and Defensive
+Measures Failure to Protect Stored Data Weak Access Controls on
+Stored Data Weak Encryption of Stored Data Use of Weak Password
+Based Systems Password Compromise Password Change Policies
+Password Failure Error Display Policies Retrieval of Forgotten
+Passwords Default Passwords and Replay Attacks Storing Passwords
+and Alternatives Password Verifiers Zero Knowledge BruteForce
+Attacks Against Password Verifiers.
+. Mobile Application Security Android and iOS Security App Security
+Secure Boot Data Exfiltration Cloud and IoT Application Security.
+. Countermeasures Tools Frameworks and Services Secure Coding
+Standards Secure Coding Best Practices/ Patterns Intercepting Validators
+Sanitization Session Management Authentication Encryption Password
+Management Access Control Error Handling and Logging File
+Management Memory Management Microsoft Secure Development
+Process SDP Static Analysis Tools Dynamic Analysis Tools Web
+Application Security Frameworks JavaBased Enterprise Application
+Security Frameworks Outsourcing Vulnerability Tracking.
+Prerequisite Courses UECS Computer Network Security.
+Reference Books
+. Computer Security Principles and Practice Third Edition William Stallings.
+Chapters .
+UECS
+WEB SERVICES 
+Course Objectives
+The objectives of this course is to
+ To provide a brief introduction to Service Oriented Architecture.
+ To provide a comprehensive introduction to Web Services.
+ To impart techniques on building RESTful and SOAPbased Services.
+ To educate the student on the security aspects of Web Services.
+Course Outcomes
+At the end of the course the student will be able to
+ Build RESTful Web Services
+ Build SOAP based Web Services
+ Design RESTful APIs
+ Demonstrate basic security mechanisms in Web Services.
+ Invoke RESTful and SOAPbased Web Services.
+Course Content
+. Introduction Web Services and SOA Overview of HTTP REST.
+. RESTful Web Services The Service Side RESTful Service as an HTTP
+Servlet as a JAXRS Resource Generating XML and JSON Responses
+Restlet Resources WebService Provider.
+. RESTful Web Services The Client Side Clients against Amazon ECommerce
+Service RESTful Clients and WADL Documents JAXRS Client
+API JSON for Javascript Clients JSONP and Web Services jQuery AJAX
+Polling.
+. SOAPBased Web Services SOAPBased Services Java Clients WSDL
+Service Contract SOAPBased Clients against Amazon ECommerce
+Services Asynchronous Clients.
+. Web Services Security WireLevel Security Service and ClientSide
+HTTPS Encryption Decryption Handshake etc. in Detail Container
+Managed Security WSSecurity.
+Prerequisite Courses UECS Web Technologies I.
+Reference Books
+. Web Services Up and Running Martin Kalin nd Edition O Reilly .
+UECS
+ALGORITHMS FOR INTELLIGENT WEB 
+Course Objectives
+The objectives of this course is to
+ To get an understanding of search algorithms.
+ To learn recommendation algorithms and their working.
+ To get an insight into clustering algorithms.
+ To introduce classification algorithms and their use in todays applications.
+ To get an idea of different web applications.
+Course Outcomes
+At the end of the course the student will be able to
+ Analyze different search algorithms and make comparison
+ Suggest different recommendation algorithms
+ Implement various clustering algorithms
+ Analyze different intelligent applications
+ Effectively use classification algorithms
+Course Content
+. Introduction and Search Algorithms Introduction to Web and
+Intelligent Web Applications Examples of Intelligent Web Applications
+Intro to AI and Machine Learning Intro to Search and Information
+Retrieval Lucene as a Search Engine Improving Search Results Link
+Analysis and PageRank Other Search Algorithms Scalability Issues in
+Search.
+. Recommendation Algorithms Distance and Similarity Distance and
+Similarity Recommendation algorithms Types of Recommendations
+Workings of Sample Systems Workings of Sample Systems Data
+Normalization and Correlation Coefficients.
+. Clustering Algorithms Introduction to Clustering Grouping in SQL
+Clustering Algorithms Types of Clustering Algorithms Example
+Algorithms Example Algorithms Applications of Clustering Scalability
+Issues in Clustering.
+. Classification Algorithms Classification Theory Category Lists
+Taxonomy Folksonomy and Ontology Classification by Tagging Automatic
+Classification and Routing Types of Classification Algorithms Hybrid
+Classifiers Sample Applications Practical Issues in Classification.
+. Intelligent Web Applications Design of an Intelligent Web Application
+User Requirements Selecting Algorithms Data Design Design for
+Performance Architecture of an Intelligent Web Application
+Implementation Issues Summary and Conclusion.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. Algorithms of the Intelligent Web Haralambos Marmanis Dmitry
+Babenko Manning Publishers .
+UECS
+SOCIAL NETWORK ANALYTICS 
+Course Objectives
+The objectives of this course is to
+ Provide students background on concept of various types and kinds of
+Social Networks their structural properties and related measures
+ Train students to observe and measure unique aspects of network
+formation and growth of social networks
+ Enable students to understand social phenomena such as diffusion and
+cascades.
+ Expose students to Strategic Networks the incentive model for connection
+formation
+ Expose students to Game theory and Games on Networks concepts
+related to strategies and optimality
+Course Outcomes
+At the end of the course the student will be able to
+ Model a given scenario/problem as a network evaluate the type and kind
+of such a network and measure structural properties of that network.
+ Apply algorithms to detect communities and decipher phenomena
+peculiar to social networks such as small worlds and power laws
+ Model a social process such as spread of information and diseases using
+diffusion model.
+ Model and analyze strategic networks and measure network properties.
+ Apply Social Network Analysis concepts to variety of real world scenarios
+by modeling them as games.
+Course Content
+. Background and Fundamentals of network analysis Introduction to
+Networks and Examples Egocentric Networks Exchange Networks
+GraphTheory Directions and Weights Adjacency Matrices homophily
+Tiestrengths and structural holes. Representing and Measuring
+Networks Degree distribution diameters pathlengths centrality
+closures clustering
+. Models of Network formation Random Networks Small World
+Growing Random Networks Growth Models Distribution of expected
+degrees Preferential attachment Fat tails Power Laws Fat Tails Scalefree
+networks Affiliation Networks Cliques and Cores Cohesion
+Communities and Community Detection Algorithms
+. Implications of Network Structure Diffusion through Networks The
+Bass Model Diffusion in Random networks Giant Components Models to
+study disease and information spreads Cascades and Contagions 
+Assortativity Percolation and Robustness of Networks Effects of
+communities and centralities on diffusion
+. Strategic Networks Economic Game Theoretic Models of Network
+Formation Connections Model Pairwise Stability Efficient and Paretoefficient
+networks Externalities and Coauthor Models Pairwise Nash
+Stability Complements and Substitutes.
+. Games on Networks Introduction to Games Reasoning about behavior
+in a Game Prisoners Dilemma Best response and Dominant Strategies
+Nash Equilibrium Multiple equilibriums Coordination Games HawkDove
+Game Mixed Strategies Pareto Optimality and Social Optimality.
+Prerequisite Courses UECS Machine Learning.
+Reference Books
+. Introduction to Social Network Methods Robert A Hanneman University
+of California Riverside .
+. Social and Economic Networks Mathew O Jackson Princeton University
+Press .
+. Networks Crowds and Markets Reasoning About a Highly Connected
+World D Easley and J Kleinberg Cambridge University Press .
+UECS
+COMPUTER SYSTEMS PERFORMANCE ANALYSIS 
+Course Objectives
+The objectives of this course is to
+ Provide students background on the art of system performance evaluation
+ Train students to observe workload workloads selection
+ Enable students to understand capacity planning and benchmarking
+ Expose students to get hands on experimental analysis and design
+ Expose students to different queuing models
+Course Outcomes
+At the end of the course the student will be able to
+ Model a given scenario for analysing the performance evaluation of the
+system
+ apply workload and workload selection criteria for different scenarios
+ Model execution monitors and accounting logs
+ Model and analyze capacity planning and benchmarking
+ Apply queuing models for different scenarios for predicting the
+performance
+Course Content
+. Introduction The Art of Performance Evaluation Common Mistakes in
+Performance Evaluation A Systematic Approach to Performance
+Evaluation Selecting an Evaluation Technique Selecting Performance
+Metrics Commonly used Performance Metrics Utility Classification of
+Performance Metrics Setting Performance Requirements.
+. Workloads Workload Selection and Characterization Types of
+Workloads Addition Instructions Instruction Mixes Kernels Synthetic
+Programs Application Benchmarks Popular Benchmarks Workload
+Selection Services Exercised Level of Detail Representativeness
+Timeliness Other Considerations in Workload Selection Workload
+Characterization Techniques Terminology Averaging Specifying
+Dispersion Single Parameter Histograms Multi Parameter Histograms
+Principle Component Analysis Markov Models Clustering.
+. Monitors Program Execution Monitors and Accounting Logs
+Monitors Terminology and Classification Software and Hardware
+Monitors Software versus Hardware Monitors Firmware and Hybrid
+Monitors Distributed System Monitors Program Execution Monitors and
+Accounting Logs Program Execution Monitors Techniques for Improving
+Program Performance Accounting Logs Analysis and Interpretation of
+Accounting Log Data Using Accounting Logs to Answer Commonly Asked
+Questions.
+. Capacity Planning and Benchmarking Steps in Capacity Planning and
+Management Problems in Capacity Planning Common Mistakes in
+Benchmarking Benchmarking Games Load Drivers RemoteTerminal
+Emulation Components of an RTE Limitations of RTEs.
+. Experimental Design and Analysis Introduction Terminology
+Common Mistakes in Experiments Types of Experimental Designs k
+Factorial Designs Concepts Computation of Effects Sign Table Method for
+Computing Effects Allocation of Variance General k Factorial Designs
+General Full Factorial Designs with k Factors Model Analysis of a General
+Design Informal Methods.
+. Queuing Models Introduction Queuing Notation Rules for all Queues
+Littles Law Types of Stochastic Process. Analysis of Single Queue Birth
+Death Processes M/M/ Queue M/M/m Queue M/M/m/B Queue with Finite
+Buffers Results for Other M/M/ Queuing Systems.
+Prerequisite Courses UECS Microprocessor and Computer
+Architecture.
+Reference Books
+. The Art of Computer Systems Performance Analysis Raj Jain John
+Wiley and Sons .
+. Computer System s Performance Evaluation and Prediction Paul J
+Fortier Howard E Michel Elsevier .
+. Probability and Statistics with Reliability Queuing and Computer
+Science Applications Trivedi K S nd Edition Wiley India .
+UECS
+DESIGN PATTERNS 
+Course Objectives
+The objectives of this course is to
+ To impart design principles beyond coding.
+ To inculcate good habits in design.
+ To make the participants appreciate what to do and what not to do.
+ To compare alternate design solutions.
+ To appreciate the intricacies of design.
+Course Outcomes
+At the end of the course the student will be able to
+ Separate the interface from implementation in any complex problem.
+ Identify the contexts where design patterns can be applied.
+ Select where idioms can be applied as opposed to design patterns.
+ Identify where not to apply design patterns.
+ Reliably refactor a large piece of software.
+Course Content
+. Design Principle Interface and Implementation Open Closed Principle
+Liskov Substitution Principle Dependency Inversion Principle Integration
+Segregation Principle. Architectural and Package Principles.
+. Idioms Handle Body Idiom PIMPL Reference Counting Named
+Constructor Idiom Telescoping Constructor Bean Pattern for Construction
+Destruction Idiom.
+. Design Patterns GOF Patterns Constructional Patterns Structural
+Patterns Behavioral Patterns.
+. Patterns Beyond GOF Persistence Multithreading.
+. Introduction to Antipatterns and Refactoring.
+Prerequisite Courses UECS Design and Analysis of Algorithms.
+Reference Books
+. Design Principles and Design Patterns Robert C Martin .
+. Design Patterns Elements of Reusable ObjectOriented Software Erich
+Gamma Richard Helm Ralph Johnson John Vissides Addison Wesley
+
+. Java Design Patterns James W Cooper Addison Wesley .
+. AntiPatterns The Survival Guide to Software Development Processes
+Alexander Shvets Online Reference at http//bit.ly/enxzd.
+UECS
+AUTONOMOUS MOBILE ROBOTICS 
+Course Objectives
+The objectives of this course is to
+ To enable the students to have handson experience with mobile robots
+ To understand the physics of motion
+ To write program to operate mobile robots
+ To use mobile robots for accomplishing high level tasks
+ To enrich the mobile robotics applications to serve the society
+Course Outcomes
+At the end of the course the student will be able to
+ Operate mobile robots autonomously or/and semiautonomously
+ Write programs to guide the paths of mobile robots
+ Perform assigned tasks using mobile robots
+ Apply the fundaments of mobile robotics for their projects
+ Innovate workable ideas to address the challenging problems in the
+society.
+Course Content
+. Introduction and Locomotion Introduction to mobile robots MR
+Applications Key issues in locomotion Legged mobile robots Wheeled
+mobile robots
+. Kinematics MR kinematic models MR constraints MR maneuverability
+MR workspace MR control basics
+. Perception Sensor for MR Representing uncertainty Error propagation
+Feature extraction range data Feature extraction vision
+. Localization Challenges in localization Map representation Mapbased
+localization Other localization methods Automatic map building
+. Planning and Navigation Path planning Obstacle avoidance
+Navigation architectures Control localization Techniques for localizations
+Prerequisite Courses None.
+Reference Books
+. Introduction to Autonomous Mobile Robots Roland Siegwart Illah
+Nourbakhsh The MIT press eBook is freely available.
+. Mobile Robotics Mathematics Models and Methods Alonzo kelly
+Cambridge University Press .
+. Robot Programming A Practical Guide to BehaviorBased Robotics Joe
+Jones Daniel Roth McGrawHill Education TAB; st Edition .
+VIII SEMESTER
+ELECTIVE 
+UECS
+INTRODUCTION TO SOFTWARE TESTING 
+Course Objectives
+The objectives of this course is to
+ Introduce the concepts of Software Quality and types of testing.
+ Familiarize with different levels of testing.
+ Understand the challenges in test management test automation.
+ Introduction to software testing tools.
+ Understand the advances in testing field like cloud and mobile testing.
+Course Outcomes
+At the end of the course the student will be able to
+ Apply the concepts of Quality Engineering.
+ Apply proper testing techniques at different phases of development.
+ Understand cost of quality.
+ Plan employ and measure proper Quality approaches applied.
+ Gain handson exposure to few testing tools.
+Course Content
+. Introduction to Software Quality and Testing Introduction to Software
+Quality Importance Philosophy and Concepts Quality Management Cost of
+Quality SQA Verification and Validation Importance of Testing in SDLC and
+Other New Methods of Software Development Like Agile SCRUM etc. Test
+Lifecycle and Tools and Techniques for Test Life cycle Modified V Model for
+Testing Requirements in a Project Classification of Testing Types Based on
+Method/ Requirement /Target /Needs Test Design and Planning.
+. Unit Testing Definition Test Planning Methodology Code Coverage
+Testing. White Box Testing Definition. Integration Testing Overview
+TopDown Integration BottomUp Integration System Integration Scenario
+Testing. Black Box Testing Definition and Overview Test Case Design
+Techniques for Black Box Testing Specification Based Test Design and
+Requirements Traceability Matrix Positive and Negative Testing Equivalence
+Partitioning Boundary Value Analysis Decision Tables Advantages and
+Disadvantages.
+. System Testing Definition Reason and Overview Test Case Generation
+Static Testing Manual Tool Based Structural Testing Code Complexity
+Testing Advantages and Disadvantages. Acceptance and UseCase
+Testing Overview Types User Acceptance Testing Alpha and Beta Testing
+Business Vertical Deployment Testing and Smoke/ Sanity Testing.
+. Functional System Testing Types Design Verification Business Vertical
+Deployment Testing and Smoke/ Sanity Testing. NonFunctional Testing
+NFT Overview Scalability Reliability and Stress Testing Performance Testing
+Overview Methodology for Performance Testing. Regression Testing
+Definition Types of Regression Testing When and How To Do Regression
+Testing.
+. Test Management and Testing Metrics Introduction to Test Infrastructure
+Management Testing Metrics Overview Types of Metrics Project Progress
+and Productivity Metrics. Automated Testing Defect management
+Overview Scope of Automation Design and Architecture of Test Automation
+Framework Selecting Testing Tool Functional Testing Automation Demo /
+HandsOn Defect Management Defect Tracking Tools Advances in Testing 
+Virtualization of Test Environments Cloud Based Testing and Model Based
+Testing.
+Prerequisite Courses None.
+Reference Books
+. Software Testing Principles and Practices Srinivasan Desikan and
+Gopalaswamy Ramesh Pearson .
+. Foundations of Software Testing Aditya Mathur Pearson .
+. Software Testing A Craftsmans Approach Paul C Jorgensen Auerbach
+.
+UECS
+INTRODUCTION TO BUSINESS 
+Course Objectives
+The objectives of this course is to
+ Understand the different types of business ownership.
+ Understand how a modern business organization works.
+ Understand the importance of marketing and the activities involved in it.
+ Understand how a business organization is run and managed.
+ Understand the activities required to set up a startup company.
+Course Outcomes
+At the end of the course the student will be able to
+ Describe the various legal forms of business ownership.
+ Explain the functions and working of a business organization.
+ Describe the processes involved in product/ services strategy.
+ Explain the role of management in a business organization.
+ Explain the factors that can make a startup company successful.
+Course Content
+. Introduction to Business and Its Terminologies Historical Context of
+How Businesses Evolved Into Their Present Forms Family Businesses Forms
+of Ownership Proprietorship Partnerships and Corporations.
+. Entrepreneurship and Startups Entrepreneurship Meaning
+Evolution and Development Functions of an Entrepreneur. StartUps 
+Evolution of Startups Important Factors In Startups Idea Team Business
+Model Funding Options Timing Startup Culture Startup Ecosystems Startup
+Environment in India Case Studies of Successes and Failures.
+. Business Functions Typical Functions of Any Business Organization 
+Production Finance Accounting Human Resource Management Research
+and Development Sales and Marketing Importance and Management
+Aspects of All Functions. Business Reporting Balance Sheets and Profit/ Loss
+Accounts and Modern Methods of Business Reporting.
+. Sales and Marketing The Activities for Creating Communicating
+Delivering and Exchanging Offerings That Have Value for Customers Clients
+Partners and Society At Large Marketing is Used To Create the Customer To
+Keep the Customer and To Satisfy the Customer How To Tailor a Product or
+Service To A Target Market Digital Marketing and Its Effect On the Traditional
+Marketing Methods.
+. Management Setting the Strategy of an Organization and Coordinating the
+Efforts of its Employees to Accomplish its Objectives Through the Application
+of Available Resources such as Financial Natural Technological and Human
+Resources.
+Prerequisite Courses None.
+Reference Books
+. Introduction to Business Student Edition McGraw Hill
+https//www.amazon.com/IntroductionBusinessStudentBROWNBUSINESS/
+dp/
+. Entrepreneurship Simplified From Idea to IPO Ashok Soota and SR
+Gopalan Penguin Random House India 
+https//www.flipkart.com/entrepreneurshipsimplifiedideaipo/
+p/itmemhkyqrgzqn?pid
+. The single biggest reason why startups succeed Bill Gross TED Talk
+https//www.youtube.com/watch?vbNpxgpSqbY
+UECS
+RESEARCH METHODOLOGY 
+Course Objectives
+The objectives of this course is to
+ Define research and identify the systematic steps to be followed.
+ Identify the overall process of designing a research study from inception
+to its report.
+ Impart familiarity with ethical issues in educational research including
+those issues that arise in using quantitative and qualitative research.
+Course Outcomes
+At the end of the course the student will be able to
+ Understand some basic concepts of research and its methodologies.
+ Identify appropriate research topics.
+ Select and define appropriate research problem and parameters.
+ Prepare a project proposal to undertake a project.
+Course Content
+. An Introduction Meaning Objectives and Characteristics of Research
+Research Methods Vs. Methodology Types of Research Descriptive Vs.
+Analytical Applied Vs. Fundamental Quantitative Vs. Qualitative
+Conceptual Vs. Empirical Research process Criteria of Good Research.
+. Research Design Research Design and Methods Research Design Basic
+Principles Need of Research Design Features of Good Design Important
+Concepts Relating to Research Design.
+. Sampling design Steps in Sampling Design Characteristics of a Good
+Sample Design Types of Sample Designs Methods of Data Collection 
+Collection of Primary Data Observation Method Collection of Data
+through Questionnaires Collection of Data through Schedules Difference
+between Questionnaires and Schedules Collection of Secondary Data.
+. Testing of Hypotheses Basic Concepts Procedure for Hypotheses
+Testing Flow Diagram for Hypotheses Testing Important Parametric Test 
+ChiSquare Test.
+. Interpretation and Report Writing Techniques of Interpretation
+Structure and Components of Scientific Reports Different Steps in the
+Preparation Layout Structure and Language of the Report Illustrations
+and Tables Types of Report Technical Reports and Thesis.
+Prerequisite Courses None.
+Reference Books
+. Research Methodology Methods and Techniques C R Kothari Gourav
+Garg New Age International Publishers rd Edition .
