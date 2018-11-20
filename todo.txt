@@ -1,12 +1,9 @@
--  userid?
-- Push notifications (Mallya)
-- Put back button in questions page and remove navbar
- 'or'  Use local storage made available by two factor authentication
+- Push notifications- qa and projects
+- OTP for auth
 - Put any in Subjects
-- Add a logout button
+-Define list of subjects and tags
+-clear distinction between teachers and students
 Q/A
--Search a question
--Answer upvote/downvote
 -Views for questions(Filter based on Subjects/Tags)
 Notes
 -Remove teacher entering date thing in documentation

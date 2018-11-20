@@ -28,7 +28,7 @@ export class ItemDetailsPage {
     this.answersGet=navParams.get('answer');
     
     this.l=this.answersGet.length
-    //console.log(this.answersGet[1]);
+    console.log(this.answersGet.length);
     this.storage.get('userid').then((uid) => {
       this.setuid(uid)
     });

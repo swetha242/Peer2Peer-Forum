@@ -56,6 +56,14 @@ export class SignupPage implements OnInit {
       alert.present();
       this.navCtrl.push(LaunchPage);
     }
+    else if(data=='Already registered'){
+      const alert = this.alertCtrl.create({
+        title: 'Already a user',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+
     }, (err) => {
       console.log(err)
     });
