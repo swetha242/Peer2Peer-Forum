@@ -382,6 +382,7 @@ def insert_ideas():
           'time':datetime.now(),
           'tags':data['tags'],
           'description':data['description'],
+          'max_colaborators':data['max_colaborators'],
           'owner_id':data['owner_id'],
           'upvotes':0,
           'downvotes':0,
@@ -400,7 +401,7 @@ def insert_ideas():
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
         return jsonify({'result':'success'})
     else:
-        return jsonify({'result':'unsuccess'})
+        return jsonify({'result':'failure'})
 
 #add colaborator
 @app.route('/ideas/insert_colaborator/<ID>',methods=['post','get'])
@@ -410,8 +411,32 @@ def insert_colaborator(ID):
     if c:
         return jsonify({"result":"success"})
     else:
-        return jsonify({"result":"unsuccess"})
+        return jsonify({"result":"failure"})
 
+@app.route('/ideas/update_members/',methods=['post'])
+def update_members():
+    data = request.get_json()
+    ideas_id = data['ideas_id']
+    ideas = mongo.db.ideas.find_one({"_id":ObjectId(ideas_id)})
+    member_id = data['member_id']
+    colab = data['mode']
+
+    if colab:
+        res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$addToSet:{'colaborator_id':member_id}'})
+        if res:
+            return jsonify({'result':'success'})
+            #call notify to member_id with message saying colab request accepted
+
+        else:
+            return jsonify({'result':'failure'})
+    else:
+        res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$set':{'mentor_id':member_id}})
+        if res:
+            return jsonify({'result':'success'})
+            #call notify to owner_id of the idea saying mentor has accepted
+
+        else:
+            return jsonify({'result':'failure'})
 
 #count no of colaborator
 @app.route('/ideas/count_colaborator/<ID>',methods=['post','get'])
