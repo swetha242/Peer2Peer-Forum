@@ -171,3 +171,16 @@ db.globaltrends.find().pretty()
     "description": "descp2",
     "title": "t2"
 }
+
+-------------------------------------------------Notifications---------------------------------------
+{
+	"_id":"1433457",
+	"userid":"1242654",
+	"notif":[{"type":1,"id":"23134","msg":"the answer","qid":"123234"}
+	...]
+}
+1- someone has answered your question
+2-for student- peer wants to join- should be able to view his profile and accept 
+3- for student- student accepted your request to join 
+4-for student- mentor approved idea
+5- for teacher- idea proposal - view idea and approve

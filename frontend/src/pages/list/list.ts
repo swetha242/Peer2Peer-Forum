@@ -189,11 +189,12 @@ initializeItems(ev){
         path=path.concat('/answers')
         console.log(path);
 
-
+        this.answers=[]
         this.http.get(path, {headers: headers})
           .subscribe(res => {
 
-
+            console.log(this.answers)
+            
             let data = res.json()['answer'];
             for(let i in data){
               this.answers.push({
@@ -227,6 +228,9 @@ initializeItems(ev){
       return 0;
     }
 
-    
+    ionViewDidLoad()
+    {
+      this.answers=[]
+    }
     
 }

@@ -19,17 +19,12 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["MONGO_URI"] = "mongodb://localhost:27017/P2Pdb"
 mongo = PyMongo(app)
 
-<<<<<<< HEAD
-otp_generator = pyotp.HOTP('base32secret3232')
-otp_counter = 0
-=======
 otp_generator = pyotp.TOTP('base32secret3232')
 otp_times = []
->>>>>>> 5ad784ed791bcae67dd72ee21c1a0a6f942fac56
 
-email_server = smtplib.SMTP('smtp.gmail.com', 587)
-email_server.starttls()
-email_server.login('peerforum5@gmail.com','peertopeer5')
+#email_server = smtplib.SMTP('smtp.gmail.com', 587)
+#email_server.starttls()
+#email_server.login('peerforum5@gmail.com','peertopeer5')
 
 #----------------------------------------------OTP------------------------------------------------------------
 # send OTP to email
@@ -184,6 +179,7 @@ def adduser():
         #return jsonify(query)
         user=mongo.db.users.find_one(query)
         user['_id']=str(user['_id'])
+        mongo.db.notif.insert_one({'userid':user['_id'],'notif':[]})
         return jsonify({'user_id':user['_id'],'uname':data['username'],'result':'Success'})
     else:
         return jsonify({'result':"Something wrong"})
@@ -201,6 +197,9 @@ def check_user():
     user1=mongo.db.users.find_one({'email':data['email']})
     if user:
         user['_id']=str(user['_id'])
+        find_notif=mongo.db.notif.find_one({'userid':user['_id']})
+        if not find_notif:
+            mongo.db.notif.insert_one({'userid':user['_id'],'notif':[]})
         return jsonify({'user_id':user['_id'],'uname':user['name'],'result':'Success'})
     elif user1:
         return jsonify({'result':"Invalid password"})
@@ -394,6 +393,20 @@ def insert_ideas():
     idea=mongo.db.ideas.insert_one(userdata)
     if idea:
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
+        x=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
+        notif_id=str(random.randrange(100,10000000,1))
+        #mentor to notify
+        notif_user=mongo.db.users.find_one({'_id':ObjectId(userdata['mentor_id'])})
+        notif_q={
+            "type":5,
+            "msg":x['name'] + "has chosen you as mentor for"+data['title'],
+            "project_id":str(idea.inserted_id),
+            "notif_id":notif_id,
+            "student_id":data['owner_id']
+        }
+        notif_msg=mongo.db.notif.find_one({'userid':notif_user})['notif']
+        notif_msg.append(notif_q)
+        mongo.db.notif.update_one({'userid':notif_user},{"$set":{'notif':notif_msg}})
         return jsonify({'result':'success'})
     else:
         return jsonify({'result':'unsuccess'})
@@ -560,6 +573,19 @@ def post_answer():
     inserted_a = mongo.db.a.insert_one(adata)
     if inserted_a:
         x=mongo.db.users.find_one({'_id':ObjectId(data['answered_by'])})
+        notif_id=str(random.randrange(100,10000000,1))
+        notif_user=mongo.db.q.find_one({'_id':ObjectId(data['QID'])})['asked_by']
+        notif_q={
+            "type":1,
+            "ans":data['content'],
+            "msg":"Your question has been answered by "+x['name'],
+            "qid":data['QID'],
+            "notif_id":notif_id,
+            'time':datetime.now()
+        }
+        notif_msg=mongo.db.notif.find_one({'userid':notif_user})['notif']
+        notif_msg.append(notif_q)
+        mongo.db.notif.update_one({'userid':notif_user},{"$set":{'notif':notif_msg}})
         return jsonify({'result': 'Success','name':x['name'],'aid':str(inserted_a.inserted_id)})
     else:
         return jsonify({'result': 'Failure'})

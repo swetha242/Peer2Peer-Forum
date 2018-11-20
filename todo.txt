@@ -1,6 +1,7 @@
 - Push notifications- qa and projects
 - OTP for auth
 - Put any in Subjects
+-Define list of subjects and tags
 -clear distinction between teachers and students
 Q/A
 -Views for questions(Filter based on Subjects/Tags)
