@@ -197,6 +197,7 @@ def topthree(obj):
         c=c+1
         if(c==3):
             return l
+    return l
 @app.route('/get_trends',methods=['POST'])
 def get_trends():
     data=request.get_json()
@@ -225,11 +226,12 @@ def get_trends():
     #local trends
     userid=data['userid']
     personalQuestionCount = mongo.db.q.find({'asked_by': userid}).count()
-    personalNotesCount = mongo.db.notes.find({'asked_by': userid}).count()
-    personalProjectsCount = mongo.db.ideas.find({'asked_by': userid}).count()
+    personalNotesCount = mongo.db.notes.find({'upl_by': userid}).count()
+    personalProjectsCount = mongo.db.ideas.find({'owner_id': userid}).count()
 
     loc=mongo.db.users.find_one({'_id':ObjectId(userid)})
     loc_sub=loc['topSubjects']
+    print(loc_sub)
     if(len(loc_sub)<=1):
         if(len(loc_sub)==0):
             ls=[]
@@ -239,6 +241,7 @@ def get_trends():
                 ls.append(key)
     else:
         ls1 = [(k, loc_sub[k]) for k in sorted(loc_sub, key=loc_sub.get, reverse=True)]
+        print(ls1)
         ls=topthree(ls1)
     loc_tag=loc['topTags']
     if(len(loc_tag)<=1):
