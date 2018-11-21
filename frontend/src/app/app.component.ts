@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LaunchPage} from '../pages/launch/launch';
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
+import { RecoNotesPage} from '../pages/reco-notes/reco-notes';
 import { Storage } from '@ionic/storage';
 import {NotifPage} from '../pages/notif/notif';
 
@@ -32,15 +33,15 @@ export class MyApp {
     public storage:Storage
   ) {
     this.initializeApp();
-    
-  this.storage.get('uname').then((val) => {      
+
+  this.storage.get('uname').then((val) => {
     this.uname=val;
     //console.log(this.userid)
   });
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [
-      
+
       //{ title: 'Questions Page', component: ListPage },
    //   { title : 'Login', component : LoginPage},
      // { title : 'Sign Up',component : SignupPage},
@@ -64,6 +65,11 @@ export class MyApp {
 
   openPage(page) {
     // close the menu when clicking a link from the menu
+    if(page.title=='Logout')
+    {
+      console.log('remove')
+      this.storage.clear()
+    }
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);

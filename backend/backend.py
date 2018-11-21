@@ -84,6 +84,10 @@ email_server.login('peerforum5@gmail.com','peertopeer5')
 def send_email(to_addr, msg):
     email_server.sendmail('peerforum5@gmail.com', to_addr, msg)
 
+#-------------------------- Send list of subjects back -----------------------------------------------------
+@app.route('/subjects/getList',methods=['POST'])
+def getSubjects():
+    return jsonify({'result':'Success', 'subjects' : subjects})
 #----------------------------------------------OTP------------------------------------------------------------
 #send OTP to email
 @app.route('/otp/send', methods=['POST'])
@@ -205,6 +209,10 @@ def topthree(obj):
 def get_trends():
     data=request.get_json()
     #global trends
+    numberOfQuestions= mongo.db.q.find().count()
+    numberOfNotes = mongo.db.notes.find().count()
+    numberOfProjects = mongo.db.notes.find().count()
+
     glob=mongo.db.globaltrends.find_one({'_id':1})
     glob_sub=glob['subject']
     gs1 = [(k, glob_sub[k]) for k in sorted(glob_sub, key=glob_sub.get, reverse=True)]
@@ -224,6 +232,11 @@ def get_trends():
             break
     #local trends
     userid=data['userid']
+    personalQuestionCount = mongo.db.q.find({'asked_by': userid}).count()
+    personalNotesCount = mongo.db.notes.find({'asked_by': userid}).count()
+    personalProjectsCount = mongo.db.ideas.find({'asked_by': userid}).count()
+
+    
     loc=mongo.db.users.find_one({'_id':ObjectId(userid)})
     loc_sub=loc['topSubjects']
     if(len(loc_sub)<=1):
@@ -247,7 +260,7 @@ def get_trends():
     else:
         lt1 = [(k, loc_tag[k]) for k in sorted(loc_tag, key=loc_tag.get, reverse=True)]
         lt=topthree(lt1)
-    return jsonify({'global':{'subject':gs,'tag':gt,'contrib':{"names":gnames,"ids":gids}},'local':{'subject':ls,'tag':lt,'ques':loc['ques_ask'],'notes':loc['notes_upl'],'proj':loc['proj_ideas']}})
+    return jsonify({'global':{'qno': numberOfQuestions,'nno': numberOfNotes,'ino' : numberOfProjects ,'subject':gs,'tag':gt,'contrib':{"names":gnames,"ids":gids}},'local':{'subject':ls,'tag':lt,'ques':loc['ques_ask'],'notes':loc['notes_upl'],'proj':loc['proj_ideas'],'qno': personalQuestionCount, 'nno': personalNotesCount, 'ino' : personalNotesCount}})
 
 #-----------------------------users-----------------------------------------------------------
 #check if user already exists
