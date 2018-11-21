@@ -75,7 +75,7 @@ verify_otp()
   let headers = new Headers();
   let url = Enums.APIURL.URL1;
   let path = url.concat( "/otp/send");
-
+  console.log('verify')
     this.http.post(path,details, {headers: headers})
      .subscribe(res => {
      console.log(res)

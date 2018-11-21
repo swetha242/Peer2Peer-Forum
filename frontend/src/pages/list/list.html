@@ -38,6 +38,9 @@
               <ion-icon name="quote" color="bright"></ion-icon> {{item.title}}    <p></p>
               <ion-icon name="help" color="bright"></ion-icon> {{item.description}} <p></p>
             This was asked by {{item.owner}}
+            <ng-container *ngIf="is_student==0">
+              <button item-right ion-button (click)="block(item)">Block</button>
+            </ng-container>
           </ion-card-content>
         </ion-card>
      <!--   </ion-item>

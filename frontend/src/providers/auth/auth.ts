@@ -75,7 +75,7 @@ export class AuthProvider {
             //this.token = data.token;
             this.storage.set('userid', data['user_id']);
             this.storage.set('uname',data['uname']);
-            
+            this.storage.set('is_student',data['is_student']);
             resolve(data);
 
           }, (err) => {
@@ -109,6 +109,7 @@ export class AuthProvider {
             //this.token = data.result;
             this.storage.set('userid', data['user_id']);
             this.storage.set('uname',data['uname']);
+            this.storage.set('is_student',data['is_student']);
             resolve(data);
 
           }, (err) => {

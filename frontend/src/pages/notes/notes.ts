@@ -26,20 +26,23 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
 export class NotesPage {
 
   items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number, nid : string}>;
-  search_items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number, nid : string}>;
-
+  
   userid:any;
   subject=this.navParams.get('subject');
   file_upload_event:any;
   title:string;
   summary:string;
-
+  is_student:any;
   @ViewChild(Navbar) navBar: Navbar;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage, private platform: Platform) {
     console.log("notes page starts here");
-    this.search_items = [];
+    //this.search_items = [];
     this.items = [];
+    this.storage.get('is_student').then((is_stud)=>{
+      console.log(is_stud)
+      this.is_student=is_stud
+    });
     this.storage.get('userid').then((uid) => {
       this.setuid(uid)
     });
@@ -78,6 +81,28 @@ export class NotesPage {
   {
     this.userid=res;
     console.log(this.userid)
+  }
+  block(item){
+    let postParams = {nid : item.nid}
+    let index = this.items.indexOf(item);
+      if (index !== -1) {
+          this.items.splice(index, 1);
+      } 
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+  
+          let url = Enums.APIURL.URL1;
+          let path = url.concat( "/notes/block");
+          console.log(postParams);
+  
+          this.http.post(path, postParams, {headers: headers})
+            .subscribe(res => {
+             console.log(res)           
+  
+            }, (err) => {
+              console.log(err);
+  
+            });
   }
   base64: any;
   fun(b64Data,ty)

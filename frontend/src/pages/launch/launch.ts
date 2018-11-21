@@ -24,6 +24,7 @@ export class LaunchPage {
 
   userid:any;
   uname:any;
+  //is_student:any;
   selectedSubject : any;
   subjects : Array<string>;
   globalTrend: {qno: number, top3Contributors: Array<string>,
@@ -45,10 +46,10 @@ export class LaunchPage {
     };
     this.storage.get('userid').then((uid)=>
     {
-      //console.log(result)
+      console.log(uid)
        this.setuid(uid)
     });
-
+    
     this.personalTrend = { qno : 12,
       totalNumberOfNotes : 5,
       totalNumberOfProjects : 4,

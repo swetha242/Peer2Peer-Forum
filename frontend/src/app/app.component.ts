@@ -33,10 +33,7 @@ export class MyApp {
   ) {
     this.initializeApp();
     
-  this.storage.get('uname').then((val) => {      
-    this.uname=val;
-    //console.log(this.userid)
-  });
+ 
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [
@@ -68,6 +65,8 @@ export class MyApp {
     {
       console.log('remove')
       this.storage.clear()
+      //this.storage.remove('uname')
+      //this.storage.remove('userid')
     }
     this.menu.close();
     // navigate to the new page if it is not the current page

@@ -22,6 +22,7 @@ export class ListPage {
   title:string;
   tags:string;
   userid:any;
+  is_student:any;
   //userid from prev page
   
   //userid = this.navParams.get('userid');
@@ -33,6 +34,10 @@ export class ListPage {
 
     this.items1 = []
     this.answers=[];
+    this.storage.get('is_student').then((is_stud)=>{
+      console.log(is_stud)
+      this.is_student=is_stud
+    });
     this.storage.get('userid').then((uid) => {
       this.setuid(uid)
     });
@@ -44,6 +49,7 @@ export class ListPage {
     {
       this.userid=res;
       console.log(this.userid)
+
       this.initializeItemsbegin();
     }
 initializeItemsbegin()
@@ -139,7 +145,28 @@ initializeItems(ev){
 
 
 }
+block(item){
+  let postParams = {qid : item.qid}
+  let index = this.items1.indexOf(item);
+    if (index !== -1) {
+        this.items1.splice(index, 1);
+    } 
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
 
+        let url = Enums.APIURL.URL1;
+        let path = url.concat( "/qa/block");
+        console.log(postParams);
+
+        this.http.post(path, postParams, {headers: headers})
+          .subscribe(res => {
+           console.log(res)           
+
+          }, (err) => {
+            console.log(err);
+
+          });
+}
   askques(){
     //send question,userid and subject
     let self=this;
