@@ -28,11 +28,11 @@ mongo = PyMongo(app)
 stopWords = set(stopwords.words('english'))
 stopWords = list(stopWords)
 
-#subjectsFile = open("subjects.pickle","rb")
-#subjectsTagsFile = open("subjectsWords.pickle","rb")
+subjectsFile = open("subjects.pickle","rb")
+subjectsTagsFile = open("subjectsWords.pickle","rb")
 
-#subjects = pickle.load(subjectsFile)
-#subjectsTags = pickle.load(subjectsTagsFile)
+subjects = pickle.load(subjectsFile)
+subjectsTags = pickle.load(subjectsTagsFile)
 
 def cleanText(string):
     string=string.strip("\n")
@@ -140,20 +140,16 @@ def notif_read():
         print(i['notif_id'])
         if(i['notif_id']==notif_id):
             i['read']=1
-            notif_upd.append(i)
+        notif_upd.append(i)
     print(notif_upd)
     mongo.db.notif.update_one({'userid':user},{'$set':{'notif':notif_upd}})
     return jsonify({'result':'Success'})
 
 #--------------------------------------get subjects and tags--------------------------------------------------
 # first create a db with id as 1
-@app.route('/get_subj')
-def get_subjects():
-    x=mongo.db.globaltrends.find_one({'_id':1})
-    if (x):
-        return jsonify({'subject':x['subject'],'status':'Success'})
-    else:
-        return jsonify({'status':'error'})
+@app.route('/subjects/getList',methods=['POST'])
+def getSubjects():
+	return jsonify({'result':'Success', 'subjects' : subjects})
 
 @app.route('/get_tags')
 def get_tags():
@@ -249,15 +245,50 @@ def get_trends():
         lt=topthree(lt1)
     return jsonify({'global':{'subject':gs,'tag':gt,'contrib':{"names":gnames,"ids":gids}},'local':{'subject':ls,'tag':lt,'ques':loc['ques_ask'],'notes':loc['notes_upl'],'proj':loc['proj_ideas']}})
 
+#----------------------------------------block------------------------------------------------------
+@app.route('/qa/block',methods=['POST'])
+def block_q():
+    data=request.get_json()
+    qid=data['qid']
+    mongo.db.q.delete_one({'_id':ObjectId(qid)})
+    return jsonify({'result':'Success'})
+
+@app.route('/ans/block',methods=['POST'])
+def block_a():
+    data=request.get_json()
+    aid=data['aid']
+    mongo.db.a.delete_one({'_id':ObjectId(aid)})
+    return jsonify({'result':'Success'})
+
+@app.route('/notes/block',methods=['POST'])
+def block_notes():
+    data=request.get_json()
+    nid=data['nid']
+    mongo.db.notes.delete_one({'_id':ObjectId(nid)})
+    return jsonify({'result':'Success'})
+
 #-----------------------------users-----------------------------------------------------------
-# user signup
-@app.route('/v1/signup',methods=['POST'])
-def adduser():
+#check if user already exists
+@app.route('/v1/checkuser',methods=['POST'])
+def check_user():
     data=request.get_json()
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
-    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
+    else:
+        return jsonify({'result':"New User"})
+
+
+# user signup
+@app.route('/v1/signup',methods=['POST'])
+def adduser():
+    data=request.get_json()
+    is_teacher=mongo.db.teachers.find_one({'_id':1})['email']
+    if(data['email'] in is_teacher):
+        is_student=0
+    else:
+        is_student=1
+    userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':is_student,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
     #userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
     if user:
@@ -273,13 +304,13 @@ def adduser():
         mongo.db.notif.insert_one(notif)
         user=mongo.db.users.find_one(query)
         user['_id']=str(user['_id'])
-        return jsonify({'user_id':user['_id'],'uname':data['username'],'result':'Success'})
+        return jsonify({'user_id':user['_id'],'uname':data['username'],'result':'Success','is_student':is_student})
     else:
         return jsonify({'result':"Something wrong"})
 
 #User Authentication
 @app.route('/v1/auth',methods=['POST'])
-def check_user():
+def auth_user():
     data=request.get_json()
     query={
 		'email':data['email'] ,
@@ -297,7 +328,7 @@ def check_user():
             "notif":[]
             }
             mongo.db.notif.insert_one(notif)
-        return jsonify({'user_id':user['_id'],'uname':user['name'],'result':'Success'})
+        return jsonify({'user_id':user['_id'],'uname':user['name'],'result':'Success','is_student':user['is_student']})
     elif user1:
         return jsonify({'result':"Invalid password"})
     else:
@@ -366,7 +397,7 @@ def notes_now(notes):
         x=mongo.db.users.find_one({'_id':ObjectId(i['upl_by'])})
         print(x)
         note[str(c)]=i
-        #note[str(c)]['upl_by']=x['name']
+        note[str(c)]['upl_by']=x['name']
       #  print x['name']
         c=c+1
     return note
@@ -442,6 +473,7 @@ def allowed_file(filename):
 @app.route('/notes/upload', methods = ['GET', 'POST'])
 def upload_file():
     data=request.get_json()
+    print('Yayyyyyyyyyy')
     if data['islink']==0:
             x=bytes(data['data'],encoding="UTF-8")
             file_decode=base64.decodebytes(x)
@@ -544,7 +576,9 @@ def insert_ideas():
             notif_msg=mongo.db.notif.find_one({'userid':colab})['notif']
             notif_msg.append(notif_q)
             mongo.db.notif.update_one({'userid':colab},{"$set":{'notif':notif_msg}})
-        return jsonify({"result":"success"})
+        #profile update
+        mongo.db.users.update_one({"_id":ObjectId(data['owner_id'])},{"$set":{'proj_ides':x['proj_ideas']+1}})
+        return jsonify({'result':'success'})
     else:
         return jsonify({"result":"failure"})
 #colaborator request to join
@@ -608,6 +642,7 @@ def update_members():
     else:
         res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$set':{'mentor_id':member_id}})
         if res:
+            member_name=get_useremail(member_id)['uname']
             notif_q={
                 "type":4,
                 "msg":member_name +" accepted your request to mentor "+ideas['title'],
@@ -833,7 +868,6 @@ def post_answer():
         question = mongo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
         asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
-
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
         notif_id=str(random.randrange(100,10000000,1))
@@ -852,6 +886,7 @@ def post_answer():
         notif_msg=mongo.db.notif.find_one({'userid':asker_id})['notif']
         notif_msg.append(notif_q)
         mongo.db.notif.update_one({'userid':asker_id},{"$set":{'notif':notif_msg}})
+        mongo.db.users.update_one({"_id":ObjectId(answerer_id)},{"$set":{'ques_ans':answerer['ques_ans']+1}})
 
         return jsonify({'result': 'Success', 'name': answerer['name'], 'aid': str(inserted_a.inserted_id)})
     else:
@@ -884,6 +919,10 @@ def upvote_answer():
         upv['votes'].append(uid)
         mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
         mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'votes': upv['votes']}})
+        #update profile
+        v=mongo.db.users.find_one({"_id":ObjectId(upv['answered_by'])})
+        mongo.db.users.update_one({"_id":ObjectId(upv['answered_by'])},{"$set":{'ans_upvote':v['ans_upvote']+1}})
+
         return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
     else:
         return jsonify({'result':'Error'})
@@ -1026,7 +1065,7 @@ def getNotesSimilarToUser():
 	k=10
 	data=request.get_json()
 	print(data)
-	userID= data['asked_by']
+	userID= data['upl_by']
 
 	noCommon = True
 

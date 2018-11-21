@@ -16,8 +16,8 @@
 </ion-header>
 
 
-<ion-content text-center padding >
-  <ion-card class = "card">
+<ion-content text-center padding class="background" >
+  <ion-card class = "card" style="width:50%;position:relative;left:25%;top:30%">
     <form novalidate (ngSubmit)="doLogin()" [formGroup]="loginform">
         <ion-list>
         <ion-item>
@@ -40,7 +40,7 @@
           <div class="error" *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched">
             Please input your password
           </div>
-          
+
         </ion-item>
 
           <div padding>
@@ -48,8 +48,8 @@
           </div>
 
 
-          
-  
+
+
         </ion-list>
       </form>
     </ion-card>
@@ -58,8 +58,8 @@
         <ion-fab-list side="top">
           <button ion-fab color = "dark" (click) = "home()">Home</button>
           <button ion-fab color = "dark" (click) = "signup()">SIGNUP</button>
-          
+
         </ion-fab-list>
     </ion-fab>
- 
+
 </ion-content>

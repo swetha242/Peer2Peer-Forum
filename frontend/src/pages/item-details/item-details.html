@@ -32,7 +32,9 @@
             <br>
        <ion-icon name="thumbs-up" (click) ="upvote(item)">{{item.upvote}}</ion-icon>
           <ion-icon name="thumbs-down" (click)="downvote(item)">{{item.downvote}}</ion-icon>
-      
+          <ng-container *ngIf="is_student==0">
+            <button item-right ion-button (click)="block(item)">Block</button>
+          </ng-container>
         </ion-card-content>
       </ion-card>
 

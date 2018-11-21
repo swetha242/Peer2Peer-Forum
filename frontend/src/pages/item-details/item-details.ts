@@ -15,7 +15,7 @@ export class ItemDetailsPage {
   selectedItem: any;
   l:any;
   userid:any;
-
+  is_student:any;
   answersGet: Array<{aid:string,answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
 
   answers: Array<{aid:string,answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
@@ -28,6 +28,10 @@ export class ItemDetailsPage {
     this.answersGet=navParams.get('answer');
     
     this.l=this.answersGet.length
+    this.storage.get('is_student').then((is_stud)=>{
+      console.log(is_stud)
+      this.is_student=is_stud
+    });
     console.log(this.answersGet.length);
     this.storage.get('userid').then((uid) => {
       this.setuid(uid)
@@ -47,6 +51,29 @@ export class ItemDetailsPage {
       });
     }
   }
+    block(item){
+      let postParams = {qid : item.aid}
+      let index = this.answers.indexOf(item);
+        if (index !== -1) {
+            this.answers.splice(index, 1);
+        } 
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+    
+            let url = Enums.APIURL.URL1;
+            let path = url.concat( "/ans/block");
+            console.log(postParams);
+    
+            this.http.post(path, postParams, {headers: headers})
+              .subscribe(res => {
+               console.log(res)           
+    
+              }, (err) => {
+                console.log(err);
+    
+              });
+    }
+  
   profile(item)
   {
     this.navCtrl.push(ProfilePage,{item})

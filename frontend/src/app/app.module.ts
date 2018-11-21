@@ -29,6 +29,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import {NotifPage} from '../pages/notif/notif';
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
+import { RecoNotesPage} from '../pages/reco-notes/reco-notes';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
     PdfViewerComponent,
     LaunchPage,
     RecoQuestionsPage,
+    RecoNotesPage,
     IdeasProjectsPage,
     IdeasInputPage,
     NotifPage
@@ -70,6 +72,7 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
     ViewnotesPage,
     LaunchPage,
     RecoQuestionsPage,
+    RecoNotesPage,
     IdeasProjectsPage,
    IdeasInputPage,
    NotifPage

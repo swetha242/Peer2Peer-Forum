@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { NavController, NavParams, Platform } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
 import { ViewnotesPage} from '../viewnotes/viewnotes';
 import { Storage } from '@ionic/storage';
@@ -26,20 +27,23 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
 export class NotesPage {
 
   items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number, nid : string}>;
-  search_items: Array<{title: string, author: string, number : number, qtext : string, upvote : number, downvote : number, nid : string}>;
-
+  
   userid:any;
   subject=this.navParams.get('subject');
   file_upload_event:any;
   title:string;
   summary:string;
-
+  is_student:any;
   @ViewChild(Navbar) navBar: Navbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage, private platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,private alertCtrl: AlertController, public storage:Storage, private platform: Platform) {
     console.log("notes page starts here");
-    this.search_items = [];
+    //this.search_items = [];
     this.items = [];
+    this.storage.get('is_student').then((is_stud)=>{
+      console.log(is_stud)
+      this.is_student=is_stud
+    });
     this.storage.get('userid').then((uid) => {
       this.setuid(uid)
     });
@@ -79,6 +83,28 @@ export class NotesPage {
     this.userid=res;
     console.log(this.userid)
   }
+  block(item){
+    let postParams = {nid : item.nid}
+    let index = this.items.indexOf(item);
+      if (index !== -1) {
+          this.items.splice(index, 1);
+      } 
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+  
+          let url = Enums.APIURL.URL1;
+          let path = url.concat( "/notes/block");
+          console.log(postParams);
+  
+          this.http.post(path, postParams, {headers: headers})
+            .subscribe(res => {
+             console.log(res)           
+  
+            }, (err) => {
+              console.log(err);
+  
+            });
+  }
   base64: any;
   fun(b64Data,ty)
   {
@@ -97,7 +123,10 @@ export class NotesPage {
            .subscribe(res => {
              //let data = res.json();
              console.log(res)
-
+             let alert = this.alertCtrl.create();
+             alert.setTitle('Uploaded Notes Successfully');
+             this.navCtrl.push(NotesPage, { subject : this.subject}
+             );
            }, (err) => {
              console.log(err);
 
@@ -198,7 +227,7 @@ export class NotesPage {
              console.log(err);
       });
       console.log('out');
-      console.log(this.search_items);
+      //console.log(this.search_items);
   }
   getItems(ev: any){
     console.log('going to search');

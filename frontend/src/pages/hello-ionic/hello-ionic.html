@@ -11,16 +11,27 @@
 <ion-content padding class = "backgroundcolorblack" scroll="false">
     <div class="fixed-content">
       <div class="logoHeader">
-        <img alt="logo" height="60" style="position: relative" src="../assets/img/logo3.png">
+        <img alt="logo" height="80" style="position:relative;top:-90px" src="../assets/img/logo3.png">
       </div>
-      <h1 class="welcomeHeader">QUEUE UNDERFLOW</h1>
-      <div padding></div>
-      <div padding></div>
-      <div padding></div>
-      <div padding></div>
-      <div padding></div>
-      <div padding></div>
-      
+      <h1 class="welcomeHeader" style="position: relative;top:-100px;font-size:57px;font-family: T">QUEUE UNDERFLOW</h1>
+    
+      <ion-slides style="opacity:0.6" >
+          <ion-slide (click)="goToSlide2()" >
+            <h1 text-center><button ion-button round outline color = "twitter">QUESTION AND ANSWERING</button></h1>
+            <ion-img src="../assets/img/qna.jpg" style="position:relative;top:-8px;height:372px"></ion-img>
+          </ion-slide>
+          <ion-slide (click)="goToSlide3()">
+              <h1 text-center><button ion-button round outline color = "twitter">NOTES SHARING</button></h1>
+           
+            <ion-img src="../assets/img/noteshare.jpg" style="height:360px"></ion-img>
+          </ion-slide>
+       
+            <ion-slide (click)="goToSlide1()">
+                <h1 text-center><button ion-button round outline color = "twitter">IDEAS SHARING</button></h1>
+            <ion-img src="../assets/img/ideashare.jpg"></ion-img>
+          </ion-slide>
+        </ion-slides>
+
       <div padding>
           <button ion-button round outline class = "signup" style="width:25%;position:relative;left:37%" block (click)="Login()">LOGIN_BUTTON</button>
         </div>
@@ -29,32 +40,16 @@
           <button ion-button round outline class="signup" style="width:25%;position:relative;left:37%" color="twitter" block (click)="Signup()">SIGNUP_BUTTON</button>
         </div>
 </div>
-
-  
 </ion-content>
 
 
 
-<!--
-  <ion-slides >
-    <ion-slide (click)="goToSlide2()" >
-      <h1 text-center><button ion-button round outline color = "twitter">QUESTION AND ANSWERING</button></h1>
-      <ion-img src="../assets/img/qna.jpg"></ion-img>
-    </ion-slide>
-    <ion-slide (click)="goToSlide3()">
-        <h1 text-center><button ion-button round outline color = "twitter">NOTES SHARING</button></h1>
-     
-      <ion-img src="../assets/img/noteshare.jpg"></ion-img>
-    </ion-slide>
- 
-      <ion-slide (click)="goToSlide1()">
-          <h1 text-center><button ion-button round outline solid color = "twitter">IDEAS SHARING</button></h1>
-      <ion-img src="../assets/img/ideashare.jpg"></ion-img>
-    </ion-slide>
-  </ion-slides>
+
+
+
 
   
--->
+
 <!--
 <ion-slides>
   <ion-slide>
