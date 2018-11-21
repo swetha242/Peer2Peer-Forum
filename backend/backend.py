@@ -236,7 +236,7 @@ def get_trends():
     personalNotesCount = mongo.db.notes.find({'asked_by': userid}).count()
     personalProjectsCount = mongo.db.ideas.find({'asked_by': userid}).count()
 
-    
+
     loc=mongo.db.users.find_one({'_id':ObjectId(userid)})
     loc_sub=loc['topSubjects']
     if(len(loc_sub)<=1):
@@ -828,7 +828,7 @@ def post_answer():
         notif_msg.append(notif_q)
         mongo.db.notif.update_one({'userid':asker_id},{"$set":{'notif':notif_msg}})
         mongo.db.users.update_one({"_id":ObjectId(answerer_id)},{"$set":{'ques_ans':answerer['ques_ans']+1}})
-        
+
         return jsonify({'result': 'Success', 'name': answerer['name'], 'aid': str(inserted_a.inserted_id)})
     else:
         return jsonify({'result': 'Failure'})
@@ -863,7 +863,7 @@ def upvote_answer():
         #update profile
         v=mongo.db.users.find_one({"_id":ObjectId(upv['answered_by'])})
         mongo.db.users.update_one({"_id":ObjectId(upv['answered_by'])},{"$set":{'ans_upvote':v['ans_upvote']+1}})
-        
+
         return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
     else:
         return jsonify({'result':'Error'})
@@ -1005,8 +1005,8 @@ def getQuestionsSimilarToUser():
 def getNotesSimilarToUser():
 	k=10
 	data=request.get_json()
-	print(data)
-	userID= data['asked_by']
+	print('data = ',data)
+	userID= data['upl_by']
 
 	noCommon = True
 

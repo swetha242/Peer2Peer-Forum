@@ -27,8 +27,19 @@ export class RecoNotesPage{
     this.items = [];
     this.storage.get('userid').then((uid) => {
       this.setuid(uid);
+      this.initializeItemsbegin();
     });
+  }
+  setuid(res)
+  {
+    this.userid=res;
+    console.log(this.userid)
+  }
+  initializeItemsbegin()
+  {
+    console.log(this.userid)
     let postParams = {upl_by:this.userid}
+    console.log(postParams)
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -57,11 +68,6 @@ export class RecoNotesPage{
       }, (err) => {
              console.log(err);
       });
-  }
-  setuid(res)
-  {
-    this.userid=res;
-    console.log(this.userid)
   }
   itemTapped(item) {
     let postParams = {userid:this.userid,notesid:item.nid}

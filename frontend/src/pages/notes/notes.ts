@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { NavController, NavParams, Platform } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 import * as Enums from '../../assets/apiconfig';
 import { ViewnotesPage} from '../viewnotes/viewnotes';
 import { Storage } from '@ionic/storage';
@@ -36,7 +37,7 @@ export class NotesPage {
 
   @ViewChild(Navbar) navBar: Navbar;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public storage:Storage, private platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,private alertCtrl: AlertController, public storage:Storage, private platform: Platform) {
     console.log("notes page starts here");
     this.search_items = [];
     this.items = [];
@@ -97,7 +98,10 @@ export class NotesPage {
            .subscribe(res => {
              //let data = res.json();
              console.log(res)
-
+             let alert = this.alertCtrl.create();
+             alert.setTitle('Uploaded Notes Successfully');
+             this.navCtrl.push(NotesPage, { subject : this.subject}
+             );
            }, (err) => {
              console.log(err);
 
