@@ -6,6 +6,7 @@ import { LaunchPage } from '../launch/launch';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as Enums from '../../assets/apiconfig';
 import { Http, Headers } from '@angular/http';
+import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 /**
  * Generated class for the SignupPage page.
  *
@@ -67,6 +68,14 @@ export class SignupPage implements OnInit {
             }
           
   });
+}
+login()
+{
+  this.navCtrl.push(LoginPage);
+}
+home()
+{
+  this.navCtrl.push(HelloIonicPage);
 }
 verify_otp()
 {
