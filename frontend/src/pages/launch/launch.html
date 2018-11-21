@@ -57,7 +57,7 @@
             <div class="transparentdiv">
             <ion-card-content class="item-note" item-right>
 
-              <div *ngFor="let topSubject of globalTrend.topSubjects">
+              <div *ngFor="let topSubject of topSubjects_g">
                 <ul class="list">
                   <li class="item">
               {{topSubject}}
@@ -76,7 +76,7 @@
               </ion-card-header>
             <div class="transparentdiv">
             <ion-card-content class="item-note" item-right>
-              <div *ngFor="let topTag of globalTrend.top3Tags">
+              <div *ngFor="let topTag of top3Tags_l">
                 <ul class="list">
                   <li class="item">
                     <h2>{{topTag}}</h2>
@@ -94,7 +94,7 @@
               </ion-card-header>
             <div class="transparentdiv">
             <ion-card-content class="item-note" item-right>
-              <div *ngFor="let topContributor of globalTrend.top3Contributors">
+              <div *ngFor="let topContributor of top3Contributors_g">
                 <ul class="list">
                   <li class="item">
                     {{topContributor}}
@@ -112,11 +112,11 @@
               </ion-card-header>
             <div class="transparentdiv">
             <ion-card-content class="item-note" item-right>
-              <p> Number of Questions : {{globalTrend.qno}} </p>
+              <p> Number of Questions : {{qno_g}} </p>
               <br>
-              <p> Number of Notes :  {{globalTrend.totalNumberOfNotes}} </p>
+              <p> Number of Notes :  {{totalNumberOfNotes_g}} </p>
               <br>
-              <p> Number of Projects :  {{globalTrend.totalNumberOfProjects}} </p>
+              <p> Number of Projects :  {{totalNumberOfProjects_g}} </p>
             </ion-card-content>
             </div>
           </ion-card>
@@ -140,7 +140,7 @@
               </ion-card-header>
             <div class="transparentdiv">
             <ion-card-content class="item-note" item-right>
-              <div *ngFor="let topSubject of personalTrend.topSubjects">
+              <div *ngFor="let topSubject of topSubjects_l">
                 <ul class="list">
                   <li class="item">
                     {{topSubject}}
@@ -158,7 +158,7 @@
               </ion-card-header>
             <div class="transparentdiv">
             <ion-card-content class="item-note" item-right>
-              <div *ngFor="let topTag of personalTrend.top3Tags">
+              <div *ngFor="let topTag of top3Tags_l">
                 <ul class="list">
                   <li class="item">
                     {{topTag}}
@@ -176,11 +176,11 @@
               </ion-card-header>
             <div class="transparentdiv">
             <ion-card-content class="item-note" item-right>
-              <p> Number of Questions : {{personalTrend.qno}} </p>
+              <p> Number of Questions : {{qno_l}} </p>
               <br>
-              <p> Number of Notes :  {{personalTrend.totalNumberOfNotes}} </p>
+              <p> Number of Notes :  {{totalNumberOfNotes_l}} </p>
               <br>
-              <p> Number of Projects :  {{personalTrend.totalNumberOfProjects}} </p>
+              <p> Number of Projects :  {{totalNumberOfProjects_l}} </p>
             </ion-card-content>
             </div>
           </ion-card>

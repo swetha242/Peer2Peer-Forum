@@ -29,21 +29,27 @@ export class LaunchPage {
   uname:any;
   selectedSubject : any;
   subjects : Array<string>;
-  globalTrend: {qno: number, top3Contributors: Array<string>,
-  top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
+  qno_g: number;
+  top3Contributors_g: Array<string>;
+  top3Tags_g : Array<string>;
+  topSubjects_g : Array<string>;
+  totalNumberOfNotes_g : number;
+  totalNumberOfProjects_g : number;
 
-  personalTrend: {qno: number,top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
+  qno_l: number;
+  top3Tags_l : Array<string>;
+   topSubjects_l : Array<string>;
+     totalNumberOfNotes_l : number;
+      totalNumberOfProjects_l : number;
 
 
   constructor(public navCtrl: NavController, public authService: AuthProvider , public navParams: NavParams, private alertCtrl: AlertController,public storage:Storage,public http: Http)
   {
 
 
-    this.globalTrend = {};
-    this.globalTrend.topSubjects=[];
 
-    this.personalTrend = {};
-    this.personalTrend.topSubjects=[];
+    this.topSubjects_g=[];
+    this.topSubjects_l=[];
 
     this.storage.get('userid').then((uid)=>
     {
@@ -93,27 +99,27 @@ export class LaunchPage {
 
       console.log(globalTrends);
 
-      this.globalTrend = {
 
-        qno : globalTrends['qno'],
-        totalNumberOfNotes : globalTrends['nno'],
-        totalNumberOfProjects : globalTrends['ino'],
 
-        top3Tags : globalTrends['tag'],
-        topSubjects : globalTrends['subject'],
-        top3Contributors : globalTrends['contrib']['names']
+        this.qno_g = globalTrends['qno'];
+        this.totalNumberOfNotes_g = globalTrends['nno'];
+        this.totalNumberOfProjects_g = globalTrends['ino'];
 
-      };
+        this.top3Tags_g = globalTrends['tag'];
+        this.topSubjects_g = globalTrends['subject'];
+        this.top3Contributors_g = globalTrends['contrib']['names'];
 
-      this.personalTrend = {
-        qno : localTrends['qno'],
-        totalNumberOfNotes : localTrends['nno'],
-        totalNumberOfProjects : localTrends['ino'],
 
-        top3Tags : localTrends['tag'],
-        topSubjects : localTrends['subject']
 
-      };
+
+        this.qno_l = localTrends['qno'];
+        this.totalNumberOfNotes_l = localTrends['nno'];
+        this.totalNumberOfProjects_l = localTrends['ino'];
+
+        this.top3Tags_l = localTrends['tag'];
+        this.topSubjects_l = localTrends['subject'];
+
+
 
 
     })
