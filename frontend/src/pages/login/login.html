@@ -19,9 +19,9 @@
 <ion-content text-center padding >
   <ion-card class = "card">
     <form novalidate (ngSubmit)="doLogin()" [formGroup]="loginform">
-        <ion-list>
-        <ion-item>
-          <ion-label><ion-icon name="person"></ion-icon></ion-label>
+        <ion-list class="list">
+        <ion-item class="item">
+          <ion-label><ion-icon name="at"></ion-icon></ion-label>
           <ion-input [(ngModel)]="email" name="email" placeholder="Email" type="email" formControlName="email" [class.error1]="!loginform.controls.email.valid && loginform.controls.email.dirty"></ion-input>
         </ion-item>
         <ion-item no-lines *ngIf="(loginform.get('email').hasError('pattern') ||loginform.get('email').hasError('required') ) && loginform.get('email').touched">
@@ -40,16 +40,16 @@
           <div class="error" *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched">
             Please input your password
           </div>
-          
+
         </ion-item>
 
           <div padding>
-            <button type="submit" ion-button color="dark" class = "signup" block [disabled]="loginform.invalid">LogIn</button>
+            <button type="submit" ion-button color="primary" class = "signup" block [disabled]="loginform.invalid">LogIn</button>
           </div>
 
 
-          
-  
+
+
         </ion-list>
       </form>
     </ion-card>
@@ -58,8 +58,8 @@
         <ion-fab-list side="top">
           <button ion-fab color = "dark" (click) = "home()">Home</button>
           <button ion-fab color = "dark" (click) = "signup()">SIGNUP</button>
-          
+
         </ion-fab-list>
     </ion-fab>
- 
+
 </ion-content>

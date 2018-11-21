@@ -1,15 +1,21 @@
 page-login {
-   /* .card{
-        align-items: center;
-        position: relative;
-      top: 25%; left: 0 ; bottom: 0; right: 0;
-      opacity : 0.7
-    }
-    .background{
-            background-image: url('../assets/img/final.jpg');
-    }
+  .card {
+  background-color: white;
+  box-shadow: none;
+  font-color: black;
+}
+.list {
+background-color:white;
+box-shadow: none;
+color: black;
+}
+.item {
+box-shadow: none;
+}
+
 
 }
+/*
 .ios, .md {
 
     login-page {
@@ -61,8 +67,8 @@ page-login {
             background-color: transparent;
             border: 1px solid #fff;
         }
-       
 
-    }*/
 
-}
+    }
+
+}*/

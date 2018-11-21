@@ -1,32 +1,259 @@
 page-hello-ionic {
+$box-color: #BCBBBB;
+$stack-color: #003300;
+
+$stack-padding: 10px;
+
+$box-size:  12px;
+$box-width: 130px;
+$box-height: $box-size * 8 ;
+$box-y: 100px;
+
+$stack-height: $box-size;
+$stack-width: $box-width ;
+
+
+
+.center{
+  margin: 80px auto;
+}
+
+.so{
+  display: block;
+  width: 500px;
+  height: $box-y + $box-height;
+
+  .inner{
+    width: 500px;
+    height: $box-y + $box-height;
+    position: absolute;
+
+    *{
+      position: absolute;
+      animation-iteration-count: infinite;
+      animation-duration: 3.5s;
+    }
+
+    .name{
+      position: relative;
+      font-size: 50px;
+      left: 150px;
+      top: $box-y - 10px;
+      font-family: monospace;
+      color: #006652;
+      //font-weight: bold;
+
+      .b{
+        font-family: monospace;
+        font-weight: bold;
+      }
+      .p
+      {
+        top: $box-y - 68px;
+        left: -80px;
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+
+    .stack-box{
+      top: $box-y;
+      width: $box-width;
+      height: $box-height;
+    }
+
+    .box{
+      width: $box-width;
+      height: $box-height;
+      left: 0px;
+
+      div{
+        background: $box-color;
+      }
+
+      .bottom{
+        bottom: 0px;
+        left: 0px;
+        width: $box-width;
+        height: $box-size;
+      }
+
+      .left{
+        bottom: $box-size - 1px;
+        left: 0px;
+        width: $box-size;
+        height: $box-height - $box-size * 2 + 2px;
+      }
+
+      .right{
+        bottom: $box-size - 1px;
+        left: $box-width - $box-size;
+        width: $box-size;
+        height: $box-height - $box-size * 2 + 2px;
+      }
+
+      .top{
+        top: 0px;
+        left: 0px;
+        //width: $box-width;
+        width: 0;
+        height: $box-size;
+      }
+    }
+
+
+  }
+
+  .inner{
+    $total-time: 2s;
+
+    .box{
+      animation-name: box;
+
+      .top{
+        animation-name: box-top;
+      }
+
+      .left{
+        animation-name: box-left;
+      }
+
+      .right{
+        animation-name: box-right;
+      }
+
+      .bottom{
+        animation-name: box-bottom;
+      }
+    }
+
+    .stack-box{
+      animation-name: stack-box;
+    }
+  }
+
+  $folded-padding: 30px;
+
+  @keyframes box{
+    0%   { left: 0; }
+    15%   { left: 0; }
+    30%   { left: $folded-padding; }
+    50%   { left: $folded-padding; }
+    80%   { left: 0; }
+  }
+
+  @keyframes box-top{
+    0%   { width: 0; }
+    6%   { width: 0; }
+    15%   { width: $box-width; }
+    30%   { width: $box-size * 2 + $stack-padding * 2 + $stack-height; }
+    50%   { width: $box-size * 2 + $stack-padding * 2 + $stack-height; }
+    59%   { width: 0; }
+  }
+
+  @keyframes box-left{
+    15%   { }
+    30%   { }
+    40%   { }
+    50%   { }
+  }
+
+  @keyframes box-bottom{
+    0%   { width: $box-width; }
+    15%   { width: $box-width; }
+    30%   { width: $box-size * 2 + $stack-padding * 2 + $stack-height; }
+    50%   { width: $box-size * 2 + $stack-padding * 2 + $stack-height; }
+    80%   { width: $box-width; }
+  }
+
+  @keyframes box-right{
+    15%   { left: $box-width - $box-size; }
+    30%   { left: $box-size * 2 + $stack-padding * 2; }
+    50%   { left: $box-size * 2 + $stack-padding * 2;  }
+    80%   { left: $box-width - $box-size; }
+  }
+
+  @keyframes stack-box{
+
+    0%   { transform: rotate(0deg); }
+    30%   { transform: rotate(0deg); }
+    40%   { transform: rotate(135deg); }
+    50%   { transform: rotate(135deg); }
+    83%   { transform: rotate(360deg); }
+    100%   { transform: rotate(360deg); }
+  }
+}
     .logoHeader {
-        text-align: center !important;
+        //text-align: center !important;
         margin-top: 10% !important;
+        position: fixed;
+        left: 1000;
+        top: 200;
       }
-      .welcomeHeader {
-        text-align: center;
-        color: map_get($colors,theme_color);
-        font-family: "sans-serif";
+      .welcomeHeader  {
+        //text-align: center;
+        //color: map_get($colors,theme_color);
+        color:#003300;
       }
-      button.login {
-        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-        background:  #1ABC9C !important;
-        padding: 22px !important;
-        &.activated {
-          background-color: #1ABC9C;
+        /*
+        overflow: hidden;
+        border-right: .15em #003300;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: .10em;
+        animation:
+          typing 10s steps(100, end),
+          blink-caret .20s step-end infinite;
+        font-family: monospace;
+      }
+      @keyframes typing {
+          from { width: 0 }
+          to { width: 100% }
         }
-      }
-      button.signup {
-        background-color: white;
-        color: map_get($colors, theme_color);
+
+
+@keyframes blink-caret {
+          from, to { border-color: transparent }
+          50% { border-color: #003300; }
+        }*/
+
+      button.login
+      {
+        background-color:  #00997a;
         border: 3px solid map_get($colors, theme_color) !important;
-        padding: 19px !important;
-        opacity : 0.8;
-       // width : 150px;
+        padding: 22px !important;
+        //opacity : 0.8;
+        color: #003300;
+          &.activated
+          {
+            background-color: white;
+          }
+        }
+
+
+      button.signup
+      {
+        background-color: #00997a;
+        color: #003300;
+        border: 3px solid map_get($colors, theme_color) !important;
+        padding: 22px !important;
+        //opacity : 0.8;
+        &.activated
+         {
+           background-color: white;
+          }
       }
-      .login disable-hover button button-ios button-default button-default-ios button-block button-block-ios {
-        background-color: map_get($colors, theme_color);
+
+
+
+      .login disable-hover button button-ios button-default button-default-ios button-block button-block-ios
+      {
+        //background-color: map_get($colors, theme_color);
+        background-color: #003300;
+        color: #d9d9d9;
+
       }
-    
+
 
 }

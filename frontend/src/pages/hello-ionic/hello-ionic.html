@@ -2,35 +2,77 @@
 <ion-header>
 
    <ion-title text-center>Welcome to Your Peer to Peer Forum</ion-title>
-    
-  
- 
+
+
+
 
 </ion-header>
 -->
 <ion-content padding class = "backgroundcolorblack" scroll="false">
     <div class="fixed-content">
       <div class="logoHeader">
-        <img alt="logo" height="60" style="position: relative" src="../assets/img/logo3.png">
+        <img alt="logo" height="40"
+        style= "position:fixed; left:510px; top:212px;"
+        src="../assets/img/logo3.png">
+
+
       </div>
-      <h1 class="welcomeHeader">QUEUE UNDERFLOW</h1>
-      <div padding></div>
-      <div padding></div>
-      <div padding></div>
-      <div padding></div>
-      <div padding></div>
-      <div padding></div>
-      
-      <div padding>
-          <button ion-button round outline class = "signup" style="width:25%;position:relative;left:37%" block (click)="Login()">LOGIN_BUTTON</button>
+      <div class="so center">
+  <div class="inner">
+    <div class="name">
+      Queue<span class="b"><p class="p">A peer 2 peer platform</p>Underflow</span>
+    </div>
+    <div class="stack-box">
+      <div class="stack">
+        <div class="item">
+          <div class="inner-item"></div>
         </div>
-      
+        <div class="item">
+          <div class="inner-item"></div>
+        </div>
+        <div class="item">
+          <div class="inner-item"></div>
+        </div>
+        <div class="item">
+          <div class="inner-item"></div>
+        </div>
+        <div class="item">
+          <div class="inner-item"></div>
+        </div>
+      </div>
+
+      <div class="box">
+
+        <div class="bottom"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="top"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+      <!--div class="logoHeader">
+        <img alt="logo" height="100" style="position: relative" src="../assets/img/logo3.png">
+      </div>
+      <div padding></div>
+      <h1 class="welcomeHeader">QUEUE UNDERFLOW</h1>
+
+      <div padding></div-->
+
+
+
+      <div padding center>
+          <button ion-button round outline class = "login" style="width:25%;position:relative;left:37%" block (click)="Login()">LOGIN</button>
+        </div>
+
         <div padding center>
-          <button ion-button round outline class="signup" style="width:25%;position:relative;left:37%" color="twitter" block (click)="Signup()">SIGNUP_BUTTON</button>
+          <button ion-button round outline class="signup" style="width:25%;position:relative;left:37%" color="twitter" block (click)="Signup()">SIGNUP</button>
         </div>
 </div>
 
-  
+
 </ion-content>
 
 
@@ -43,17 +85,17 @@
     </ion-slide>
     <ion-slide (click)="goToSlide3()">
         <h1 text-center><button ion-button round outline color = "twitter">NOTES SHARING</button></h1>
-     
+
       <ion-img src="../assets/img/noteshare.jpg"></ion-img>
     </ion-slide>
- 
+
       <ion-slide (click)="goToSlide1()">
           <h1 text-center><button ion-button round outline solid color = "twitter">IDEAS SHARING</button></h1>
       <ion-img src="../assets/img/ideashare.jpg"></ion-img>
     </ion-slide>
   </ion-slides>
 
-  
+
 -->
 <!--
 <ion-slides>
@@ -66,12 +108,12 @@
 <!--
 <ion-item>
     <h1 text center color = "twiiter"><button ion-button round outline color = "twitter">WELCOME TO Q_UNDERFLOW </button> </h1>
-   
+
 
 </ion-item>
 <ion-item>
 <ion-img src="../assets/img/logo3.png"></ion-img>
-</ion-item> 
+</ion-item>
 <div padding>
     <button ion-button round outline color = "twitter" block (click)="Login()">LOGIN_BUTTON</button>
   </div>
