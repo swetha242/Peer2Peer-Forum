@@ -15,9 +15,10 @@
         <ion-row>
           <ion-col col-11>
             Ideas and Projects
+
           </ion-col>
           <ion-col>
-            <button ion-button color = "primary" (click)="postNew()">New</button>
+
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -26,30 +27,26 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="greypatternbg" padding>
   <ion-grid>
     <ion-row>
       <ion-col col-11>
+        <ion-icon name="add-circle" color="baseColor" class="sizeinc" (click)="postNew()"></ion-icon><div class="newIdea">New Idea</div>
         <ion-item>
           <ion-label><ion-icon name="search"></ion-icon></ion-label>
           <ion-input [(ngModel)]="query" name="query" placeholder="Search for ideas or projects" type="text"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col>
-        <div padding>
-            <button ion-button color="primary" (click)="searchIdea()">Search</button>
-        </div>
-      </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-4>
         <div>
-          <button ion-button color="dark" outline>Latest</button>
+          <button ion-button color="baseColor" outline>Latest</button>
         </div>
       </ion-col>
       <ion-col col-4>
         <div>
-          <button ion-button color="dark" outline>Recommended</button>
+          <button ion-button color="danger" outline>Recommended</button>
         </div>
       </ion-col>
       <ion-col col-4>
