@@ -140,7 +140,7 @@ def notif_read():
         print(i['notif_id'])
         if(i['notif_id']==notif_id):
             i['read']=1
-            notif_upd.append(i)
+        notif_upd.append(i)
     print(notif_upd)
     mongo.db.notif.update_one({'userid':user},{'$set':{'notif':notif_upd}})
     return jsonify({'result':'Success'})
@@ -250,13 +250,21 @@ def get_trends():
     return jsonify({'global':{'subject':gs,'tag':gt,'contrib':{"names":gnames,"ids":gids}},'local':{'subject':ls,'tag':lt,'ques':loc['ques_ask'],'notes':loc['notes_upl'],'proj':loc['proj_ideas']}})
 
 #-----------------------------users-----------------------------------------------------------
-# user signup
-@app.route('/v1/signup',methods=['POST'])
-def adduser():
+#check if user already exists
+@app.route('/v1/checkuser',methods=['POST'])
+def check_user():
     data=request.get_json()
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
+    else:
+        return jsonify({'result':"New User"})
+
+
+# user signup
+@app.route('/v1/signup',methods=['POST'])
+def adduser():
+    data=request.get_json()
     userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
     #userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
@@ -279,7 +287,7 @@ def adduser():
 
 #User Authentication
 @app.route('/v1/auth',methods=['POST'])
-def check_user():
+def auth_user():
     data=request.get_json()
     query={
 		'email':data['email'] ,
@@ -742,12 +750,12 @@ def ask_question():
     data = request.get_json()
     description = data['description']
     subject = data['subject']
-    #tagsForQuestions = getTags(description,subject)
-    #tagsForQuestions.append(data['tags'])
+    tagsForQuestions = getTags(description,subject)
+    tagsForQuestions.append(data['tags'])
 
-    #data['tags']= tagsForQuestions
+    data['tags']= tagsForQuestions
 
-    #print(tagsForQuestions)
+    print(tagsForQuestions)
 
     qdata = {
         'asked_by': data['asked_by'],
