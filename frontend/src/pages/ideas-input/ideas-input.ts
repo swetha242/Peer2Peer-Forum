@@ -5,6 +5,7 @@ import { Http, Headers } from '@angular/http';
 import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 import { IdeasDetailsPage } from '../ideas-details/ideas-details';
 import * as Enums from '../../assets/apiconfig';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the IdeasInputPage page.
@@ -133,23 +134,20 @@ export class IdeasInputPage {
      i = i + 1;
    }
    console.log(this.idea);
-  }
-
-  postIdea(){
-    let post_Params = {title:this.idea['title'],links:this.idea['links'],subject:this.idea['subject'],
-                       tags: this.idea['tags'],summary:this.idea['summary'],description:this.idea['description'],
-                       max_colaborators:this.idea['max_colaborators'],owner_id:this.idea['user_id'],colaborator:this.idea['colaborators'],
-                       mentor_id:this.idea['mentor_id']};
+   let post_Params = {title:this.idea['title'],links:this.idea['links'],subject:this.idea['subject'],
+                      tags: this.idea['tags'],summary:this.idea['summary'],description:this.idea['description'],
+                      max_colaborators:this.idea['max_colaborators'],owner_id:this.idea['user_id'],colaborator:this.idea['colaborators'],
+                      mentor_id:this.idea['mentor_id']};
    let headers = new Headers();
    headers.append('Content-Type', 'application/json');
 
    let url = Enums.APIURL.URL1;
    let path = url.concat( "/ideas/insert");
    this.http.post(path, post_Params, {headers: headers})
-     .subscribe(res => {
-      console.log(res)
-      this.navCtrl.push(IdeasProjectsPage)
-    });
+    .subscribe(res => {
+     console.log(res)
+     this.navCtrl.push(IdeasProjectsPage)
+   });
   }
 
   ionViewDidLoad() {

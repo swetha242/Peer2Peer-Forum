@@ -58,7 +58,7 @@ export class LaunchPage {
 
     };
 
-    this.subjects=["Machine Learning","Compiler Design", "Data Structures", "Algorithms"];
+    this.subjects=["Any","Machine Learning","Compiler Design", "Data Structures", "Algorithms"];
 
 
   }

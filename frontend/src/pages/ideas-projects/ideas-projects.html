@@ -59,6 +59,18 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-searchbar style="position:relative;top:70px" [showCancelButton]="shouldShowCancel" (ionInput)="getIdeas($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+ <!-- <ion-list style="position:relative;top:70px">
+    <ion-item (click)="itemTapped($event, item)" text-wrap text-center  *ngFor="let item of items1">
+    -->
+      <ion-card (click)="ideaTapped($event, idea)" text-wrap text-center  *ngFor="let idea of ideas" style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey;opacity:0.6;position:relative;top:70px">
+
+        <ion-card-content class="idea-note" item-right>
+            <ion-icon name="quote" color="bright"></ion-icon> {{idea.title}}    <p></p>
+            <ion-icon name="help" color="bright"></ion-icon> {{idea.summary}} <p></p>
+          Submitted by {{idea.owner}}
+        </ion-card-content>
+     </ion-card>
 
   <!-- <ion-card class="ideas_projects_class">
     <ion-card-header>

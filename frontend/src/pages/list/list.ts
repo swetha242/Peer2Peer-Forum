@@ -16,19 +16,19 @@ export class ListPage {
   items: Array<{description:string,subject:string,qid:string,owner:string,title:string,tag:Array<"">}>;
   answers: Array<{aid:string,answeredby : string,teacher: number,content:string,upvote:number,downvote:number,answeredbyname:string}>;
   items1: Array<{description:string,subject:string,qid:string,owner:string,title:string,tag:Array<"">}>;
-  //items2 : Array<""> 
+  //items2 : Array<"">
   //the question asked by user
   question:string;
   title:string;
   tags:string;
   userid:any;
   //userid from prev page
-  
+
   //userid = this.navParams.get('userid');
   subject=this.navParams.get('subject');
   searchQuery: string ='';
   @ViewChild(Navbar) navBar: Navbar;
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public storage: Storage) {
 
     this.items1 = []
@@ -36,9 +36,9 @@ export class ListPage {
     this.storage.get('userid').then((uid) => {
       this.setuid(uid)
     });
-   
+
     console.log(this.userid);
-    
+
     }
     setuid(res)
     {
@@ -70,17 +70,17 @@ initializeItemsbegin()
                description : data[i].description
              })
              console.log('initialize')
-             console.log(this.items1)           
+             console.log(this.items1)
            }
            // let ques=data['questions'];
             //traverse the questions array
-          
+
   });
 }
 
 initializeItems(ev){
-     
-  this.items1=[]  
+
+  this.items1=[]
    let postParams = {description : this.question,asked_by:this.userid,subject:this.subject,title:this.title,tags:this.tags}
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -105,13 +105,13 @@ initializeItems(ev){
              console.log('initialize')
              console.log(this.items1)
 
-             
-           
+
+
            }
            // let ques=data['questions'];
             //traverse the questions array
 
-       
+
             console.log('out')
             console.log(this.items1)
             console.log('val')
@@ -119,7 +119,7 @@ initializeItems(ev){
             var val = ev.target.value
             if (val && val.trim() != '') {
               this.items1 = this.items1.filter((item) => {
-               
+
                 return (item.description.toLowerCase().indexOf(val.toLowerCase()) > -1);
               })
             }
@@ -131,7 +131,7 @@ initializeItems(ev){
 
           console.log('out1')
           console.log(this.items1)
- 
+
   }
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -158,7 +158,7 @@ initializeItems(ev){
             let data = res.json();
             console.log(data)
             console.log('refreshing')
-            let t= [] 
+            let t= []
             t.push(postParams.tags)
             console.log(t)
             self.items1.push({
@@ -195,7 +195,7 @@ initializeItems(ev){
           .subscribe(res => {
 
             console.log(this.answers)
-            
+
             let data = res.json()['answer'];
             for(let i in data){
               this.answers.push({
@@ -213,7 +213,7 @@ initializeItems(ev){
             //this.storage.set('token', data.token);
             //resolve(data);
 
-          
+
 
             this.navCtrl.push(ItemDetailsPage, { item: item , answer: this.answers,userid:this.userid});
 
@@ -233,5 +233,5 @@ initializeItems(ev){
     {
       this.answers=[]
     }
-    
+
 }

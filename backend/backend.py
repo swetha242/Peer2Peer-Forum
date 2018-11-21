@@ -344,16 +344,16 @@ def get_userDetails(ID):
 def get_userid(email):
 	uid=mongo.db.users.find_one({'email':email})
 	if uid:
-		return jsonify({'result':'success','userid':str(uid['_id'])})
+		return str(uid['_id'])
 	else:
-		return jsonify({'result':'unsuccess'})
+		return jsonify({'result':'failure'})
 
 def get_useremail(ID):
 	uemail=mongo.db.users.find_one({'_id':ObjectId(ID)})
 	if uemail:
-		return jsonify({'result':'success','email':uemail['email'],'uname':uemail['name']})
+		return ({'result':'success','email':uemail['email'],'uname':uemail['name']})
 	else:
-		return jsonify({'result':'unsuccess'})
+		return ({'result':'unsuccess'})
 
 #-------------------------------NOTES------------------------------------------------------
 #get json
@@ -485,8 +485,11 @@ def view_file():
 def insert_ideas():
     data=request.get_json()
     l=list()
+    print(data)
+    mentor_id = get_userid(data['mentor_id'])
+    print(mentor_id)
     #list of colab ids
-    for i in data['colaborator'].split(','):
+    for i in data['colaborator']:
         s=get_userid(i)
         if s:
             l.append(s)
@@ -504,33 +507,34 @@ def insert_ideas():
           'downvotes':0,
           'views':0,
           'colaborator_id':[],
-          'mentor_id':get_userid(data['mentor_id']),
+          'mentor_id':mentor_id,
           'mentor_status':0,
           'comments':[]
     }
+    print(userdata)
     idea=mongo.db.ideas.insert_one(userdata)
     notif_id=str(random.randrange(100,10000000,1))
     if idea:
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
         x=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
-        
+
         notif_q={
             "type":5,
-            "msg":x['name'] + "has chosen you as mentor for"+data['title'],
+            "msg":x['name'] + " has chosen you as mentor for"+data['title'],
             "project_id":str(idea.inserted_id),
             'time': datetime.now(),
             'notif_id':notif_id,
             "student_id":data['owner_id'],
             "read":0
         }
-        notif_msg=mongo.db.notif.find_one({'userid':data['mentor_id']})['notif']
+        notif_msg=mongo.db.notif.find_one({'userid':userdata['mentor_id']})['notif']
         notif_msg.append(notif_q)
-        mongo.db.notif.update_one({'userid':data['mentor_id']},{"$set":{'notif':notif_msg}})
+        mongo.db.notif.update_one({'userid':userdata['mentor_id']},{"$set":{'notif':notif_msg}})
         #notify colaborators
         for colab in l:
             notif_q={
             "type":6,
-            "msg":x['name'] +"has invited you to colaborate on"+data['title'],
+            "msg":x['name'] +" has invited you to colaborate on"+data['title'],
             "project_id":str(idea.inserted_id),
             'time': datetime.now(),
             'notif_id':notif_id,
@@ -540,14 +544,14 @@ def insert_ideas():
             notif_msg=mongo.db.notif.find_one({'userid':colab})['notif']
             notif_msg.append(notif_q)
             mongo.db.notif.update_one({'userid':colab},{"$set":{'notif':notif_msg}})
-        return jsonify({'result':'success'})
+        return jsonify({"result":"success"})
     else:
-        return jsonify({'result':'failure'})
-
+        return jsonify({"result":"failure"})
 #colaborator request to join
 @app.route('/ideas/insert_colaborator',methods=['POST'])
 def insert_colaborator():
     ideas=request.get_json()
+
     ideas_id=ideas['ideas_id']
     colab_id=ideas['colab_id']
     #call fn to update
@@ -558,7 +562,7 @@ def insert_colaborator():
         notif_id=str(random.randrange(100,10000000,1))
         notif_q={
             "type":5,
-            "msg":uinfo +"wants to colaborate on"+data['title'],
+            "msg":uinfo +" wants to colaborate on"+data['title'],
             "project_id":ideas_id,
             'time': datetime.now(),
             "colab_id":colab_id,
@@ -586,7 +590,7 @@ def update_members():
         if res:
             notif_q={
                 "type":3,
-                "msg":owner_name +"accepted your request to join "+ideas['title'],
+                "msg":owner_name +" accepted your request to join "+ideas['title'],
                 "project_id":ideas_id,
                 'time': datetime.now(),
                 "member_id":ideas['owner_id'],
@@ -606,7 +610,7 @@ def update_members():
         if res:
             notif_q={
                 "type":4,
-                "msg":member_name +"accepted your request to mentor "+ideas['title'],
+                "msg":member_name +" accepted your request to mentor "+ideas['title'],
                 "project_id":ideas_id,
                 'time': datetime.now(),
                 "member_id":member_id,
@@ -632,7 +636,7 @@ def count_colaborator(ID):
 #add commentss
 @app.route('/ideas/insert_comment/<ID>',methods=['post'])
 def insert_comments(ID):
-    data=request.form
+    data=request.get_json()
 
     userdata={
         'time':datetime.now(),
@@ -643,6 +647,12 @@ def insert_comments(ID):
         return jsonify({'result':'success'})
     else:
         return jsonify({'result':'unsuccess'})
+
+#get idea with specific ID
+@app.route('/idea/get',methods=['post'])
+def get_idea_id():
+    data = request.get_json()
+
 
 #get comments
 @app.route('/ideas/get_comments/<ID>')
@@ -665,14 +675,50 @@ def get_idea(tag):
 #latest idea with a particular tag
 @app.route('/ideas/latest/<tag>')
 def get_latest_idea(tag):
-    idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('time',-1)])
-    coll_list=[]
-    if idea:
-        for i in idea:
-            for colab in i['colaborator_id']:
-                coll_list.append(get_useremail(i))
-            i['colaborator_email']=coll_list
-        return dumps(idea)
+    print()
+    print("==============================================")
+    print(tag)
+    if tag == "Any" or tag == "undefined":
+        print("HEREREREREEs")
+        idea = mongo.db.ideas.find().sort([('time',-1)])
+    else:
+     idea = mongo.db.ideas.find({'tags':{'$in':[tag]}}).sort([('time',-1)])
+    data = {}
+    i = 0
+    for obj in idea:
+        details = {}
+        owner_user_data = get_useremail(obj["owner_id"])
+        mentor_user_data = get_useremail(obj["mentor_id"])
+        colab_email = []
+        obj['name'] = "test"
+        for colab_id in obj['colaborator_id']:
+            colab_user_data = json.loads(get_useremail(colab_id))
+            colab_email.append(colab_user_data['uname'])
+        details['_id'] = str(obj['_id'])
+        details['title'] = obj['title']
+        details['links'] = obj['links']
+        details['subject'] = obj['subject']
+        details['time'] = obj['time']
+        details['tags'] = obj['tags']
+        details['summary'] = obj['summary']
+        details['description'] = obj['description']
+        details['max_colaborators'] = obj['max_colaborators']
+        details['owner_id'] = obj['owner_id']
+        details['upvotes'] = obj['upvotes']
+        details['downvotes'] = obj['downvotes']
+        details['views'] = obj['views']
+        details['colaborator_id'] = obj['colaborator_id']
+        details['mentor_id'] = obj['mentor_id']
+        details['mentor_status'] = obj['mentor_status']
+        details['comments'] = obj['comments']
+        details['owner_name'] = owner_user_data['uname']
+        details['mentor_name'] = mentor_user_data['uname']
+        details['colab_emails'] = colab_email
+
+        data[str(i)] = details
+        i = i + 1
+    print(data)
+    return jsonify({'ideas':data})
 
 
 #most popular idea based on tag
@@ -738,6 +784,7 @@ def get_questions():
 @app.route("/qa/ask", methods=['POST'])
 def ask_question():
     data = request.get_json()
+
     description = data['description']
     subject = data['subject']
     tagsForQuestions = getTags(description,subject)
