@@ -4,24 +4,55 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="background">
   <h3 text-center *ngIf="selectedItem">
    <br>
+   <ion-icon name="quote"></ion-icon>
     {{selectedItem.title}}
   </h3>
-  <h3 align="center"> Asked by <b> {{selectedItem.owner}} </b> </h3>
+ 
   <h4 text-center *ngIf="selectedItem">
-    Question is  <b>{{selectedItem.description}}</b>
+    <ion-icon name="help"></ion-icon>  <b>{{selectedItem.description}}</b>
   </h4>
-
+  <h3 align="center"> Asked by : <b><p></p> <ion-icon name="person"></ion-icon>{{selectedItem.owner}} </b> </h3>
     <div padding>
-      <button ion-button color="primary" block (click)="answer()">Answer</button>
+    <button ion-button class = "signup" outline block (click)="answer()">Answer</button>
     </div>
    
 
+    <ion-card text-wrap text-center  *ngFor="let item of answers" style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey;opacity:0.6;position:relative;top:70px">
+           
+        <ion-card-content class="item-note" item-right>
+            <br><b>Answer : </b>{{item.content}}
+            <div class="item-note" item-right (click)="profile(item)">
+                <ion-icon name="person"></ion-icon>
+            {{item.answeredbyname}}
+            </div>
+            <br>
+            <br>
+       <ion-icon name="thumbs-up" (click) ="upvote(item)">{{item.upvote}}</ion-icon>
+          <ion-icon name="thumbs-down" (click)="downvote(item)">{{item.downvote}}</ion-icon>
+      
+        </ion-card-content>
+      </ion-card>
+
+
+
+
+
+
+
+    <!--
+
   <ion-list>
 
+
+
+
     <div ion-item *ngFor="let item of answers" block>
+
+
+
       
       <br><b>Answer : </b>{{item.content}}
       <div class="item-note" item-right (click)="profile(item)">
@@ -34,5 +65,5 @@
     <ion-icon name="thumbs-down" (click)="downvote(item)">{{item.downvote}}</ion-icon>
     </div>
 
-  </ion-list>
+  </ion-list>-->
 </ion-content>
