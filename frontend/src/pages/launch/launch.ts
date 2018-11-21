@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {RecoQuestionsPage} from '../reco-questions/reco-questions';
+import {RecoNotesPage} from '../reco-notes/reco-notes';
 import { ListPage } from '../list/list';
 import { Storage } from '@ionic/storage';
 import { NotesPage} from '../notes/notes';
@@ -137,7 +138,8 @@ export class LaunchPage {
 
   openNotes(event)
   {
-
+    this.navCtrl.push(RecoNotesPage, {}
+    );
   }
 
   openProjects(event)
