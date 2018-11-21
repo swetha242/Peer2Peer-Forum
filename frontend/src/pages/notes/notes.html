@@ -14,41 +14,47 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="greypatternbg" padding>
       <ion-grid>
-      <ion-row>
-        <ion-card>
+      <ion-row >
+        <ion-fab top left>
+            <button ion-fab>Post</button>
+            <ion-fab-list side="right">
+        <ion-card class="transparentUpload">
         <div padding>
           <ion-item>
-              <ion-input [(ngModel)]="title" name="title" placeholder="Notes Title" type="text"></ion-input>
+              <ion-input style="width:600px" [(ngModel)]="title" name="title" placeholder="Notes Title" type="text"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input [(ngModel)]="summary" name="summary" placeholder="Notes Summary" type="text"></ion-input>
+              <ion-input style="width:600px" [(ngModel)]="summary" name="summary" placeholder="Notes Summary" type="text"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="file" accept="pdf/*"  (change)="onUploadChange($event)"></ion-input>
+              <ion-input style="width:600px" type="file" accept="pdf/*"  (change)="onUploadChange($event)"></ion-input>
           </ion-item>
-          <button ion-button color="primary" (click)="uploadNotes()">Post</button>
+          <button ion-button full block color="baseColor" style="float:center" (click)="uploadNotes()">Post</button>
         </div>
         </ion-card>
+      </ion-fab-list>
+    </ion-fab>
       </ion-row>
-
+<br><br><br>
   <ion-row>
     <ion-col>
       <br>
-    <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="getItems($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+    <ion-searchbar color="baseColor" [showCancelButton]="shouldShowCancel" (ionInput)="getItems($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
 
-  <ion-list>
+  <ion-list class="transparentdiv">
     <ion-item *ngFor="let item of items">
-        <ion-card>
+        <ion-card class="transparentChild">
           <ion-card-header>
-            <img src="assets/imgs/sttudent.png" width="20">
-            <h2>{{item.author}}</h2>
-            <ion-icon name="star" color="bright"></ion-icon> {{item.title}}
+            <ion-icon name="school" color="primary"></ion-icon>  {{item.author}}
+            <br>
+            <ion-badge item-end color="danger">{{item.title}}</ion-badge>
+
     </ion-card-header>
       <ion-card-content class="item-note" item-right>
         {{item.qtext}}
-        <button ion-button color="primary" block (click)="itemTapped(item)">View</button>
+        <button ion-button color="baseColor" block (click)="itemTapped(item)">View</button>
         <button ion-button color="primary" block (click)="download(item)">Download</button>
 
       </ion-card-content>
