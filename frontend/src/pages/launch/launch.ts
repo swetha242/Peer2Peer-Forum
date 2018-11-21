@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {RecoQuestionsPage} from '../reco-questions/reco-questions';
+import {RecoNotesPage} from '../reco-notes/reco-notes';
 import { ListPage } from '../list/list';
 import { Storage } from '@ionic/storage';
 import { NotesPage} from '../notes/notes';
 import { IdeasProjectsPage } from '../ideas-projects/ideas-projects';
 import { AuthProvider } from '../../providers/auth/auth';
+import * as Enums from '../../assets/apiconfig';
 import { fn } from '@angular/compiler/src/output/output_ast';
+import { Http, Headers } from '@angular/http';
 /**
  * Generated class for the LaunchPage page.
  *
@@ -27,47 +30,110 @@ export class LaunchPage {
   //is_student:any;
   selectedSubject : any;
   subjects : Array<string>;
-  globalTrend: {qno: number, top3Contributors: Array<string>,
-  top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
+  qno_g: number;
+  top3Contributors_g: Array<string>;
+  top3Tags_g : Array<string>;
+  topSubjects_g : Array<string>;
+  totalNumberOfNotes_g : number;
+  totalNumberOfProjects_g : number;
 
-  personalTrend: {qno: number,top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
+  qno_l: number;
+  top3Tags_l : Array<string>;
+   topSubjects_l : Array<string>;
+     totalNumberOfNotes_l : number;
+      totalNumberOfProjects_l : number;
 
 
-  constructor(public navCtrl: NavController, public authService: AuthProvider , public navParams: NavParams, private alertCtrl: AlertController,public storage:Storage) {
+  constructor(public navCtrl: NavController, public authService: AuthProvider , public navParams: NavParams, private alertCtrl: AlertController,public storage:Storage,public http: Http)
+  {
 
-    this.globalTrend = {qno : 120,
-      totalNumberOfNotes : 20,
-      totalNumberOfProjects : 45,
 
-      top3Tags : ["Linked List", "Neural Networks", "C++"],
-      topSubjects : ["Compiler Design", "Data Structures", "Machine Learning"],
-      top3Contributors : ["sai", "sondhi", "swetha"]
 
-    };
+    this.topSubjects_g=[];
+    this.topSubjects_l=[];
+
     this.storage.get('userid').then((uid)=>
     {
-      console.log(uid)
-       this.setuid(uid)
+      //console.log(result)
+       this.setuid(uid);
+
     });
-    
-    this.personalTrend = { qno : 12,
-      totalNumberOfNotes : 5,
-      totalNumberOfProjects : 4,
-
-      top3Tags : ["Linked List", "Neural Networks", "C++"],
-      topSubjects : ["Compiler Design", "Data Structures", "Machine Learning"]
-
-    };
-
-    this.subjects=["Machine Learning","Compiler Design", "Data Structures", "Algorithms"];
 
 
+
+
+    let postParams = {}
+    let headers = new Headers();
+
+    headers.append('Content-Type','application/json');
+    let url = Enums.APIURL.URL1;
+    let path = url.concat('/subjects/getList');
+
+    this.http.post(path,postParams,{headers:headers})
+    .subscribe(res => {
+      console.log(res);
+      let subjectsList = res.json()['subjects'];
+      this.subjects = subjectsList;
+    });
+    //this.subjects=["Machine Learning","Compiler Design", "Data Structures", "Algorithms"];
+
+
+  }
+  setTrends()
+  {
+    let postParams = {userid : this.userid};
+    let headers =new Headers();
+
+    headers.append('Content-Type','application/json');
+    let url = Enums.APIURL.URL1;
+    let path = url.concat('/get_trends');
+
+    console.log(postParams);
+
+    this.http.post(path,postParams,{headers:headers})
+    .subscribe(res => {
+      console.log("Starting call");
+      console.log(res);
+
+      let globalTrends = res.json()['global'];
+      let localTrends = res.json()['local'];
+
+      console.log(globalTrends);
+
+
+
+        this.qno_g = globalTrends['qno'];
+        this.totalNumberOfNotes_g = globalTrends['nno'];
+        this.totalNumberOfProjects_g = globalTrends['ino'];
+
+        this.top3Tags_g = globalTrends['tag'];
+        this.topSubjects_g = globalTrends['subject'];
+        this.top3Contributors_g = globalTrends['contrib']['names'];
+
+
+
+
+        this.qno_l = localTrends['qno'];
+        this.totalNumberOfNotes_l = localTrends['nno'];
+        this.totalNumberOfProjects_l = localTrends['ino'];
+
+        this.top3Tags_l = localTrends['tag'];
+        this.topSubjects_l = localTrends['subject'];
+
+
+
+
+    })
   }
   setuid(res)
   {
     this.userid=res;
-    console.log(this.userid)
+    console.log(this.userid);
+    this.setTrends();
+
   }
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad LaunchPage');
   }
@@ -79,7 +145,8 @@ export class LaunchPage {
 
   openNotes(event)
   {
-
+    this.navCtrl.push(RecoNotesPage, {}
+    );
   }
 
   openProjects(event)

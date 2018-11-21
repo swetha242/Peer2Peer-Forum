@@ -1017,7 +1017,7 @@ def getNotesSimilarToUser():
 	k=10
 	data=request.get_json()
 	print(data)
-	userID= data['asked_by']
+	userID= data['upl_by']
 
 	noCommon = True
 

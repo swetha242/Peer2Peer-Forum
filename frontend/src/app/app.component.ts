@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LaunchPage} from '../pages/launch/launch';
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
+import { RecoNotesPage} from '../pages/reco-notes/reco-notes';
 import { Storage } from '@ionic/storage';
 import {NotifPage} from '../pages/notif/notif';
 
@@ -37,7 +38,7 @@ export class MyApp {
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [
-      
+
       //{ title: 'Questions Page', component: ListPage },
    //   { title : 'Login', component : LoginPage},
      // { title : 'Sign Up',component : SignupPage},
