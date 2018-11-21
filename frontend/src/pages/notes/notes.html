@@ -17,22 +17,27 @@
 <ion-content class="greypatternbg" padding>
       <ion-grid>
       <ion-row >
+        <ion-fab top left>
+            <button ion-fab>Post</button>
+            <ion-fab-list side="right">
         <ion-card class="transparentUpload">
         <div padding>
           <ion-item>
-              <ion-input [(ngModel)]="title" name="title" placeholder="Notes Title" type="text"></ion-input>
+              <ion-input style="width:600px" [(ngModel)]="title" name="title" placeholder="Notes Title" type="text"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input [(ngModel)]="summary" name="summary" placeholder="Notes Summary" type="text"></ion-input>
+              <ion-input style="width:600px" [(ngModel)]="summary" name="summary" placeholder="Notes Summary" type="text"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="file" accept="pdf/*"  (change)="onUploadChange($event)"></ion-input>
+              <ion-input style="width:600px" type="file" accept="pdf/*"  (change)="onUploadChange($event)"></ion-input>
           </ion-item>
           <button ion-button full block color="baseColor" style="float:center" (click)="uploadNotes()">Post</button>
         </div>
         </ion-card>
+      </ion-fab-list>
+    </ion-fab>
       </ion-row>
-
+<br><br><br>
   <ion-row>
     <ion-col>
       <br>
