@@ -18,10 +18,17 @@
 $positive: #36465d !default;
 $calm: #519ec8 !default;
 $dark-positive: #445569;
-$extra-dark: #2e3f53;
+$extra-dark: #d3fff8;
 $light: #ffffff;
 
 //Global Body class
-.includeimage {
- background-color: black;
+.backgroundcolorblack {
+ //background-color: #1c3a35;
+ background-image: url("../assets/img/background.jpg");
+}
+.greypatternbg{
+    background-image: url("../assets/img/final.jpg");
+}
+.background{
+    background-image: url("../assets/img/final.jpg");
 }

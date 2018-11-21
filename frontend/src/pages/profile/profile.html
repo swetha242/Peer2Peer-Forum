@@ -9,11 +9,70 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Profile</ion-title>
+    <ion-title text-wrap text-center>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content class = "background">
+    <ion-card class = "slide" >
+        <ion-card-header text-wrap text-center style="font-size:20px;color:dark;background-color:twitter">Details</ion-card-header>
+      <ion-card-content>
+        <ion-card-title>
+        <ion-icon name="contact" style="font-size:100px;position: relative;left:46%"></ion-icon>
+        </ion-card-title>
+        <p>
+        <h4 text-wrap text-center style="font-size:17px;color:twitter;background-color:twitter">Name : {{name}}</h4>
+        <h4 text-wrap text-center style="font-size:17px;color:twitter;background-color:twitter">Email ID : {{emailId}}</h4>
+        
+    </ion-card-content>
+    </ion-card>
+    <ion-card class = "slide1" >
+        <ion-card-header text-wrap text-center style="font-size:20px;color:dark;background-color:twitter"> Contribution Details </ion-card-header>
+      <ion-card-content>
+          <ion-list>
+            <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:rgb(39, 65, 17);border-bottom: 1px solid grey"> Number of Questions Asked : {{numberOfQuestionsAsked}} </ion-item>
+            <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:rgb(39, 65, 17);border-bottom: 1px solid grey"> Number of Questions Answered : {{numberOfQuestionsAnswered}} </ion-item>
+            <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:rgb(39, 65, 17);border-bottom: 1px solid grey"> Number of Answers Upvoted : {{numberOfUpvotes}} </ion-item>
+            <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:rgb(39, 65, 17);border-bottom: 1px solid grey"> Number of Project Ideas : {{numberofProjectIdeas}} </ion-item>
+            <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:rgb(39, 65, 17);border-bottom: 1px solid grey"> Number of Notes Uploaded : {{numberOfNotesUploaded}} </ion-item>
+            <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:rgb(39, 65, 17);border-bottom: 1px solid grey"> Number of Views for Notes : {{numberOfViewsForNotes}} </ion-item>
+          </ion-list>
+    </ion-card-content>
+    </ion-card>
+    <ion-card class = "slide1" >
+        <ion-card-header text-wrap text-center style="font-size:20px;color:dark;background-color:twitter"> Top Subjects </ion-card-header>
+      <ion-card-content>
+          <ng-container *ngIf="topSubjects.length">
+              <div *ngFor="let topSubject of topSubjects">
+       
+                  <ion-item text-wrap text-center style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey">
+                    {{topSubject}}
+                  </ion-item>
+          
+              </div>
+            </ng-container>
+    </ion-card-content>
+    </ion-card>
+    <ion-card class = "slide1" >
+        <ion-card-header text-wrap text-center style="font-size:20px;color:dark;background-color:dark"> Top Tags </ion-card-header>
+      <ion-card-content>
+          <ng-container *ngIf="topTags.length">
+              <div *ngFor="let topTag of topTags">
+    
+                  <ion-item text-wrap text-center style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey">
+                    {{topTag}}
+                  </ion-item>
+    
+              </div>
+            </ng-container>
+    </ion-card-content>
+    </ion-card>
 
+</ion-content>
+
+
+
+<!--
 <ion-content padding class="masters">
   <div class="row responsive-lg">
     <ion-grid>
@@ -25,23 +84,22 @@
             <p><b><u>Email Id</u> : {{emailId}}</b> <p>
             
             
-            <!--img src="/assets/160_F_84671939_jxymoYZO8Oeacc3JRBDE8bSXBWj0ZfA9.jpg" alt="hi"-->
-            <!--ion-col col-6 style="border:solid 1px black;border-radius:4px;margin:2px;"-->
+          
             <ion-icon name="contact" style="font-size:200px;position:relative;left:250px;top:-80px"></ion-icon>
-            <!--/ion-col-->
+        
           </ion-col>
 
 
         <ion-col col-3 style="border:solid 1px black;margin:2px;border-radius:4px;left:150px">
           <h3 text-wrap text-center style="font-size:20px;color:white;border:solid 1px;border-radius:4px;background-color:#387ef5"> Contribution Details </h3>
-          <!--div id="details"-->
+         
           <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Questions Asked : {{numberOfQuestionsAsked}} </ion-item>
           <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Questions Answered : {{numberOfQuestionsAnswered}} </ion-item>
           <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Answers Upvoted : {{numberOfUpvotes}} </ion-item>
           <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Project Ideas : {{numberofProjectIdeas}} </ion-item>
           <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Notes Uploaded : {{numberOfNotesUploaded}} </ion-item>
           <ion-item text-wrap text-center style="font-size: 6rem;color:white;background-color:black"> Number of Views for Notes : {{numberOfViewsForNotes}} </ion-item>
-          <!--/div-->
+
         </ion-col>
       </ion-row>
 
@@ -53,11 +111,11 @@
           </div>
           <ng-container *ngIf="topSubjects.length">
           <div *ngFor="let topSubject of topSubjects">
-            <!--ul class="list"-->
+   
               <ion-item text-wrap text-center style="color:white;background-color:black">
                 {{topSubject}}
               </ion-item>
-              <!--/ul-->
+      
           </div>
         </ng-container>
         </ion-col>
@@ -67,11 +125,11 @@
           </div>
           <ng-container *ngIf="topTags.length">
           <div *ngFor="let topTag of topTags">
-            <!--ul class="list"-->
+
               <ion-item text-wrap text-center style="color:white;background-color:black">
                 {{topTag}}
               </ion-item>
-            <!--/ul-->
+
           </div>
         </ng-container>
         </ion-col>
@@ -79,3 +137,5 @@
     </ion-grid>
   </div>
 </ion-content>
+-->
+
