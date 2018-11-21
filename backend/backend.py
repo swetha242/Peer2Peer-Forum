@@ -366,7 +366,7 @@ def notes_now(notes):
         x=mongo.db.users.find_one({'_id':ObjectId(i['upl_by'])})
         print(x)
         note[str(c)]=i
-        #note[str(c)]['upl_by']=x['name']
+        note[str(c)]['upl_by']=x['name']
       #  print x['name']
         c=c+1
     return note
@@ -512,7 +512,7 @@ def insert_ideas():
     if idea:
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
         x=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
-        
+
         notif_q={
             "type":5,
             "msg":x['name'] + "has chosen you as mentor for"+data['title'],
