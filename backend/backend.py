@@ -28,11 +28,11 @@ mongo = PyMongo(app)
 stopWords = set(stopwords.words('english'))
 stopWords = list(stopWords)
 
-#subjectsFile = open("subjects.pickle","rb")
-#subjectsTagsFile = open("subjectsWords.pickle","rb")
+subjectsFile = open("subjects.pickle","rb")
+subjectsTagsFile = open("subjectsWords.pickle","rb")
 
-#subjects = pickle.load(subjectsFile)
-#subjectsTags = pickle.load(subjectsTagsFile)
+subjects = pickle.load(subjectsFile)
+subjectsTags = pickle.load(subjectsTagsFile)
 
 def cleanText(string):
     string=string.strip("\n")
