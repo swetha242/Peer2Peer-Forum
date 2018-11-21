@@ -34,31 +34,25 @@ export class LaunchPage {
   personalTrend: {qno: number,top3Tags : Array<string>, topSubjects : Array<string>,  totalNumberOfNotes : number, totalNumberOfProjects : number};
 
 
-  constructor(public navCtrl: NavController, public authService: AuthProvider , public navParams: NavParams, private alertCtrl: AlertController,public storage:Storage,public http: Http) {
+  constructor(public navCtrl: NavController, public authService: AuthProvider , public navParams: NavParams, private alertCtrl: AlertController,public storage:Storage,public http: Http)
+  {
 
-    this.globalTrend = {qno : 120,
-      totalNumberOfNotes : 20,
-      totalNumberOfProjects : 45,
 
-      top3Tags : ["Linked List", "Neural Networks", "C++"],
-      topSubjects : ["Compiler Design", "Data Structures", "Machine Learning"],
-      top3Contributors : ["sai", "sondhi", "swetha"]
+    this.globalTrend = {};
+    this.globalTrend.topSubjects=[];
 
-    };
+    this.personalTrend = {};
+    this.personalTrend.topSubjects=[];
+
     this.storage.get('userid').then((uid)=>
     {
       //console.log(result)
-       this.setuid(uid)
+       this.setuid(uid);
+
     });
 
-    this.personalTrend = { qno : 12,
-      totalNumberOfNotes : 5,
-      totalNumberOfProjects : 4,
 
-      top3Tags : ["Linked List", "Neural Networks", "C++"],
-      topSubjects : ["Compiler Design", "Data Structures", "Machine Learning"]
 
-    };
 
     let postParams = {}
     let headers = new Headers();
@@ -77,11 +71,61 @@ export class LaunchPage {
 
 
   }
+  setTrends()
+  {
+    let postParams = {userid : this.userid};
+    let headers =new Headers();
+
+    headers.append('Content-Type','application/json');
+    let url = Enums.APIURL.URL1;
+    let path = url.concat('/get_trends');
+
+    console.log(postParams);
+
+    this.http.post(path,postParams,{headers:headers})
+    .subscribe(res => {
+      console.log("Starting call");
+      console.log(res);
+
+      let globalTrends = res.json()['global'];
+      let localTrends = res.json()['local'];
+
+      console.log(globalTrends);
+
+      this.globalTrend = {
+
+        qno : globalTrends['qno'],
+        totalNumberOfNotes : globalTrends['nno'],
+        totalNumberOfProjects : globalTrends['ino'],
+
+        top3Tags : globalTrends['tag'],
+        topSubjects : globalTrends['subject'],
+        top3Contributors : globalTrends['contrib']['names']
+
+      };
+
+      this.personalTrend = {
+        qno : localTrends['qno'],
+        totalNumberOfNotes : localTrends['nno'],
+        totalNumberOfProjects : localTrends['ino'],
+
+        top3Tags : localTrends['tag'],
+        topSubjects : localTrends['subject']
+
+      };
+
+
+    })
+  }
   setuid(res)
   {
     this.userid=res;
-    console.log(this.userid)
+    console.log(this.userid);
+    this.setTrends();
+
   }
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad LaunchPage');
   }
