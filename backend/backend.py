@@ -140,7 +140,7 @@ def notif_read():
         print(i['notif_id'])
         if(i['notif_id']==notif_id):
             i['read']=1
-            notif_upd.append(i)
+        notif_upd.append(i)
     print(notif_upd)
     mongo.db.notif.update_one({'userid':user},{'$set':{'notif':notif_upd}})
     return jsonify({'result':'Success'})
@@ -250,13 +250,21 @@ def get_trends():
     return jsonify({'global':{'subject':gs,'tag':gt,'contrib':{"names":gnames,"ids":gids}},'local':{'subject':ls,'tag':lt,'ques':loc['ques_ask'],'notes':loc['notes_upl'],'proj':loc['proj_ideas']}})
 
 #-----------------------------users-----------------------------------------------------------
-# user signup
-@app.route('/v1/signup',methods=['POST'])
-def adduser():
+#check if user already exists
+@app.route('/v1/checkuser',methods=['POST'])
+def check_user():
     data=request.get_json()
     user1=mongo.db.users.find_one({'email':data['email']})
     if user1:
         return jsonify({'result':"Already registered"})
+    else:
+        return jsonify({'result':"New User"})
+
+
+# user signup
+@app.route('/v1/signup',methods=['POST'])
+def adduser():
+    data=request.get_json()
     userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'ans_upvote':0,'proj_ideas':0,'score':0,'topSubjects':{},'topTags':{}}
     #userdata = {'name':data['username'] ,'password':data['password'],'email': data['email'],'is_student':1,'ques_ask':0,'ques_ans':0,'notes_upl':0,'view_notes':0,'score':0,'topSubjects':{},'topTags':{}}
     user=mongo.db.users.insert_one(userdata)
@@ -279,7 +287,7 @@ def adduser():
 
 #User Authentication
 @app.route('/v1/auth',methods=['POST'])
-def check_user():
+def auth_user():
     data=request.get_json()
     query={
 		'email':data['email'] ,
@@ -366,7 +374,7 @@ def notes_now(notes):
         x=mongo.db.users.find_one({'_id':ObjectId(i['upl_by'])})
         print(x)
         note[str(c)]=i
-        #note[str(c)]['upl_by']=x['name']
+        note[str(c)]['upl_by']=x['name']
       #  print x['name']
         c=c+1
     return note
@@ -512,7 +520,7 @@ def insert_ideas():
     if idea:
         #mentor_email=mongo.db.users.find_one({'_id':ObjectId(data['mentor_id'])})['email']
         x=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
-        
+
         notif_q={
             "type":5,
             "msg":x['name'] + "has chosen you as mentor for"+data['title'],
@@ -539,6 +547,8 @@ def insert_ideas():
             notif_msg=mongo.db.notif.find_one({'userid':colab})['notif']
             notif_msg.append(notif_q)
             mongo.db.notif.update_one({'userid':colab},{"$set":{'notif':notif_msg}})
+        #profile update
+        mongo.db.users.update_one({"_id":ObjectId(data['owner_id'])},{"$set":{'proj_ides':x['proj_ideas']+1}})
         return jsonify({'result':'success'})
     else:
         return jsonify({'result':'failure'})
@@ -603,6 +613,7 @@ def update_members():
     else:
         res = mongo.db.ideas.update_one({"_id":ObjectId(ideas_id)},{'$set':{'mentor_id':member_id}})
         if res:
+            member_name=get_useremail(member_id)['uname']
             notif_q={
                 "type":4,
                 "msg":member_name +"accepted your request to mentor "+ideas['title'],
@@ -785,7 +796,6 @@ def post_answer():
         question = mongo.db.q.find_one({'_id': ObjectId(data['QID'])})
         asker_id = question['asked_by']
         asker = mongo.db.users.find_one({'_id': ObjectId(asker_id)})
-
         answerer_id = data['answered_by']
         answerer = mongo.db.users.find_one({'_id': ObjectId(answerer_id)})
         notif_id=str(random.randrange(100,10000000,1))
@@ -804,7 +814,8 @@ def post_answer():
         notif_msg=mongo.db.notif.find_one({'userid':asker_id})['notif']
         notif_msg.append(notif_q)
         mongo.db.notif.update_one({'userid':asker_id},{"$set":{'notif':notif_msg}})
-
+        mongo.db.users.update_one({"_id":ObjectId(answerer_id)},{"$set":{'ques_ans':answerer['ques_ans']+1}})
+        
         return jsonify({'result': 'Success', 'name': answerer['name'], 'aid': str(inserted_a.inserted_id)})
     else:
         return jsonify({'result': 'Failure'})
@@ -836,6 +847,10 @@ def upvote_answer():
         upv['votes'].append(uid)
         mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'upvotes': upv['upvotes'] + 1}})
         mongo.db.a.update({"_id": ObjectId(aid)}, {"$set": {'votes': upv['votes']}})
+        #update profile
+        v=mongo.db.users.find_one({"_id":ObjectId(upv['answered_by'])})
+        mongo.db.users.update_one({"_id":ObjectId(upv['answered_by'])},{"$set":{'ans_upvote':v['ans_upvote']+1}})
+        
         return jsonify({'upvote': upv['upvotes'] + 1,'result':'Success'})
     else:
         return jsonify({'result':'Error'})

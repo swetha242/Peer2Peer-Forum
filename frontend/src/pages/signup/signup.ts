@@ -4,7 +4,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage} from '../login/login';
 import { LaunchPage } from '../launch/launch';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import * as Enums from '../../assets/apiconfig';
+import { Http, Headers } from '@angular/http';
 /**
  * Generated class for the SignupPage page.
  *
@@ -23,7 +24,7 @@ export class SignupPage implements OnInit {
   password:string;
   name: string ;
   signupform: FormGroup;
-  constructor(public navCtrl: NavController, public authService: AuthProvider, public alertCtrl : AlertController ) {
+  constructor(public http:Http,public navCtrl: NavController, public authService: AuthProvider, public alertCtrl : AlertController ) {
   }
   ngOnInit() {
     let EMAILPATTERN = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i;
@@ -40,34 +41,127 @@ export class SignupPage implements OnInit {
   }
 
   doSignup(){
-    let details = {email : this.email, password: this.password, username: this.name};
+    let details = {email : this.email};
+    //first check if already user exists
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+        let url = Enums.APIURL.URL1;
+        let path = url.concat( "/v1/checkuser");
+
+        this.http.post(path, {email:details.email}, {headers: headers})
+          .subscribe(res => {
+           console.log(res)
+            let data = res.json()['result'];
+            if(data=='Already registered'){
+              const alert = this.alertCtrl.create({
+                title: 'Already a user',
+                buttons: ['OK']
+              });
+              alert.present();
+              this.navCtrl.push(LoginPage)
+            }
+            else
+            {
+              this.verify_otp()
+            }
+          
+  });
+}
+verify_otp()
+{
+  let details = {email : this.email};
+    //first check if already user exists
+  let headers = new Headers();
+  let url = Enums.APIURL.URL1;
+  let path = url.concat( "/otp/send");
+
+    this.http.post(path,details, {headers: headers})
+     .subscribe(res => {
+     console.log(res)
+     let data = res.json()['result'];
+    if(data=='Success'){
+    let self=this
+    let alert = this.alertCtrl.create({
+      title: 'An OTP has been sent to your mail',
+      message:'Enter OTP',
+      inputs: [
+        {
+          name: 'otp'
+        }
+       
+      ],
+      buttons:[
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          
+        },
+        {
+          text: 'Submit',
+          handler: data => {
+            console.log(data);
+            let postParams = {otp : data['otp']}
+            console.log(postParams);
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+              let url = Enums.APIURL.URL1;
+              let path = url.concat( "/otp/verify");
+              
+              this.http.post(path, postParams, {headers: headers})
+                .subscribe(res => {
+                  data=res.json()['result']
+                  console.log(data)
+                  if(data=='Success'){
+
+                    let details={username:this.name,password:this.password,email:this.email}
+                    this.authService.createAccount(details).then((result) => {
+
+                      let data = result["result"];
+                    //console.log(result)
+                    console.log(JSON.parse(JSON.stringify(result)));
+                    if(data=="Success"){
+                      const alert = this.alertCtrl.create({
+                        title: 'Successfully Registered',
+                        buttons: ['OK']
+                      });
+                      alert.present();
+                      this.navCtrl.push(LaunchPage);
+                    }
+                    else
+                    {
+                      const alert = this.alertCtrl.create({
+                        title: 'Invalid OTP',
+                        buttons: ['OK']
+                      });
+                      alert.present();
+                    }
+                    
+                    }, (err) => {
+                      console.log(err)
+                    });
+                  }
 
 
-    this.authService.createAccount(details).then((result) => {
+                }, (err) => {
+                  console.log(err);
+                  //reject(err);
+                });
+                //this.navCtrl.push(ItemDetailsPage,{item:this.selectedItem,answer:this.answers,userid:this.userid});
+                }
+              }
+            ]
+          });
+          alert.present();
+                  }
+                
+        });
+      }
 
-      let data = result["result"];
-    //console.log(result)
-    console.log(JSON.parse(JSON.stringify(result)));
-    if(data=="Success"){
-      const alert = this.alertCtrl.create({
-        title: 'Successfully Registered',
-        buttons: ['OK']
-      });
-      alert.present();
-      this.navCtrl.push(LaunchPage);
-    }
-    else if(data=='Already registered'){
-      const alert = this.alertCtrl.create({
-        title: 'Already a user',
-        buttons: ['OK']
-      });
-      alert.present();
-    }
-
-    }, (err) => {
-      console.log(err)
-    });
+   
+    
 
   }
 
-  }
+  
