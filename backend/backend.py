@@ -456,7 +456,7 @@ def insert_ideas():
     data=request.get_json()
     l=list()
     #list of colab ids
-    for i in data['collaborator'].split(','):
+    for i in data['colaborator'].split(','):
         s=get_userid(i)
         if s:
             l.append(s)
@@ -466,6 +466,7 @@ def insert_ideas():
           'subject':data['subject'],
           'time':datetime.now(),
           'tags':data['tags'],
+          'summary':data['summary'],
           'description':data['description'],
           'max_colaborators':data['max_colaborators'],
           'owner_id':data['owner_id'],
