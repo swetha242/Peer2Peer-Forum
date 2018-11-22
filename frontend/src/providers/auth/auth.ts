@@ -20,7 +20,7 @@ export class AuthProvider {
       this.storage.get('userid').then((value) => {
 
           resolve(value);
-          
+
       });
 
   });
@@ -122,7 +122,7 @@ export class AuthProvider {
   }
 
   logout(){
-    this.storage.set('token', '');
+    this.storage.clear();
   }
 
 }

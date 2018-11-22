@@ -30,28 +30,14 @@
 <ion-content class="greypatternbg" padding>
   <ion-grid>
     <ion-row>
-      <ion-col col-11>
-        <ion-icon name="add-circle" color="baseColor" class="sizeinc" (click)="postNew()"></ion-icon><div class="newIdea">New Idea</div>
-        <ion-item>
-          <ion-label><ion-icon name="search"></ion-icon></ion-label>
-          <ion-input [(ngModel)]="query" name="query" placeholder="Search for ideas or projects" type="text"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
       <ion-col col-4>
         <div>
-          <button ion-button color="baseColor" outline>Latest</button>
+          <button ion-button color="baseColor" outline (click)="ideaLatest()">Latest</button>
         </div>
       </ion-col>
       <ion-col col-4>
         <div>
-          <button ion-button color="danger" outline>Recommended</button>
-        </div>
-      </ion-col>
-      <ion-col col-4>
-        <div>
-          <button ion-button color="dark">Filter<ion-icon name="arrow-down"></ion-icon></button>
+          <button ion-button color="danger" outline (click)="initRecommended()">Recommended</button>
         </div>
       </ion-col>
     </ion-row>
@@ -66,6 +52,7 @@
             <ion-icon name="quote" color="bright"></ion-icon> {{idea.title}}    <p></p>
             <ion-icon name="help" color="bright"></ion-icon> {{idea.summary}} <p></p>
           Submitted by {{idea.owner}}
+          <ion-icon name="eye" item-right>{{idea.views}}</ion-icon>
         </ion-card-content>
      </ion-card>
 

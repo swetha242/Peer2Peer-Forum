@@ -30,6 +30,8 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
 import {NotifPage} from '../pages/notif/notif';
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 import { RecoNotesPage} from '../pages/reco-notes/reco-notes';
+import { IdeasDetailsPage } from '../pages/ideas-details/ideas-details';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { RecoNotesPage} from '../pages/reco-notes/reco-notes';
     RecoNotesPage,
     IdeasProjectsPage,
     IdeasInputPage,
-    NotifPage
+    NotifPage,
+    IdeasDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { RecoNotesPage} from '../pages/reco-notes/reco-notes';
     RecoNotesPage,
     IdeasProjectsPage,
    IdeasInputPage,
-   NotifPage
+   NotifPage,
+   IdeasDetailsPage
   ],
   providers: [
     StatusBar,

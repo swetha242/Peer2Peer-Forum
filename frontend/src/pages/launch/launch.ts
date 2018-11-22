@@ -75,6 +75,7 @@ export class LaunchPage {
       let subjectsList = res.json()['subjects'];
       this.subjects = subjectsList;
     });
+
     //this.subjects=["Machine Learning","Compiler Design", "Data Structures", "Algorithms"];
 
 
@@ -151,7 +152,7 @@ export class LaunchPage {
 
   openProjects(event)
   {
-
+    this.navCtrl.push(IdeasProjectsPage,{'mode':"reco"});
   }
 
   callQuestions()

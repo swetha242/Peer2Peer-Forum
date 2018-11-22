@@ -13,6 +13,10 @@ import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 import { RecoNotesPage} from '../pages/reco-notes/reco-notes';
 import { Storage } from '@ionic/storage';
 import {NotifPage} from '../pages/notif/notif';
+import { IdeasDetailsPage } from '../pages/ideas-details/ideas-details';
+import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
+
+
 
 @Component({
   templateUrl: 'app.html'
@@ -33,8 +37,8 @@ export class MyApp {
     public storage:Storage
   ) {
     this.initializeApp();
-    
- 
+
+
     // set our app's pages
     // these are used in app.html to set the side menu
     this.pages = [
