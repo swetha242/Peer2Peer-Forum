@@ -9,14 +9,14 @@
 
   <ion-toolbar>
     
-    <ion-title>Sign Up Page</ion-title>
+    <ion-title text-center>Sign Up Page</ion-title>
   </ion-toolbar>
 
 </ion-header>
 
-<ion-content>
+<ion-content class="background">
     <form novalidate (ngSubmit)="doSignup()" [formGroup]="signupform">
-      <ion-list>
+      <ion-list style="width:384px;position:absolute;left:350px;top:50px">
         <ion-item>
           <ion-label floating>Name </ion-label>
           <ion-input type="text" [(ngModel)]="name" formControlName="name" [class.error1]="!signupform.controls.name.valid && signupform.controls.name.dirty"></ion-input>
@@ -63,15 +63,15 @@
           </div>
         </ion-item>
         <div padding>
-          <button type="submit" ion-button color="primary" block [disabled]="signupform.invalid">SIGN UP</button>
+          <button type="submit" ion-button class="signup"  color = "baseColor" block [disabled]="signupform.invalid">SIGN UP</button>
         </div>
 
         <div padding>
-            <button  ion-button (click)="home()"color="primary" block >HOME</button>
+            <button  ion-button (click)="home()" color = "baseColor" class="signup" block >HOME</button>
           </div>
 
           <div padding>
-              <button  ion-button (click)="login()" color="primary" block>LOGIN</button>
+              <button  ion-button (click)="login()"  color = "baseColor" class="signup" block>LOGIN</button>
             </div>
 
       </ion-list>

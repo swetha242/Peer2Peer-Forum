@@ -63,15 +63,23 @@ numberOfQuestionsAsked : number;
             this.emailId = data['email']
             this.numberOfUpvotes = data['ans_upvote']
             //this.topTags = data['topTags']
-            if(data['topTags'].length!=0)
-              {
+            //if(data['topTags'].length!=0)
+              //{
                 this.topTags = data['topTags']
-              }
+                if(this.topTags==null)
+                {
+                  this.topTags=[]
+                }
+              //}
             //this.topSubjects = data['topSubjects']
-            if(data['topSubjects'].length!=0)
-              {
+            //if(data['topSubjects'].length!=0)
+              //{
                 this.topSubjects = data['topSubjects']
-              }
+                if(this.topSubjects==null){
+                  this.topSubjects=[]
+                }
+                
+              //}
             this.numberOfNotesUploaded = data['notes_upl']
             this.numberofProjectIdeas = data['proj_ideas']
             this.numberOfQuestionsAsked = data['ques_ask']

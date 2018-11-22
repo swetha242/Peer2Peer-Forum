@@ -17,7 +17,7 @@
 <ion-content padding>
 
   
-    <ion-card (click)="get_ans(item)" text-wrap text-center  *ngFor="let item of qa" style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey;opacity:0.6;position:relative;top:70px">
+    <ion-card text-wrap text-center  *ngFor="let item of qa" style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey;opacity:0.6;position:relative;top:70px">
            
         <ion-card-content class="item-note" item-right>
             <ion-icon name="quote" color="bright"></ion-icon> {{item.msg}}    <p></p>
