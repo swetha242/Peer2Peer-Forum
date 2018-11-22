@@ -31,7 +31,7 @@ import {NotifPage} from '../pages/notif/notif';
 import { RecoQuestionsPage} from '../pages/reco-questions/reco-questions';
 import { RecoNotesPage} from '../pages/reco-notes/reco-notes';
 import { IdeasDetailsPage } from '../pages/ideas-details/ideas-details';
-
+import { IdeasDetailsInteractPage } from '../pages/ideas-details-interact/ideas-details-interact'
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { IdeasDetailsPage } from '../pages/ideas-details/ideas-details';
     IdeasProjectsPage,
     IdeasInputPage,
     NotifPage,
-    IdeasDetailsPage
+    IdeasDetailsPage,
+    IdeasDetailsInteractPage
   ],
   imports: [
     BrowserModule,
@@ -79,7 +80,8 @@ import { IdeasDetailsPage } from '../pages/ideas-details/ideas-details';
     IdeasProjectsPage,
    IdeasInputPage,
    NotifPage,
-   IdeasDetailsPage
+   IdeasDetailsPage,
+   IdeasDetailsInteractPage
   ],
   providers: [
     StatusBar,

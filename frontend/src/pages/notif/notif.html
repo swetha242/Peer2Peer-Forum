@@ -16,38 +16,51 @@
 
 <ion-content padding>
 
-  
+  <h2>Q&A</h2>
     <ion-card text-wrap text-center  *ngFor="let item of qa" style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey;opacity:0.6;position:relative;top:70px">
-           
+
         <ion-card-content class="item-note" item-right>
             <ion-icon name="quote" color="bright"></ion-icon> {{item.msg}}    <p></p>
             <ion-icon name="help" color="bright"></ion-icon> {{item.answer}} <p></p>
             <button ion-button item-right (click)="mark_as_read(item)">Mark as Read</button>
         </ion-card-content>
       </ion-card>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <h2>Projects</h2>
+   <ion-card text-wrap text-center  *ngFor="let request of requests" style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey;opacity:0.6;position:relative;top:70px">
+      <ion-card-content class="item-note" item-right>
+          <ion-icon name="quote" color="bright"></ion-icon> {{request.msg}}<p></p>
+          <button ion-button item-right (click)="requestClick(request)">Visit</button>
+      </ion-card-content>
+    </ion-card>
+    <ion-card text-wrap text-center  *ngFor="let request of accepts" style="color:white;background-color:rgb(39, 65, 17);border-bottom:1px solid grey;opacity:0.6;position:relative;top:70px">
+       <ion-card-content class="item-note" item-right>
+           <ion-icon name="quote" color="bright"></ion-icon> {{request.msg}}<p></p>
+           <button ion-button item-right (click)="normalClick(request)">Visit</button>
+       </ion-card-content>
+     </ion-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!--
     <ion-list>
   <div ion-item *ngFor="let item of qa" block (click)="get_ans(item)">
-      
+
       <br><b>{{item.msg}} </b>
       <br>
       <div class="item-note">

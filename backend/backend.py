@@ -123,7 +123,6 @@ def get_notif():
     notif={}
     c=0
     for i in notif_all:
-        if(i['read']==0):
             notif[str(c)]=i
             c=c+1
     return jsonify({'notif':notif})
@@ -562,7 +561,7 @@ def insert_ideas():
         x=mongo.db.users.find_one({'_id':ObjectId(data['owner_id'])})
 
         notif_q={
-            "type":5,
+            "type":2,
             "msg":x['name'] + " has chosen you as mentor for "+data['title'],
             "project_id":str(idea.inserted_id),
             'time': datetime.now(),

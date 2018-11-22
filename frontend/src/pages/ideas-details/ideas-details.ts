@@ -19,6 +19,7 @@ import { ProfilePage } from '../profile/profile';
 export class IdeasDetailsPage {
   selectedIdea: any;
   requests: any;
+  idea_id:any;
   show: any;
   requests_check: any;
   userid: any;
@@ -26,43 +27,45 @@ export class IdeasDetailsPage {
   count:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public storage: Storage) {
     this.selectedIdea = this.navParams.get('idea');
-    this.requests = this.navParams.get('request');
+    console.log(this.selectedIdea);
     this.requests_check = 0;
+
+    this.requests = this.navParams.get('request');
+    this.idea_id = this.navParams.get('idea_id');
+    if(this.requests){
+      this.requests_check = 1;
+    }
     this.show = 1;
     this.storage.get('userid').then((uid)=>{
       this.userid = uid;
+
+      if(this.userid == this.selectedIdea.owner_id){
+        this.show = 0;}
       console.log(this.userid);
     });
-    console.log(this.userid)
-    console.log(this.selectedIdea.owner_id)
-    if(this.userid == this.selectedIdea.owner_id){
-      console.log("NOOOB")
-      this.show = 0;
+      let url = Enums.APIURL.URL1;
+      let path = url.concat("/ideas/count_colaborator/");
+      let postParams = {idea_id: this.selectedIdea['_id']}
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(path,postParams,{headers:headers}).subscribe(res => {this.count = res['count'];});
+      if(this.selectedIdea.max_colaborators > this.count){
+        this.show = 0;
+      }
+      this.ideaInitialize();
+      console.log(this.selectedIdea);
     }
-    let url = Enums.APIURL.URL1;
-    let path = url.concat("/ideas/count_colaborator/");
-    let postParams = {idea_id: this.selectedIdea['_id']}
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    this.http.post(path,postParams,{headers:headers}).subscribe(res => {this.count = res['count'];});
-    if(this.selectedIdea.max_colaborators > this.count){
-      this.show = 0;
-    }
-    if(this.requests == null){
-      this.requests_check = 1;
-    }
-    this.ideaInitialize();
-  }
   ideaInitialize(){
     let url = Enums.APIURL.URL1;
     let path = url.concat("/idea/get/");
+
     let postParams = {idea_id: this.selectedIdea['_id']}
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     this.http.post(path,postParams,{headers: headers}).subscribe(res => {
       console.log(res);
       let dataReceived = res.json()['idea'];
-
+      console.log(dataReceived);
         this.selectedIdea = {
           _id: dataReceived._id,
           title: dataReceived.title,
@@ -84,7 +87,7 @@ export class IdeasDetailsPage {
           owner: dataReceived.owner_name,
           mentor: dataReceived.mentor_name,
           colab_emails: dataReceived.colab_emails
-        }
+        };
     }, (err) => {
         console.log(err);
     });
@@ -117,7 +120,12 @@ export class IdeasDetailsPage {
       this.ideaInitialize();
   }
   request_colab(){
-
+    let url = Enums.APIURL.URL1;
+    let path = url.concat("/ideas/insert_colaborator/")
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let postParams = {ideas_id: this.selectedIdea['_id'],colab_id: this.userid}
+    this.http.post(path,postParams,{headers: headers})
   }
 
   profile(id){
@@ -128,7 +136,7 @@ export class IdeasDetailsPage {
     let path = url.concat("/ideas/update_members/")
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let postParams = {ideas_id: this.selectedIdea['_id'],member_id:request['user_id'],mode:request['mode']}
+    let postParams = {ideas_id: this.selectedIdea['_id'],member_id:request['member_id'],mode:request['mode']}
     this.http.post(path,postParams,{headers: headers})
     this.requests.splice(i,1)
   }

@@ -15,6 +15,7 @@ import { Storage } from '@ionic/storage';
 import {NotifPage} from '../pages/notif/notif';
 import { IdeasDetailsPage } from '../pages/ideas-details/ideas-details';
 import { IdeasInputPage } from '../pages/ideas-input/ideas-input';
+import { IdeasDetailsInteractPage } from '../pages/ideas-details-interact/ideas-details-interact';
 
 
 

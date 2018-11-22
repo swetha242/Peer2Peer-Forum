@@ -44,7 +44,7 @@
             <ion-row *ngFor="let request of requests;let i = index">
               <ion-card>
                 <ion-card-content>
-                  {{request.name}}
+                  {{request.msg}}
                   <button ion-button (click)=accept(request,i)>
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </button>
